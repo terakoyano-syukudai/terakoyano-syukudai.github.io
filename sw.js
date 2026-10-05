@@ -102,8 +102,19 @@ function rememberVersion() {
   });
 }
 
-/* 更新確認。版が変わっていたときだけ本体を取り直す。 */
+/* 更新確認。版が変わっていたときだけ本体を取り直す。
+ * ページとマニフェストで fetch が2回起きるため、同時に走らないよう1本にまとめる。
+ * これをしないと、更新のあった回に本体を二重にダウンロードしてしまう。 */
+var _updating = null;
 function checkUpdate() {
+  if (_updating) return _updating;
+  _updating = doCheckUpdate()
+    .catch(function () {})
+    .then(function () { _updating = null; });
+  return _updating;
+}
+
+function doCheckUpdate() {
   return caches.open(CACHE).then(function (cache) {
     return readMeta(cache).then(function (meta) {
       var now = Date.now();
