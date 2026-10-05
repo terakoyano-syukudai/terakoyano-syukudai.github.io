@@ -54,6 +54,11 @@ self.addEventListener('fetch', function (e) {
   // 別サイト（スプレッドシートへの送信など）には一切手を出さない
   if (url.origin !== self.location.origin) return;
 
+  // 版の確認用ファイルはキャッシュしない。
+  // Service Worker 自身の更新確認は影響を受けないが、ブラウザで直接開いたときに
+  // 古い値が返って紛らわしいため、常にネットワークから取る。
+  if (url.pathname.indexOf('version.json') >= 0) return;
+
   e.respondWith(serve(req));
   e.waitUntil(checkUpdate());
 });
