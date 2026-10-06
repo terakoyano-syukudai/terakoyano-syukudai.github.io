@@ -59,6 +59,10 @@ self.addEventListener('fetch', function (e) {
   // 古い値が返って紛らわしいため、常にネットワークから取る。
   if (url.pathname.indexOf('version.json') >= 0) return;
 
+  // 教材（/textbook/）はこのアプリとは別物。画像が大きいので抱え込まない。
+  // ブラウザふつうのキャッシュにまかせる。
+  if (url.pathname.indexOf('/textbook/') >= 0) return;
+
   e.respondWith(serve(req));
   e.waitUntil(checkUpdate());
 });
