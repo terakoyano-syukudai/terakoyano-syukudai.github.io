@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="googlebot" content="noindex,nofollow">
+<title>てらこや 教材</title>
+<style>
+:root{
+  --bg:#FAF8F5; --fg:#2E2A26; --mut:#7A716A; --line:#E3DCD3;
+  --card:#FFFFFF; --accent:#1F6FB2; --bar:rgba(250,248,245,.94);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--fg)}
+body{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+     line-height:1.6;overscroll-behavior-y:none}
+a{color:inherit;text-decoration:none}
+.bar{position:sticky;top:0;z-index:20;background:var(--bar);backdrop-filter:blur(8px);
+     border-bottom:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-top,0))}
+.bar .row{display:flex;align-items:center;gap:10px;min-height:34px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:4px;
+     border:1px solid var(--line);background:var(--card);color:var(--fg);
+     border-radius:9px;padding:7px 12px;font-size:14px;cursor:pointer;white-space:nowrap}
+.btn:active{background:#F0EBE4}
+.btn.p{background:var(--accent);border-color:var(--accent);color:#fff}
+.ttl{flex:1;min-width:0}
+.ttl b{display:block;font-size:15px;line-height:1.35;
+       overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ttl span{display:block;font-size:11.5px;color:var(--mut)}
+.secs{display:flex;gap:6px;overflow-x:auto;padding:6px 12px 8px;
+      border-bottom:1px solid var(--line);background:var(--bg);
+      scrollbar-width:none}
+.secs::-webkit-scrollbar{display:none}
+.secs button{flex:0 0 auto;border:1px solid var(--line);background:var(--card);
+             border-radius:999px;padding:5px 11px;font-size:12.5px;color:var(--mut);cursor:pointer}
+.sheets{padding:10px 0 92px}
+.sheets img{display:block;width:100%;height:auto;background:#fff;
+            border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 0 10px}
+.foot{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;gap:8px;
+      padding:9px 12px calc(9px + env(safe-area-inset-bottom,0));
+      background:var(--bar);backdrop-filter:blur(8px);border-top:1px solid var(--line)}
+.foot .btn{flex:1}
+.sheet{position:relative}
+.note{padding:14px 16px;color:var(--mut);font-size:13px}
+/* 目次 */
+.toc{position:fixed;inset:0;z-index:40;background:var(--bg);overflow:auto;display:none}
+.toc.on{display:block}
+.toc h2{margin:0;padding:14px 16px calc(14px + env(safe-area-inset-top,0));font-size:16px;
+        position:sticky;top:0;background:var(--bar);backdrop-filter:blur(8px);
+        border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.toc h2 span{flex:1}
+.vols{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px 4px}
+.vols button{border:1px solid var(--line);background:var(--card);border-radius:999px;
+             padding:6px 11px;font-size:12.5px;cursor:pointer}
+.vols button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.list{padding:8px 12px 40px}
+.list a{display:block;background:var(--card);border:1px solid var(--line);border-radius:11px;
+        padding:11px 13px;margin:0 0 8px}
+.list a b{font-size:14.5px;font-weight:600}
+.list a i{display:block;font-style:normal;font-size:11.5px;color:var(--mut);margin-top:3px}
+.err{padding:28px 18px;color:var(--mut)}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<div class="toc" id="toc">
+  <h2><span id="tocTitle">目次</span><button class="btn" onclick="closeToc()">閉じる</button></h2>
+  <div class="vols" id="vols"></div>
+  <div class="list" id="tocList"></div>
+</div>
+
+<script>
+var DATA = null, VIEW = {vol:null, ch:null};
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,
+  function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+function parseHash(){
+  var h = (location.hash||'').replace(/^#/,''), o = {};
+  h.split('&').forEach(function(p){ var i=p.indexOf('='); if(i>0) o[p.slice(0,i)]=decodeURIComponent(p.slice(i+1)); });
+  return o;
+}
+function vol(code){ for(var i=0;i<DATA.length;i++) if(DATA[i].vol===code) return DATA[i]; return null; }
+function chap(v, ch){ for(var i=0;i<v.chapters.length;i++) if(v.chapters[i].ch===ch) return v.chapters[i]; return null; }
+
+function render(){
+  var q = parseHash();
+  if(!q.v || !vol(q.v)){ openToc(DATA[0].vol); document.getElementById('app').innerHTML=''; return; }
+  var v = vol(q.v), ch = q.c ? parseInt(q.c,10) : 0, c = ch ? chap(v, ch) : null;
+  VIEW = {vol:v.vol, ch:c?c.ch:0};
+  if(!c){ openToc(v.vol); document.getElementById('app').innerHTML=''; return; }
+
+  var idx = v.chapters.indexOf(c);
+  var prev = v.chapters[idx-1], next = v.chapters[idx+1];
+  var h = '';
+  h += '<div class="bar"><div class="row">'
+     + '<button class="btn" onclick="history.length>1?history.back():openToc(\''+v.vol+'\')">←</button>'
+     + '<div class="ttl"><b>第'+c.ch+'章　'+esc(c.title)+'</b><span>巻'+v.vol+'　'+esc(v.name)+'</span></div>'
+     + '<button class="btn" onclick="openToc(\''+v.vol+'\')">目次</button>'
+     + '</div></div>';
+  if(c.secs && c.secs.length){
+    h += '<div class="secs">';
+    c.secs.forEach(function(s){
+      h += '<button onclick="jump('+s.i+')">'+esc(s.no)+'　'+esc(s.name)+'</button>';
+    });
+    h += '</div>';
+  }
+  h += '<div class="sheets" id="sheets">';
+  var off = 0;
+  c.sheets.forEach(function(s, k){
+    h += '<img id="sh'+k+'" data-base="'+off+'" data-n="'+s.n+'" alt="第'+c.ch+'章 '+(off+1)+'枚目から" '
+       + 'src="'+v.vol+'/'+s.f+'" loading="'+(k?'lazy':'eager')+'">';
+    off += s.n;
+  });
+  h += '</div>';
+  h += '<div class="foot">'
+     + (prev ? '<button class="btn" onclick="goto(\''+v.vol+'\','+prev.ch+')">前の章</button>'
+             : '<button class="btn" disabled style="opacity:.4">前の章</button>')
+     + '<button class="btn" onclick="openToc(\''+v.vol+'\')">目次</button>'
+     + (next ? '<button class="btn p" onclick="goto(\''+v.vol+'\','+next.ch+')">次の章</button>'
+             : '<button class="btn" disabled style="opacity:.4">次の章</button>')
+     + '</div>';
+  document.getElementById('app').innerHTML = h;
+  closeToc();
+  var s = parseInt(q.s||'0',10);
+  if(s > 0) setTimeout(function(){ jump(s); }, 60);
+  else window.scrollTo(0,0);
+}
+
+/* 章の中の i 枚目（1始まり）まで送る */
+function jump(i){
+  var imgs = document.querySelectorAll('#sheets img');
+  for(var k=0;k<imgs.length;k++){
+    var base = +imgs[k].dataset.base, n = +imgs[k].dataset.n;
+    if(i > base && i <= base + n){
+      var go = function(){
+        var one = imgs[k].clientHeight / n;
+        var y = imgs[k].getBoundingClientRect().top + window.scrollY + (i - base - 1) * one;
+        window.scrollTo({top: Math.max(0, y - 54), behavior:'smooth'});
+      };
+      if(imgs[k].complete && imgs[k].clientHeight) go();
+      else imgs[k].addEventListener('load', go, {once:true});
+      return;
+    }
+  }
+}
+
+function goto(v, ch, s){
+  location.hash = 'v='+v+'&c='+ch+(s?'&s='+s:'');
+}
+
+function openToc(v){
+  var cur = v || VIEW.vol || DATA[0].vol;
+  document.getElementById('vols').innerHTML = DATA.map(function(x){
+    return '<button class="'+(x.vol===cur?'on':'')+'" onclick="openToc(\''+x.vol+'\')">巻'+x.vol+' '+esc(x.name)+'</button>';
+  }).join('');
+  var vv = vol(cur);
+  document.getElementById('tocTitle').textContent = '巻' + vv.vol + '　' + vv.name;
+  document.getElementById('tocList').innerHTML = vv.chapters.map(function(c){
+    var n = c.sheets.reduce(function(a,s){ return a+s.n; }, 0);
+    return '<a href="#v='+vv.vol+'&c='+c.ch+'"><b>第'+c.ch+'章　'+esc(c.title)+'</b>'
+         + '<i>'+n+'枚'+(c.secs.length?'　'+c.secs.map(function(s){return esc(s.name);}).join('・'):'')+'</i></a>';
+  }).join('');
+  document.getElementById('toc').classList.add('on');
+  document.getElementById('toc').scrollTop = 0;
+}
+function closeToc(){ document.getElementById('toc').classList.remove('on'); }
+
+window.addEventListener('hashchange', render);
+
+fetch('data.json').then(function(r){ return r.json(); }).then(function(j){
+  DATA = j; render();
+}).catch(function(){
+  document.getElementById('app').innerHTML =
+    '<div class="err">教材の一覧を読み込めませんでした。通信を確認してもう一度開いてください。</div>';
+});
+</script>
+</body>
+</html>
