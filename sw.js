@@ -134,13 +134,20 @@ function doCheckUpdate() {
         meta.checkedAt = now;
         if (meta.version === v) return writeMeta(cache, meta);
 
-        // 新しい版があるので本体を取り直す
+        // 新しい版があるので本体を取り直す。
+        // 公開直後は version.json だけ先に新しくなり、本体がまだ古いことがある（配信の反映待ち）。
+        // そのまま保存すると「古い本体を新しい版として」覚えてしまい、次の版まで更新されなくなる。
+        // 取ってきた本体に同じ版数（APP_VER）が書かれているときだけ保存し、
+        // 違えば何も保存せず、次に開いたときにもう一度確認する。
         return fetch('./index.html?_=' + now, { cache: 'no-store' })
           .then(function (res) {
             if (!res || !res.ok) return;
-            return cache.put('./index.html', res.clone())
-              .then(function () { return cache.put('./', res.clone()); })
-              .then(function () { meta.version = v; });
+            return res.clone().text().then(function (html) {
+              if (html.indexOf('APP_VER = "' + v + '"') < 0) { meta.checkedAt = 0; return; }
+              return cache.put('./index.html', res.clone())
+                .then(function () { return cache.put('./', res.clone()); })
+                .then(function () { meta.version = v; });
+            });
           })
           .catch(function () {})
           .then(function () { return writeMeta(cache, meta); });

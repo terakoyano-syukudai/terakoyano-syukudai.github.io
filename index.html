@@ -20,7 +20,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#EDF1EF">
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v6.7｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v6.7.1｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -825,7 +825,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v6.7";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v6.7.1";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -1295,7 +1295,7 @@ function Home(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono" style="font-size:10.5px">アプリ版数：v6.7（2026-10-06 更新）</span>
+      <br><span class="mono" style="font-size:10.5px">アプリ版数：v6.7.1（2026-10-06 更新）</span>
       <br><span class="mono" style="font-size:10.5px">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       <br><br><button class="danger" onclick="resetAll()">記録をすべて消す</button>
     </div>
