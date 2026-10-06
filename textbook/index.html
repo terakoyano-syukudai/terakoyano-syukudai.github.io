@@ -112,7 +112,7 @@ function render(){
   var off = 0;
   c.sheets.forEach(function(s, k){
     h += '<img id="sh'+k+'" data-base="'+off+'" data-n="'+s.n+'" alt="第'+c.ch+'章 '+(off+1)+'枚目から" '
-       + 'src="'+v.vol+'/'+s.f+'" loading="'+(k?'lazy':'eager')+'">';
+       + 'src="'+v.vol+'/'+s.f+'" loading="'+(k?'lazy':'eager')+'" onerror="missing(this)">';
     off += s.n;
   });
   h += '</div>';
@@ -128,6 +128,16 @@ function render(){
   var s = parseInt(q.s||'0',10);
   if(s > 0) setTimeout(function(){ jump(s); }, 60);
   else window.scrollTo(0,0);
+}
+
+/* 画像がまだ無い巻のとき。黙って壊れた絵を出さない。 */
+function missing(img){
+  if(img.dataset.gone) return;
+  img.dataset.gone = '1';
+  var d = document.createElement('div');
+  d.className = 'note';
+  d.textContent = 'この章の画像はまだ用意できていません。';
+  img.replaceWith(d);
 }
 
 /* 章の中の i 枚目（1始まり）まで送る */
