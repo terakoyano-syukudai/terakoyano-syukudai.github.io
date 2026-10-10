@@ -6,10 +6,16 @@
  *   新しい版があるときに限って本体を取り直す。
  *   取り込んだ新版は「次にアプリを開いたとき」に出る。
  *   解いている最中に画面が差し替わらないよう、その場では切り替えない。
+ *
+ * v6.11：更新の確認を「アプリを開くたび・画面に戻るたび」にした（以前は最大6時間に1回）。
+ *   ホーム画面に追加したアプリは裏から戻るだけでは読み直されないため、
+ *   ページから 'check' を送ってもらい、確認の結果（いま保存している版）を返す。
+ *   ページは自分の版と違えば「新しい版があります（タップで更新）」を出す。
+ *   確認は1分以内の連続を間引くだけで、通信は version.json（約60バイト）のみ。
  */
 var CACHE = 'terakoya';
 var META = './__meta';                 // 最終確認時刻と版を入れておく疑似エントリ
-var CHECK_INTERVAL = 6 * 3600 * 1000;  // 更新確認は最大6時間に1回
+var CHECK_INTERVAL = 60 * 1000;         // 連続した確認を1分間だけ間引く（v6.11。以前は6時間）
 
 var CORE = [
   './',
@@ -65,6 +71,17 @@ self.addEventListener('fetch', function (e) {
 
   e.respondWith(serve(req));
   e.waitUntil(checkUpdate());
+});
+
+/* ページからの確認依頼（開いたとき・画面に戻ったとき）。確認後、保存している版を返す */
+self.addEventListener('message', function (e) {
+  if (e.data !== 'check') return;
+  var src = e.source;
+  e.waitUntil(checkUpdate().then(function () {
+    return caches.open(CACHE).then(readMeta).then(function (meta) {
+      if (src && meta && meta.version) src.postMessage({ type: 'ver', version: meta.version });
+    });
+  }).catch(function () {}));
 });
 
 /* キャッシュにあればそれを返す。無ければ取りに行って保存する。 */
