@@ -21,7 +21,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v6.18｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v6.19｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -880,25 +880,78 @@
   .uscreen .backbar{margin-top:auto}
   .bgrid{flex:1 0 auto;display:flex;flex-direction:column;padding:16px}
   .bgrid > .tiles{flex:1;margin-top:0;gap:12px;grid-auto-rows:minmax(120px,1fr)}
-  .ugrid > .tiles{grid-template-rows:auto;grid-auto-rows:minmax(96px,1fr);gap:10px}
-  .ugrid .tile{gap:6px;padding:12px 10px}
-  .ugrid .tile-ic{width:36px;height:36px;border-radius:10px}
-  .ugrid .tile-ic svg{width:19px;height:19px}
-  .ugrid .tile-s{margin-top:2px}
-  .ugrid .ustart .tile{flex-direction:row;gap:12px;padding:12px 16px}
-  .ugrid .ustart .tile-tx{align-items:flex-start;text-align:left}
-  .ucell{position:relative;min-width:0}
-  .ucell.ustart{grid-column:1 / -1}
-  .ucell .tile{width:100%}
-  .ucell.ustart .tile{background:var(--uacc-soft);border-color:var(--uacc)}
-  .ucell .tile-ic{color:var(--uacc)}
-  .ucell.off .tile{opacity:.55}
-  .ucell-mine{position:absolute;top:7px;right:7px;font:inherit;font-size:10.5px;font-weight:700;line-height:1;
-    padding:5px 8px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
-  .ucell-mine.on{color:var(--uacc);border-color:var(--uacc);background:var(--uacc-soft)}
-  .ugrid .ufoot{margin:10px 2px 0;font-size:11px;line-height:1.6}
   html[data-theme="dark"] .umain .tile,html[data-theme="dark"] .bgrid .tile{background:rgba(255,255,255,.05)}
-  html[data-theme="dark"] .ucell.ustart .tile{background:var(--uacc-soft)}
+
+  /* v6.19 ホームの大きなタイル：色・透かし・進み具合 */
+  .umain .ubig{position:relative;overflow:hidden;align-items:flex-start;justify-content:flex-start;text-align:left;
+    gap:10px;padding:16px 15px 14px;border-width:1px}
+  .ubig-exam{--ub:#5A4E96;background:linear-gradient(155deg,#F3F0FC 0%,#DED7F4 100%);border-color:#CEC5EE}
+  .ubig-daily{--ub:#2D7A61;background:linear-gradient(155deg,#EDF6F1 0%,#D0E8DB 100%);border-color:#BCDCCA}
+  .umain .ubig .ubig-ic{width:46px;height:46px;border-radius:14px;background:var(--ub);border:0;color:#fff;
+    box-shadow:0 6px 14px -8px var(--ub)}
+  .umain .ubig .ubig-ic svg{width:25px;height:25px}
+  .ubig-wm{position:absolute;right:-26px;top:-18px;width:120px;height:120px;color:var(--ub);opacity:.07;pointer-events:none}
+  .ubig-wm svg{width:100%;height:100%}
+  .umain .ubig .tile-tx{align-items:flex-start;position:relative}
+  .umain .ubig .tile-t{font-size:20px;font-weight:800;letter-spacing:.02em;color:var(--ub)}
+  .umain .ubig .ubig-s{font-family:var(--jp);font-size:12px;color:var(--ink-2);margin-top:6px;line-height:1.6;
+    white-space:normal;word-break:keep-all;overflow-wrap:anywhere}
+  .ubig-list{position:relative;width:100%;display:flex;flex-direction:column;gap:5px;margin-top:2px}
+  .ubig-row{display:flex;align-items:center;gap:6px;font-size:11px;line-height:1.3;color:var(--ink-2)}
+  .ubig-rn{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ubig-row .bar{flex:none;width:22%;height:5px;margin:0;background:color-mix(in srgb,var(--ub) 16%,transparent)}
+  .ubig-row .bar i{background:var(--ub)}
+  .ubig-row b{flex:none;width:2.3em;text-align:right;font-family:var(--mono);font-size:10.5px;color:var(--ub)}
+    .ubig-row2 b{width:auto}
+  .ubig-row2{padding-bottom:4px;border-bottom:1px dashed rgba(0,0,0,.08)}
+  html[data-theme="dark"] .ubig-row2{border-bottom-color:rgba(255,255,255,.1)}
+  .ubig-foot{position:relative;margin-top:auto;width:100%;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px}
+  .ubig-k{font-size:11px;color:var(--ink-2)}
+  .ubig-v{margin-left:auto;font-family:var(--mono);font-size:16px;font-weight:800;color:var(--ub)}
+  .ubig-foot .bar{flex-basis:100%;height:6px;background:color-mix(in srgb,var(--ub) 16%,transparent);margin-top:3px}
+  .ubig-foot .bar i{background:var(--ub)}
+  html[data-theme="dark"] .ubig-exam{--ub:#B3A6EE;background:linear-gradient(155deg,#262238,#332C52);border-color:#453D6B}
+  html[data-theme="dark"] .ubig-daily{--ub:#7FCBA9;background:linear-gradient(155deg,#1D2C26,#21392F);border-color:#2F4D40}
+  html[data-theme="dark"] .umain .ubig .ubig-ic{color:#14171A}
+  /* 日々の学習の4枚：それぞれに色 */
+  .bgrid .tile .tile-ic{border:0;color:#fff;box-shadow:0 6px 14px -9px rgba(0,0,0,.6)}
+  .bgrid .tile:nth-child(1) .tile-ic{background:#2D7A61}
+  .bgrid .tile:nth-child(2) .tile-ic{background:#C0392B}
+  .bgrid .tile:nth-child(3) .tile-ic{background:#2D4B80}
+  .bgrid .tile:nth-child(4) .tile-ic{background:#B7791F}
+  .bgrid .tile:nth-child(1){background:linear-gradient(170deg,var(--surface) 55%,#E4F1EA)}
+  .bgrid .tile:nth-child(2){background:linear-gradient(170deg,var(--surface) 55%,#F8E4E1)}
+  .bgrid .tile:nth-child(3){background:linear-gradient(170deg,var(--surface) 55%,#E1E8F4)}
+  .bgrid .tile:nth-child(4){background:linear-gradient(170deg,var(--surface) 55%,#F6EBD9)}
+  .bgrid .tile-t{font-size:17px;word-break:keep-all;overflow-wrap:anywhere}
+  .bgrid .tile-s{word-break:keep-all;overflow-wrap:anywhere}
+  html[data-theme="dark"] .bgrid .tile:nth-child(n){background:rgba(255,255,255,.05)}
+  /* 試験対策の科目：科目別で解く と同じ格子 */
+  .ustartbtn{flex:none;display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;color:var(--ink);
+    background:var(--uacc-soft);border:1.5px solid var(--uacc);border-radius:14px;padding:10px 12px;margin-bottom:8px}
+  .ustartbtn[disabled]{opacity:.5}
+  .ustartbtn .sg-ic{flex:none;width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff}
+  .ustartbtn .sg-ic svg{width:21px;height:21px}
+  .ustartbtn .sg-m{flex:1;min-width:0;display:flex;flex-direction:column}
+  .ustartbtn .sg-n{font-size:15px;font-weight:800;color:var(--uacc)}
+  .ustartbtn .sg-s{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:2px}
+  .usgrid{grid-template-rows:repeat(3,minmax(0,1fr))}
+  .ucell{position:relative;min-width:0;min-height:0;display:flex}
+  .ucell .sg{flex:1;width:100%;padding:8px 10px}
+  .ucell .sg-n{font-size:15px;padding-right:6px}
+  .ucell .sg-ic{width:42px;height:42px}
+  .ucell .ustar-s{color:#B07A12}
+  .ucell.off .sg{opacity:.5}
+  .ucell-mine{position:absolute;top:6px;right:6px;font:inherit;font-size:10px;font-weight:700;line-height:1;
+    padding:4px 7px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+  .ucell-mine.on{color:var(--uacc);border-color:var(--uacc);background:var(--uacc-soft)}
+  .ugpad .ufoot{flex:none;margin:8px 2px 0;font-size:11px;line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
+  .uhome .daily-sub{word-break:keep-all;overflow-wrap:anywhere}
+  /* 背の低い画面ではホームの一覧を省いて1画面に収める */
+  @media (max-height:720px){ .umain .ubig .ubig-list{display:none} .umenu{min-height:0} }
+  @media (max-height:600px){ .umain .ubig{gap:6px;padding:11px 12px 10px} .umain .ubig .ubig-ic{width:34px;height:34px;border-radius:10px}
+    .umain .ubig .ubig-ic svg{width:19px;height:19px} .umain .ubig .tile-t{font-size:17px} .umain .ubig .ubig-s{font-size:11px;margin-top:2px;line-height:1.45}
+    .ubig-v{font-size:14px} .usetbtn{margin-top:8px;padding-top:9px;padding-bottom:9px} }
   .ulead{font-size:13px;line-height:1.7;color:var(--ink-2);margin:2px 0 12px}
   .ucount{font-size:12px;color:var(--muted);text-align:right;margin:6px 2px 0}
   .ucard{display:flex;align-items:stretch;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
@@ -1318,7 +1371,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v6.18";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v6.19";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -1690,7 +1743,7 @@ function DailyCard(){
       <span class="daily-title">今日の10問</span>
       <span class="daily-badge ${fin?"done":""}">${fin ? "解答ずみ" : "未挑戦"}</span>
     </div>
-    <div class="daily-sub">${esc(EXAMS[d.subject].name)}　${esc(d.unit)}${d.uN ? `<br>＋ 大学の講義 ${d.uN}問（${esc(d.uNames.join("・"))}）` : ""}</div>
+    <div class="daily-sub">${esc(EXAMS[d.subject].name)}　${esc(d.unit)}${d.uN ? `<br>＋ 大学の講義 ${d.uN}問（${d.uNames.map(esc).join("・<wbr>")}）` : ""}</div>
     <div class="daily-meta">${fin ? `${fin.ok}/${fin.total} 正解` : `${d.set.length}問`}</div>
   </button>`;
 }
@@ -1796,7 +1849,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono" style="font-size:10.5px">アプリ版数：v6.18（2026-10-12 更新）</span>
+      <br><span class="mono" style="font-size:10.5px">アプリ版数：v6.19（2026-10-12 更新）</span>
       <br><span class="mono" style="font-size:10.5px">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       <br><br><button class="danger" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -2488,15 +2541,39 @@ function dailyPick(key){
 }
 
 /* ---------- 画面 ---------- */
+const U_IC_EXAM = `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M2.5 8 10 4l7.5 4L10 12 2.5 8Z"/><path d="M5.5 9.6v3.6c1.3 1.2 2.8 1.8 4.5 1.8s3.2-.6 4.5-1.8V9.6"/><path d="M17.5 8v4.5"/></svg>`;
+const U_IC_DAILY = `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="5.5" height="5.5" rx="1.2"/><rect x="11.5" y="3" width="5.5" height="5.5" rx="1.2"/><rect x="3" y="11.5" width="5.5" height="5.5" rx="1.2"/><rect x="11.5" y="11.5" width="5.5" height="5.5" rx="1.2"/></svg>`;
+/* ホームの大きなタイル（v6.19：色・透かしのイラスト・進み具合で寂しく見えないように） */
+function UBigTile(o){
+  return `<button class="tile ubig ${o.cls}" ${o.off ? "disabled" : `onclick="${o.on}"`}>
+    <span class="ubig-wm" aria-hidden="true">${o.ic}</span>
+    <span class="tile-ic ubig-ic">${o.ic}</span>
+    <span class="tile-tx"><span class="tile-t">${o.t}</span><span class="tile-s ubig-s">${o.s}</span></span>
+    ${o.list ? `<span class="ubig-list">${o.list}</span>` : ""}
+    <span class="ubig-foot"><span class="ubig-k">${o.k}</span><span class="ubig-v">${o.v}</span>
+      <span class="bar"><i style="width:${o.pct}%"></i></span></span>
+  </button>`;
+}
+const U_SHORT = { biseibutsu1:"微生物免疫1" };
 function UHomeTiles(){
-  const mine = uMine(), n = UQ.filter(q=> uIsMine(q.c)).length;
-  const us = UQ.length ? `大学の定期試験・履修中 ${mine.length}科目・${n}問` : (uState === "err" ? "読み込めませんでした（タップで再試行）" : "読み込み中…");
+  const mine = uMine(), mq = UQ.filter(q=> uIsMine(q.c));
+  const upct = mq.length ? Math.round(uDone(mq) / mq.length * 100) : 0;
+  const ok = QUESTIONS.filter(q=> isMastered(q.id)).length;
+  const npct = QUESTIONS.length ? Math.round(ok / QUESTIONS.length * 100) : 0;
+  const weakN = weakQuestions().length;
+  const us = UQ.length ? `大学の定期試験<br>履修中 ${mine.length}科目・<wbr>${mq.length}問`
+                       : (uState === "err" ? "読み込めませんでした<br>（タップで再試行）" : "読み込み中…");
+  const rowsU = mine.map(c=>{ const qs = uQs(c.k), p = qs.length ? Math.round(uDone(qs) / qs.length * 100) : 0;
+    return `<span class="ubig-row"><span class="ubig-rn">${esc(U_SHORT[c.k] || c.name)}</span><span class="bar"><i style="width:${p}%"></i></span><b>${p}%</b></span>`; }).join("");
+  const nS = Object.keys(EXAMS).length, unitN = Object.keys(EXAMS).reduce((a,k)=> a + unitsOf(k).length, 0);
+  const rowsD = [["科目別で解く", `${nS}科目`], ["弱点だけ", weakN ? `${weakN}問` : "まだなし"], ["ランダム", `${QUESTIONS.length.toLocaleString()}問`], ["講義資料", "全16巻"]]
+    .map(([a,b])=> `<span class="ubig-row ubig-row2"><span class="ubig-rn">${a}</span><b>${b}</b></span>`).join("");
   return `<div class="umenu">
     <div class="tiles umain">
-    ${homeTile({ ic:`<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M2.5 8 10 4l7.5 4L10 12 2.5 8Z"/><path d="M5.5 9.6v3.6c1.3 1.2 2.8 1.8 4.5 1.8s3.2-.6 4.5-1.8V9.6"/><path d="M17.5 8v4.5"/></svg>`,
-      t:"試験対策", s:us, on: UQ.length ? "go('univ')" : "uState='idle';uFetch()" })}
-    ${homeTile({ ic:`<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="5.5" height="5.5" rx="1.2"/><rect x="11.5" y="3" width="5.5" height="5.5" rx="1.2"/><rect x="3" y="11.5" width="5.5" height="5.5" rx="1.2"/><rect x="11.5" y="11.5" width="5.5" height="5.5" rx="1.2"/></svg>`,
-      t:"日々の学習", s:"国試対策（科目別・弱点・ランダム・講義資料）", on:"go('dstudy')" })}
+    ${UBigTile({ cls:"ubig-exam", ic:U_IC_EXAM, t:"試験対策", s:us, list: UQ.length ? rowsU : "", k:"履修中の習得", v:`${upct}%`, pct:upct,
+      on: UQ.length ? "go('univ')" : "uState='idle';uFetch()" })}
+    ${UBigTile({ cls:"ubig-daily", ic:U_IC_DAILY, t:"日々の学習", s:`国試対策<br>全${nS}科目・<wbr>${unitN}単元`, list: rowsD,
+      k:"全体の習得", v:`${npct}%`, pct:npct, on:"go('dstudy')" })}
     </div>
     <button class="recbtn usetbtn" onclick="go('records')"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10" cy="10" r="2.6"/><path d="M10 2.8v2M10 15.2v2M2.8 10h2M15.2 10h2M4.9 4.9l1.4 1.4M13.7 13.7l1.4 1.4M4.9 15.1l1.4-1.4M13.7 6.3l1.4-1.4"/></svg><span class="recbtn-t">設定</span><span class="usetbtn-s">記録・目標・画面の色・引き継ぎ</span><span class="chev">›</span></button>
   </div>`;
@@ -2516,6 +2593,14 @@ function DStudy(){
   return UScreen("日々の学習", "国試対策", `<div class="bgrid">${HomeTiles()}</div>`, U_HOMEBACK);
 }
 const U_BOOK = `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M10 5.5C8 4 5.5 3.8 3 4.3v11c2.5-.5 5-.3 7 1.2 2-1.5 4.5-1.7 7-1.2v-11c-2.5-.5-5-.3-7 1.2Z"/><path d="M10 5.5v11"/></svg>`;
+/* 大学の科目の色とイラスト（国試の科目の色にそろえる） */
+const U_LOOK = { kaibou1:["body","kaibou"], kaibou2:["heart","#9B3B4F"], seiri1:["nerve","#A87A05"],
+                 biseibutsu1:["microbe","micro"], seika1:["dna","seika"], yakuri2:["capsule","yakuri"] };
+function uLook(k){
+  const l = U_LOOK[k] || ["book", "#5A4E96"];
+  const c = l[1].charAt(0) === "#" ? l[1] : (subjColor(l[1]) || "#5A4E96");
+  return { ic:l[0], c };
+}
 function Univ(){
   const ust = "--accent:var(--uacc);--accent-soft:var(--uacc-soft)";
   if(!UQ.length){
@@ -2525,22 +2610,32 @@ function Univ(){
   const cells = UC.map(c=>{
     const qs = uQs(c.k), done = uDone(qs), pct = qs.length ? Math.round(done/qs.length*100) : 0;
     const top = qs.filter(q=> uStars(q) >= 2).length;
-    const on = uIsMine(c.k);
+    const on = uIsMine(c.k), L = uLook(c.k);
     return `<div class="ucell${on?"":" off"}">
-      ${homeTile({ ic:U_BOOK, t:esc(c.name),
-        s:`${qs.length}問・習得${pct}%<br>${c.nex ? `★★以上 ${top}問` : "過去問なし"}`, on:`go('ucourse',{uc:'${c.k}'})` })}
+      <button class="sg" onclick="go('ucourse',{uc:'${c.k}'})">
+        <span class="sg-ic" style="background:${L.c}">${icon(L.ic)}</span>
+        <span class="sg-m"><span class="sg-n">${esc(c.name).replace("・", "・<wbr>")}</span>
+          <span class="sg-s">${qs.length}問　習得 ${pct}%</span>
+          <span class="sg-s ustar-s">${c.nex ? `★★以上 ${top}問` : "過去問なし"}</span>
+          <span class="bar"><i style="width:${pct}%;background:${L.c}"></i></span></span>
+      </button>
       <button class="ucell-mine${on?" on":""}" onclick="uToggleMine('${c.k}')" aria-pressed="${on}">${on ? "履修中" : "対象外"}</button>
     </div>`;
   }).join("");
-  const start = homeTile({ ic:`<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m10 2.8 2.1 4.4 4.8.6-3.5 3.3.9 4.8L10 13.6l-4.3 2.3.9-4.8-3.5-3.3 4.8-.6L10 2.8Z"/></svg>`,
-    t:`履修中から頻出順に${U_SET}問`, s:`対象 ${mineN}問`, on:"uStartFreq(null)", off: !mineN });
-  const body = `<div class="bgrid ugrid"><div class="tiles">
-      <div class="ucell ustart">${start}</div>
-      ${cells}
-    </div>
-    <p class="ufoot">★は過去問での出題の多さ（科目の中での比べ合い）。右上の「履修中／対象外」で、今日の10問と上のボタンの対象を切り替えます。科目と回は2026年度シラバスにそろえてあります。</p>
+  const body = `<div class="pad gpad ugpad">
+      <button class="ustartbtn" ${mineN ? "" : "disabled"} onclick="uStartFreq(null)">
+        <span class="sg-ic" style="background:var(--uacc)"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m10 2.8 2.1 4.4 4.8.6-3.5 3.3.9 4.8L10 13.6l-4.3 2.3.9-4.8-3.5-3.3 4.8-.6L10 2.8Z"/></svg></span>
+        <span class="sg-m"><span class="sg-n">履修中の科目から頻出順に${U_SET}問</span><span class="sg-s">対象 ${mineN}問</span></span>
+        <span class="chev">›</span>
+      </button>
+      <div class="sgrid usgrid">${cells}</div>
+      <p class="ufoot">★は過去問での出題の多さ（科目の中での比べ合い）。<wbr>「履修中／対象外」で、<wbr>今日の10問と上のボタンの対象を切り替えます。</p>
+    </div>`;
+  return `<div class="gscr" style="${ust}">
+    <div class="qhead"><div class="qhead-row"><span class="qcount">試験対策</span><span class="qscore">大学の講義・${UC.length}科目</span></div></div>
+    ${body}
+    <div class="backbar gback">${U_HOMEBACK}</div>
   </div>`;
-  return UScreen("試験対策", "大学の講義", body, U_HOMEBACK, ust);
 }
 function UCourse(){
   const c = UCK[view.uc];
