@@ -21,7 +21,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v6.16｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v6.17｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -1274,7 +1274,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v6.16";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v6.17";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -1752,7 +1752,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono" style="font-size:10.5px">アプリ版数：v6.16（2026-10-11 更新）</span>
+      <br><span class="mono" style="font-size:10.5px">アプリ版数：v6.17（2026-10-12 更新）</span>
       <br><span class="mono" style="font-size:10.5px">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       <br><br><button class="danger" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -2326,7 +2326,7 @@ function SuppBox(q){
 
 /* ---------- 単位特化（v6.16・ref=1） ---------- */
 /* 大学の講義に合わせた問題。データは別ファイル（UFILE）にあり、ref=1 の端末だけが読みに行く。 */
-const UFILE = "./u/univ-413392b40b.json", UKEY = "terakoya-univ-2026";
+const UFILE = "./u/univ-3b41d4d347.json", UKEY = "terakoya-univ-2026";
 const U_DAILY = 5;      /* 今日の10問のうち大学の問題の数 */
 const U_SET = 10;       /* 単位特化の1回の出題数 */
 let UQ = [], UC = [], UCK = {}, _uById = null, uState = "idle";
@@ -2524,7 +2524,7 @@ function UCourse(){
       <span class="qcount">${esc(c.name)}</span><span class="qscore">${esc(c.year)}・${esc(c.term)}</span>
     </div></div>
     <div class="pad">
-      <div class="uinfo">担当：${esc(c.teacher)}<br>評価：${esc(c.eval)}<br>${c.nex ? `頻出度は過去問 ${c.nex}回分から` : "この科目は過去問が手元に無いため、講義資料と演習問題から作っています"}</div>
+      <div class="uinfo">担当：${esc(c.teacher)}<br>評価：${esc(c.eval)}<br>${c.nex ? (c.fsrc ? `頻出度は${esc(c.fsrc)}から` : `頻出度は過去問 ${c.nex}回分から`) : "この科目は過去問が手元に無いため、講義資料と演習問題から作っています"}</div>
       <button class="cta" onclick="uStartFreq('${c.k}')">頻出順に${U_SET}問</button>
       <div class="ubtns">
         <button class="cta ghost" onclick="uStartRandom('${c.k}')">全範囲からランダム</button>
@@ -2543,8 +2543,9 @@ function UHead(q){
 }
 function USrc(q){
   const h = q.hits || [];
+  const hl = (UCK[q.c] || {}).hlabel || "過去問";
   return `<div class="usrc"><div><b>出典</b>${(q.src || []).map(esc).join("・")}</div>${
-    h.length ? `<div><b>過去問</b>${h.length}回（${h.slice(0, 6).map(esc).join("、")}${h.length > 6 ? " ほか" : ""}）</div>` : ""}</div>`;
+    h.length ? `<div><b>${esc(hl)}</b>${h.length}回（${h.slice(0, 6).map(esc).join("、")}${h.length > 6 ? " ほか" : ""}）</div>` : ""}</div>`;
 }
 
 /* ---------- 単元を選ぶ ---------- */
