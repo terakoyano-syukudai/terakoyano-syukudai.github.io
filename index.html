@@ -9,6 +9,44 @@
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+/* v6.22 iPad など大きな画面は、viewport の幅を狭めて画面全体を拡大する（配置は1列のまま） */
+(function(){
+  var m = document.querySelector('meta[name="viewport"]');
+  if(!m) return;
+  var last = "";
+  function devSize(){
+    var w = window.outerWidth, h = window.outerHeight;
+    if(!(w > 0 && h > 0)){
+      var a = screen.width, b = screen.height;
+      var land = window.matchMedia && matchMedia("(orientation: landscape)").matches;
+      w = land ? Math.max(a, b) : Math.min(a, b);
+      h = land ? Math.min(a, b) : Math.max(a, b);
+    }
+    return [w, h];
+  }
+  function fit(){
+    var d = devSize(), w = d[0], h = d[1], c, s = 1;
+    if(Math.min(w, h) < 700){
+      c = "width=device-width, initial-scale=1, viewport-fit=cover";
+    } else {
+      s = Math.min(w / 600, (h * 0.92) / 640);
+      s = Math.max(1, Math.min(1.6, s));
+      s = Math.round(s * 100) / 100;
+      c = "width=" + Math.round(w / s) + ", initial-scale=" + s + ", viewport-fit=cover";
+    }
+    if(c === last) return;
+    last = c;
+    m.setAttribute("content", c);
+    document.documentElement.setAttribute("data-scale", String(s));
+  }
+  window.__fitViewport = fit;
+  fit();
+  window.addEventListener("orientationchange", function(){ setTimeout(fit, 120); setTimeout(fit, 500); });
+  var t = null;
+  window.addEventListener("resize", function(){ clearTimeout(t); t = setTimeout(fit, 150); });
+})();
+</script>
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="googlebot" content="noindex,nofollow">
 <link rel="manifest" href="manifest.webmanifest">
@@ -21,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v6.21｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v6.22｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -1010,7 +1048,7 @@
   .qscreen .dunno{padding:calc(14px * var(--qz))}
   .qscreen .figwrap img{max-height:calc(30dvh * var(--qz));width:auto}
   /* 解説は下から出るパネル（長いときはパネルの中だけ動く） */
-  .qscreen .verdict{position:fixed;left:0;right:0;bottom:0;z-index:30;max-height:66dvh;min-height:0;
+  .qscreen .verdict{position:fixed;left:0;right:0;bottom:0;z-index:30;max-height:66dvh;min-height:0;max-width:560px;margin:0 auto;
     display:flex;flex-direction:column;border-radius:16px 16px 0 0;box-shadow:0 -12px 30px -14px rgba(0,0,0,.45)}
   .qscreen .verdict.vbig{max-height:72dvh;min-height:0}
   .qscreen .vscroll{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;margin:0 -4px;padding:0 4px}
@@ -1065,9 +1103,9 @@
   html.gdon,html.gdon body{overflow:hidden}
   .gd{position:fixed;inset:0;z-index:300;background:rgba(14,20,26,.55);display:flex;align-items:center;justify-content:center;
     padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));animation:fade .18s ease}
-  .gd-card{position:relative;width:100%;max-width:400px;height:min(600px,100%);display:flex;flex-direction:column;background:var(--surface);color:var(--ink);
+  .gd-card{position:relative;width:100%;max-width:440px;height:min(640px,100%);display:flex;flex-direction:column;background:var(--surface);color:var(--ink);
     border-radius:20px;box-shadow:0 18px 50px rgba(0,0,0,.28);padding:16px 18px 14px;overflow:hidden}
-  .gd-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted)}
+  .gd-tag{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}
   .gd-view{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
   .gd-page{display:flex;flex-direction:column;align-items:center;text-align:center;padding:10px 2px 4px}
   .gd-in-r{animation:gdR .22s ease}.gd-in-l{animation:gdL .22s ease}
@@ -1076,29 +1114,29 @@
   .gd-ic{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;margin:6px 0 14px;
     background:linear-gradient(150deg,#2D7A61,#235F4C);color:#fff;box-shadow:0 6px 16px rgba(45,122,97,.3)}
   .gd-ic svg{width:34px;height:34px}
-  .gd-t{font-size:19px;font-weight:800;line-height:1.4;word-break:keep-all;overflow-wrap:anywhere}
-  .gd-sub{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:2px}
-  .gd-b{font-size:14px;line-height:1.8;color:var(--ink-2);margin-top:12px;text-align:left;width:100%}
+  .gd-t{font-size:22px;font-weight:800;line-height:1.45;word-break:keep-all;overflow-wrap:anywhere;line-break:strict}
+  .gd-sub{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:2px}
+  .gd-b{font-size:16.5px;line-height:1.8;color:var(--ink-2);margin-top:14px;text-align:left;width:100%;word-break:keep-all;overflow-wrap:anywhere;line-break:strict}
   .gd-b b{color:var(--ink)}
   .gd-ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
   .gd-ul li{display:flex;flex-direction:column;gap:1px;padding:9px 11px;border-radius:11px;background:var(--paper);border:1px solid var(--line)}
-  .gd-ul li b{font-size:14px}
-  .gd-ul li span{font-size:13px;line-height:1.65}
-  .gd-more{font-size:12px;color:var(--muted);margin-top:8px;text-align:center}
+  .gd-ul li b{font-size:16.5px}
+  .gd-ul li span{font-size:15.5px;line-height:1.7}
+  .gd-more{font-size:14px;color:var(--muted);margin-top:8px;text-align:center}
   .gd-dots{display:flex;justify-content:center;gap:4px;margin:10px 0 10px;flex:none}
   .gd-dot{width:22px;height:22px;border:0;background:none;padding:0;display:flex;align-items:center;justify-content:center}
   .gd-dot::before{content:"";width:7px;height:7px;border-radius:99px;background:var(--line);transition:all .2s}
   .gd-dot.on::before{width:20px;background:#2D7A61}
   .gd-btns{display:flex;gap:10px;flex:none}
   .gd-btns > *{flex:1}
-  .gd-b1,.gd-b2{font:inherit;font-size:15px;font-weight:700;border-radius:13px;padding:13px 10px;cursor:pointer}
+  .gd-b1,.gd-b2{font:inherit;font-size:16.5px;font-weight:700;border-radius:13px;padding:13px 10px;cursor:pointer}
   .gd-b1{background:var(--ink);color:var(--surface);border:1px solid var(--ink)}
   .gd-b2{background:none;color:var(--ink-2);border:1px solid var(--line)}
   @media (max-height:620px){
     .gd-page{padding-top:4px}
     .gd-ic{width:48px;height:48px;border-radius:14px;margin:2px 0 8px}.gd-ic svg{width:26px;height:26px}
     .gd-p-news .gd-ic{display:none}.gd-ul{gap:6px}.gd-ul li{padding:7px 10px}
-    .gd-t{font-size:17px}.gd-b{font-size:13.5px;line-height:1.7;margin-top:8px}
+    .gd-t{font-size:19px}.gd-b{font-size:15.5px;line-height:1.7;margin-top:8px}.gd-ul li b{font-size:15.5px}.gd-ul li span{font-size:14.5px;line-height:1.6}
   }
 </style>
 
@@ -1490,7 +1528,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v6.21";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v6.22";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -1980,7 +2018,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono" style="font-size:10.5px">アプリ版数：v6.21（2026-10-12 更新）</span>
+      <br><span class="mono" style="font-size:10.5px">アプリ版数：v6.22（2026-10-12 更新）</span>
       <br><span class="mono" style="font-size:10.5px">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       <br><br><button class="danger" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -4127,6 +4165,10 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v6.22", date:"2026-10-12", items:[
+    { t:"iPadで大きく表示", d:"iPadなど大きな画面では、文字やボタンを画面に合わせて大きく表示します。" },
+    { t:"お知らせを読みやすく", d:"使い方と更新内容の文字を大きくし、言葉の途中で折り返さないようにしました。" }
+  ]},
   { v:"v6.21", date:"2026-10-12", items:[
     { t:"使い方の案内", d:"はじめて開いたときに使い方を、更新したあとは変わったところを表示するようにしました。記録・設定からいつでも見直せます。" }
   ]},
@@ -4156,6 +4198,27 @@ const GUIDE_NOTES = [
     { t:"検索", d:"ホーム右上の虫めがねで、問題や用語を探せます。" }
   ]}
 ];
+/* 日本語を文節の切れ目でだけ折り返す（word-break:keep-all と組み合わせる）。
+   切れ目＝ひらがなの後に漢字・カタカナ・英数字・かっこが来るところ、読点・句点・閉じかっこの後、開きかっこの前。タグの中は触らない */
+function gJp(html){
+  const W = "[一-龠々〆ァ-ヺー0-9A-Za-z０-９]";
+  return String(html).split(/(<[^>]+>)/).map(t=>{
+    if(!t || t.charAt(0) === "<") return t;
+    return t
+      /* 「記録・設定」のような短い語の並びは「・」で切らない */
+      .replace(new RegExp("(^|[^一-龠々〆ァ-ヺー0-9A-Za-z０-９])(" + W + "{1,4})・(?=" + W + "{1,4}(?![一-龠々〆ァ-ヺー0-9A-Za-z０-９]))", "g"), "$1$2・⁠")
+      .replace(/★(?=[ぁ-ゖ])/g, "★⁠")
+      /* ひらがなの後に漢字などが来るところ。ただし「折り返す」「引き継ぎ」のような送りがな（漢字＋1字＋漢字）は切らない */
+      .replace(/([ぁ-ゖ])(?=[一-龠々〆ァ-ヺA-Za-z0-9０-９＋★（「『【〈《])/g, (m, h, off, str)=>{
+        const prev = str.charAt(off - 1), next = str.charAt(off + 1);
+        if(/[一-龠々]/.test(prev) && /[一-龠々]/.test(next) && "をはがのにでともへや".indexOf(h) < 0) return m;
+        return h + "<wbr>";
+      })
+      .replace(/([、。，．！？）」』】〉》])(?=[^、。，．！？）」』】〉》<\s])/g, "$1<wbr>")
+      .replace(/([^\s（「『【〈《>])(?=[（「『【〈《])/g, "$1<wbr>")
+      .replace(/→/g, "→<wbr>");
+  }).join("");
+}
 function gvNum(v){ const m = /v?(\d+)\.(\d+)/.exec(v || ""); return m ? (+m[1]) * 1000 + (+m[2]) : 0; }
 function gIco(name){
   const P = {
@@ -4253,8 +4316,8 @@ function guideDraw(){
   const v = GD.el.querySelector(".gd-view");
   v.innerHTML = `<div class="gd-page gd-p-${p.ic}${GD.dir ? (GD.dir > 0 ? " gd-in-r" : " gd-in-l") : ""}">
     <div class="gd-ic">${gIco(p.ic)}</div>
-    <div class="gd-t">${esc(p.t)}</div>${p.sub ? `<div class="gd-sub">${esc(p.sub)}</div>` : ""}
-    <div class="gd-b">${p.b}</div></div>`;
+    <div class="gd-t">${gJp(esc(p.t))}</div>${p.sub ? `<div class="gd-sub">${esc(p.sub)}</div>` : ""}
+    <div class="gd-b">${gJp(p.b)}</div></div>`;
   GD.el.querySelector(".gd-dots").innerHTML = n > 1
     ? GD.pages.map((_, k)=> `<button class="gd-dot${k === GD.i ? " on" : ""}" aria-label="${k + 1}枚目" onclick="guideGo(${k})"></button>`).join("") : "";
   const endLabel = GD.kind === "intro" ? "はじめる" : "閉じる";
@@ -4282,7 +4345,9 @@ function guideBoot(){
   if(ST.seenVer === APP_VER) return;
   let notes, more = false;
   if(!ST.seenVer){
-    notes = guideNotes("v0.0", 2);                /* v6.20 以前から使っている人：前の版が分からないので最新2版 */
+    /* 版を覚えていない＝v6.21 より前から使っている人。v6.20 以降の変更を出す */
+    const all = guideNotes("v6.19");
+    notes = all.slice(0, 4); more = all.length > 4;
   } else {
     if(gvNum(ST.seenVer) > gvNum(APP_VER)) return;  /* 古い版を開いた（キャッシュなど）：何もしない */
     const all = guideNotes(ST.seenVer);
