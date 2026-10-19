@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v6.50｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v6.51｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -1931,12 +1931,7 @@ function gdTarget(){
 /* 画面ごとに光らせるボタン（onclick の文字で探す） */
 function gdSel(t){
   const sc = view.screen;
-  if(sc === "home"){
-    if(t.due) return "startReview()";
-    if(ST.ref) return "go('dstudy')";
-    /* v6.50 ref=0 のホームは「日々の学習」の中身（科目別・弱点・全単元）が直接並ぶ */
-    return t.step === "weak" ? "startWeak()" : (t.pick ? "go('subjects')" : "");
-  }
+  if(sc === "home") return t.due ? "startReview()" : "go('dstudy')";   /* v6.51 ref=0 もホームは2枚に分けた */
   if(sc === "dstudy") return t.step === "weak" ? "startWeak()" : (t.pick ? "go('subjects')" : "");
   if(!t.pick) return "";
   if(sc === "subjects") return `go('units',{subject:'${t.pick.s}'})`;
@@ -2231,7 +2226,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v6.50";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v6.51";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -2610,7 +2605,7 @@ function Home(){
   const today = new Date().toLocaleDateString("ja-JP",{month:"2-digit",day:"2-digit"});
   const totalOk = QUESTIONS.filter(q=> isMastered(q.id)).length;
   const totalPct = QUESTIONS.length ? Math.round(totalOk/QUESTIONS.length*100) : 0;
-  return `<div class="home${ST.ref ? " uhome" : ""}">
+  return `<div class="home uhome">
     <div class="hstrip">
       <div class="hstrip-top">${GoalStrip()}<span class="hs-r"><span class="slip-date">${today}</span><button class="hsearch" aria-label="検索" onclick="openSearch()"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg></button></span></div>
       ${RankLine()}
@@ -2626,8 +2621,8 @@ function Home(){
         ${DailyCard()}
         ${ReviewCard()}
       </div>
-      ${ST.ref ? UHomeTiles() : HomeTiles()}
-      <div class="recwrap" style="${ST.ref ? "display:none" : ""}">
+      ${UHomeTiles()}
+      <div class="recwrap" style="display:none">
         <button class="recbtn" onclick="go('records')"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 5.5h12M4 10h12M4 14.5h8"/></svg><span class="recbtn-t">記録・設定</span><span class="chev">›</span></button>
       </div>
     </div>
@@ -2720,7 +2715,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v6.50（2026-10-19 更新）</span>
+      <br><span class="mono">アプリ版数：v6.51（2026-10-19 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -3533,11 +3528,12 @@ function UHomeTiles(){
   const rowsU = mine.map(c=>{ const qs = uQs(c.k), p = qs.length ? Math.round(uDone(qs) / qs.length * 100) : 0;
     return `<span class="ubig-row"><span class="ubig-rn">${esc(U_SHORT[c.k] || c.name)}</span><span class="bar"><i style="width:${p}%"></i></span><b>${p}%</b></span>`; }).join("");
   const nS = Object.keys(EXAMS).length, unitN = Object.keys(EXAMS).reduce((a,k)=> a + unitsOf(k).length, 0);
-  const rowsD = [["科目別で解く", `${nS}科目`], ["弱点だけ", weakN ? `${weakN}問` : "まだなし"], ["ランダム", `${QUESTIONS.length.toLocaleString()}問`], ["講義資料", "全16巻"]]
+  const rowsD = [["科目別で解く", `${nS}科目`], ["弱点だけ", weakN ? `${weakN}問` : "まだなし"], ["ランダム", `${QUESTIONS.length.toLocaleString()}問`]].concat(ST.ref ? [["講義資料", "全16巻"]] : [])
     .map(([a,b])=> `<span class="ubig-row ubig-row2"><span class="ubig-rn">${a}</span><b>${b}</b></span>`).join("");
   return `<div class="umenu">
     <div class="tiles umain">
-    ${UBigTile({ cls:"ubig-exam", ic:U_IC_EXAM, t:"試験対策", s:us, list: UQ.length ? rowsU : "", k:"履修中の習得", v:`${upct}%`, pct:upct,
+    ${!ST.ref ? UBigTile({ cls:"ubig-exam ubig-soon", ic:U_IC_EXAM, t:"試験対策", s:"大学の定期試験", list:"", k:"準備中", v:"", pct:0, off:true }) /* v6.51 ref=1 以外は準備中 */
+      : UBigTile({ cls:"ubig-exam", ic:U_IC_EXAM, t:"試験対策", s:us, list: UQ.length ? rowsU : "", k:"履修中の習得", v:`${upct}%`, pct:upct,
       on: UQ.length ? "go('univ')" : "uState='idle';uFetch()" })}
     ${UBigTile({ cls:"ubig-daily", ic:U_IC_DAILY, t:"日々の学習", s:`国試対策<br>全${nS}科目・<wbr>${unitN}単元`, list: rowsD,
       k:"全体の習得", v:`${npct}%`, pct:npct, on:"go('dstudy')" })}
@@ -5079,6 +5075,9 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v6.51", date:"2026-10-19", items:[
+    { r:0, t:"ホームを「日々の学習」と「試験対策」に", d:"ホームを2つに分けました。国試対策の問題（科目別・弱点・全単元からランダム）は「日々の学習」から解けます。大学の定期試験の対策をする「試験対策」は準備中です。" }
+  ]},
   { v:"v6.50", date:"2026-10-19", items:[
     { r:0, t:"次に押すボタンが光る", d:"どこから手を付ければいいか迷わないよう、次に押すとよいボタンの枠が光ります。今日の復習が残っていればそれを、終わったら日々の学習から、薬学部で学ぶ順（解剖生理 → 生化学 → 微生物・免疫 → 薬理の基礎 → 器官ごとに病態 → 薬理 → 薬物動態 → 衛生）に単元を案内します。単元の★4以上の問題を8割習得すると次へ進み、弱点が30問たまったら先に弱点を案内します。" },
     { r:0, t:"出題設定は★4以上から", d:"出題設定を開くと、重要度は★4以上（無い範囲は★3以上、それも無ければすべて）、問題数は「全部」（全単元からランダムは10問）になります。まだ習得していない問題を★の多い順に出します。" }
