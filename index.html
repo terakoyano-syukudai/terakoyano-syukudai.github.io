@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v6.46｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v6.47｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -1899,41 +1899,34 @@ function FigTop(q, auto){
   return ids.length ? `<div class="figtop">${ids.map(x=> FigBox(x)).join("")}</div>` : "";
 }
 
-/* ---------- v6.46 次に押すボタンを光らせる（ref=1・日々の学習） ---------- */
-const GD_HI = 4, GD_MINSEEN = 3;
+/* ---------- v6.46 次に押すボタンを光らせる（ref=1・日々の学習）。v6.47 履修順 ---------- */
+const GD_WEAK = 30, GD_DONE = 0.8;
+const GD_ORDER = ["kaibou|細胞の構造", "kaibou|上皮組織", "kaibou|外皮系（皮膚）", "kaibou|骨と軟骨（骨格系）", "kaibou|筋組織", "kaibou|神経系（総論・中枢神経）", "kaibou|脊髄と末梢神経・脳神経", "kaibou|自律神経系と伝導路", "kaibou|脳血管と脳脊髄液", "kaibou|循環器系（心臓・脈管系）", "kaibou|血液と骨髄・リンパ性器官", "kaibou|呼吸器系", "kaibou|消化器系", "kaibou|泌尿器系", "kaibou|生殖器系", "kaibou|感覚器系", "kaibou|ヒトの先天異常", "seika|分子：細胞膜と膜輸送", "seika|分子：細胞小器官と細胞骨格", "seika|分子：アミノ酸とタンパク質の構造", "seika|分子：糖質と脂質の構造", "seika|分子：ヌクレオチドと核酸・染色体", "seika|分子：DNA複製と細胞周期", "seika|分子：転写とRNAプロセシング", "seika|分子：翻訳とタンパク質の運命", "seika|分子：遺伝子の変異・修復と遺伝疾患", "seika|栄養：栄養素と食事摂取基準", "seika|栄養：消化と吸収", "seika|栄養：ビタミンの栄養", "seika|栄養：ミネラルの栄養", "seika|栄養：エネルギー代謝とタンパク質の栄養価", "seika|生化1：タンパク質の分類と機能", "seika|生化1：タンパク質の成熟と分解", "seika|生化1：酵素", "seika|生化1：酵素以外のタンパク質と生体成分の分析法", "seika|生化1：生体エネルギーと代謝の概観", "seika|生化1：糖質代謝とATP産生", "seika|生化1：脂質・コレステロール代謝", "seika|生化1：飢餓と飽食・その他の代謝系", "seika|生化2：遺伝子工学技術", "seika|生化2：細胞間コミュニケーションと細胞内情報伝達", "seika|生化2：がん細胞とがん関連遺伝子", "seika|生化2：抗悪性腫瘍薬の分子標的", "micro|微生物学総論", "micro|細菌", "micro|細菌毒素と遺伝子伝達", "micro|ウイルス・寄生虫", "micro|抗菌薬", "micro|免疫学総論", "micro|自然免疫", "micro|T細胞と細胞性免疫", "micro|B細胞と抗体", "micro|サイトカイン・補体・免疫寛容", "micro|移植免疫と腫瘍免疫", "micro|アレルギーと免疫疾患", "micro|免疫療法と免疫学的検査", "yakuri|薬理総論・有害事象", "yakuri|自律神経系に作用する薬", "yakuri|体性神経系に作用する薬", "patho|精神神経疾患", "yakuri|中枢神経系に作用する薬", "patho|循環器疾患", "yakuri|循環器系に作用する薬", "patho|血液（貧血・止血）", "patho|血液腫瘍", "yakuri|血液に作用する薬", "patho|呼吸器疾患", "yakuri|呼吸器系に作用する薬", "patho|消化器疾患", "yakuri|消化器系に作用する薬", "patho|腎・泌尿器", "yakuri|腎・泌尿器系に作用する薬", "patho|内分泌・代謝疾患", "yakuri|内分泌・ホルモン療法薬", "yakuri|代謝系疾患治療薬", "patho|産婦人科・生殖器疾患", "yakuri|生殖器系に作用する薬", "patho|アレルギー・免疫疾患", "yakuri|炎症・抗炎症薬", "yakuri|アレルギー・免疫・関節リウマチ", "yakuri|骨・カルシウム代謝", "patho|皮膚疾患", "yakuri|皮膚に作用する薬", "patho|眼科疾患", "yakuri|眼に作用する薬", "patho|耳鼻科", "patho|感染症各論", "patho|真菌感染症", "yakuri|抗菌薬", "yakuri|抗真菌薬", "yakuri|抗ウイルス薬", "yakuri|抗原虫薬・駆虫薬", "yakuri|消毒薬", "yakuri|抗悪性腫瘍薬", "yakuri|構造活性相関", "doutai|生体膜透過と動態の基礎", "doutai|吸収と生物学的利用能", "doutai|分布とタンパク結合", "doutai|薬物代謝", "doutai|排泄（腎・胆汁）", "doutai|トランスポーター", "doutai|薬物相互作用", "doutai|コンパートメントモデルと速度論", "doutai|動態パラメータの計算", "doutai|TDM（治療薬物モニタリング）", "doutai|特殊集団の薬物動態", "doutai|非線形薬物動態と中毒"];
 function gdUnits(){
-  const U = {};
+  const U = {}, list = [];
   QUESTIONS.forEach(q=>{
     if(!EXAMS[q.s]) return;
     const k = q.s + "|" + q.u;
-    const o = U[k] || (U[k] = { k, s:q.s, u:q.u, n:0, ok:0, seen:0, hi:0, top:0 });
-    o.n++;
-    if(ST.stats[q.id]) o.seen++;
-    if(isMastered(q.id)) o.ok++;
-    else { const st = qStar(q); if(st >= GD_HI){ o.hi++; if(st >= 5) o.top++; } }
+    let o = U[k];
+    if(!o){ o = U[k] = { k, s:q.s, u:q.u, qs:[] }; list.push(o); }
+    o.qs.push(q);
   });
-  return Object.values(U);
+  const rank = {}; GD_ORDER.forEach((k, i)=> rank[k] = i);
+  const ord = list.map((o, i)=> ({ o, r: (o.k in rank) ? rank[o.k] : 1e6 + i })).sort((a, b)=> a.r - b.r).map(x=> x.o);
+  ord.forEach(o=>{
+    let t = o.qs.filter(q=> qStar(q) >= 4);
+    if(t.length < 5) t = o.qs.filter(q=> qStar(q) >= 3);
+    if(!t.length) t = o.qs;
+    o.n = t.length; o.ok = t.filter(q=> isMastered(q.id)).length;
+    o.done = o.ok >= o.n * GD_DONE;
+  });
+  return ord;
 }
-function gdBetter(a, b){ return (b.hi - a.hi) || (b.top - a.top) || (a.ok / a.n - b.ok / b.n); }
 function gdTarget(){
   if(!ST.ref) return null;
-  const all = gdUnits(), seen = all.filter(o=> o.seen > 0);
-  const last = ST.gdPick && all.find(o=> o.k === ST.gdPick && o.hi > 0);
-  let pick = null, step = "";
-  if(seen.length >= GD_MINSEEN){
-    if(last && last.seen > 0){ pick = last; step = "known"; }
-    else { const c = seen.filter(o=> o.hi > 0).sort(gdBetter); if(c.length){ pick = c[0]; step = "known"; } }
-    if(!pick && weakQuestions().length) step = "weak";
-  }
-  if(!pick && !step){
-    if(last){ pick = last; step = "all"; }
-    else {
-      const c = all.filter(o=> o.hi > 0).sort(gdBetter);
-      pick = c[0] || all.filter(o=> o.ok < o.n).sort((a, b)=> a.ok / a.n - b.ok / b.n)[0] || null;
-      step = pick ? "all" : "";
-    }
-  }
-  if(pick && ST.gdPick !== pick.k) ST.gdPick = pick.k;
+  const weakN = weakQuestions().length;
+  const pick = gdUnits().find(o=> !o.done) || null;
+  const step = weakN >= GD_WEAK ? "weak" : (pick ? "order" : (weakN ? "weak" : ""));
   return { due: dueQuestions().length, step, pick };
 }
 /* 画面ごとに光らせるボタン（onclick の文字で探す） */
@@ -2209,7 +2202,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v6.46";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v6.47";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -2698,7 +2691,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v6.46（2026-10-19 更新）</span>
+      <br><span class="mono">アプリ版数：v6.47（2026-10-19 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -5057,6 +5050,9 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v6.47", date:"2026-10-19", items:[
+    { r:1, t:"案内は学ぶ順に", d:"光るボタンの案内を、薬学部で学ぶ順（解剖生理 → 生化学 → 微生物・免疫 → 薬理の基礎 → 器官ごとに病態 → 薬理 → 薬物動態 → 衛生）にしました。単元の★4以上の問題を8割習得すると次の単元へ進みます。弱点が30問たまったら先に弱点を案内します。" }
+  ]},
   { v:"v6.46", date:"2026-10-19", items:[
     { r:1, t:"次に押すボタンが光る", d:"どこから手を付ければいいか迷わないよう、次に押すとよいボタンの枠が光ります。今日の復習が残っていればそれを、終わったら日々の学習から、★の高い問題がまだ多い単元まで順に案内します。" }
   ]},
