@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v6.62｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v6.63｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -1385,24 +1385,38 @@
   /* 上の帯が2行になって空いたので、続きからがあっても背の高い画面ではタイルの一覧を出す */
   @media (min-height:721px){ .home-pad:has(.resume) .umain .ubig .ubig-list{display:flex} }
 
-  /* ---------- v6.62 ホーム（ref=1）：学習モード／ミニゲームモード ---------- */
-  .gtop{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;
-    padding:calc(28px + env(safe-area-inset-top)) 18px calc(22px + env(safe-area-inset-bottom));gap:18px}
-  .gtop-head{display:flex;flex-direction:column;align-items:center;line-height:1.2}
-  .gtop-head b{font-size:26px;font-weight:800;letter-spacing:.06em;color:var(--ink)}
-  .gtop-sub{font-size:12px;color:var(--muted);letter-spacing:.3em}
-  .gtop-cv{width:min(100%,420px);aspect-ratio:160/72;image-rendering:pixelated;border:3px solid #2B2233;border-radius:4px;
-    box-shadow:4px 4px 0 rgba(43,34,51,.25)}
-  .gtop-btns{flex:1;display:flex;flex-direction:column;gap:14px;width:min(100%,420px)}
-  .gtop-btn{flex:1;max-height:200px;min-height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
-    font:inherit;border:3px solid #2B2233;border-radius:6px;color:#fff;box-shadow:5px 5px 0 #2B2233;transition:transform .08s}
-  .gtop-btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 #2B2233}
-  .gtop-learn{background:#2D7A61}
-  .gtop-game{background:#B4543F}
-  .gtop-ic{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.18);border-radius:6px}
-  .gtop-ic svg{width:26px;height:26px}
-  .gtop-t{font-size:21px;font-weight:800;letter-spacing:.06em}
-  .gtop-s{font-size:12.5px;opacity:.9}
+  /* ---------- v6.62 ホーム（ref=1）：学習モード／ミニゲームモード
+     学習画面のカード（角丸・グラデーション・やわらかい影・system フォント）に合わせ、
+     ゲーム側はゲーム画面の色（#2B2233・金 #E0B23E）とドット絵でつなぐ ---------- */
+  .gtop{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
+    padding:calc(18px + env(safe-area-inset-top)) 16px calc(16px + env(safe-area-inset-bottom));gap:14px;max-width:560px;margin:0 auto}
+  .gtop-head{display:flex;flex-direction:column;align-items:flex-start;line-height:1.25;padding:0 2px}
+  .gtop-head b{font-size:clamp(21px,3.3vh,26px);font-weight:750;letter-spacing:.02em;color:var(--ink)}
+  .gtop-sub{font-size:12px;font-weight:650;color:var(--muted);letter-spacing:.08em}
+  .gtop-scene{border-radius:18px;overflow:hidden;background:#E9D9B8;border:1px solid var(--line);
+    box-shadow:0 8px 20px -12px rgba(18,38,52,.45);flex:none}
+  .gtop-cv{display:block;width:100%;aspect-ratio:160/72;image-rendering:pixelated}
+  .gtop-btns{flex:1 0 auto;display:flex;flex-direction:column;gap:10px}
+  .gtop-btn{position:relative;flex:1 0 auto;max-height:230px;min-height:92px;display:flex;align-items:center;gap:14px;text-align:left;
+    font:inherit;color:#fff;margin:0;border:0;border-radius:18px;padding:14px 44px 14px 16px;
+    box-shadow:0 8px 20px -10px rgba(18,38,52,.5), 0 1px 0 rgba(0,0,0,.04);transition:transform .12s ease}
+  .gtop-btn::after{content:"›";position:absolute;right:16px;top:50%;transform:translateY(-50%);
+    font-size:28px;line-height:1;font-weight:300;color:rgba(255,255,255,.75)}
+  .gtop-btn:active{transform:scale(.985)}
+  .gtop-learn{background:linear-gradient(135deg,#1B5444 0%,#2D7A61 100%)}
+  .gtop-game{background:linear-gradient(135deg,#2B2233 0%,#4A3654 100%)}
+  .gtop-ic{width:48px;height:48px;flex:none;display:flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,.16);border-radius:13px}
+  .gtop-ic svg{width:24px;height:24px}
+  .gtop-icpx{background:#F4E9C8;box-shadow:inset 0 0 0 2px #E0B23E}
+  .gtop-pxic{width:36px;height:36px;image-rendering:pixelated}
+  .gtop-tx{display:flex;flex-direction:column;min-width:0;flex:1}
+  .gtop-t{font-size:clamp(19px,3vh,24px);font-weight:750;letter-spacing:.02em;line-height:1.3}
+  .gtop-s{font-size:13px;font-weight:600;opacity:.9;margin-top:1px}
+  .gtop-m{display:flex;align-items:center;gap:8px;margin-top:8px;font-family:var(--mono);font-size:11.5px;color:rgba(255,255,255,.8)}
+  .gtop-bar{flex:1;max-width:150px;height:5px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden}
+  .gtop-bar i{display:block;height:100%;background:#fff;border-radius:99px}
+  .gtop-best b{color:#E0B23E;font-size:14px;margin:0 2px}
   .gmrow{display:flex;gap:8px;margin-top:10px}
   .gmrow .recbtn{margin-top:0}
   .gmrow .gmback{width:auto;flex:none;padding:11px 14px;font-size:13.5px;font-weight:650}
@@ -2422,7 +2436,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v6.62";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v6.63";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -2906,7 +2920,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v6.62（2026-10-20 更新）</span>
+      <br><span class="mono">アプリ版数：v6.63（2026-10-20 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -4233,22 +4247,34 @@ function kgCloseList(){
 
 /* ---------- ホーム（ref=1）：学習モード／ミニゲームモード ---------- */
 function GTop(){
+  let tot = 0, ok = 0;
+  try{ tot = QUESTIONS.length; ok = QUESTIONS.filter(q=> isMastered(q.id)).length; }catch(e){}
+  const pct = tot ? Math.round(ok/tot*100) : 0;
+  const st = kgSt();
   return `<div class="gtop">
     <div class="gtop-head"><span class="gtop-sub">薬学</span><b>てらこやの宿題</b></div>
-    <canvas class="gtop-cv" width="160" height="72"></canvas>
+    <div class="gtop-scene"><canvas class="gtop-cv" width="160" height="72"></canvas></div>
     <div class="gtop-btns">
       <button class="gtop-btn gtop-learn" onclick="go('home')">
         <span class="gtop-ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M10 5.5C8 4 5.5 3.8 3 4.3v11c2.5-.5 5-.3 7 1.2 2-1.5 4.5-1.7 7-1.2v-11c-2.5-.5-5-.3-7 1.2Z"/><path d="M10 5.5v11"/></svg></span>
-        <span class="gtop-t">学習モード</span><span class="gtop-s">問題演習・解説資料</span></button>
+        <span class="gtop-tx"><span class="gtop-t">学習モード</span><span class="gtop-s">問題演習・解説資料</span>
+          <span class="gtop-m"><span class="gtop-bar"><i style="width:${pct}%"></i></span><span>進み ${pct}%</span></span></span>
+      </button>
       <button class="gtop-btn gtop-game" onclick="go('kgame')">
-        <span class="gtop-ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="15" height="9" rx="3"/><path d="M6.5 9v3M5 10.5h3"/><circle cx="13" cy="9.6" r=".9" fill="currentColor"/><circle cx="14.8" cy="11.6" r=".9" fill="currentColor"/></svg></span>
-        <span class="gtop-t">ミニゲームモード</span><span class="gtop-s">漢方調合</span></button>
+        <span class="gtop-ic gtop-icpx"><canvas class="gtop-pxic" width="12" height="12"></canvas></span>
+        <span class="gtop-tx"><span class="gtop-t">ミニゲームモード</span><span class="gtop-s">漢方調合・3分間</span>
+          <span class="gtop-m"><span class="gtop-best">最高記録 <b>${st.best}</b> 点</span></span></span>
+      </button>
     </div>
   </div>`;
 }
 let gtopRaf = 0;
 function gtopAnim(){
   cancelAnimationFrame(gtopRaf);
+  const ic = document.querySelector("#app .gtop-pxic");
+  if(ic){ const g = ic.getContext("2d"); const P = ["...kkkkkk...","..kFFFFFFk..",".kWWWWWWWWk.",".kWWWWWWWWk.",".kWWRRWWWWk.",".kWRRRRWWWk.",".kWWRRWWWWk.",".kWWWWWWWWk.",".kWWGGGGWWk.",".kWWWWWWWWk.",".kkkkkkkkkk."];
+    const C = { k:"#2B2233", F:"#E0B23E", W:"#F4E9C8", R:"#C8584A", G:"#5E9E6A" };
+    P.forEach((r, y)=> [...r].forEach((c, x)=>{ if(C[c]){ g.fillStyle = C[c]; g.fillRect(x, y + 1, 1, 1); } })); }
   const cv = document.querySelector("#app .gtop-cv"); if(!cv) return;
   const an = { look: kgLook(KG_DATA[(Math.random()*KG_DATA.length)|0]), x:40 };
   const loop = t=>{ if(!cv.isConnected) return; kgDrawScene(cv, t, an); gtopRaf = requestAnimationFrame(loop); };
@@ -5668,6 +5694,9 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v6.63", date:"2026-10-20", items:[
+    { r:1, t:"ホームの見た目をそろえました", d:"学習モードとミニゲームモードを選ぶ画面を、学習画面のカードと同じ形にしました。学習モードには全体の進み、ミニゲームには最高記録が出ます。" }
+  ]},
   { v:"v6.62", date:"2026-10-20", items:[
     { r:1, t:"ミニゲーム「漢方調合」（試作）", d:"ホームを「学習モード」と「ミニゲームモード」の2つにしました。これまでのホームは学習モードの中にあります。ミニゲームは、患者の証に合う漢方の生薬を棚から選んで調合し、3分間で何人に出せるかを競います。処方は天然薬物学の35処方＋5類方です。" }
   ]},
