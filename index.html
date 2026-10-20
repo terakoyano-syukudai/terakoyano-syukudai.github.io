@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v6.63｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v6.64｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -1422,124 +1422,215 @@
   .gmrow .gmback{width:auto;flex:none;padding:11px 14px;font-size:13.5px;font-weight:650}
   .gmrow .usetbtn{flex:1;min-width:0}
 
-  /* ---------- v6.62 ミニゲーム「漢方調合」 ---------- */
+  /* ---------- v6.64 ミニゲーム「漢方調合」 ---------- */
   .kg-host{min-height:100dvh;background:#2B2233}
   #kg{position:fixed;inset:0;z-index:50;background:#2B2233;color:#2B2233;
-    font-family:var(--jp);-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+    font-family:var(--jp);-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;
+    word-break:keep-all;overflow-wrap:anywhere}
   #kg button{font-family:inherit;line-height:1.3;cursor:pointer}
   .kg-scr{height:100%;max-width:520px;margin:0 auto;display:flex;flex-direction:column;
-    padding:calc(8px + env(safe-area-inset-top)) 10px calc(10px + env(safe-area-inset-bottom));gap:8px;position:relative;overflow:hidden}
-  .kg-cv{display:block;width:100%;image-rendering:pixelated;border:3px solid #120E16;border-radius:3px;background:#E9D9B8}
+    padding:calc(8px + env(safe-area-inset-top)) 10px calc(10px + env(safe-area-inset-bottom));gap:7px;position:relative;overflow:hidden;box-sizing:border-box}
+  .kg-cv{display:block;width:100%;image-rendering:pixelated;border:3px solid #120E16;border-radius:3px;background:#E9D9B8;box-sizing:border-box}
   .kg-box{background:#F4E9C8;border:3px solid #120E16;border-radius:3px;box-shadow:inset 0 0 0 2px #D9C49C;padding:10px 12px}
-  .kg-btn{border:3px solid #120E16;border-radius:4px;background:#F4E9C8;color:#2B2233;font-weight:800;padding:12px 10px;
-    box-shadow:0 4px 0 #120E16;transition:transform .06s;font-size:16px}
+  .kg-btn{border:3px solid #120E16;border-radius:4px;background:#F4E9C8;color:#2B2233;font-weight:800;padding:11px 10px;
+    box-shadow:0 4px 0 #120E16;transition:transform .06s;font-size:15px}
   .kg-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #120E16}
   .kg-btn:disabled{opacity:.45;transform:none}
   .kg-go{background:#E0B23E}
   .kg-back{background:#C9CDD3}
-  /* メニュー・結果 */
-  .kg-menu,.kg-res{justify-content:center;gap:12px;overflow-y:auto}
-  .kg-title{display:flex;flex-direction:column;align-items:center;color:#F4E9C8;line-height:1.2}
-  .kg-title b{font-size:32px;letter-spacing:.12em;text-shadow:3px 3px 0 #B4543F}
+  .kg-caumark{display:inline-block;width:0;height:0;border-top:8px solid #D2412F;border-left:8px solid transparent;vertical-align:-1px;margin-right:3px}
+  /* 処方の見せ方（構造・君臣佐使） */
+  .kg-hc{font-style:normal;font-size:12.5px;font-weight:700;background:#F1E4C2;border:1px solid #3A2614;border-radius:2px;padding:0 5px;position:relative;white-space:nowrap}
+  .kg-hc.cau::after{content:"";position:absolute;right:-1px;top:-1px;border-top:5px solid #D2412F;border-left:5px solid transparent}
+  .kg-hc.miss{background:#FFB3A8;border-color:#B2382F}
+  .kg-hc.hit{background:#fff}
+  .kg-st{display:flex;flex-direction:column;gap:3px;width:100%;text-align:left}
+  .kg-stn{font-size:11.5px;color:#6B5A4A;font-weight:700}
+  .kg-sr{display:flex;align-items:flex-start;gap:6px}
+  .kg-sl{flex:none;font-size:11px;font-weight:800;background:#2B2233;color:#F4E9C8;border-radius:2px;padding:1px 5px;line-height:1.35;white-space:nowrap}
+  .kg-sl small{font-size:9.5px;opacity:.75;margin-left:3px}
+  .kg-sl.add{background:#B4543F}
+  .kg-r君{background:#B4543F}.kg-r臣{background:#C9862F}.kg-r佐{background:#4F7FB8}.kg-r使{background:#5E9E6A}
+  .kg-sh{display:flex;flex-wrap:wrap;gap:3px;min-width:0}
+  .kg-extra{font-size:11.5px;margin-top:4px;text-align:left;width:100%}
+  .kg-extra i{font-style:normal;font-weight:700;background:#C9CDD3;border:1px solid #6E7480;border-radius:2px;padding:0 4px;margin-left:3px;text-decoration:line-through}
+  .kg-det{display:flex;flex-direction:column;gap:7px;text-align:left}
+  .kg-dh{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .kg-dh b{font-size:17px}
+  .kg-dh span{font-size:11px;color:#6B5A4A}
+  .kg-dh em{margin-left:auto;font-style:normal;font-size:11px;color:#6B5A4A}
+  .kg-dsec{border-top:2px dotted #CDB98F;padding-top:5px}
+  .kg-dk{font-size:11px;font-weight:800;color:#6B5A4A;margin-bottom:3px}
+  .kg-kr{display:grid;grid-template-columns:auto 1fr;gap:3px 6px;align-items:start;font-size:12.5px;line-height:1.5;margin-bottom:4px}
+  .kg-kr > span:last-child{grid-column:1/-1;padding-left:26px;color:#4A3E34}
+  .kg-dt{font-size:12.5px;line-height:1.55}
+  .kg-dt b{font-size:11px;background:#E9D9B8;border-radius:2px;padding:0 5px;margin-right:6px}
+  .kg-cr{font-size:12px;line-height:1.55;margin-bottom:3px}
+  .kg-cr b{margin-right:5px}
+  .kg-ct{display:inline-block;font-size:10.5px;font-weight:800;color:#fff;background:#D2412F;border-radius:2px;padding:0 5px;margin-right:5px}
+  .kg-cp b{color:#B2382F}
+  /* メニュー */
+  .kg-menu{justify-content:center;gap:9px}
+  .kg-title{display:flex;flex-direction:column;align-items:center;color:#F4E9C8;line-height:1.2;flex:none}
+  .kg-title b{font-size:clamp(24px,4.4dvh,32px);letter-spacing:.12em;text-shadow:3px 3px 0 #B4543F}
   .kg-title b small{font-size:16px;margin-left:4px}
   .kg-tsub{font-size:12.5px;letter-spacing:.2em;opacity:.85}
+  .kg-cvbig{flex:0 1 auto;min-height:0;max-height:24dvh;width:auto;max-width:100%;aspect-ratio:160/72;margin:0 auto}
+  .kg-modes{display:flex;flex-direction:column;gap:8px;flex:none}
+  .kg-mode{display:flex;align-items:center;gap:8px;text-align:left;border:3px solid #120E16;border-radius:4px;padding:9px 12px;
+    box-shadow:0 4px 0 #120E16;color:#2B2233;background:#F4E9C8}
+  .kg-mode:active{transform:translateY(3px);box-shadow:0 1px 0 #120E16}
+  .kg-m-normal{background:#E0B23E}
+  .kg-m-kokushi{background:#F2C6B4}
+  .kg-m-jikkuri{background:#CFE3CF}
+  .kg-mt{display:flex;flex-direction:column;flex:1;min-width:0}
+  .kg-mt b{font-size:17px;line-height:1.3}
+  .kg-mt small{font-size:11.5px;opacity:.8}
+  .kg-mr{flex:none;font-size:11.5px;font-weight:700;text-align:right}
+  .kg-mr b{font-size:17px;font-family:var(--mono)}
+  .kg-row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:none}
+  .kg-menu > .kg-back{flex:none}
+  .kg-how{position:absolute;inset:0;z-index:8;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(20,14,24,.72)}
+  .kg-how.show{display:flex}
+  .kg-how .kg-box{display:flex;flex-direction:column;gap:7px;max-height:100%;overflow-y:auto}
+  .kg-how p{margin:0;font-size:13px;line-height:1.65}
+  @media (max-height:600px){ .kg-menu .kg-cvbig{display:none} }
+  @media (max-height:540px){ .kg-play .kg-stage{display:none} .kg-say{font-size:12.5px;line-height:1.4} }
+  /* 結果 */
+  .kg-res{gap:8px}
   .kg-new{margin-top:4px;background:#E0B23E;color:#2B2233;font-weight:800;padding:2px 10px;border-radius:3px;animation:kgblink .6s steps(2) infinite}
   @keyframes kgblink{50%{opacity:.4}}
-  .kg-how p{margin:0;font-size:13px;line-height:1.6}
-  .kg-how p + p{margin-top:5px}
-  .kg-best{text-align:center;color:#F4E9C8;font-size:14px}
-  .kg-best b{font-size:22px;color:#E0B23E;margin:0 3px}
-  .kg-best span{font-size:12px;opacity:.75}
-  .kg-btns{display:flex;flex-direction:column;gap:10px}
-  .kg-sum{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .kg-sum div{display:flex;flex-direction:column;align-items:center}
-  .kg-sum i{font-style:normal;font-size:11.5px;opacity:.75}
-  .kg-sum b{font-size:19px}
-  .kg-wrong{max-height:34dvh;overflow-y:auto}
-  .kg-wh{font-weight:800;font-size:13px;margin-bottom:4px}
-  .kg-wr{font-size:12.5px;line-height:1.5;padding:4px 0;border-top:2px dotted #D9C49C}
-  .kg-wr b{display:block}
+  .kg-btns{display:flex;flex-direction:column;gap:8px;flex:none}
+  .kg-sum{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;flex:none;padding:7px 6px}
+  .kg-sum div{display:flex;flex-direction:column;align-items:center;min-width:0}
+  .kg-sum i{font-style:normal;font-size:10.5px;opacity:.75;white-space:nowrap}
+  .kg-sum b{font-size:15px;white-space:nowrap}
+  .kg-wrong{flex:1 1 0;min-height:0;display:flex;flex-direction:column;padding:8px 10px}
+  .kg-wh{font-weight:800;font-size:13px;margin-bottom:4px;flex:none}
+  .kg-wlist{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;-webkit-user-select:text;user-select:text}
+  .kg-wr{border-top:2px dotted #CDB98F;padding:5px 0}
+  .kg-wr summary{cursor:pointer;font-size:12.5px;line-height:1.5;list-style:none}
+  .kg-wr summary::-webkit-details-marker{display:none}
+  .kg-wr summary b{font-size:14.5px;margin-right:8px}
+  .kg-wr summary b::before{content:"▸ ";color:#B4543F}
+  .kg-wr[open] summary b::before{content:"▾ "}
+  .kg-wr summary span{color:#B2382F}
+  .kg-wr .kg-det{margin:6px 0 4px;padding:8px;background:#FFFDF5;border:2px solid #CDB98F;border-radius:3px}
+  .kg-okn{font-size:12px;line-height:1.6;border-top:2px dotted #CDB98F;padding-top:5px;margin-top:2px}
+  .kg-okn b{display:block;font-size:11px;color:#2F7A45}
   /* プレイ */
   .kg-hud{display:flex;align-items:center;gap:6px;color:#F4E9C8;flex:none}
-  .kg-hud > span{display:flex;flex-direction:column;align-items:center;line-height:1.1;min-width:44px}
+  .kg-hud > span{display:flex;flex-direction:column;align-items:center;line-height:1.1;min-width:42px}
   .kg-hud i{font-style:normal;font-size:10px;opacity:.75}
   .kg-hud b{font-size:18px;font-family:var(--mono)}
   .kg-time b{font-size:20px;color:#E0B23E}
   .kg-time.warn b{color:#FF6B5E;animation:kgblink .5s steps(2) infinite}
   .kg-cnt{flex-direction:row!important;align-items:baseline!important;gap:2px}
   .kg-cnt i{margin-right:3px}
-  .kg-quit{width:34px;height:34px;border:2px solid #F4E9C8;border-radius:4px;background:transparent;color:#F4E9C8;font-size:15px;flex:none}
+  .kg-quit{width:34px;height:34px;border:2px solid #F4E9C8;border-radius:4px;background:transparent;color:#F4E9C8;font-size:14px;font-weight:800;flex:none}
   .kg-listbtn{margin-left:auto;border:3px solid #120E16;border-radius:4px;background:#5E9E6A;color:#fff;font-weight:800;font-size:13px;
-    padding:6px 10px;box-shadow:0 3px 0 #120E16}
+    padding:6px 10px;box-shadow:0 3px 0 #120E16;white-space:nowrap}
   .kg-listbtn:active{transform:translateY(2px);box-shadow:0 1px 0 #120E16}
-  .kg-stage{position:relative;flex:none;height:min(24dvh,calc((100vw - 20px) * .35));max-height:180px}
-  .kg-stage .kg-cv{height:100%;width:auto;margin:0 auto;aspect-ratio:160/56;max-width:100%;object-fit:contain}
+  .kg-stage{position:relative;flex:0 1 auto;min-height:56px;height:min(21dvh,calc((100vw - 20px) * .35));max-height:170px}
+  .kg-stage .kg-cv{height:100%;width:auto;margin:0 auto;aspect-ratio:160/56;max-width:100%}
+  .kg-mtag{position:absolute;left:8px;top:6px;font-size:10.5px;font-weight:800;color:#F4E9C8;background:rgba(43,34,51,.8);padding:1px 6px;border-radius:2px}
   .kg-combo{position:absolute;right:8px;top:6px;color:#fff;font-weight:900;font-size:15px;text-shadow:2px 2px 0 #B4543F;opacity:0}
   .kg-combo.on{opacity:1;animation:kgpop .3s}
   @keyframes kgpop{0%{transform:scale(1.6)}100%{transform:scale(1)}}
-  .kg-karte{flex:none;background:#FFFDF5;border:3px solid #120E16;border-radius:3px;padding:7px 10px;position:relative}
+  .kg-karte{flex:none;background:#FFFDF5;border:3px solid #120E16;border-radius:3px;padding:6px 10px;position:relative}
   .kg-karte::before{content:"";position:absolute;left:22px;top:-9px;border:6px solid transparent;border-bottom:6px solid #120E16}
-  .kg-who{font-size:11.5px;font-weight:800;color:#6B5A4A;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+  .kg-who{font-size:11.5px;font-weight:800;color:#6B5A4A;display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline}
   .kg-sho{background:#2B2233;color:#F4E9C8;border-radius:2px;padding:0 6px;font-size:11px}
-  .kg-say{font-size:clamp(13px,2.05dvh,15.5px);line-height:1.5;margin-top:2px;font-weight:600}
-  .kg-mortar{flex:none;display:flex;align-items:center;gap:8px;background:#6E7480;border:3px solid #120E16;border-radius:3px;padding:5px 8px;min-height:42px}
-  .kg-ml{flex:none;color:#F4E9C8;font-size:11px;font-weight:800;writing-mode:vertical-rl;letter-spacing:.1em}
-  .kg-sel{display:flex;flex-wrap:wrap;gap:4px;min-width:0}
-  .kg-chip{border:2px solid #120E16;border-radius:3px;background:#F4E9C8;padding:1px 6px;font-size:12px;font-weight:700}
-  .kg-empty{color:#D5D9E0;font-size:12px}
-  .kg-shelf{flex:1 1 0;min-height:0;display:grid;grid-template-columns:repeat(var(--cols,4),minmax(0,1fr));grid-template-rows:repeat(var(--rows),minmax(0,1fr));
-    gap:4px;background:#5A3A22;border:3px solid #120E16;border-radius:3px;padding:4px}
-  .kg-dr{position:relative;min-height:0;border:2px solid #3A2614;border-radius:2px;background:#B07A45;padding:1px;display:flex;
+  .kg-say{font-size:clamp(12.5px,2dvh,15.5px);line-height:1.5;margin-top:2px;font-weight:600}
+  .kg-mortar{flex:none;display:flex;align-items:center;gap:8px;background:#6E7480;border:3px solid #120E16;border-radius:3px;padding:4px 8px 4px 6px;min-height:40px;box-sizing:border-box}
+  .kg-ml{flex:none;color:#F4E9C8;font-size:10px;font-weight:800;line-height:1.15;text-align:center;border-right:2px solid #4C525C;padding-right:7px}
+  .kg-ml b{display:block;font-size:17px;font-family:var(--mono);color:#E0B23E}
+  .kg-sel{display:flex;flex-wrap:wrap;gap:4px;min-width:0;max-height:62px;overflow-y:auto}
+  .kg-chip{position:relative;border:2px solid #120E16;border-radius:3px;background:#FFF;padding:1px 4px 1px 6px;font-size:12.5px;font-weight:800;color:#2B2233;display:flex;align-items:center;gap:3px}
+  .kg-chip span{font-size:11px;color:#8A7A6A}
+  .kg-chip.cau{box-shadow:inset 3px 0 0 #D2412F}
+  .kg-empty{color:#E3E6EB;font-size:12px}
+  .kg-shelfbox{flex:1 1 0;min-height:0;display:flex;flex-direction:column;background:#5A3A22;border:3px solid #120E16;border-radius:3px;padding:3px 4px 4px}
+  .kg-shh{flex:none;display:flex;align-items:center;gap:8px;color:#F1E4C2;font-size:11px;font-weight:800;padding:0 2px 3px}
+  .kg-lgd{font-weight:700;opacity:.9}
+  .kg-sort{margin-left:auto;display:flex;border:2px solid #120E16;border-radius:3px;overflow:hidden;flex:none}
+  .kg-sort button{border:0;background:#F1E4C2;color:#2B2233;font-size:11px;font-weight:800;padding:2px 7px;white-space:nowrap}
+  .kg-sort button.on{background:#E0B23E}
+  .kg-sort button + button{border-left:2px solid #120E16}
+  .kg-shelf{flex:1 1 0;min-height:0;display:grid;grid-template-columns:repeat(var(--cols,4),minmax(0,1fr));grid-template-rows:repeat(var(--rows),minmax(0,1fr));gap:4px}
+  .kg-dr{position:relative;min-height:0;min-width:0;border:2px solid #3A2614;border-radius:2px;background:#B07A45;padding:1px;display:flex;
     flex-direction:column;align-items:center;justify-content:center;gap:8%;box-shadow:inset 0 -3px 0 #8A5A2E;transition:transform .06s;container-type:size}
   .kg-dr:nth-child(odd){background:#A56F3D}
-  .kg-lbl{background:#F1E4C2;border:1px solid #3A2614;padding:0 max(1px,4cqw);font-size:clamp(10px,min(34cqh,25cqw),20px);font-weight:800;line-height:1.35;
-    white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:clip}
-  .kg-knob{width:6px;height:4px;background:#3A2614;border-radius:1px}
+  .kg-dr.cau::after{content:"";position:absolute;right:1px;top:1px;border-top:7px solid #D2412F;border-left:7px solid transparent}
+  .kg-lbl{background:#F1E4C2;border:1px solid #3A2614;padding:0 max(1px,4cqw);font-size:clamp(9px,min(36cqh,25cqw),20px);font-weight:800;line-height:1.3;
+    white-space:nowrap;max-width:100%;box-sizing:border-box;overflow:hidden;text-overflow:clip}
+  .kg-knob{width:6px;height:4px;background:#3A2614;border-radius:1px;flex:none}
   .kg-dr.on{background:#E0B23E!important;transform:translateY(-2px);box-shadow:0 3px 0 #3A2614}
   .kg-dr.on .kg-lbl{background:#fff}
   .kg-act{flex:none;display:grid;grid-template-columns:1fr 2fr;gap:8px}
-  .kg-act .kg-btn{padding:11px 6px;font-size:15px;white-space:nowrap}
-  .kg-flash{position:absolute;left:12px;right:12px;top:30%;z-index:5;display:none;flex-direction:column;align-items:center;gap:4px;
-    border:3px solid #120E16;border-radius:4px;padding:12px;box-shadow:0 5px 0 #120E16;text-align:center}
+  .kg-act .kg-btn{padding:10px 6px;font-size:15px;white-space:nowrap}
+  .kg-flash{position:absolute;left:10px;right:10px;top:22%;z-index:5;display:none;flex-direction:column;align-items:center;gap:5px;
+    border:3px solid #120E16;border-radius:4px;padding:10px 12px;box-shadow:0 5px 0 #120E16;text-align:center;max-height:70%;overflow-y:auto}
   .kg-flash.show{display:flex;animation:kgin .18s}
   @keyframes kgin{0%{transform:scale(.92);opacity:.4}100%{transform:none;opacity:1}}
   .kg-flash.ok{background:#E9F6E6}
   .kg-flash.ng{background:#FFF0EC}
-  .kg-flash b{font-size:20px}
-  .kg-flash.ok b{color:#2F7A45}
-  .kg-flash.ng b{color:#B2382F}
+  .kg-flash > b{font-size:20px}
+  .kg-flash.ok > b{color:#2F7A45}
+  .kg-flash.ng > b{color:#B2382F}
   .kg-flash em{font-style:normal;font-weight:800;color:#B4543F}
   .kg-flash u{text-decoration:none;font-weight:800;font-size:17px}
-  .kg-flash small{font-size:11px;opacity:.75}
-  .kg-ans{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;margin:4px 0}
-  .kg-ans i{font-style:normal;font-size:13px;font-weight:700;border:2px solid #120E16;border-radius:3px;padding:1px 6px;background:#fff}
-  .kg-ans i.miss{background:#FFB3A8}
-  .kg-ans i.extra{background:#C9CDD3;text-decoration:line-through}
-  /* 漢方一覧（全面） */
-  .kg-list{position:absolute;inset:0;z-index:10;display:none;flex-direction:column;background:#F4E9C8;
-    padding:calc(8px + env(safe-area-inset-top)) 10px calc(8px + env(safe-area-inset-bottom))}
+  .kg-flash > small{font-size:10.5px;opacity:.75}
+  /* じっくり学習：答えるたびに解説のシート */
+  .kg-sheet{position:absolute;left:0;right:0;bottom:0;top:12%;z-index:6;display:none;flex-direction:column;gap:8px;background:#F4E9C8;
+    border-top:3px solid #120E16;border-radius:8px 8px 0 0;padding:10px 12px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -6px 0 rgba(18,14,22,.35)}
+  .kg-sheet.show{display:flex;animation:kgup .2s}
+  @keyframes kgup{0%{transform:translateY(30%)}100%{transform:none}}
+  .kg-sres{flex:none;display:flex;align-items:baseline;gap:10px}
+  .kg-sres b{font-size:20px}
+  .kg-sres.ok b{color:#2F7A45}
+  .kg-sres.ng b{color:#B2382F}
+  .kg-sres small{font-size:11px;opacity:.75}
+  .kg-sbody{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-user-select:text;user-select:text}
+  .kg-sheet > .kg-btn{flex:none}
+  /* 漢方一覧（辞書） */
+  .kg-list{position:absolute;inset:0;z-index:10;display:none;flex-direction:column;background:#FBF7EC;color:#2B2233;
+    padding:calc(8px + env(safe-area-inset-top)) 0 calc(6px + env(safe-area-inset-bottom))}
   .kg-list.show{display:flex}
-  .kg-lhead{display:flex;align-items:center;gap:10px;flex:none}
-  .kg-lhead > b{font-size:18px}
-  .kg-ltime{font-size:12px;color:#B2382F;font-weight:700}
-  .kg-ltime b{font-family:var(--mono);font-size:16px}
-  .kg-lclose{margin-left:auto;padding:7px 16px;background:#E0B23E}
-  .kg-lsearch{flex:none;margin-top:8px}
-  .kg-lsearch input{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:7px 10px;border:3px solid #120E16;border-radius:3px;background:#fff;color:#2B2233}
-  .kg-lgroups{flex:none;display:flex;gap:5px;overflow-x:auto;padding:8px 0 6px;scrollbar-width:none}
-  .kg-lg{flex:none;border:2px solid #120E16;border-radius:3px;background:#fff;padding:3px 8px;font-size:12px;font-weight:700;white-space:nowrap}
-  .kg-lg.on{background:#2B2233;color:#F4E9C8}
-  .kg-lbody{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
-  .kg-li{background:#fff;border:2px solid #120E16;border-radius:3px;padding:7px 9px;margin-bottom:6px}
-  .kg-lt{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-  .kg-lt b{font-size:15.5px}
-  .kg-lt span{font-size:11px;color:#6B5A4A}
-  .kg-lt em{margin-left:auto;font-style:normal;font-size:10.5px;color:#6B5A4A}
-  .kg-lh{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px}
-  .kg-lh i{font-style:normal;font-size:12.5px;font-weight:700;background:#F1E4C2;border:1px solid #3A2614;border-radius:2px;padding:0 5px}
-  .kg-lh i.kun{background:#E0B23E}
-  .kg-ls{font-size:12px;margin-top:4px;font-weight:700}
-  .kg-lg2{font-size:12px;line-height:1.5;color:#4A3E34;margin-top:2px}
+  .kg-lhead{display:flex;align-items:center;gap:8px;flex:none;padding:0 10px;border-bottom:3px double #2B2233;padding-bottom:6px}
+  .kg-lhead > b{font-size:19px;letter-spacing:.12em;font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif}
+  .kg-lsub{font-size:11px;color:#6B5A4A}
+  .kg-ltime{font-size:11.5px;color:#B2382F;font-weight:700;white-space:nowrap}
+  .kg-ltime b{font-family:var(--mono);font-size:15px}
+  .kg-lclose{margin-left:auto;padding:6px 14px;background:#E0B23E;font-size:14px}
+  .kg-ltools{flex:none;display:flex;gap:8px;align-items:center;padding:7px 10px 5px}
+  .kg-ltools input{flex:1;min-width:0;box-sizing:border-box;font:inherit;font-size:16px;padding:5px 9px;border:2px solid #2B2233;border-radius:3px;background:#fff;color:#2B2233;-webkit-user-select:text;user-select:text}
+  .kg-ltools .kg-sort button{font-size:11.5px;padding:4px 7px}
+  .kg-lwrap{flex:1;min-height:0;display:flex}
+  .kg-lbody{flex:1;min-width:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:0 6px 0 10px;-webkit-user-select:text;user-select:text;position:relative}
+  .kg-tabs{flex:none;width:30px;display:flex;flex-direction:column;gap:2px;padding:4px 0;overflow-y:auto}
+  .kg-tabs button{flex:1 1 0;min-height:24px;max-height:46px;border:0;border-radius:6px 0 0 6px;background:#2B2233;color:#F4E9C8;font-size:13px;font-weight:800;
+    font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;padding:0}
+  .kg-tabs button:nth-child(even){background:#4A3654}
+  .kd-sec{padding-bottom:4px}
+  .kd-h{position:sticky;top:0;z-index:1;margin:0;padding:5px 2px 3px;background:#FBF7EC;font-size:13px;font-weight:800;color:#B4543F;
+    border-bottom:1px solid #CDB98F;font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;letter-spacing:.08em}
+  .kd-e{padding:7px 0 8px;border-bottom:1px dashed #CDB98F}
+  .kd-hw{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+  .kd-hw b{font-size:16.5px;font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif}
+  .kd-hw b::before{content:"【"}
+  .kd-hw b::after{content:"】"}
+  .kd-y{font-size:11.5px;color:#6B5A4A}
+  .kd-fq{margin-left:auto;font-size:10.5px;font-weight:800;color:#fff;background:#B4543F;border-radius:2px;padding:0 5px}
+  .kd-r{display:grid;grid-template-columns:3.6em 1fr;gap:6px;font-size:12.5px;line-height:1.55;margin-top:3px}
+  .kd-k{font-size:10.5px;font-weight:800;color:#fff;background:#6B5A4A;border-radius:2px;text-align:center;align-self:start;margin-top:2px;padding:0 2px;white-space:nowrap}
+  .kd-c .kd-k{background:#D2412F}
+  .kd-c > div{color:#7A2A20}
+  .kd-ks{display:flex;flex-wrap:wrap;gap:3px 8px}
+  .kd-g{display:inline-flex;flex-wrap:wrap;gap:3px;align-items:center}
+  .kd-foot{font-size:11.5px;line-height:1.6;margin:10px 0 14px;padding:8px;border:1px solid #CDB98F;border-radius:3px;background:#fff}
+  .kd-cl{display:block}
+  .kd-cl b{margin-right:5px}
   .kg-lnone{text-align:center;color:#6B5A4A}
 </style>
 
@@ -2436,7 +2527,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v6.63";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v6.64";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -2920,7 +3011,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v6.63（2026-10-20 更新）</span>
+      <br><span class="mono">アプリ版数：v6.64（2026-10-20 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -3904,15 +3995,38 @@ function HBand(){
     + `<span class="hs2-rk" onclick="go('records')" role="button" aria-label="連続記録の階級">🏅<span class="hs2-rn${r < 0 ? " none" : ""}">${cur}</span><span class="hs2-nx">${next}</span></span>`;
 }
 
-/* ================= v6.62 ミニゲーム「漢方調合」（ref=1） ================= */
-const KG_DATA = [{"n":"桂枝湯","y":"けいしとう","g":"桂枝湯類","h":["桂枝","芍薬","甘草","生姜","大棗"],"k":["桂枝"],"sho":"表寒虚証","go":"体力が衰えたときのかぜの初期。悪寒・発熱・頭痛・自汗、脈は浮弱","pt":{"w":"30代女性","a":2,"f":1,"t":"もともと体力がない。かぜのひきはじめで寒気と熱、頭痛がある。汗が自然ににじむ。脈は浮いて弱い。"}},{"n":"小建中湯","y":"しょうけんちゅうとう","g":"桂枝湯類","h":["膠飴","甘草","桂枝","芍薬","生姜","大棗"],"k":["膠飴"],"sho":"裏寒虚証","go":"体質虚弱・小児の虚弱体質。腹皮拘急、腹部軟弱","pt":{"w":"8歳男児","a":0,"f":0,"t":"やせ型で疲れやすく、よくおなかを痛がる。おなかはやわらかいが、腹直筋がつっぱっている。"}},{"n":"麻黄湯","y":"まおうとう","g":"麻黄湯類","h":["麻黄","桂枝","杏仁","甘草"],"k":["麻黄"],"sho":"表寒実証","go":"かぜ・インフルエンザの初期。悪寒・発熱・頭痛、自然に汗が出ない、身体の痛み、脈は浮緊","pt":{"w":"20代男性","a":1,"f":0,"t":"体力はある。急に高い熱が出て寒気がし、汗はまったく出ない。節々が痛み、脈は浮いて緊張している。"}},{"n":"葛根湯","y":"かっこんとう","g":"麻黄湯類","h":["葛根","麻黄","桂枝","芍薬","甘草","生姜","大棗"],"k":["葛根"],"sho":"表寒実証","go":"かぜの初期で寒気・肩や首筋のこり・頭痛。肩こり。項背強・無汗","pt":{"w":"40代男性","a":2,"f":0,"t":"体力はある。かぜのひきはじめで寒気がするが、汗は出ない。首筋から背中がこわばってつらい。"}},{"n":"葛根湯加川芎辛夷","y":"かっこんとうかせんきゅうしんい","g":"麻黄湯類","h":["葛根","麻黄","桂枝","芍薬","甘草","生姜","大棗","川芎","辛夷"],"k":["葛根"],"sho":"表寒実証","go":"葛根湯の証で鼻づまり（川芎・辛夷：血行促進＋鼻を通す）","pt":{"w":"30代男性","a":1,"f":0,"t":"体力はある。寒気がして汗は出ず、首筋もこる。なにより鼻がつまって息苦しい。"}},{"n":"小青竜湯","y":"しょうせいりゅうとう","g":"麻黄湯類","h":["麻黄","桂枝","甘草","芍薬","五味子","乾姜","細辛","半夏"],"k":["麻黄"],"sho":"中間証","go":"気管支炎・気管支喘息・通年性の鼻アレルギー。咳、水様の鼻汁","pt":{"w":"20代女性","a":1,"f":1,"t":"体力は中くらい。水のような鼻水とくしゃみが止まらず、うすい痰の出る咳も続く。"}},{"n":"麻杏甘石湯","y":"まきょうかんせきとう","g":"麻黄湯類","h":["麻黄","杏仁","甘草","石膏"],"k":["麻黄"],"sho":"（麻黄湯の桂枝→石膏）自汗","go":"小児喘息・気管支喘息","pt":{"w":"6歳女児","a":0,"f":1,"t":"ぜんそくでゼーゼーと咳きこむ。汗をかいていて、のどが渇く。"}},{"n":"小柴胡湯","y":"しょうさいことう","g":"柴胡剤","h":["柴胡","黄芩","人参","甘草","半夏","生姜","大棗"],"k":["柴胡"],"sho":"裏熱虚証（半表半裏）","go":"体力中等度。往来寒熱・胸脇苦満・吐き気。かぜの後期、肝機能障害、慢性胃腸障害","pt":{"w":"50代男性","a":2,"f":0,"t":"体力は中くらい。かぜがこじれて、寒気と熱が交互にくる。みぞおちから脇が重苦しく、吐き気がして食欲がない。"}},{"n":"柴胡桂枝湯","y":"さいこけいしとう","g":"柴胡剤","h":["柴胡","黄芩","半夏","人参","甘草","芍薬","桂枝","生姜","大棗"],"k":["柴胡"],"sho":"少陽と太陽の兼証","go":"こじれたかぜで微熱・悪寒・頭痛・身体痛。胸脇苦満＋腹皮拘急。小柴胡湯＋桂枝湯","pt":{"w":"30代女性","a":1,"f":1,"t":"かぜがこじれ、微熱と寒気、頭痛が残る。脇が苦しく、腹直筋もつっぱる。首から上にだけ汗をかく。"}},{"n":"大柴胡湯","y":"だいさいことう","g":"柴胡剤","h":["柴胡","黄芩","枳実","芍薬","半夏","生姜","大棗","大黄"],"k":["柴胡"],"sho":"裏熱実証","go":"体力充実。上腹部が張って苦しく便秘傾向。肥満・高血圧に伴う肩こり・頭痛・便秘","pt":{"w":"50代男性","a":2,"f":0,"t":"がっしりした体格。みぞおちから脇が張って苦しく、便秘がち。肩こりと頭痛があり、血圧も高い。"}},{"n":"柴胡加竜骨牡蠣湯","y":"さいこかりゅうこつぼれいとう","g":"柴胡剤","h":["柴胡","黄芩","半夏","人参","竜骨","牡蠣","桂枝","茯苓","生姜","大棗"],"k":["柴胡"],"sho":"裏寒虚（実）証","go":"比較的体力があり、動悸・不眠など精神症状。高血圧、神経症。胸脇苦満・臍上悸・煩驚","pt":{"w":"40代男性","a":2,"f":0,"t":"体力は比較的ある。脇が苦しく、へその上で動悸を感じる。不安で驚きやすく、夜眠れない。"}},{"n":"柴苓湯","y":"さいれいとう","g":"柴胡剤","h":["柴胡","黄芩","人参","沢瀉","猪苓","茯苓","白朮","半夏","生姜","大棗","桂枝","甘草"],"k":["柴胡"],"sho":"裏熱虚証","go":"急性胃腸炎などの水様性下痢、暑気あたり。小柴胡湯＋五苓散","pt":{"w":"20代男性","a":1,"f":0,"t":"暑気あたりで水のような下痢。のどが渇くのに尿は少ない。吐き気があり、脇も苦しい。"}},{"n":"柴朴湯","y":"さいぼくとう","g":"柴胡剤","h":["柴胡","黄芩","半夏","茯苓","厚朴","人参","大棗","甘草","蘇葉","生姜"],"k":["柴胡"],"sho":"裏熱虚証","go":"気分がふさぎ、咽喉・食道に異物感。小児喘息・気管支炎・せき・不安神経症。小柴胡湯＋半夏厚朴湯","pt":{"w":"10歳男児","a":0,"f":0,"t":"気分がふさぎがちで、のどに何かつかえた感じがある。脇が苦しく、咳と吐き気が続く。"}},{"n":"半夏瀉心湯","y":"はんげしゃしんとう","g":"瀉心湯類","h":["黄連","黄芩","半夏","乾姜","人参","甘草","大棗"],"k":["黄連"],"sho":"裏熱虚証（虚実中間）","go":"みぞおちのつかえ・悪心・嘔吐、食欲不振で軟便・下痢。心下痞鞕・腹鳴。イリノテカンの下痢","pt":{"w":"60代男性","a":3,"f":0,"t":"みぞおちがつかえて硬く、吐き気がある。おなかがゴロゴロ鳴り、軟便から下痢ぎみ。"}},{"n":"黄連解毒湯","y":"おうれんげどくとう","g":"瀉心湯類","h":["黄連","黄芩","黄柏","山梔子"],"k":["黄連"],"sho":"裏熱実証","go":"比較的体力があり、のぼせ・いらいら。不眠、鼻血。下痢は伴わない","pt":{"w":"40代男性","a":2,"f":0,"t":"体力はあり、顔がのぼせて赤い。イライラして眠れず、鼻血も出やすい。下痢はない。"}},{"n":"真武湯","y":"しんぶとう","g":"附子剤","h":["茯苓","白朮","芍薬","附子","生姜"],"k":["茯苓"],"sho":"裏寒虚証","go":"冷え・めまい・動悸・下痢・急激な衰弱。全身倦怠、四肢冷感、慢性腸炎","pt":{"w":"70代女性","a":3,"f":1,"t":"体力が落ち、手足が冷えきっている。だるくてふらつき、動悸と水っぽい下痢が続く。"}},{"n":"八味地黄丸","y":"はちみじおうがん","g":"地黄剤","h":["地黄","山茱萸","山薬","茯苓","桂枝","牡丹皮","沢瀉","附子"],"k":["地黄"],"sho":"裏寒虚証","go":"下半身の機能低下・足腰の冷え・排尿障害（臍下不仁）。前立腺肥大、腰痛、老人性疾患","pt":{"w":"70代男性","a":3,"f":0,"t":"足腰が冷えてだるく、夜中に何度もトイレに起きる。へその下は力がなく、感覚が鈍い。"}},{"n":"牛車腎気丸","y":"ごしゃじんきがん","g":"地黄剤","h":["地黄","山茱萸","山薬","茯苓","桂枝","牡丹皮","沢瀉","附子","車前子","牛膝"],"k":["地黄"],"sho":"裏寒虚証","go":"八味地黄丸の証で泌尿器の訴え（水滞）が強い。抗がん剤の末梢神経障害","pt":{"w":"70代男性","a":3,"f":0,"t":"足腰が冷えてしびれる。足がむくみ、尿の出が悪いという訴えがとくに強い。"}},{"n":"温清飲","y":"うんせいいん","g":"地黄剤","h":["黄連","当帰","黄芩","地黄","黄柏","芍薬","山梔子","川芎"],"k":["黄連","当帰"],"sho":"裏熱中間証","go":"皮膚がかさかさで色つやが悪く、のぼせる。月経不順、血の道症、湿疹。黄連解毒湯＋四物湯","pt":{"w":"30代女性","a":1,"f":1,"t":"皮膚がかさかさで色つやが悪く、かゆい湿疹がある。のぼせやすく、月経も不順。"}},{"n":"半夏厚朴湯","y":"はんげこうぼくとう","g":"気血水剤","h":["半夏","厚朴","茯苓","生姜","蘇葉"],"k":["半夏"],"sho":"裏寒実証","go":"咽頭部の異物感（梅核気）、動悸・めまい。不安神経症、神経性胃炎、不眠","pt":{"w":"40代女性","a":2,"f":1,"t":"神経質。のどに炙った肉片がひっかかったような異物感があり、胸もつまる感じがする。"}},{"n":"当帰芍薬散","y":"とうきしゃくやくさん","g":"気血水剤","h":["当帰","芍薬","白朮","川芎","茯苓","沢瀉"],"k":["当帰"],"sho":"裏寒虚証","go":"血虚＋水毒。筋肉が軟弱で冷えやすい。月経不順、めまい","pt":{"w":"20代女性","a":1,"f":1,"t":"色白で筋肉がやわらかく、冷え性。貧血ぎみでめまいとむくみがあり、月経不順。"}},{"n":"加味逍遥散","y":"かみしょうようさん","g":"気血水剤","h":["柴胡","当帰","芍薬","白朮","茯苓","生姜","牡丹皮","山梔子","薄荷","甘草"],"k":["柴胡","当帰","芍薬"],"sho":"（当帰芍薬散の証で神経症状が強い）","go":"のぼせ・熱感があり、訴えが多い（多愁訴）。更年期障害など","pt":{"w":"50代女性","a":2,"f":1,"t":"更年期。のぼせやほてりに加え、イライラ・不安・肩こりなど訴えが日によって次々に変わる。"}},{"n":"抑肝散","y":"よくかんさん","g":"気血水剤","h":["釣藤鈎","柴胡","当帰","甘草","川芎","茯苓","白朮"],"k":["釣藤鈎"],"sho":"裏寒虚証（中間証）","go":"イライラ、腹直筋の緊張。小児の夜泣き・ひきつけ、神経症、認知症の行動・心理症状","pt":{"w":"80代女性","a":3,"f":1,"t":"認知症。怒りっぽく興奮しやすく、夜も落ち着かない。腹直筋がつっぱっている。"}},{"n":"抑肝散加陳皮半夏","y":"よくかんさんかちんぴはんげ","g":"気血水剤","h":["釣藤鈎","柴胡","当帰","甘草","川芎","茯苓","白朮","陳皮","半夏"],"k":["釣藤鈎"],"sho":"裏寒虚証（中間証）","go":"抑肝散の証で神経症状が強く、悪心・嘔吐・食欲不振（慢性化）","pt":{"w":"40代女性","a":2,"f":1,"t":"神経の高ぶりとイライラが長く続いている。胃腸も弱り、吐き気があって食欲がない。"}},{"n":"桂枝茯苓丸","y":"けいしぶくりょうがん","g":"気血水剤","h":["桂枝","牡丹皮","桃仁","芍薬","茯苓"],"k":["牡丹皮","桃仁"],"sho":"裏熱中間〜実証","go":"代表的な駆瘀血薬。冷えのぼせ・臍傍圧痛。月経不順・更年期障害、頭痛・肩こり","pt":{"w":"30代女性","a":1,"f":1,"t":"体力は中くらい以上。足は冷えるのに顔はのぼせる。へその横を押すと痛み、月経痛がある。"}},{"n":"桃核承気湯","y":"とうかくじょうきとう","g":"気血水剤","h":["桃仁","桂枝","大黄","芒硝","甘草"],"k":["桃仁"],"sho":"裏熱実証","go":"体力があり、のぼせて便秘がち。小腹急結＋精神不安定。月経不順・月経困難・便秘","pt":{"w":"30代女性","a":1,"f":1,"t":"体力がある。のぼせて便秘がちで、気持ちが不安定。下腹部を軽くなでただけで強く痛がる。"}},{"n":"五苓散","y":"ごれいさん","g":"気血水剤","h":["茯苓","猪苓","白朮","沢瀉","桂枝"],"k":["茯苓"],"sho":"裏熱虚証〜中間証","go":"代表的な利水剤。口渇・尿量減少・水逆。浮腫、二日酔い、悪心、胃腸炎型のかぜ","pt":{"w":"4歳女児","a":0,"f":1,"t":"胃腸かぜ。のどが渇いて水をほしがるが、飲むとすぐ吐いてしまう。尿は少ない。"}},{"n":"苓桂朮甘湯","y":"りょうけいじゅつかんとう","g":"気血水剤","h":["茯苓","白朮","桂枝","甘草"],"k":["茯苓"],"sho":"裏寒虚証","go":"起立性めまい・動悸・胃部振水音・臍上悸。尿量減少、神経質","pt":{"w":"20代女性","a":1,"f":1,"t":"立ち上がるとクラッとめまいがして動悸がする。胃のあたりでチャポチャポ音がし、尿は少ない。"}},{"n":"大建中湯","y":"だいけんちゅうとう","g":"人参剤","h":["山椒","乾姜","人参","膠飴"],"k":["山椒"],"sho":"裏寒虚証","go":"腹部の冷え・膨満・腹痛、腸の蠕動不穏。過敏性腸症候群、術後の腸管通過障害（イレウス予防）","pt":{"w":"80代女性","a":3,"f":1,"t":"開腹手術の経験がある。おなかが冷えて張り、腸がもくもく動くのが見える。腹痛がある。"}},{"n":"六君子湯","y":"りっくんしとう","g":"人参剤","h":["人参","白朮","茯苓","半夏","陳皮","甘草","大棗","生姜"],"k":["人参"],"sho":"","go":"胃腸虚弱で食欲不振・悪心・嘔吐（グレリンを介した食欲亢進）。化学療法中の嘔気","pt":{"w":"60代女性","a":3,"f":1,"t":"胃腸が弱く食欲がない。少し食べると胃がもたれ、吐き気がする。"}},{"n":"補中益気湯","y":"ほちゅうえっきとう","g":"人参剤","h":["黄耆","人参","甘草","白朮","当帰","柴胡","大棗","陳皮","升麻","生姜"],"k":["黄耆"],"sho":"","go":"補気・升提（内臓下垂・脱肛）。全身倦怠感、食欲不振、術後の体力低下","pt":{"w":"50代男性","a":2,"f":0,"t":"手術のあと体力が戻らず、全身がだるく気力がない。食欲も落ち、胃下垂ぎみ。"}},{"n":"十全大補湯","y":"じゅうぜんたいほとう","g":"人参剤","h":["人参","白朮","茯苓","甘草","黄耆","桂枝","当帰","地黄","芍薬","川芎"],"k":["人参","当帰"],"sho":"","go":"気血ともに不足（四君子湯＋四物湯＋黄耆・桂枝）。皮膚乾燥。がん治療の骨髄抑制・体力低下","pt":{"w":"60代男性","a":3,"f":0,"t":"がんの化学療法中。疲れきって顔色が悪く、皮膚も乾燥している。血液検査で骨髄抑制がある。"}},{"n":"釣藤散","y":"ちょうとうさん","g":"石膏剤","h":["釣藤鈎","菊花","防風","人参","茯苓","石膏","麦門冬","陳皮","半夏","甘草","生姜"],"k":["釣藤鈎"],"sho":"裏熱虚証（中間証）","go":"中年以降の慢性頭痛、高血圧。イライラ・のぼせ・めまい・目の充血","pt":{"w":"60代男性","a":3,"f":0,"t":"中年のころから続く頭痛。めまいと目の充血、のぼせがあり、血圧が高い。"}},{"n":"防風通聖散","y":"ぼうふうつうしょうさん","g":"石膏剤","h":["大黄","芒硝","麻黄","防風","荊芥","薄荷","滑石","山梔子","石膏","桔梗","連翹","黄芩","川芎","当帰","芍薬","白朮","甘草","生姜"],"k":["大黄","芒硝"],"sho":"裏熱実証","go":"肥満（硬い太鼓腹）・便秘・のぼせ。高血圧や肥満に伴う動悸・肩こり・むくみ（18生薬）","pt":{"w":"40代男性","a":2,"f":0,"t":"おなかに皮下脂肪がついた硬い太鼓腹。便秘がちで、のぼせ・肩こり・動悸があり、血圧も高い。"}},{"n":"白虎加人参湯","y":"びゃっこかにんじんとう","g":"石膏剤","h":["石膏","知母","人参","粳米","甘草"],"k":["石膏"],"sho":"裏熱実証","go":"体力中等度以上で熱感と口渇が強い。多汗、脈洪大。口腔乾燥、糖尿病、皮膚炎","pt":{"w":"50代男性","a":2,"f":0,"t":"体がほてり、のどがひどく渇いて水をたくさん飲む。汗が多く、脈は大きく力強い。"}},{"n":"防已黄耆湯","y":"ぼういおうぎとう","g":"代表疾患","h":["防已","黄耆","白朮","甘草","大棗","生姜"],"k":["防已"],"sho":"裏（表）寒虚証","go":"水太り（筋肉にしまりがない）・多汗・関節の腫れと痛み・下肢浮腫。肥満症、関節炎","pt":{"w":"50代女性","a":2,"f":1,"t":"色白の水太り。汗をかきやすく、ひざが腫れて痛む。足がむくみやすい。"}},{"n":"麦門冬湯","y":"ばくもんどうとう","g":"代表疾患","h":["麦門冬","半夏","人参","大棗","甘草","粳米"],"k":["麦門冬"],"sho":"裏熱虚証","go":"痰の切れにくい激しい咳（反射性）、のどの不快感。気管支炎。妊娠中も服用可","pt":{"w":"30代女性","a":1,"f":1,"t":"妊娠中。のどが乾燥して、顔が赤くなるほど激しく咳きこむ。痰は少なく切れにくい。"}},{"n":"芍薬甘草湯","y":"しゃくやくかんぞうとう","g":"代表疾患","h":["芍薬","甘草"],"k":["芍薬"],"sho":"裏熱（寒）虚証（体力にかかわらず）","go":"急におこる筋肉のけいれんを伴う痛み（こむら返り）。四肢のひきつり","pt":{"w":"60代男性","a":3,"f":0,"t":"夜中に突然ふくらはぎがつり、激しく痛む。"}},{"n":"大黄甘草湯","y":"だいおうかんぞうとう","g":"代表疾患","h":["大黄","甘草"],"k":["大黄"],"sho":"裏熱実証","go":"常習便秘。便秘に伴う頭重・のぼせ・湿疹・吹き出物","pt":{"w":"20代女性","a":1,"f":1,"t":"ずっと便秘が続いていて、出ないと頭が重くのぼせる。吹き出物もできている。"}},{"n":"呉茱萸湯","y":"ごしゅゆとう","g":"代表疾患","h":["呉茱萸","生姜","人参","大棗"],"k":["呉茱萸"],"sho":"裏寒虚証","go":"手足が冷えやすく体力中等度以下。習慣性の片頭痛・嘔吐。首肩のこり、めまいはない","pt":{"w":"40代女性","a":2,"f":1,"t":"手足が冷えやすい。片頭痛の発作のたびに吐いてしまう。首と肩もこるが、めまいはない。"}}];
+/* ================= v6.62→v6.64 ミニゲーム「漢方調合」（ref=1） ================= */
+const KG_DATA = [{"n":"桂枝湯","y":"けいしとう","g":"桂枝湯類","h":["桂枝","芍薬","甘草","生姜","大棗"],"k":["桂枝"],"sho":"表寒虚証","go":"体力が衰えたときのかぜの初期。悪寒・発熱・頭痛・自汗、脈は浮弱","pt":{"w":"30代女性","a":2,"f":1,"t":"もともと体力がない。かぜのひきはじめで寒気と熱、頭痛がある。汗が自然ににじむ。脈は浮いて弱い。"},"ks":[{"r":"君","h":["桂枝"],"d":"発汗させて肌表の邪を払う（発汗解肌）"},{"r":"臣","h":["芍薬"],"d":"手足・腹の緊張をゆるめる"},{"r":"佐","h":["甘草"],"d":"諸薬を調和、芍薬と組んで鎮痛"},{"r":"使","h":["生姜","大棗"],"d":"脾胃を補う"}],"fq":1},{"n":"小建中湯","y":"しょうけんちゅうとう","g":"桂枝湯類","h":["膠飴","甘草","桂枝","芍薬","生姜","大棗"],"k":["膠飴"],"sho":"裏寒虚証","go":"体質虚弱・小児の虚弱体質。腹皮拘急、腹部軟弱","pt":{"w":"8歳男児","a":0,"f":0,"t":"やせ型で疲れやすく、よくおなかを痛がる。おなかはやわらかいが、腹直筋がつっぱっている。"},"ks":[{"r":"君","h":["膠飴"],"d":"中焦を補い脾胃を温める"},{"r":"臣","h":["甘草"],"d":"脾をゆるめ、生姜と組んで緊張を解く"},{"r":"佐","h":["桂枝","芍薬"],"d":"腹痛と虚労を治す"},{"r":"使","h":["生姜","大棗"],"d":"脾胃を補う"}],"st":{"n":"桂枝湯の芍薬を増やし、膠飴を加えたもの","s":[{"l":"桂枝湯","h":["桂枝","芍薬","甘草","生姜","大棗"]},{"l":"＋加味","h":["膠飴"]}]},"fq":0},{"n":"麻黄湯","y":"まおうとう","g":"麻黄湯類","h":["麻黄","桂枝","杏仁","甘草"],"k":["麻黄"],"sho":"表寒実証","go":"かぜ・インフルエンザの初期。悪寒・発熱・頭痛、自然に汗が出ない、身体の痛み、脈は浮緊","pt":{"w":"20代男性","a":1,"f":0,"t":"体力はある。急に高い熱が出て寒気がし、汗はまったく出ない。節々が痛み、脈は浮いて緊張している。"},"ks":[{"r":"君","h":["麻黄"],"d":"強く発汗させて寒を散らす"},{"r":"臣","h":["桂枝"],"d":"発汗解肌"},{"r":"佐","h":["杏仁"],"d":"気を下して鎮咳・去痰"},{"r":"使","h":["甘草"],"d":"諸薬を調和"}],"ch":"麻黄を多く含む。高齢者・循環器疾患では動悸・血圧上昇に注意","fq":3},{"n":"葛根湯","y":"かっこんとう","g":"麻黄湯類","h":["葛根","麻黄","桂枝","芍薬","甘草","生姜","大棗"],"k":["葛根"],"sho":"表寒実証","go":"かぜの初期で寒気・肩や首筋のこり・頭痛。肩こり。項背強・無汗","pt":{"w":"40代男性","a":2,"f":0,"t":"体力はある。かぜのひきはじめで寒気がするが、汗は出ない。首筋から背中がこわばってつらい。"},"ks":[{"r":"君","h":["葛根"],"d":"軽い発汗と強い解熱、筋肉をうるおす"},{"r":"臣","h":["麻黄"],"d":"強い発汗（葛根と相須）"},{"r":"佐","h":["桂枝","芍薬"],"d":"芍薬＋甘草で筋肉の緊張をゆるめる"},{"r":"使","h":["甘草","生姜","大棗"],"d":"滋養強壮"}],"st":{"n":"桂枝湯に葛根・麻黄を加えたもの","s":[{"l":"桂枝湯","h":["桂枝","芍薬","甘草","生姜","大棗"]},{"l":"＋加味","h":["葛根","麻黄"]}]},"fq":6},{"n":"葛根湯加川芎辛夷","y":"かっこんとうかせんきゅうしんい","g":"麻黄湯類","h":["葛根","麻黄","桂枝","芍薬","甘草","生姜","大棗","川芎","辛夷"],"k":["葛根"],"sho":"表寒実証","go":"葛根湯の証で鼻づまり（川芎・辛夷：血行促進＋鼻を通す）","pt":{"w":"30代男性","a":1,"f":0,"t":"体力はある。寒気がして汗は出ず、首筋もこる。なにより鼻がつまって息苦しい。"},"ks":[{"r":"君","h":["葛根"],"d":"軽い発汗と強い解熱、筋肉をうるおす"},{"r":"臣","h":["麻黄"],"d":"強い発汗"},{"r":"佐","h":["桂枝","芍薬","川芎","辛夷"],"d":"川芎で血行促進、辛夷で鼻を通す"},{"r":"使","h":["甘草","生姜","大棗"],"d":"滋養強壮"}],"st":{"n":"葛根湯に川芎・辛夷を加えたもの","s":[{"l":"葛根湯","h":["葛根","麻黄","桂枝","芍薬","甘草","生姜","大棗"]},{"l":"＋加味","h":["川芎","辛夷"]}]},"fq":0},{"n":"小青竜湯","y":"しょうせいりゅうとう","g":"麻黄湯類","h":["麻黄","桂枝","甘草","芍薬","五味子","乾姜","細辛","半夏"],"k":["麻黄"],"sho":"中間証","go":"気管支炎・気管支喘息・通年性の鼻アレルギー。咳、水様の鼻汁","pt":{"w":"20代女性","a":1,"f":1,"t":"体力は中くらい。水のような鼻水とくしゃみが止まらず、うすい痰の出る咳も続く。"},"ks":[{"r":"君","h":["麻黄"],"d":"発汗して表証を除く"},{"r":"臣","h":["桂枝","甘草"],"d":"桂枝＋甘草で発表、諸薬を調和"},{"r":"佐","h":["芍薬","五味子"],"d":"肺気を温めて咳を止める"},{"r":"使","h":["乾姜","細辛","半夏"],"d":"中焦を温める、半夏で去痰、乾姜＋細辛で鎮咳を強める"}],"fq":6},{"n":"麻杏甘石湯","y":"まきょうかんせきとう","g":"麻黄湯類","h":["麻黄","杏仁","甘草","石膏"],"k":["麻黄"],"sho":"","go":"小児喘息・気管支喘息。汗が出る（自汗）点で麻黄湯（無汗）と区別","pt":{"w":"6歳女児","a":0,"f":1,"t":"ぜんそくでゼーゼーと咳きこむ。汗をかいていて、のどが渇く。"},"ks":[{"r":"君","h":["麻黄"],"d":"発汗・喘を治す"},{"r":"臣","h":["石膏"],"d":"肺の熱を冷まし津液を生む（清熱生津）"},{"r":"佐","h":["杏仁"],"d":"鎮咳・去痰"},{"r":"使","h":["甘草"],"d":"諸薬を調和"}],"st":{"n":"麻黄湯の桂枝を石膏にかえたもの","s":[{"l":"麻黄湯から（桂枝を除く）","h":["麻黄","杏仁","甘草"]},{"l":"＋加味","h":["石膏"]}]},"fq":0},{"n":"小柴胡湯","y":"しょうさいことう","g":"柴胡剤","h":["柴胡","黄芩","人参","甘草","半夏","生姜","大棗"],"k":["柴胡"],"sho":"裏熱虚証（半表半裏）","go":"体力中等度。往来寒熱・胸脇苦満・吐き気。かぜの後期、肝機能障害、慢性胃腸障害","pt":{"w":"50代男性","a":2,"f":0,"t":"体力は中くらい。かぜがこじれて、寒気と熱が交互にくる。みぞおちから脇が重苦しく、吐き気がして食欲がない。"},"ks":[{"r":"君","h":["柴胡"],"d":"胸脇の気の滞りを散らす"},{"r":"臣","h":["黄芩"],"d":"半裏の熱を除く（柴胡と相須）"},{"r":"佐","h":["人参","甘草","半夏"],"d":"気を補い和す、半夏＋生姜で止嘔"},{"r":"使","h":["生姜","大棗"],"d":"脾胃を整える"}],"ch":"間質性肺炎（投与開始後2か月以内に多い）。インターフェロン製剤との併用・肝硬変・肝がんの患者には禁忌","fq":2},{"n":"柴胡桂枝湯","y":"さいこけいしとう","g":"柴胡剤","h":["柴胡","黄芩","半夏","人参","甘草","芍薬","桂枝","生姜","大棗"],"k":["柴胡"],"sho":"少陽と太陽の兼証","go":"こじれたかぜで微熱・悪寒・頭痛・身体痛。胸脇苦満＋腹皮拘急。小柴胡湯＋桂枝湯","pt":{"w":"30代女性","a":1,"f":1,"t":"かぜがこじれ、微熱と寒気、頭痛が残る。脇が苦しく、腹直筋もつっぱる。首から上にだけ汗をかく。"},"ks":[{"r":"君","h":["柴胡"],"d":"胸脇の気の滞りを散らす"},{"r":"臣","h":["黄芩"],"d":"半裏の熱を除く"},{"r":"佐","h":["半夏","人参","甘草","芍薬","桂枝"],"d":"柴胡＋甘草で鎮痛、桂枝で頭痛などの表証を除く"},{"r":"使","h":["生姜","大棗"],"d":"脾胃を整える"}],"st":{"n":"小柴胡湯と桂枝湯の合方","s":[{"l":"小柴胡湯","h":["柴胡","黄芩","人参","甘草","半夏","生姜","大棗"]},{"l":"＋桂枝湯から","h":["桂枝","芍薬"]}]},"fq":0},{"n":"大柴胡湯","y":"だいさいことう","g":"柴胡剤","h":["柴胡","黄芩","枳実","芍薬","半夏","生姜","大棗","大黄"],"k":["柴胡"],"sho":"裏熱実証","go":"体力充実。上腹部が張って苦しく便秘傾向。肥満・高血圧に伴う肩こり・頭痛・便秘","pt":{"w":"50代男性","a":2,"f":0,"t":"がっしりした体格。みぞおちから脇が張って苦しく、便秘がち。肩こりと頭痛があり、血圧も高い。"},"ks":[{"r":"君","h":["柴胡"],"d":"胸脇の気の滞りを散らす"},{"r":"臣","h":["黄芩"],"d":"半裏の熱を除く"},{"r":"佐","h":["枳実","芍薬"],"d":"気をめぐらせ肝の熱を冷ます"},{"r":"使","h":["半夏","生姜","大棗","大黄"],"d":"大黄で内熱を下して便を通す"}],"st":{"n":"小柴胡湯から人参・甘草を除き、枳実・芍薬・大黄を加えたもの","s":[{"l":"小柴胡湯から（人参・甘草を除く）","h":["柴胡","黄芩","半夏","生姜","大棗"]},{"l":"＋加味","h":["枳実","芍薬","大黄"]}]},"fq":0},{"n":"柴胡加竜骨牡蠣湯","y":"さいこかりゅうこつぼれいとう","g":"柴胡剤","h":["柴胡","黄芩","半夏","人参","竜骨","牡蠣","桂枝","茯苓","生姜","大棗"],"k":["柴胡"],"sho":"裏寒虚（実）証","go":"比較的体力があり、動悸・不眠など精神症状。高血圧、神経症。胸脇苦満・臍上悸・煩驚","pt":{"w":"40代男性","a":2,"f":0,"t":"体力は比較的ある。脇が苦しく、へその上で動悸を感じる。不安で驚きやすく、夜眠れない。"},"ks":[{"r":"君","h":["柴胡"],"d":"胸脇の気の滞りを散らす"},{"r":"臣","h":["黄芩"],"d":"半裏の熱を除く"},{"r":"佐","h":["半夏","人参","竜骨","牡蠣"],"d":"竜骨＋牡蠣で鎮静"},{"r":"使","h":["桂枝","茯苓","生姜","大棗"],"d":"茯苓＋半夏＋生姜で胃内停水を除き精神を安定"}],"st":{"n":"小柴胡湯から甘草を除き、桂枝・茯苓・竜骨・牡蠣を加えたもの","s":[{"l":"小柴胡湯から（甘草を除く）","h":["柴胡","黄芩","人参","半夏","生姜","大棗"]},{"l":"＋加味","h":["桂枝","茯苓","竜骨","牡蠣"]}]},"fq":0},{"n":"柴苓湯","y":"さいれいとう","g":"柴胡剤","h":["柴胡","黄芩","人参","沢瀉","猪苓","茯苓","白朮","半夏","生姜","大棗","桂枝","甘草"],"k":["柴胡"],"sho":"裏熱虚証","go":"急性胃腸炎などの水様性下痢、暑気あたり。小柴胡湯＋五苓散","pt":{"w":"20代男性","a":1,"f":0,"t":"暑気あたりで水のような下痢。のどが渇くのに尿は少ない。吐き気があり、脇も苦しい。"},"ks":[{"r":"君","h":["柴胡"],"d":"胸脇の気の滞りを散らす"},{"r":"臣","h":["黄芩"],"d":"半裏の熱を除く"},{"r":"佐","h":["人参","沢瀉","猪苓","茯苓","白朮"],"d":"水分代謝を改善"},{"r":"使","h":["半夏","生姜","大棗","桂枝","甘草"],"d":"脾胃を整え、桂枝で気をめぐらす"}],"st":{"n":"小柴胡湯と五苓散の合方","s":[{"l":"小柴胡湯","h":["柴胡","黄芩","人参","甘草","半夏","生姜","大棗"]},{"l":"＋五苓散","h":["沢瀉","猪苓","茯苓","白朮","桂枝"]}]},"fq":0},{"n":"柴朴湯","y":"さいぼくとう","g":"柴胡剤","h":["柴胡","黄芩","半夏","茯苓","厚朴","人参","大棗","甘草","蘇葉","生姜"],"k":["柴胡"],"sho":"裏熱虚証","go":"気分がふさぎ、咽喉・食道に異物感。小児喘息・気管支炎・せき・不安神経症。小柴胡湯＋半夏厚朴湯","pt":{"w":"10歳男児","a":0,"f":0,"t":"気分がふさぎがちで、のどに何かつかえた感じがある。脇が苦しく、咳と吐き気が続く。"},"ks":[{"r":"君","h":["柴胡"],"d":"胸脇の気の滞りを散らす"},{"r":"臣","h":["黄芩"],"d":"半裏の熱を除く"},{"r":"佐","h":["半夏","茯苓","厚朴","人参"],"d":"半夏・厚朴で気逆を下し嘔を止める、茯苓で利水・鎮静"},{"r":"使","h":["大棗","甘草","蘇葉","生姜"],"d":"脾胃を整え、蘇葉で気をめぐらす"}],"st":{"n":"小柴胡湯と半夏厚朴湯の合方","s":[{"l":"小柴胡湯","h":["柴胡","黄芩","人参","甘草","半夏","生姜","大棗"]},{"l":"＋半夏厚朴湯から","h":["厚朴","茯苓","蘇葉"]}]},"fq":0},{"n":"半夏瀉心湯","y":"はんげしゃしんとう","g":"瀉心湯類","h":["黄連","黄芩","半夏","乾姜","人参","甘草","大棗"],"k":["黄連"],"sho":"裏熱虚証（虚実中間）","go":"みぞおちのつかえ・悪心・嘔吐、食欲不振で軟便・下痢。心下痞鞕・腹鳴。イリノテカンの下痢","pt":{"w":"60代男性","a":3,"f":0,"t":"みぞおちがつかえて硬く、吐き気がある。おなかがゴロゴロ鳴り、軟便から下痢ぎみ。"},"ks":[{"r":"君","h":["黄連"],"d":"黄芩と組んで心下の熱をとり痞を消す"},{"r":"臣","h":["黄芩"],"d":"黄連と組んで熱をとる"},{"r":"佐","h":["半夏","乾姜"],"d":"半夏で止嘔、乾姜で胃を温める"},{"r":"使","h":["人参","甘草","大棗"],"d":"脾を補う"}],"ch":"イリノテカンの遅延性下痢の予防に使う（生薬成分のグルクロン酸抱合体で SN-38 の再生を抑える）","fq":3},{"n":"黄連解毒湯","y":"おうれんげどくとう","g":"瀉心湯類","h":["黄連","黄芩","黄柏","山梔子"],"k":["黄連"],"sho":"裏熱実証","go":"比較的体力があり、のぼせ・いらいら。不眠、鼻血。下痢は伴わない","pt":{"w":"40代男性","a":2,"f":0,"t":"体力はあり、顔がのぼせて赤い。イライラして眠れず、鼻血も出やすい。下痢はない。"},"ks":[{"r":"君","h":["黄連"],"d":"三焦の実熱を冷ます"},{"r":"臣","h":["黄芩"],"d":"上焦の熱を冷ます"},{"r":"佐","h":["黄柏"],"d":"腎・膀胱の熱を冷ます"},{"r":"使","h":["山梔子"],"d":"全身の熱を冷まし精神を安定"}],"ch":"腸間膜静脈硬化症（山梔子）。体を冷ますので冷水で服用するとよい","fq":4},{"n":"真武湯","y":"しんぶとう","g":"附子剤","h":["茯苓","白朮","芍薬","附子","生姜"],"k":["茯苓"],"sho":"裏寒虚証","go":"冷え・めまい・動悸・下痢・急激な衰弱。全身倦怠、四肢冷感、慢性腸炎","pt":{"w":"70代女性","a":3,"f":1,"t":"体力が落ち、手足が冷えきっている。だるくてふらつき、動悸と水っぽい下痢が続く。"},"ks":[{"r":"君","h":["茯苓"],"d":"白朮と組んで利水、脾胃の働きを高める"},{"r":"臣","h":["白朮"],"d":"利水"},{"r":"佐","h":["芍薬"],"d":"止痛、附子と組んで冷えと痛みをとる"},{"r":"使","h":["附子","生姜"],"d":"腎を温め利水を助ける"}],"fq":0},{"n":"八味地黄丸","y":"はちみじおうがん","g":"地黄剤","h":["地黄","山茱萸","山薬","茯苓","桂枝","牡丹皮","沢瀉","附子"],"k":["地黄"],"sho":"裏寒虚証","go":"下半身の機能低下・足腰の冷え・排尿障害（臍下不仁）。前立腺肥大、腰痛、老人性疾患","pt":{"w":"70代男性","a":3,"f":0,"t":"足腰が冷えてだるく、夜中に何度もトイレに起きる。へその下は力がなく、感覚が鈍い。"},"ks":[{"r":"君","h":["地黄"],"d":"腎を補い津液と血を養う"},{"r":"臣","h":["山茱萸","山薬"],"d":"腎を補う"},{"r":"佐","h":["茯苓","牡丹皮"],"d":"茯苓＋山薬で健脾、牡丹皮で瘀血に対応"},{"r":"使","h":["桂枝","沢瀉","附子"],"d":"沢瀉＋茯苓で水分代謝、桂枝＋附子で腎の陽気を補う"}],"st":{"n":"六味丸（補3＋瀉3）に桂枝・附子を加えたもの","s":[{"l":"六味丸","h":["地黄","山茱萸","山薬","茯苓","沢瀉","牡丹皮"]},{"l":"＋加味","h":["桂枝","附子"]}]},"fq":2},{"n":"牛車腎気丸","y":"ごしゃじんきがん","g":"地黄剤","h":["地黄","山茱萸","山薬","茯苓","桂枝","牡丹皮","沢瀉","附子","車前子","牛膝"],"k":["地黄"],"sho":"裏寒虚証","go":"八味地黄丸の証で泌尿器の訴え（水滞）が強い。抗がん剤の末梢神経障害","pt":{"w":"70代男性","a":3,"f":0,"t":"足腰が冷えてしびれる。足がむくみ、尿の出が悪いという訴えがとくに強い。"},"ks":[{"r":"君","h":["地黄"],"d":"腎を補い津液と血を養う"},{"r":"臣","h":["山茱萸","山薬"],"d":"腎を補う"},{"r":"佐","h":["茯苓","牡丹皮"],"d":"健脾、瘀血に対応"},{"r":"使","h":["桂枝","沢瀉","附子","牛膝","車前子"],"d":"桂枝＋附子で腎の陽気を補う、牛膝で駆瘀血、車前子で利水"}],"st":{"n":"八味地黄丸に牛膝・車前子を加えたもの","s":[{"l":"八味地黄丸","h":["地黄","山茱萸","山薬","茯苓","沢瀉","牡丹皮","桂枝","附子"]},{"l":"＋加味","h":["牛膝","車前子"]}]},"ch":"抗がん剤（パクリタキセルなど）の末梢神経障害に使う","fq":2},{"n":"温清飲","y":"うんせいいん","g":"地黄剤","h":["黄連","当帰","黄芩","地黄","黄柏","芍薬","山梔子","川芎"],"k":["黄連","当帰"],"sho":"裏熱中間証","go":"皮膚がかさかさで色つやが悪く、のぼせる。月経不順、血の道症、湿疹。黄連解毒湯＋四物湯","pt":{"w":"30代女性","a":1,"f":1,"t":"皮膚がかさかさで色つやが悪く、かゆい湿疹がある。のぼせやすく、月経も不順。"},"ks":[{"r":"君","h":["黄連","当帰"],"d":"黄連で熱を冷まし、当帰で血を補いめぐらす"},{"r":"臣","h":["黄芩","地黄"],"d":"黄芩で熱を冷まし、地黄で血を養う"},{"r":"佐","h":["黄柏","芍薬"],"d":"黄柏で熱を冷まし、芍薬で血を養う"},{"r":"使","h":["山梔子","川芎"],"d":"山梔子で熱を冷まし、川芎で血と気をめぐらす"}],"st":{"n":"黄連解毒湯と四物湯の合方","s":[{"l":"黄連解毒湯","h":["黄連","黄芩","黄柏","山梔子"]},{"l":"＋四物湯","h":["当帰","地黄","芍薬","川芎"]}]},"ch":"腸間膜静脈硬化症（山梔子）、間質性肺炎。胃腸虚弱・悪心嘔吐の人に注意","fq":0},{"n":"半夏厚朴湯","y":"はんげこうぼくとう","g":"気血水剤","h":["半夏","厚朴","茯苓","生姜","蘇葉"],"k":["半夏"],"sho":"裏寒実証","go":"咽頭部の異物感（梅核気）、動悸・めまい。不安神経症、神経性胃炎、不眠","pt":{"w":"40代女性","a":2,"f":1,"t":"神経質。のどに炙った肉片がひっかかったような異物感があり、胸もつまる感じがする。"},"ks":[{"r":"君","h":["半夏"],"d":"気の上衝を下し嘔を止める"},{"r":"臣","h":["厚朴"],"d":"気の上衝を下し神経の緊張を解く"},{"r":"佐","h":["茯苓"],"d":"利水、神経を安定"},{"r":"使","h":["生姜","蘇葉"],"d":"生姜で胃を健やかに、蘇葉で気をめぐらす"}],"fq":2},{"n":"当帰芍薬散","y":"とうきしゃくやくさん","g":"気血水剤","h":["当帰","芍薬","白朮","川芎","茯苓","沢瀉"],"k":["当帰"],"sho":"裏寒虚証","go":"血虚＋水毒。筋肉が軟弱で冷えやすい。月経不順、めまい","pt":{"w":"20代女性","a":1,"f":1,"t":"色白で筋肉がやわらかく、冷え性。貧血ぎみでめまいとむくみがあり、月経不順。"},"ks":[{"r":"君","h":["当帰"],"d":"血を温めて補う"},{"r":"臣","h":["芍薬"],"d":"血を補い痛みを止める"},{"r":"佐","h":["白朮"],"d":"停水を調整"},{"r":"使","h":["川芎","茯苓","沢瀉"],"d":"川芎で駆瘀血、茯苓・沢瀉で利水"}],"fq":1},{"n":"加味逍遥散","y":"かみしょうようさん","g":"気血水剤","h":["柴胡","当帰","芍薬","白朮","茯苓","生姜","牡丹皮","山梔子","薄荷","甘草"],"k":["柴胡","当帰","芍薬"],"sho":"（当帰芍薬散の証で神経症状が強い）","go":"のぼせ・熱感があり、訴えが多い（多愁訴）。更年期障害など","pt":{"w":"50代女性","a":2,"f":1,"t":"更年期。のぼせやほてりに加え、イライラ・不安・肩こりなど訴えが日によって次々に変わる。"},"ks":[{"r":"君","h":["柴胡","当帰","芍薬"],"d":"柴胡で気をめぐらし、当帰・芍薬で血を補う"},{"r":"臣","h":["白朮","茯苓","生姜"],"d":"脾胃を整え水をさばく"},{"r":"佐","h":["牡丹皮","山梔子","薄荷"],"d":"熱を冷まし、のぼせ・いらいらをとる"},{"r":"使","h":["甘草"],"d":"諸薬を調和"}],"st":{"n":"逍遥散に牡丹皮・山梔子を加えたもの","s":[{"l":"逍遥散","h":["柴胡","当帰","芍薬","白朮","茯苓","生姜","薄荷","甘草"]},{"l":"＋加味","h":["牡丹皮","山梔子"]}]},"fq":0},{"n":"抑肝散","y":"よくかんさん","g":"気血水剤","h":["釣藤鈎","柴胡","当帰","甘草","川芎","茯苓","白朮"],"k":["釣藤鈎"],"sho":"裏寒虚証（中間証）","go":"イライラ、腹直筋の緊張。小児の夜泣き・ひきつけ、神経症、認知症の行動・心理症状","pt":{"w":"80代女性","a":3,"f":1,"t":"認知症。怒りっぽく興奮しやすく、夜も落ち着かない。腹直筋がつっぱっている。"},"ks":[{"r":"君","h":["釣藤鈎"],"d":"肝の高ぶりをしずめ熱を冷ます（平肝清熱）"},{"r":"臣","h":["柴胡"],"d":"肝血虚を改善（当帰と相須）"},{"r":"佐","h":["当帰","甘草"],"d":"血と気を補う"},{"r":"使","h":["川芎","茯苓","白朮"],"d":"川芎で駆瘀血、茯苓＋白朮で水毒を除く"}],"ch":"認知症の行動・心理症状（BPSD）に使う。偽アルドステロン症（甘草）","fq":5},{"n":"抑肝散加陳皮半夏","y":"よくかんさんかちんぴはんげ","g":"気血水剤","h":["釣藤鈎","柴胡","当帰","甘草","川芎","茯苓","白朮","陳皮","半夏"],"k":["釣藤鈎"],"sho":"裏寒虚証（中間証）","go":"抑肝散の証で神経症状が強く、悪心・嘔吐・食欲不振（慢性化）","pt":{"w":"40代女性","a":2,"f":1,"t":"神経の高ぶりとイライラが長く続いている。胃腸も弱り、吐き気があって食欲がない。"},"ks":[{"r":"君","h":["釣藤鈎"],"d":"肝の高ぶりをしずめ熱を冷ます（平肝清熱）"},{"r":"臣","h":["柴胡"],"d":"肝血虚を改善"},{"r":"佐","h":["当帰","甘草","陳皮","半夏"],"d":"血と気を補う、陳皮・半夏で胃気を下げ余分な水を除く"},{"r":"使","h":["川芎","茯苓","白朮"],"d":"駆瘀血、水毒を除く"}],"st":{"n":"抑肝散に陳皮・半夏を加えたもの","s":[{"l":"抑肝散","h":["釣藤鈎","柴胡","当帰","甘草","川芎","茯苓","白朮"]},{"l":"＋加味","h":["陳皮","半夏"]}]},"fq":0},{"n":"桂枝茯苓丸","y":"けいしぶくりょうがん","g":"気血水剤","h":["桂枝","牡丹皮","桃仁","芍薬","茯苓"],"k":["牡丹皮","桃仁"],"sho":"裏熱中間〜実証","go":"代表的な駆瘀血薬。冷えのぼせ・臍傍圧痛。月経不順・更年期障害、頭痛・肩こり","pt":{"w":"30代女性","a":1,"f":1,"t":"体力は中くらい以上。足は冷えるのに顔はのぼせる。へその横を押すと痛み、月経痛がある。"},"ks":[{"r":"君","h":["牡丹皮","桃仁"],"d":"瘀血を除き血行を改善（駆瘀血）"},{"r":"臣","h":["桂枝"],"d":"気をめぐらす"},{"r":"佐","h":["芍薬"],"d":"血を補い血流を促す"},{"r":"使","h":["茯苓"],"d":"利水"}],"fq":1},{"n":"桃核承気湯","y":"とうかくじょうきとう","g":"気血水剤","h":["桃仁","桂枝","大黄","芒硝","甘草"],"k":["桃仁"],"sho":"裏熱実証","go":"体力があり、のぼせて便秘がち。小腹急結＋精神不安定。月経不順・月経困難・便秘","pt":{"w":"30代女性","a":1,"f":1,"t":"体力がある。のぼせて便秘がちで、気持ちが不安定。下腹部を軽くなでただけで強く痛がる。"},"ks":[{"r":"君","h":["桃仁"],"d":"瘀血を除く"},{"r":"臣","h":["桂枝"],"d":"気をめぐらし血行を改善"},{"r":"佐","h":["大黄","芒硝"],"d":"便を通し瘀血を除く"},{"r":"使","h":["甘草"],"d":"胃を和し中を整える"}],"st":{"n":"調胃承気湯に桃仁・桂枝を加えたもの","s":[{"l":"調胃承気湯","h":["大黄","芒硝","甘草"]},{"l":"＋加味","h":["桃仁","桂枝"]}]},"fq":0},{"n":"五苓散","y":"ごれいさん","g":"気血水剤","h":["茯苓","猪苓","白朮","沢瀉","桂枝"],"k":["茯苓"],"sho":"裏熱虚証〜中間証","go":"代表的な利水剤。口渇・尿量減少・水逆。浮腫、二日酔い、悪心、胃腸炎型のかぜ","pt":{"w":"4歳女児","a":0,"f":1,"t":"胃腸かぜ。のどが渇いて水をほしがるが、飲むとすぐ吐いてしまう。尿は少ない。"},"ks":[{"r":"君","h":["茯苓"],"d":"白朮と組んで脾胃を補う"},{"r":"臣","h":["猪苓"],"d":"沢瀉と組んで膀胱に働き利尿"},{"r":"佐","h":["白朮"],"d":"停水を調整"},{"r":"使","h":["沢瀉","桂枝"],"d":"桂枝で気をめぐらし、茯苓と組んで気の上衝に対応"}],"fq":3},{"n":"苓桂朮甘湯","y":"りょうけいじゅつかんとう","g":"気血水剤","h":["茯苓","白朮","桂枝","甘草"],"k":["茯苓"],"sho":"裏寒虚証","go":"起立性めまい・動悸・胃部振水音・臍上悸。尿量減少、神経質","pt":{"w":"20代女性","a":1,"f":1,"t":"立ち上がるとクラッとめまいがして動悸がする。胃のあたりでチャポチャポ音がし、尿は少ない。"},"ks":[{"r":"君","h":["茯苓"],"d":"利水"},{"r":"臣","h":["白朮"],"d":"利水"},{"r":"佐","h":["桂枝"],"d":"茯苓と組んで気の上衝をゆるめる"},{"r":"使","h":["甘草"],"d":"茯苓の利水を助ける"}],"fq":0},{"n":"大建中湯","y":"だいけんちゅうとう","g":"人参剤","h":["山椒","乾姜","人参","膠飴"],"k":["山椒"],"sho":"裏寒虚証","go":"腹部の冷え・膨満・腹痛、腸の蠕動不穏。過敏性腸症候群、術後の腸管通過障害（イレウス予防）","pt":{"w":"80代女性","a":3,"f":1,"t":"開腹手術の経験がある。おなかが冷えて張り、腸がもくもく動くのが見える。腹痛がある。"},"ks":[{"r":"君","h":["山椒"],"d":"温めて痛みを止める"},{"r":"臣","h":["乾姜"],"d":"胃の冷えを除く"},{"r":"佐","h":["人参"],"d":"気を補い、乾姜と組んで脾胃を温め補う"},{"r":"使","h":["膠飴"],"d":"脾胃を補う"}],"ch":"術後の腸管通過障害（イレウス）の予防に使う。医療用漢方製剤の売上第1位","fq":6},{"n":"六君子湯","y":"りっくんしとう","g":"人参剤","h":["人参","白朮","茯苓","半夏","陳皮","甘草","大棗","生姜"],"k":["人参"],"sho":"","go":"胃腸虚弱で食欲不振・悪心・嘔吐（グレリンを介した食欲亢進）。化学療法中の嘔気","pt":{"w":"60代女性","a":3,"f":1,"t":"胃腸が弱く食欲がない。少し食べると胃がもたれ、吐き気がする。"},"ks":[{"r":"君","h":["人参"],"d":"気を補う"},{"r":"臣","h":["白朮"],"d":"脾を健やかにし水をさばく"},{"r":"佐","h":["茯苓","半夏","陳皮"],"d":"半夏で悪心・嘔吐をとり、陳皮で気をめぐらす"},{"r":"使","h":["甘草","大棗","生姜"],"d":"脾胃を整える"}],"st":{"n":"四君子湯に陳皮・半夏を加えたもの（四君子湯と二陳湯の合方）","s":[{"l":"四君子湯","h":["人参","白朮","茯苓","甘草","大棗","生姜"]},{"l":"＋加味","h":["陳皮","半夏"]}]},"ch":"グレリンの分泌を介して食欲を高める。化学療法中の悪心・食欲不振に使う","fq":7},{"n":"補中益気湯","y":"ほちゅうえっきとう","g":"人参剤","h":["黄耆","人参","甘草","白朮","当帰","柴胡","大棗","陳皮","升麻","生姜"],"k":["黄耆"],"sho":"","go":"補気・升提（内臓下垂・脱肛）。全身倦怠感、食欲不振、術後の体力低下","pt":{"w":"50代男性","a":2,"f":0,"t":"手術のあと体力が戻らず、全身がだるく気力がない。食欲も落ち、胃下垂ぎみ。"},"ks":[{"r":"君","h":["黄耆"],"d":"気を補う"},{"r":"臣","h":["人参","甘草"],"d":"気を補う"},{"r":"佐","h":["白朮","当帰"],"d":"脾を健やかにし血を補う"},{"r":"使","h":["柴胡","大棗","陳皮","升麻","生姜"],"d":"柴胡・升麻で下がった気を持ち上げる（升提）"}],"fq":3},{"n":"十全大補湯","y":"じゅうぜんたいほとう","g":"人参剤","h":["人参","白朮","茯苓","甘草","黄耆","桂枝","当帰","地黄","芍薬","川芎"],"k":["人参","当帰"],"sho":"","go":"気血ともに不足（四君子湯＋四物湯＋黄耆・桂枝）。皮膚乾燥。がん治療の骨髄抑制・体力低下","pt":{"w":"60代男性","a":3,"f":0,"t":"がんの化学療法中。疲れきって顔色が悪く、皮膚も乾燥している。血液検査で骨髄抑制がある。"},"ks":[{"r":"君","h":["人参","当帰"],"d":"人参で気を、当帰で血を補う（四君子湯と四物湯の君薬）"},{"r":"臣","h":["白朮","地黄"],"d":"脾を健やかに、血を養う"},{"r":"佐","h":["茯苓","芍薬","黄耆","桂枝"],"d":"黄耆で補気を強め、桂枝で気をめぐらす"},{"r":"使","h":["甘草","川芎"],"d":"諸薬を調和、血をめぐらす"}],"st":{"n":"四君子湯と四物湯に黄耆・桂枝を加えたもの","s":[{"l":"四君子湯","h":["人参","白朮","茯苓","甘草"]},{"l":"＋四物湯","h":["当帰","地黄","芍薬","川芎"]},{"l":"＋加味","h":["黄耆","桂枝"]}]},"ch":"がん化学療法・放射線療法の骨髄抑制や体力低下に使う","fq":0},{"n":"釣藤散","y":"ちょうとうさん","g":"石膏剤","h":["釣藤鈎","菊花","防風","人参","茯苓","石膏","麦門冬","陳皮","半夏","甘草","生姜"],"k":["釣藤鈎"],"sho":"裏熱虚証（中間証）","go":"中年以降の慢性頭痛、高血圧。イライラ・のぼせ・めまい・目の充血","pt":{"w":"60代男性","a":3,"f":0,"t":"中年のころから続く頭痛。めまいと目の充血、のぼせがあり、血圧が高い。"},"ks":[{"r":"君","h":["釣藤鈎"],"d":"心の熱を除き鎮痙・鎮静、頭部の充血をゆるめる"},{"r":"臣","h":["菊花","防風"],"d":"上焦の風邪を除きめまいを改善"},{"r":"佐","h":["人参","茯苓"],"d":"気を補い水分代謝を改善"},{"r":"使","h":["石膏","麦門冬","陳皮","半夏","甘草","生姜"],"d":"石膏・麦門冬で熱を冷まし、ほかで脾胃を整える"}],"fq":0},{"n":"防風通聖散","y":"ぼうふうつうしょうさん","g":"石膏剤","h":["大黄","芒硝","麻黄","防風","荊芥","薄荷","滑石","山梔子","石膏","桔梗","連翹","黄芩","川芎","当帰","芍薬","白朮","甘草","生姜"],"k":["大黄","芒硝"],"sho":"裏熱実証","go":"肥満（硬い太鼓腹）・便秘・のぼせ。高血圧や肥満に伴う動悸・肩こり・むくみ（18生薬）","pt":{"w":"40代男性","a":2,"f":0,"t":"おなかに皮下脂肪がついた硬い太鼓腹。便秘がちで、のぼせ・肩こり・動悸があり、血圧も高い。"},"ks":[{"r":"君","h":["大黄","芒硝"],"d":"裏の熱を便で出す"},{"r":"臣","h":["麻黄","防風","荊芥","薄荷","滑石","山梔子"],"d":"表の熱を汗で、上の熱を鼻から、下の熱を尿で出す"},{"r":"佐","h":["石膏","桔梗","連翹","黄芩","川芎","当帰","芍薬"],"d":"肺と胃の熱を冷まし、熱で失った血を補う"},{"r":"使","h":["白朮","甘草","生姜"],"d":"脾を健やかにし気を益す"}],"ch":"慎重投与：下痢・軟便（大黄・芒硝）、胃腸虚弱（芒硝・石膏）、妊婦・授乳婦（大黄）、循環器疾患（麻黄）、塩分制限（芒硝）、長期投与（山梔子）","fq":1},{"n":"白虎加人参湯","y":"びゃっこかにんじんとう","g":"石膏剤","h":["石膏","知母","人参","粳米","甘草"],"k":["石膏"],"sho":"裏熱実証","go":"体力中等度以上で熱感と口渇が強い。多汗、脈洪大。口腔乾燥、糖尿病、皮膚炎","pt":{"w":"50代男性","a":2,"f":0,"t":"体がほてり、のどがひどく渇いて水をたくさん飲む。汗が多く、脈は大きく力強い。"},"ks":[{"r":"君","h":["石膏"],"d":"全身の大熱を除く"},{"r":"臣","h":["知母","人参"],"d":"知母で渇きを止め、人参で気を補い津液を生む"},{"r":"佐","h":["粳米"],"d":"気を益し煩渇を止める"},{"r":"使","h":["甘草"],"d":"急迫症状をゆるめ、石膏・知母の作用を調整"}],"ch":"胃腸虚弱の人に慎重（石膏）。偽アルドステロン症（甘草）","fq":0},{"n":"防已黄耆湯","y":"ぼういおうぎとう","g":"代表疾患","h":["防已","黄耆","白朮","甘草","大棗","生姜"],"k":["防已"],"sho":"裏（表）寒虚証","go":"水太り（筋肉にしまりがない）・多汗・関節の腫れと痛み・下肢浮腫。肥満症、関節炎","pt":{"w":"50代女性","a":2,"f":1,"t":"色白の水太り。汗をかきやすく、ひざが腫れて痛む。足がむくみやすい。"},"ks":[{"r":"君","h":["防已"],"d":"水湿の停滞を治し浮腫を除く"},{"r":"臣","h":["黄耆","白朮"],"d":"黄耆で気を補い汗を止め、白朮で湿を乾かす"},{"r":"佐","h":["甘草"],"d":"胃を健やかにし、防已の性をやわらげる"},{"r":"使","h":["大棗","生姜"],"d":"脾胃の気を整える"}],"fq":0},{"n":"麦門冬湯","y":"ばくもんどうとう","g":"代表疾患","h":["麦門冬","半夏","人参","大棗","甘草","粳米"],"k":["麦門冬"],"sho":"裏熱虚証","go":"痰の切れにくい激しい咳（反射性）、のどの不快感。気管支炎。妊娠中も服用可","pt":{"w":"30代女性","a":1,"f":1,"t":"妊娠中。のどが乾燥して、顔が赤くなるほど激しく咳きこむ。痰は少なく切れにくい。"},"ks":[{"r":"君","h":["麦門冬"],"d":"咽喉と肺をうるおし咳と痰を止める"},{"r":"臣","h":["半夏"],"d":"逆気を下す"},{"r":"佐","h":["人参"],"d":"気を補う"},{"r":"使","h":["大棗","甘草","粳米"],"d":"中焦を補い津液を助ける"}],"ch":"妊娠中の咳にも使える","fq":0},{"n":"芍薬甘草湯","y":"しゃくやくかんぞうとう","g":"代表疾患","h":["芍薬","甘草"],"k":["芍薬"],"sho":"裏熱（寒）虚証（体力にかかわらず）","go":"急におこる筋肉のけいれんを伴う痛み（こむら返り）。四肢のひきつり","pt":{"w":"60代男性","a":3,"f":0,"t":"夜中に突然ふくらはぎがつり、激しく痛む。"},"ks":[{"r":"君","h":["芍薬"],"d":"筋肉の緊張をゆるめ痛みを止める（緩急止痛）"},{"r":"臣","h":["甘草"],"d":"芍薬の効果を強める"}],"ch":"甘草の量が多い（2種だけの処方）ので偽アルドステロン症に特に注意。漫然と長く使わない","fq":2},{"n":"大黄甘草湯","y":"だいおうかんぞうとう","g":"代表疾患","h":["大黄","甘草"],"k":["大黄"],"sho":"裏熱実証","go":"常習便秘。便秘に伴う頭重・のぼせ・湿疹・吹き出物","pt":{"w":"20代女性","a":1,"f":1,"t":"ずっと便秘が続いていて、出ないと頭が重くのぼせる。吹き出物もできている。"},"ks":[{"r":"君","h":["大黄"],"d":"瀉下して便を通す"},{"r":"臣","h":["甘草"],"d":"大黄の激しい瀉下をやわらげ、けいれんを止める"}],"fq":1},{"n":"呉茱萸湯","y":"ごしゅゆとう","g":"代表疾患","h":["呉茱萸","生姜","人参","大棗"],"k":["呉茱萸"],"sho":"裏寒虚証","go":"手足が冷えやすく体力中等度以下。習慣性の片頭痛・嘔吐。首肩のこり、めまいはない","pt":{"w":"40代女性","a":2,"f":1,"t":"手足が冷えやすい。片頭痛の発作のたびに吐いてしまう。首と肩もこるが、めまいはない。"},"ks":[{"r":"君","h":["呉茱萸"],"d":"中を温め、気を下し、湿を除く"},{"r":"臣","h":["生姜"],"d":"脾胃を温め嘔吐を止める"},{"r":"佐","h":["人参"],"d":"脾胃の気を補う"},{"r":"使","h":["大棗"],"d":"脾胃の気を補い諸薬を調和"}],"fq":0}];
 const KG_GROUPS = ["桂枝湯類", "麻黄湯類", "柴胡剤", "瀉心湯類", "附子剤", "地黄剤", "気血水剤", "人参剤", "石膏剤", "代表疾患"];
-const KG_SEC = 180;
+const KG_CAU = {"甘草":["偽アルドステロン症","グリチルリチン酸で偽アルドステロン症（低カリウム血症・血圧上昇・むくみ）。甘草を含む処方の重複に注意"],"麻黄":["交感神経刺激","エフェドリンで動悸・頻脈・不眠・血圧上昇・排尿障害。循環器疾患・高齢者・甲状腺機能亢進症に注意"],"附子":["附子中毒","アコニチン類で動悸・のぼせ・舌や口のしびれ・悪心。加工ブシで毒性を下げて使う。小児・妊婦に注意"],"大黄":["瀉下・妊婦","センノシドによる瀉下で腹痛・下痢。妊婦（流早産）・授乳婦（乳児の下痢）に注意"],"芒硝":["瀉下・塩分","硫酸ナトリウムによる瀉下。塩分制限の人・妊婦に注意"],"山梔子":["腸間膜静脈硬化症","長期服用で腸間膜静脈硬化症（腹痛・下痢・便秘・腹部膨満）"],"黄芩":["間質性肺炎・肝障害","間質性肺炎・肝機能障害の報告がある。発熱・空咳・息切れに注意"],"石膏":["胃腸虚弱","寒性が強く、胃腸の弱い人で食欲不振・軟便・下痢"],"地黄":["胃腸障害","胃腸の弱い人で食欲不振・胃もたれ・下痢"],"桃仁":["妊婦","駆瘀血薬。流早産のおそれがあり妊婦に注意"],"牡丹皮":["妊婦","駆瘀血薬。流早産のおそれがあり妊婦に注意"],"牛膝":["妊婦","駆瘀血薬。流早産のおそれがあり妊婦に注意"]};
+const KG_YOMI = {"桂枝":"けいし","芍薬":"しゃくやく","甘草":"かんぞう","生姜":"しょうきょう","大棗":"たいそう","膠飴":"こうい","麻黄":"まおう","杏仁":"きょうにん","葛根":"かっこん","川芎":"せんきゅう","辛夷":"しんい","五味子":"ごみし","乾姜":"かんきょう","細辛":"さいしん","半夏":"はんげ","石膏":"せっこう","柴胡":"さいこ","黄芩":"おうごん","人参":"にんじん","枳実":"きじつ","大黄":"だいおう","竜骨":"りゅうこつ","牡蠣":"ぼれい","茯苓":"ぶくりょう","沢瀉":"たくしゃ","猪苓":"ちょれい","白朮":"びゃくじゅつ","厚朴":"こうぼく","蘇葉":"そよう","黄連":"おうれん","黄柏":"おうばく","山梔子":"さんしし","附子":"ぶし","地黄":"じおう","山茱萸":"さんしゅゆ","山薬":"さんやく","牡丹皮":"ぼたんぴ","車前子":"しゃぜんし","牛膝":"ごしつ","当帰":"とうき","薄荷":"はっか","釣藤鈎":"ちょうとうこう","陳皮":"ちんぴ","桃仁":"とうにん","芒硝":"ぼうしょう","山椒":"さんしょう","黄耆":"おうぎ","升麻":"しょうま","菊花":"きくか","防風":"ぼうふう","麦門冬":"ばくもんどう","荊芥":"けいがい","滑石":"かっせき","桔梗":"ききょう","連翹":"れんぎょう","知母":"ちも","粳米":"こうべい","防已":"ぼうい","呉茱萸":"ごしゅゆ"};
+const KG_MODES = {
+  normal:  { t:"通常", s:"3分間・講義の40処方", sec:180 },
+  kokushi: { t:"国試頻出", s:"3分間・国試に出た20処方", sec:180 },
+  jikkuri: { t:"じっくり学習", s:"時間制限なし・毎回解説", sec:0 }
+};
 const KG_HERBS = (()=>{ const s = new Set(); KG_DATA.forEach(k=> k.h.forEach(h=> s.add(h))); return [...s]; })();
 let KG = null;   /* プレイ中の状態 */
-let kgListOpen = false, kgListG = "", kgListQ = "";
+let kgListOpen = false, kgListG = "", kgListQ = "", kgListSort = "g";
 function kgShuffle(a){ for(let i=a.length-1;i>0;i--){ const j=(Math.random()*(i+1))|0; [a[i],a[j]]=[a[j],a[i]]; } return a; }
-function kgSt(){ if(!ST.kg) ST.kg = { best:0, plays:0 }; return ST.kg; }
+function kgSt(){
+  if(!ST.kg) ST.kg = { best:0, plays:0 };
+  const s = ST.kg;
+  if(!s.m) s.m = { normal:{ best:s.best || 0, plays:s.plays || 0 }, kokushi:{ best:0, plays:0 }, jikkuri:{ ok:0, n:0, plays:0 } };
+  if(!s.sort) s.sort = "rand";
+  return s;
+}
+function kgByName(n){ return KG_DATA.find(o=> o.n === n); }
+function kgAiu(a, b){ return (KG_YOMI[a] || a).localeCompare(KG_YOMI[b] || b, "ja"); }
+
+/* ---------- 出題の順番 ---------- */
+function kgDeck(mode){
+  if(mode === "kokushi"){
+    /* 回数の多い処方ほど先に出やすい（重みつきの並べ替え） */
+    return KG_DATA.filter(k=> k.fq > 0).map(k=> [k, Math.pow(Math.random(), 1 / k.fq)]).sort((a,b)=> a[1]-b[1]).map(x=> x[0]);
+  }
+  return kgShuffle(KG_DATA.slice());
+}
 
 /* ---------- 棚に並べる生薬（正解＋まぎらわしいもの） ---------- */
 function kgShelf(k){
@@ -3967,12 +4081,10 @@ function kgSprite(g, rows, x, y, pal, sad){
 function kgDrawScene(cv, t, an){
   const g = cv.getContext("2d"), W = cv.width, H = cv.height;
   g.imageSmoothingEnabled = false;
-  /* 壁と床 */
   g.fillStyle = "#E9D9B8"; g.fillRect(0,0,W,H);
   g.fillStyle = "#D9C49C"; for(let x=0;x<W;x+=8) g.fillRect(x,0,1,H-14);
   g.fillStyle = "#8E6B48"; g.fillRect(0,H-14,W,14);
   g.fillStyle = "#7A5A3B"; for(let x=0;x<W;x+=10) g.fillRect(x,H-14,1,14);
-  /* 百味箪笥（右の壁） */
   const bx = 104, by = 4, cw = 9, ch = 6;
   g.fillStyle = "#5A3A22"; g.fillRect(bx-1, by-1, cw*6+1, ch*5+1);
   for(let i=0;i<6;i++) for(let j=0;j<5;j++){
@@ -3980,31 +4092,24 @@ function kgDrawScene(cv, t, an){
     g.fillStyle = "#F1E4C2"; g.fillRect(bx+i*cw+2, by+j*ch+1, cw-5, 2);
     g.fillStyle = "#3A2614"; g.fillRect(bx+i*cw+cw-3, by+j*ch+3, 1, 1);
   }
-  /* 看板 */
   g.fillStyle = "#3D5A3C"; g.fillRect(8,4,34,9); g.fillStyle = "#F4E9C8"; g.fillRect(9,5,32,7);
-  g.fillStyle = "#3D5A3C"; [11,17,23,29,35].forEach((x,i)=>{ g.fillRect(x,7,3,3); });
-  /* 薬剤師（カウンターのうしろ） */
+  g.fillStyle = "#3D5A3C"; [11,17,23,29,35].forEach(x=> g.fillRect(x,7,3,3));
   const s = an || (KG && KG.anim) || {};
-  const bob = Math.floor(t/500)%2;
   kgSprite(g, KG_PHARM, 112, H-45, { k:"#2B2233", h:"#2E2A33", s:"#F2C39B", S:"#D99A74", e:"#2B2233", m:"#B4525A",
     w:"#F7F7F2", W:"#C9CDD3", b:"#4F7FB8", g:"#5E9E6A" }, false);
-  /* カウンター */
   g.fillStyle = "#6A4A2E"; g.fillRect(84, H-28, W-84, 14);
   g.fillStyle = "#9C7048"; g.fillRect(84, H-30, W-84, 3);
   g.fillStyle = "#4E3420"; g.fillRect(84, H-27, W-84, 1);
-  /* 薬研（カウンターの上） */
   g.fillStyle = "#6E7480"; g.fillRect(92, H-34, 12, 4); g.fillStyle = "#4C525C"; g.fillRect(94, H-31, 8, 1);
   g.fillStyle = "#8A919C"; g.fillRect(95, H-37, 6, 3);
-  /* 患者 */
   if(s.look){
     const p = s.look;
     const x = Math.round(s.x || 40), yb = H-14-20 + (p.child ? 2 : 0);
-    const by2 = s.walk ? (Math.floor(t/120)%2) : (Math.floor(t/600)%2 ? 0 : 0);
+    const by2 = s.walk ? (Math.floor(t/120)%2) : 0;
     const rows = p.child ? KG_PAT.slice(0,15).concat(["..kppppppk..","..kpk..kpk..",".kkkk..kkkk."]) : KG_PAT;
     const pal = { k:"#2B2233", h:p.hair, s:"#F2C39B", S:"#D99A74", e:"#2B2233", m:"#B4525A", c:p.cl[0], C:p.cl[1], p:"#4A4A5A" };
     kgSprite(g, rows, x, yb - by2, pal, s.mood === "ng");
     if(p.long){ g.fillStyle = p.hair; for(let r=3;r<10;r++){ g.fillRect(x+1, yb-by2+r, 1, 1); g.fillRect(x+10, yb-by2+r, 1, 1); } }
-    /* 吹き出しの印 */
     if(s.mood === "ok" || s.mood === "ng"){
       const bx2 = x + 12, by3 = yb - 10;
       g.fillStyle = "#FFFFFF"; g.fillRect(bx2, by3, 9, 8); g.fillRect(bx2+1, by3+8, 2, 1);
@@ -4013,6 +4118,38 @@ function kgDrawScene(cv, t, an){
       else { g.fillStyle = "#C8423A"; for(let i=0;i<5;i++){ g.fillRect(bx2+2+i, by3+2+i, 1, 1); g.fillRect(bx2+6-i, by3+2+i, 1, 1); } }
     }
   }
+}
+
+/* ---------- 処方の見せ方（構造・君臣佐使・注意） ---------- */
+/* sel を渡すと、入れた生薬は普通、入れわすれは赤 */
+function kgChip(h, sel){
+  const cau = KG_CAU[h] ? " cau" : "";
+  const st = sel ? (sel.indexOf(h) >= 0 ? " hit" : " miss") : "";
+  return `<i class="kg-hc${cau}${st}">${esc(h)}</i>`;
+}
+function kgStruct(k, sel){
+  if(k.st){
+    return `<div class="kg-st"><div class="kg-stn">${esc(k.st.n)}</div>${k.st.s.map(g=>
+      `<div class="kg-sr"><span class="kg-sl${g.l.charAt(0) === "＋" ? " add" : ""}">${esc(g.l)}<small>${g.h.length}</small></span><span class="kg-sh">${g.h.map(h=> kgChip(h, sel)).join("")}</span></div>`).join("")}</div>`;
+  }
+  return `<div class="kg-st">${k.ks.map(g=>
+    `<div class="kg-sr"><span class="kg-sl kg-r${g.r}">${g.r}</span><span class="kg-sh">${g.h.map(h=> kgChip(h, sel)).join("")}</span></div>`).join("")}</div>`;
+}
+function kgCaution(k){
+  const hs = k.h.filter(h=> KG_CAU[h]);
+  const rows = hs.map(h=> `<div class="kg-cr"><b>${esc(h)}</b><span class="kg-ct">${esc(KG_CAU[h][0])}</span><span>${esc(KG_CAU[h][1])}</span></div>`).join("");
+  return (k.ch ? `<div class="kg-cr kg-cp"><b>この処方</b><span>${esc(k.ch)}</span></div>` : "") + rows;
+}
+function kgDetail(k, sel){
+  const extra = sel ? sel.filter(h=> k.h.indexOf(h) < 0) : [];
+  return `<div class="kg-det">
+    <div class="kg-dh"><b>${esc(k.n)}</b><span>${esc(k.y)}</span><em>${esc(k.g)}${k.fq ? `・国試${k.fq}回` : ""}</em></div>
+    ${k.st ? kgStruct(k, sel) : ""}
+    ${extra.length ? `<div class="kg-extra">よけいに入れた：${extra.map(h=> `<i>${esc(h)}</i>`).join("")}</div>` : ""}
+    <div class="kg-dsec"><div class="kg-dk">君臣佐使と薬能</div>${k.ks.map(g=> `<div class="kg-kr"><span class="kg-sl kg-r${g.r}">${g.r}</span><span class="kg-sh">${g.h.map(h=> kgChip(h, k.st ? null : sel)).join("")}</span><span>${esc(g.d)}</span></div>`).join("")}</div>
+    <div class="kg-dsec"><div class="kg-dk">証・目標</div>${k.sho ? `<div class="kg-dt"><b>証</b>${esc(k.sho)}</div>` : ""}<div class="kg-dt"><b>目標</b>${esc(k.go)}</div></div>
+    ${(k.ch || k.h.some(h=> KG_CAU[h])) ? `<div class="kg-dsec kg-dcau"><div class="kg-dk">注意</div>${kgCaution(k)}</div>` : ""}
+  </div>`;
 }
 
 /* ---------- 画面の外枠（#app の外に作る） ---------- */
@@ -4032,22 +4169,27 @@ function KGame(){ return `<div class="kg-host"></div>`; }
 /* ---------- メニュー ---------- */
 function kgMenu(){
   if(KG && KG.raf) cancelAnimationFrame(KG.raf);
+  if(KG) clearTimeout(KG.ngTimer);
   KG = null; kgListOpen = false;
-  const st = kgSt();
+  const st = kgSt(), M = st.m;
+  const rec = m => m === "jikkuri" ? (M.jikkuri.n ? `正答率 <b>${Math.round(M.jikkuri.ok / M.jikkuri.n * 100)}</b>%` : "まだ記録なし")
+                                   : `最高 <b>${M[m].best}</b> 点`;
   kgRoot().innerHTML = `<div class="kg-scr kg-menu">
-    <div class="kg-title"><span class="kg-tsub">ミニゲーム</span><b>漢方調合</b><span class="kg-tsub">3分間で何人に出せるか</span></div>
+    <div class="kg-title"><span class="kg-tsub">ミニゲーム</span><b>漢方調合</b></div>
     <canvas class="kg-cv kg-cvbig" width="160" height="72"></canvas>
-    <div class="kg-box kg-how">
-      <p>患者の<b>証</b>を読み、合う漢方の<b>生薬</b>を棚（百味箪笥）からすべて選んで「調合」。</p>
-      <p>正解で100点＋連続ボーナス。まちがえると正解を見せて次の患者へ。</p>
-      <p>右上の「漢方一覧」に答えがすべてのっています。開いている間は調合できず、時間は進みます。</p>
+    <div class="kg-modes">${Object.keys(KG_MODES).map(m=> `<button class="kg-mode kg-m-${m}" onclick="kgStart('${m}')">
+      <span class="kg-mt"><b>${KG_MODES[m].t}</b><small>${KG_MODES[m].s}</small></span><span class="kg-mr">${rec(m)}</span></button>`).join("")}</div>
+    <div class="kg-row2">
+      <button class="kg-btn" onclick="kgOpenList()">漢方一覧</button>
+      <button class="kg-btn" onclick="kgHow(true)">あそびかた</button>
     </div>
-    <div class="kg-best">最高記録 <b>${st.best}</b> 点<span>（${st.plays}回）</span></div>
-    <div class="kg-btns">
-      <button class="kg-btn kg-go" onclick="kgStart()">はじめる</button>
-      <button class="kg-btn" onclick="kgOpenList()">漢方一覧を見る</button>
-      <button class="kg-btn kg-back" onclick="go('gtop')">‹　モード選択にもどる</button>
-    </div>
+    <button class="kg-btn kg-back" onclick="go('gtop')">‹　モード選択にもどる</button>
+    <div class="kg-how" id="kgHow"><div class="kg-box">
+      <p>患者の<b>証</b>を読み、合う漢方の<b>生薬</b>を棚（百味箪笥）からすべて選んで「調合する」。分量は問いません。</p>
+      <p>正解で100点、2人目から連続ボーナス（+20ずつ、最大+100）。まちがえると正解を見せて次の患者へ。まちがえた処方は結果画面で復習できます。</p>
+      <p>棚の<span class="kg-caumark"></span>は副作用などで注意する生薬。「漢方一覧」には答えがすべてのっています。開いている間は調合できず、時間は進みます。</p>
+      <button class="kg-btn kg-go" onclick="kgHow(false)">とじる</button>
+    </div></div>
     ${kgListHtml()}
   </div>`;
   const cv = kgRoot().querySelector(".kg-cv");
@@ -4055,31 +4197,41 @@ function kgMenu(){
   const loop = t=>{ if(!KG || KG.phase !== "menu" || !cv.isConnected) return; kgDrawScene(cv, t); KG.raf = requestAnimationFrame(loop); };
   KG.raf = requestAnimationFrame(loop);
 }
+function kgHow(on){ const h = document.getElementById("kgHow"); if(h) h.classList.toggle("show", !!on); }
 
 /* ---------- プレイ ---------- */
-function kgStart(){
+function kgStart(mode){
+  mode = KG_MODES[mode] ? mode : (KG && KG.mode) || "normal";
   if(KG && KG.raf) cancelAnimationFrame(KG.raf);
-  KG = { phase:"play", t0: performance.now(), end: performance.now() + KG_SEC*1000, score:0, combo:0, maxCombo:0,
-         ok:0, ng:0, served:[], deck: kgShuffle(KG_DATA.slice()), cur:null, shelf:[], sel:[], lock:false,
+  if(KG) clearTimeout(KG.ngTimer);
+  const M = KG_MODES[mode], now = performance.now();
+  KG = { phase:"play", mode, t0: now, end: M.sec ? now + M.sec*1000 : 0, score:0, combo:0, maxCombo:0,
+         ok:0, ng:0, served:[], deck: kgDeck(mode), cur:null, shelf:[], sel:[], lock:false,
          listMs:0, listN:0, anim:{} };
   kgListOpen = false;
-  kgRoot().innerHTML = `<div class="kg-scr kg-play">
+  const jk = mode === "jikkuri";
+  kgRoot().innerHTML = `<div class="kg-scr kg-play kg-p-${mode}">
     <div class="kg-hud">
-      <button class="kg-quit" onclick="kgQuit()" aria-label="やめる">✕</button>
-      <span class="kg-time"><i>のこり</i><b id="kgT">3:00</b></span>
-      <span class="kg-score"><i>点</i><b id="kgS">0</b></span>
-      <span class="kg-cnt"><i>調合</i><b id="kgN">0</b>人</span>
+      <button class="kg-quit" onclick="${jk ? "kgFinish()" : "kgQuit()"}" aria-label="${jk ? "おわる" : "やめる"}">${jk ? "終" : "✕"}</button>
+      <span class="kg-time"><i>${jk ? "経過" : "のこり"}</i><b id="kgT">${jk ? "0:00" : "3:00"}</b></span>
+      <span class="kg-score"><i>${jk ? "正解" : "点"}</i><b id="kgS">0</b></span>
+      <span class="kg-cnt"><i>${jk ? "患者" : "調合"}</i><b id="kgN">0</b>人</span>
       <button class="kg-listbtn" onclick="kgOpenList()">漢方一覧</button>
     </div>
-    <div class="kg-stage"><canvas class="kg-cv" width="160" height="56"></canvas><div class="kg-combo" id="kgC"></div></div>
+    <div class="kg-stage"><canvas class="kg-cv" width="160" height="56"></canvas><div class="kg-combo" id="kgC"></div><div class="kg-mtag">${KG_MODES[mode].t}</div></div>
     <div class="kg-karte" id="kgK"></div>
-    <div class="kg-mortar"><span class="kg-ml">薬研</span><div class="kg-sel" id="kgSel"></div></div>
-    <div class="kg-shelf" id="kgShelf"></div>
+    <div class="kg-mortar"><span class="kg-ml">選んだ<br>生薬<b id="kgSelN">0</b></span><div class="kg-sel" id="kgSel"></div></div>
+    <div class="kg-shelfbox">
+      <div class="kg-shh"><span>百味箪笥</span><span class="kg-lgd"><span class="kg-caumark"></span>注意</span>
+        <span class="kg-sort" role="group" aria-label="並べかた"><button data-s="rand" onclick="kgSort('rand')">ばらばら</button><button data-s="aiu" onclick="kgSort('aiu')">五十音</button></span></div>
+      <div class="kg-shelf" id="kgShelf"></div>
+    </div>
     <div class="kg-act">
       <button class="kg-btn kg-clear" onclick="kgClear()">やりなおし</button>
       <button class="kg-btn kg-go" id="kgDo" onclick="kgJudge()">調合する</button>
     </div>
     <div class="kg-flash" id="kgF"></div>
+    <div class="kg-sheet" id="kgD"></div>
     ${kgListHtml()}
   </div>`;
   kgNext();
@@ -4089,18 +4241,20 @@ function kgStart(){
     const a = KG.anim, dt = Math.min(50, t - (a.lt || t)); a.lt = t;
     if(a.walk){ a.x += dt * 0.06 * a.dir; if((a.dir > 0 && a.x >= 40) || (a.dir < 0 && a.x <= -14)){ a.x = a.dir > 0 ? 40 : -14; a.walk = false; if(a.onDone){ const f = a.onDone; a.onDone = null; f(); } } }
     kgDrawScene(cv, t);
-    const left = Math.max(0, KG.end - performance.now());
     const el = document.getElementById("kgT");
-    if(el){ const s = Math.ceil(left/1000); el.textContent = `${(s/60)|0}:${String(s%60).padStart(2,"0")}`; el.parentNode.classList.toggle("warn", s <= 10); }
+    if(KG.end){
+      const left = Math.max(0, KG.end - performance.now());
+      if(el){ const s = Math.ceil(left/1000); el.textContent = `${(s/60)|0}:${String(s%60).padStart(2,"0")}`; el.parentNode.classList.toggle("warn", s <= 10); }
+      if(left <= 0){ kgFinish(); return; }
+    } else if(el){ const s = Math.floor((performance.now() - KG.t0)/1000); el.textContent = `${(s/60)|0}:${String(s%60).padStart(2,"0")}`; }
     const lt = document.getElementById("kgLT"); if(lt && el) lt.textContent = el.textContent;
-    if(left <= 0){ kgFinish(); return; }
     KG.raf = requestAnimationFrame(loop);
   };
   KG.raf = requestAnimationFrame(loop);
 }
 function kgNext(){
   if(!KG) return;
-  if(!KG.deck.length) KG.deck = kgShuffle(KG_DATA.slice());
+  if(!KG.deck.length) KG.deck = kgDeck(KG.mode);
   const k = KG.deck.pop();
   KG.cur = k; KG.shelf = kgShelf(k); KG.sel = []; KG.lock = false;
   KG.anim = { look: kgLook(k), x:-14, walk:true, dir:1, mood:"" };
@@ -4108,61 +4262,93 @@ function kgNext(){
   document.getElementById("kgK").innerHTML = `<div class="kg-who">${esc(p.w)}${k.sho ? `<span class="kg-sho">証：${esc(k.sho)}</span>` : ""}</div><div class="kg-say">${esc(p.t)}</div>`;
   kgDrawShelf(); kgDrawSel();
 }
+function kgView(){ return kgSt().sort === "aiu" ? KG.shelf.slice().sort(kgAiu) : KG.shelf; }
 function kgDrawShelf(){
-  const n = KG.shelf.length, cols = n > 20 ? 6 : n > 16 ? 5 : 4;
-  const el = document.getElementById("kgShelf");
-  el.style.setProperty("--rows", Math.ceil(n/cols)); el.style.setProperty("--cols", cols);
-  el.innerHTML = KG.shelf.map((h, i)=> `<button class="kg-dr${KG.sel.indexOf(h) >= 0 ? " on" : ""}" onclick="kgTog(${i})"><span class="kg-lbl">${esc(h)}</span><span class="kg-knob"></span></button>`).join("");
+  const el = document.getElementById("kgShelf"); if(!el || !KG) return;
+  const view = kgView(), n = view.length;
+  document.querySelectorAll(".kg-sort button").forEach(b=> b.classList.toggle("on", b.dataset.s === kgSt().sort));
+  el.innerHTML = view.map(h=> `<button class="kg-dr${KG.sel.indexOf(h) >= 0 ? " on" : ""}${KG_CAU[h] ? " cau" : ""}" data-h="${h}" onclick="kgTogName('${h}')"><span class="kg-lbl">${esc(h)}</span><span class="kg-knob"></span></button>`).join("");
+  kgFitShelf(n);
 }
+/* 引き出しが低くなりすぎないよう、列を増やして行を減らす */
+function kgFitShelf(n){
+  const el = document.getElementById("kgShelf"); if(!el) return;
+  let cols = n > 20 ? 6 : n > 16 ? 5 : 4;
+  const set = c=>{ el.style.setProperty("--cols", c); el.style.setProperty("--rows", Math.ceil(n / c)); };
+  set(cols);
+  const H = el.clientHeight - 8;
+  while(cols < 6 && H / Math.ceil(n / cols) < 34){ cols++; set(cols); }
+}
+function kgSort(s){ kgSt().sort = s; try{ saveProgress(); }catch(e){} if(KG && KG.phase === "play") kgDrawShelf(); }
 function kgDrawSel(){
-  const el = document.getElementById("kgSel");
-  el.innerHTML = KG.sel.length ? KG.sel.map(h=> `<button class="kg-chip" onclick="kgTogName('${h}')">${esc(h)}</button>`).join("") : `<span class="kg-empty">棚から生薬を選ぶ</span>`;
+  const el = document.getElementById("kgSel"); if(!el) return;
+  el.innerHTML = KG.sel.length ? KG.sel.map(h=> `<button class="kg-chip${KG_CAU[h] ? " cau" : ""}" onclick="kgTogName('${h}')">${esc(h)}<span>×</span></button>`).join("") : `<span class="kg-empty">棚をタップして選ぶ（もう一度で外す）</span>`;
+  const n = document.getElementById("kgSelN"); if(n) n.textContent = KG.sel.length;
   const b = document.getElementById("kgDo"); if(b) b.disabled = !KG.sel.length;
 }
 function kgTog(i){ if(!KG || KG.lock || kgListOpen) return; kgTogName(KG.shelf[i]); }
 function kgTogName(h){
-  if(!KG || KG.lock || kgListOpen) return;
+  if(!KG || KG.phase !== "play" || KG.lock || kgListOpen || h === undefined) return;
   const j = KG.sel.indexOf(h);
   if(j >= 0) KG.sel.splice(j, 1); else KG.sel.push(h);
-  kgDrawShelf(); kgDrawSel();
+  const d = document.querySelector(`#kgShelf .kg-dr[data-h="${h}"]`); if(d) d.classList.toggle("on", j < 0);
+  kgDrawSel();
 }
 function kgClear(){ if(!KG || KG.lock || kgListOpen) return; KG.sel = []; kgDrawShelf(); kgDrawSel(); }
 function kgJudge(){
-  if(!KG || KG.lock || kgListOpen || !KG.sel.length) return;
+  if(!KG || KG.phase !== "play" || KG.lock || kgListOpen || !KG.sel.length) return;
   const k = KG.cur, a = new Set(k.h), s = new Set(KG.sel);
   const ok = a.size === s.size && [...a].every(h=> s.has(h));
   KG.lock = true;
-  const miss = k.h.filter(h=> !s.has(h)), extra = KG.sel.filter(h=> !a.has(h));
-  KG.served.push({ n:k.n, ok, miss, extra });
-  const f = document.getElementById("kgF");
+  const sel = KG.sel.slice();
+  KG.served.push({ n:k.n, ok, sel });
+  const jk = KG.mode === "jikkuri";
   if(ok){
     KG.combo++; KG.maxCombo = Math.max(KG.maxCombo, KG.combo); KG.ok++;
     const bonus = Math.min(100, 20 * (KG.combo - 1));
-    KG.score += 100 + bonus;
+    if(!jk) KG.score += 100 + bonus;
     KG.anim.mood = "ok";
-    f.className = "kg-flash ok show";
-    f.innerHTML = `<b>正解！</b><span>${esc(k.n)}</span><em>+${100 + bonus}${bonus ? `（${KG.combo}連続）` : ""}</em>`;
-    setTimeout(()=> kgLeave(), 650);
   } else {
     KG.combo = 0; KG.ng++;
     KG.anim.mood = "ng";
     try{ navigator.vibrate && navigator.vibrate(60); }catch(e){}
+  }
+  document.getElementById("kgS").textContent = jk ? `${KG.ok}/${KG.ok + KG.ng}` : KG.score;
+  document.getElementById("kgN").textContent = jk ? KG.ok + KG.ng : KG.ok;
+  const c = document.getElementById("kgC"); c.textContent = KG.combo >= 2 ? `${KG.combo}連続！` : ""; c.classList.toggle("on", KG.combo >= 2);
+  if(jk){
+    const d = document.getElementById("kgD");
+    d.innerHTML = `<div class="kg-sres ${ok ? "ok" : "ng"}"><b>${ok ? "正解！" : "ざんねん"}</b>${ok ? "" : `<small>赤＝入れわすれ</small>`}</div>
+      <div class="kg-sbody">${kgDetail(k, ok ? null : sel)}</div>
+      <button class="kg-btn kg-go" onclick="kgLeave()">次の患者へ</button>`;
+    d.classList.add("show");
+    d.querySelector(".kg-sbody").scrollTop = 0;
+    return;
+  }
+  const f = document.getElementById("kgF");
+  if(ok){
+    const bonus = Math.min(100, 20 * (KG.combo - 1));
+    f.className = "kg-flash ok show";
+    f.innerHTML = `<b>正解！</b><span>${esc(k.n)}</span><em>+${100 + bonus}${bonus ? `（${KG.combo}連続）` : ""}</em>`;
+    f.onclick = null;
+    setTimeout(()=> kgLeave(), 700);
+  } else {
+    const extra = sel.filter(h=> !a.has(h));
     f.className = "kg-flash ng show";
     f.innerHTML = `<b>ざんねん</b><span>正解は <u>${esc(k.n)}</u></span>
-      <div class="kg-ans">${k.h.map(h=> `<i class="${s.has(h) ? "hit" : "miss"}">${esc(h)}</i>`).join("")}${extra.map(h=> `<i class="extra">${esc(h)}</i>`).join("")}</div>
-      <small>赤：入れわすれ　灰：よけい　（タップで次へ）</small>`;
+      ${kgStruct(k, sel)}
+      ${extra.length ? `<div class="kg-extra">よけい：${extra.map(h=> `<i>${esc(h)}</i>`).join("")}</div>` : ""}
+      <small>赤＝入れわすれ　くわしくは結果画面で復習（タップで次へ）</small>`;
     f.onclick = ()=> kgLeave();
-    KG.ngTimer = setTimeout(()=> kgLeave(), 2600);
+    KG.ngTimer = setTimeout(()=> kgLeave(), 3200);
   }
-  document.getElementById("kgS").textContent = KG.score;
-  document.getElementById("kgN").textContent = KG.ok;
-  const c = document.getElementById("kgC"); c.textContent = KG.combo >= 2 ? `${KG.combo}連続！` : ""; c.classList.toggle("on", KG.combo >= 2);
 }
 function kgLeave(){
   if(!KG || KG.phase !== "play" || KG.leaving) return;
   KG.leaving = true;
   clearTimeout(KG.ngTimer);
   const f = document.getElementById("kgF"); if(f){ f.className = "kg-flash"; f.onclick = null; }
+  const d = document.getElementById("kgD"); if(d) d.classList.remove("show");
   KG.anim.walk = true; KG.anim.dir = -1;
   KG.anim.onDone = ()=>{ if(!KG || KG.phase !== "play") return; KG.leaving = false; kgNext(); };
 }
@@ -4173,64 +4359,100 @@ function kgQuit(){
   kgMenu();
 }
 function kgFinish(){
-  if(!KG) return;
+  if(!KG || KG.phase !== "play") return;
   if(KG.raf) cancelAnimationFrame(KG.raf);
   clearTimeout(KG.ngTimer);
-  const st = kgSt(), r = KG;
-  const isBest = r.score > st.best;
-  st.plays = (st.plays || 0) + 1;
-  if(isBest) st.best = r.score;
-  st.last = { score:r.score, ok:r.ok, ng:r.ng, at: Date.now() };
+  const st = kgSt(), r = KG, mode = r.mode, jk = mode === "jikkuri", M = st.m[mode];
+  let isBest = false;
+  M.plays = (M.plays || 0) + 1;
+  if(jk){ M.ok = (M.ok || 0) + r.ok; M.n = (M.n || 0) + r.ok + r.ng; }
+  else { isBest = r.score > (M.best || 0); if(isBest) M.best = r.score; }
+  if(mode === "normal"){ st.best = M.best; st.plays = M.plays; }
+  st.last = { mode, score:r.score, ok:r.ok, ng:r.ng, at: Date.now() };
   try{ saveProgress(true); }catch(e){}
-  KG = { phase:"result" }; kgListOpen = false;
+  KG = { phase:"result", mode, served:r.served }; kgListOpen = false;
   const wrong = r.served.filter(x=> !x.ok);
   const seen = {};
   const wl = wrong.filter(x=> seen[x.n] ? false : (seen[x.n] = 1)).map(x=>{
-    const k = KG_DATA.find(o=> o.n === x.n);
-    return `<div class="kg-wr"><b>${esc(x.n)}</b><span>${k.h.map(esc).join("・")}</span></div>`;
+    const k = kgByName(x.n), miss = k.h.filter(h=> x.sel.indexOf(h) < 0), extra = x.sel.filter(h=> k.h.indexOf(h) < 0);
+    return `<details class="kg-wr"><summary><b>${esc(x.n)}</b><span>${miss.length ? `入れわすれ ${miss.map(esc).join("・")}` : ""}${miss.length && extra.length ? "　" : ""}${extra.length ? `よけい ${extra.map(esc).join("・")}` : ""}</span></summary>${kgDetail(k, x.sel)}</details>`;
   }).join("");
+  const okNames = [...new Set(r.served.filter(x=> x.ok).map(x=> x.n))];
   const rank = r.ok >= 15 ? "名人薬剤師" : r.ok >= 10 ? "ベテラン薬剤師" : r.ok >= 6 ? "一人前の薬剤師" : r.ok >= 3 ? "新人薬剤師" : "実習生";
+  const tot = r.ok + r.ng;
+  const head = jk
+    ? `<div class="kg-title"><span class="kg-tsub">じっくり学習　おわり</span><b>${tot ? Math.round(r.ok / tot * 100) : 0}<small>%</small></b><span class="kg-tsub">${r.ok}/${tot}人 正解</span></div>`
+    : `<div class="kg-title"><span class="kg-tsub">${KG_MODES[mode].t}　しゅうりょう</span><b>${r.score}<small>点</small></b>${isBest ? `<span class="kg-new">最高記録！</span>` : `<span class="kg-tsub">最高記録 ${M.best}点</span>`}</div>
+       <div class="kg-box kg-sum">
+         <div><i>調合した人数</i><b>${r.ok}人</b></div>
+         <div><i>まちがい</i><b>${r.ng}人</b></div>
+         <div><i>最大連続</i><b>${r.maxCombo}</b></div>
+         <div><i>称号</i><b>${rank}</b></div>
+       </div>`;
   kgRoot().innerHTML = `<div class="kg-scr kg-res">
-    <div class="kg-title"><span class="kg-tsub">しゅうりょう</span><b>${r.score}<small>点</small></b>${isBest ? `<span class="kg-new">最高記録！</span>` : `<span class="kg-tsub">最高記録 ${st.best}点</span>`}</div>
-    <div class="kg-box kg-sum">
-      <div><i>調合した人数</i><b>${r.ok}人</b></div>
-      <div><i>まちがい</i><b>${r.ng}人</b></div>
-      <div><i>最大連続</i><b>${r.maxCombo}</b></div>
-      <div><i>称号</i><b>${rank}</b></div>
+    ${head}
+    <div class="kg-box kg-wrong">
+      <div class="kg-wh">${wl ? "まちがえた処方を復習（タップで開く）" : (tot ? "まちがいなし！" : "調合した患者はいません")}</div>
+      <div class="kg-wlist">${wl}${okNames.length ? `<div class="kg-okn"><b>正解した処方</b>${okNames.map(esc).join("・")}</div>` : ""}</div>
     </div>
-    ${wl ? `<div class="kg-box kg-wrong"><div class="kg-wh">まちがえた処方</div>${wl}</div>` : ""}
     <div class="kg-btns">
-      <button class="kg-btn kg-go" onclick="kgStart()">もう一度</button>
+      <button class="kg-btn kg-go" onclick="kgStart('${mode}')">もう一度</button>
       <button class="kg-btn kg-back" onclick="kgMenu()">‹　メニューにもどる</button>
     </div>
   </div>`;
+  const first = kgRoot().querySelector(".kg-wr"); if(first) first.open = true;
 }
 
-/* ---------- 漢方一覧（画面全体を覆う。開いている間も時間は進む） ---------- */
+/* ---------- 漢方一覧（辞書。画面全体を覆う。開いている間も時間は進む） ---------- */
+const KG_GABBR = { "桂枝湯類":"桂", "麻黄湯類":"麻", "柴胡剤":"柴", "瀉心湯類":"瀉", "附子剤":"附", "地黄剤":"地", "気血水剤":"気", "人参剤":"人", "石膏剤":"石", "代表疾患":"疾" };
+const KG_KANA = [["あ","あいうえおぁぃぅぇぉ"],["か","かきくけこがぎぐげご"],["さ","さしすせそざじずぜぞ"],["た","たちつてとだぢづでど"],["な","なにぬねの"],["は","はひふへほばびぶべぼぱぴぷぺぽ"],["ま","まみむめも"],["や","やゆよ"],["ら","らりるれろ"],["わ","わをん"]];
+function kgKanaRow(y){ const c = y.charAt(0); const r = KG_KANA.find(r=> r[1].indexOf(c) >= 0); return r ? r[0] : "わ"; }
 function kgListHtml(){
   return `<div class="kg-list${kgListOpen ? " show" : ""}" id="kgL">
     <div class="kg-lhead">
-      <b>漢方一覧</b>
+      <b>漢方辞典</b><span class="kg-lsub">講義の40処方</span>
       ${KG && KG.phase === "play" ? `<span class="kg-ltime">のこり <b id="kgLT"></b></span>` : ""}
       <button class="kg-btn kg-lclose" onclick="kgCloseList()">とじる</button>
     </div>
-    <div class="kg-lsearch"><input id="kgLQ" type="search" placeholder="処方名・生薬・症状でさがす" oninput="kgListQ=this.value;kgListBody()" autocomplete="off"></div>
-    <div class="kg-lgroups">${["", ...KG_GROUPS].map(g=> `<button class="kg-lg${kgListG === g ? " on" : ""}" onclick="kgListG='${g}';kgListBody()">${g || "すべて"}</button>`).join("")}</div>
-    <div class="kg-lbody" id="kgLB"></div>
+    <div class="kg-ltools">
+      <input id="kgLQ" type="search" placeholder="処方・生薬・症状でさがす" oninput="kgListQ=this.value;kgListBody()" autocomplete="off">
+      <span class="kg-sort"><button data-o="g" onclick="kgListSort='g';kgListBody()">分類順</button><button data-o="aiu" onclick="kgListSort='aiu';kgListBody()">五十音</button></span>
+    </div>
+    <div class="kg-lwrap"><div class="kg-lbody" id="kgLB"></div><nav class="kg-tabs" id="kgTabs"></nav></div>
   </div>`;
+}
+function kgEntry(k){
+  return `<article class="kd-e">
+    <div class="kd-hw"><b>${esc(k.n)}</b><span class="kd-y">${esc(k.y)}</span>${k.fq ? `<span class="kd-fq">国試${k.fq}</span>` : ""}</div>
+    ${k.st ? `<div class="kd-r"><span class="kd-k">成り立ち</span><div>${esc(k.st.n)}</div></div>` : ""}
+    <div class="kd-r"><span class="kd-k">構成</span><div class="kd-ks">${k.ks.map(g=> `<span class="kd-g"><span class="kg-sl kg-r${g.r}">${g.r}</span>${g.h.map(h=> kgChip(h)).join("")}</span>`).join("")}</div></div>
+    ${k.sho ? `<div class="kd-r"><span class="kd-k">証</span><div>${esc(k.sho)}</div></div>` : ""}
+    <div class="kd-r"><span class="kd-k">目標</span><div>${esc(k.go)}</div></div>
+    ${k.ch ? `<div class="kd-r kd-c"><span class="kd-k">注意</span><div>${esc(k.ch)}</div></div>` : ""}
+  </article>`;
 }
 function kgListBody(){
   const el = document.getElementById("kgLB"); if(!el) return;
-  document.querySelectorAll(".kg-lg").forEach(b=> b.classList.toggle("on", (b.textContent === "すべて" ? "" : b.textContent) === kgListG));
+  document.querySelectorAll(".kg-ltools .kg-sort button").forEach(b=> b.classList.toggle("on", b.dataset.o === kgListSort));
   const q = (kgListQ || "").trim();
-  const items = KG_DATA.filter(k=> (!kgListG || k.g === kgListG) && (!q || [k.n, k.y, k.h.join(" "), k.sho, k.go].join(" ").indexOf(q) >= 0));
-  el.innerHTML = items.length ? items.map(k=> `<div class="kg-li">
-      <div class="kg-lt"><b>${esc(k.n)}</b><span>${esc(k.y)}</span><em>${esc(k.g)}</em></div>
-      <div class="kg-lh">${k.h.map(h=> `<i class="${k.k.indexOf(h) >= 0 ? "kun" : ""}">${esc(h)}</i>`).join("")}</div>
-      ${k.sho ? `<div class="kg-ls">証：${esc(k.sho)}</div>` : ""}
-      <div class="kg-lg2">${esc(k.go)}</div>
-    </div>`).join("") : `<p class="kg-lnone">見つかりません</p>`;
+  let items = KG_DATA.filter(k=> !q || [k.n, k.y, k.h.join(" "), k.sho, k.go, k.ch || "", k.st ? k.st.n : ""].join(" ").indexOf(q) >= 0);
+  let groups;
+  if(kgListSort === "aiu"){
+    items = items.slice().sort((a,b)=> a.y.localeCompare(b.y, "ja"));
+    groups = KG_KANA.map(r=> [r[0], r[0] + "行", items.filter(k=> kgKanaRow(k.y) === r[0])]);
+  } else {
+    groups = KG_GROUPS.map(g=> [KG_GABBR[g], g, items.filter(k=> k.g === g)]);
+  }
+  groups = groups.filter(g=> g[2].length);
+  el.innerHTML = groups.length ? groups.map((g, i)=> `<section class="kd-sec" id="kdS${i}"><h3 class="kd-h">${esc(g[1])}</h3>${g[2].map(kgEntry).join("")}</section>`).join("")
+    + `<p class="kd-foot">${kgCauLegend()}</p>` : `<p class="kg-lnone">見つかりません</p>`;
+  document.getElementById("kgTabs").innerHTML = groups.map((g, i)=> `<button onclick="kgJump(${i})">${esc(g[0])}</button>`).join("");
+  el.scrollTop = 0;
 }
+function kgCauLegend(){
+  return `<b><span class="kg-caumark"></span>注意する生薬</b>` + Object.keys(KG_CAU).map(h=> `<span class="kd-cl"><b>${esc(h)}</b>${esc(KG_CAU[h][1])}</span>`).join("");
+}
+function kgJump(i){ const s = document.getElementById("kdS" + i), b = document.getElementById("kgLB"); if(s && b) b.scrollTop = s.offsetTop - b.offsetTop; }
 function kgOpenList(){
   kgListOpen = true;
   const l = document.getElementById("kgL"); if(!l) return;
@@ -4262,8 +4484,8 @@ function GTop(){
       </button>
       <button class="gtop-btn gtop-game" onclick="go('kgame')">
         <span class="gtop-ic gtop-icpx"><canvas class="gtop-pxic" width="12" height="12"></canvas></span>
-        <span class="gtop-tx"><span class="gtop-t">ミニゲームモード</span><span class="gtop-s">漢方調合・3分間</span>
-          <span class="gtop-m"><span class="gtop-best">最高記録 <b>${st.best}</b> 点</span></span></span>
+        <span class="gtop-tx"><span class="gtop-t">ミニゲームモード</span><span class="gtop-s">漢方調合</span>
+          <span class="gtop-m"><span class="gtop-best">最高記録 <b>${st.m.normal.best}</b> 点</span></span></span>
       </button>
     </div>
   </div>`;
@@ -4288,6 +4510,7 @@ function gtopAnim(){
     else { const had = document.getElementById("kg"); if(had) kgUnmount(); }
     if(view.screen === "gtop") gtopAnim();
   };
+  window.addEventListener("resize", ()=>{ if(KG && KG.phase === "play" && document.getElementById("kgShelf")) kgFitShelf(KG.shelf.length); });
 })();
 
 /* ---------- 単元を選ぶ ---------- */
@@ -5694,6 +5917,10 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v6.64", date:"2026-10-20", items:[
+    { r:1, t:"漢方調合に3つのモード", d:"通常（3分・40処方）、国試頻出（3分・国試に出た20処方）、じっくり学習（時間制限なし・毎回解説）を選べます。まちがえたときは「基本処方＋加味」や君臣佐使に分けて正解を見せ、結果画面で薬能・注意まで復習できます。" },
+    { r:1, t:"注意する生薬・並べ替え・漢方辞典", d:"甘草・麻黄・附子などは棚に赤い印。棚は五十音順にも並べられます。漢方一覧は辞書の形にし、右端の爪で分類や五十音の行へ移れます。小さい画面でもスクロールなしで遊べるようにしました。" }
+  ]},
   { v:"v6.63", date:"2026-10-20", items:[
     { r:1, t:"ホームの見た目をそろえました", d:"学習モードとミニゲームモードを選ぶ画面を、学習画面のカードと同じ形にしました。学習モードには全体の進み、ミニゲームには最高記録が出ます。" }
   ]},
