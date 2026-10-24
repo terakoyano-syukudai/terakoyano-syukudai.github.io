@@ -69,6 +69,9 @@ self.addEventListener('fetch', function (e) {
   // ブラウザふつうのキャッシュにまかせる。
   if (url.pathname.indexOf('/textbook/') >= 0) return;
 
+  // 講義の音声（/a/、v6.67）も大きいので抱え込まない。シーク（Range）もブラウザにまかせる。
+  if (url.pathname.indexOf('/a/') >= 0) return;
+
   e.respondWith(serve(req));
   e.waitUntil(checkUpdate());
 });
