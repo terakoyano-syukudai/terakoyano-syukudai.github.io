@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v6.68｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v6.69｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -1751,35 +1751,55 @@
 
   /* ---------- v6.66 講義（スライド＋読み上げ）。v6.67 順に出す・表 ---------- */
   .lec{height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden;max-width:1100px;margin:0 auto}
-  .lec-head{display:flex;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top)) 14px 6px;font-size:13px}
+  .lec-head{display:flex;align-items:center;gap:8px;padding:calc(8px + env(safe-area-inset-top)) 14px 5px;font-size:13px}
   .lec-u{font-weight:700;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .lec-mi{font-size:11px;font-weight:700;color:#8A5A00;background:#FFF1CC;border-radius:99px;padding:2px 8px}
   .lec-n{font-family:var(--mono);color:var(--muted,#5b6773)}
   .lec-bar{height:4px;background:var(--line,#e3e8ee);margin:0 14px;border-radius:99px;overflow:hidden}
   .lec-bar i{display:block;height:100%;background:var(--uacc)}
-  .lec-card{flex:1 1 auto;min-height:0;overflow:auto;margin:10px 14px 0;padding:16px 18px;border-radius:16px;
+  .lec-card{flex:1 1 auto;min-height:0;overflow:hidden;--lz:1;margin:8px 12px 0;padding:14px 14px;border-radius:16px;
     background:var(--surface,#fff);border:1px solid var(--line,#dde3ea);display:flex;flex-direction:column;gap:12px}
-  .lec-h{font-size:21px;line-height:1.35;margin:0}
+  .lec-h{font-size:calc(22px * var(--lz));line-height:1.35;margin:0}
   .lec-vis{display:flex;flex-direction:column;gap:10px;align-items:center}
   .lec-fig{display:flex;justify-content:center;width:100%}
   .lec-fig .figbox{max-width:100%}
-  .lec-fig svg{max-width:100%;height:auto}
-  .lec-b{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px;font-size:16.5px;line-height:1.55}
+  .lec-fig svg{max-width:100%;height:auto;max-height:calc(46vh * var(--lz))}
+  .lec-b{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px;font-size:calc(17.5px * var(--lz));line-height:1.55}
   .lec-it{transition:opacity .4s ease, transform .4s ease}
   .lec-hid{opacity:0;transform:translateY(8px);pointer-events:none}
-  .lec-tbw{width:100%;overflow-x:auto}
-  .lec-tb{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.45}
+  .lec-tbw{width:100%;overflow:hidden}
+  .lec-vis{width:100%;flex:1 1 auto;justify-content:center}
+  .lec-card > .lec-vis:last-child{margin-bottom:auto}
+  .lv-flow{display:flex;flex-direction:column;align-items:stretch;gap:2px;width:100%}
+  .lv-fs{display:flex;align-items:center;gap:10px;padding:calc(10px * var(--lz)) 12px;border-radius:12px;background:var(--uacc-soft);font-weight:700;font-size:calc(17px * var(--lz))}
+  .lv-fn{flex:none;width:1.6em;height:1.6em;border-radius:99px;background:var(--uacc);color:#fff;display:grid;place-items:center;font-size:.8em}
+  .lv-ar{text-align:center;color:var(--uacc);font-size:calc(13px * var(--lz));line-height:1.2}
+  .lv-big{text-align:center;padding:calc(18px * var(--lz)) 8px;border-radius:16px;background:var(--uacc-soft);width:100%}
+  .lv-bv{font-size:calc(46px * var(--lz));font-weight:800;color:var(--uacc);line-height:1.15}
+  .lv-bl{margin-top:8px;font-size:calc(16px * var(--lz));font-weight:700}
+  .lv-vs{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
+  .lv-vc{border-radius:14px;padding:calc(12px * var(--lz)) 10px;border:2px solid var(--uacc);display:flex;flex-direction:column;gap:6px}
+  .lv-vc1{border-color:#C46A2F}
+  .lv-vt{font-weight:800;font-size:calc(17px * var(--lz));text-align:center}
+  .lv-vb{font-size:calc(14.5px * var(--lz));line-height:1.45}
+  .lv-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
+  .lv-cards.n3 .lv-card:first-child{grid-column:1 / -1}
+  .lv-card{border-radius:14px;padding:calc(12px * var(--lz)) 10px;background:var(--uacc-soft);text-align:center}
+  .lv-ct{font-weight:800;font-size:calc(16.5px * var(--lz))}
+  .lv-cd{margin-top:4px;font-size:calc(14px * var(--lz));line-height:1.4}
+  .lec-tb{border-collapse:collapse;width:100%;font-size:calc(15.5px * var(--lz));line-height:1.45}
   .lec-tb th,.lec-tb td{border:1px solid var(--line,#dde3ea);padding:6px 8px;text-align:left;vertical-align:top}
   .lec-tb th{background:var(--uacc-soft);font-weight:700}
   .lec-go{margin-top:auto}
-  .lec-sub{flex:none;max-height:20vh;overflow:auto;margin:8px 14px 0;padding:9px 12px;border-radius:12px;font-size:14px;line-height:1.6;
+  .lec-sub{flex:none;max-height:calc(4 * 1.6em);overflow:hidden;--sz:1;font-size:calc(14.5px * var(--sz)) !important;margin:8px 14px 0;padding:9px 12px;border-radius:12px;font-size:14px;line-height:1.6;
     background:var(--uacc-soft)}
   .lec-ctl{flex:none;display:flex;gap:8px;padding:8px 14px 0}
   .lec-c{flex:1;font:inherit;font-weight:700;font-size:15px;padding:11px 6px;border-radius:12px;border:1px solid var(--line,#ccd);background:var(--surface,#fff);color:inherit}
   .lec-c:disabled{opacity:.4}
   .lec-play{flex:1.4;background:var(--uacc);color:#fff;border-color:transparent}
   .lec-ctl2 .lec-c{font-size:13px;padding:8px 6px;font-weight:600}
-  .lec-cr{flex:none;text-align:center;font-size:10.5px;color:var(--muted,#6b757e);padding:4px 0 0}
+  .lec-cr{flex:none;text-align:center;font-size:10px;color:var(--muted,#6b757e);padding:3px 0 calc(6px + env(safe-area-inset-bottom))}
+  .lec-ctl2 .lec-close{border-color:var(--ink,#22303B)}
   .lec .backbar{flex:none}
   .lecbtn{font-weight:700}
   @media (min-width:900px) and (orientation:landscape){
@@ -2693,7 +2713,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v6.68";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v6.69";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -3177,7 +3197,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v6.68（2026-10-24 更新）</span>
+      <br><span class="mono">アプリ版数：v6.69（2026-10-24 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -4963,6 +4983,7 @@ function lecBtn(){
 function openLec(k){ if(!LECS[k]) return; lecStop(); go("lec", { lec:k, li:0, lecFrom: view.screen }); }
 function lecAu(){ const L = LECS[view.lec]; return (L && L.au && !LS.noau) ? L.au : null; }
 function lecStop(){
+  if(LS.seg >= 0) LS.last = LS.seg;
   LS.on = false; LS.seg = -1; LS.tok++;
   try{ window.speechSynthesis && speechSynthesis.cancel(); }catch(e){}
   try{ LA && LA.pause(); }catch(e){}
@@ -4973,7 +4994,7 @@ function lecReveal(){
   const root = $app.querySelector(".lec"); if(!root) return;
   root.querySelectorAll("[data-g]").forEach(el=> el.classList.toggle("lec-hid", LS.on && LS.seg >= 0 && Number(el.getAttribute("data-g")) > LS.seg));
   const L = LECS[view.lec], S = L && L.s[view.li || 0], sb = root.querySelector(".lec-sub");
-  if(S && sb) sb.innerHTML = lecTx(LS.on && LS.seg >= 0 ? (S.g[LS.seg] || "") : S.g.join(""));
+  if(S && sb){ sb.innerHTML = lecTx((LS.on && LS.seg >= 0 ? S.g[LS.seg] : S.g[Math.min(LS.last || 0, S.g.length - 1)]) || S.g.find(x=> x.trim()) || ""); lecFit(); }
 }
 /* ---- 音声ファイル ---- */
 function lecSpan(au, i){ return [au.t[i][0], i + 1 < au.t.length ? au.t[i + 1][0] : au.d]; }
@@ -5043,7 +5064,7 @@ function lecToggle(){
 }
 function lecGo(d){
   const L = LECS[view.lec]; if(!L) return;
-  view.li = Math.max(0, Math.min(L.s.length - 1, (view.li || 0) + d));
+  view.li = Math.max(0, Math.min(L.s.length - 1, (view.li || 0) + d)); LS.last = 0;
   if(view.li === L.s.length - 1) lecMark();
   const au = lecAu();
   if(LS.on && au){ LA.currentTime = au.t[view.li][0]; LS.seg = 0; }
@@ -5065,28 +5086,48 @@ function lecTable(rows){
   const c = r=> r.map(x=> lecTx(x));
   return `<thead><tr>${c(rows[0]).map(x=> `<th>${x}</th>`).join("")}</tr></thead><tbody>${rows.slice(1).map(r=> `<tr>${c(r).map(x=> `<td>${x}</td>`).join("")}</tr>`).join("")}</tbody>`;
 }
+/* v6.69 型の図（v）：flow 流れ／big 大きな数字／vs 比べる／cards カード。台本の ［b1］… は v の項目、［図］は v 全体 */
+function lecV(v, hid, at){
+  const it = (j, html, cls)=> `<div class="lec-it ${cls}${hid(LS_G["b" + (j + 1)] || LS_G["図"] || 0)}" data-g="${LS_G["b" + (j + 1)] || LS_G["図"] || 0}">${html}</div>`;
+  if(v.type === "flow") return `<div class="lv-flow">${v.items.map((x, j)=> it(j, `<span class="lv-fn">${j + 1}</span><span>${lecTx(x)}</span>`, "lv-fs") + (j < v.items.length - 1 ? `<div class="lv-ar lec-it${hid(LS_G["b" + (j + 2)] || LS_G["図"] || 0)}" data-g="${LS_G["b" + (j + 2)] || LS_G["図"] || 0}">▼</div>` : "")).join("")}</div>`;
+  if(v.type === "big") return `<div class="lv-big lec-it${hid(LS_G["図"] || 0)}"${at("図")}><div class="lv-bv">${lecTx(v.value)}</div><div class="lv-bl">${lecTx(v.label || "")}</div></div>`;
+  if(v.type === "vs") return `<div class="lv-vs">${[v.a, v.b].map((c, j)=> it(j, `<div class="lv-vt">${lecTx(c.t)}</div>${(c.b || []).map(x=> `<div class="lv-vb">${lecTx(x)}</div>`).join("")}`, "lv-vc lv-vc" + j)).join("")}</div>`;
+  if(v.type === "cards") return `<div class="lv-cards n${v.items.length}">${v.items.map((c, j)=> it(j, `<div class="lv-ct">${lecTx(c.t)}</div><div class="lv-cd">${lecTx(c.d || "")}</div>`, "lv-card")).join("")}</div>`;
+  return "";
+}
+let LS_G = {};
+function lecFit(){
+  const c = $app.querySelector(".lec-card"); if(!c) return;
+  let z = 1; c.style.setProperty("--lz", "1");
+  for(let k = 0; k < 14 && c.scrollHeight > c.clientHeight + 1; k++){ z -= 0.04; c.style.setProperty("--lz", z.toFixed(2)); }
+  const sb = $app.querySelector(".lec-sub"); if(!sb) return;
+  let y = 1; sb.style.setProperty("--sz", "1");
+  for(let k = 0; k < 8 && sb.scrollHeight > sb.clientHeight + 1; k++){ y -= 0.06; sb.style.setProperty("--sz", y.toFixed(2)); }
+}
 function Lec(){
   const L = LECS[view.lec];
   if(!L) return `<div class="pad"><p>講義が見つかりません。</p><button class="cta ghost big" onclick="lecClose()">‹　閉じる</button></div>`;
   const N = L.s.length, i = Math.min(view.li || 0, N - 1), S = L.s[i];
   const rate = ST.lecRate || 1, sub = ST.lecSub !== false, au = lecAu(), can = lecCanPlay();
-  const G = {}; (S.k || []).forEach((m, j)=>{ if(m) G[m] = j; });
+  const G = {}; (S.k || []).forEach((m, j)=>{ if(m) G[m] = j; }); LS_G = G;
   const hid = g=> (LS.on && LS.seg >= 0 && g > LS.seg) ? " lec-hid" : "";
   const at = (m)=> { const g = G[m] || 0; return ` data-g="${g}"`; };
-  const vis = (S.f || S.tb) && S.b && S.b.length;
+  const vis = (S.f || S.tb || S.v) && S.b && S.b.length;
+  const cur = LS.on && LS.seg >= 0 ? LS.seg : (LS.last || 0);
   return `<div class="lec">
     <div class="lec-head"><span class="lec-u">${lecEsc(L.t)}</span>${L.ok ? "" : `<span class="lec-mi">未確認</span>`}<span class="lec-n">${i + 1} / ${N}</span></div>
     <div class="lec-bar"><i style="width:${Math.round((i + 1) / N * 100)}%"></i></div>
     <div class="lec-card${vis ? " lec-two" : ""}">
       <h2 class="lec-h">${lecTx(S.h)}</h2>
       ${(S.b && S.b.length) ? `<ul class="lec-b">${S.b.map((b, j)=> `<li class="lec-it${hid(G["b" + (j + 1)] || 0)}"${at("b" + (j + 1))}>${lecTx(b)}</li>`).join("")}</ul>` : ""}
-      ${(S.f || S.tb) ? `<div class="lec-vis">
+      ${(S.f || S.tb || S.v) ? `<div class="lec-vis">
+        ${S.v ? lecV(S.v, hid, at) : ""}
         ${S.f ? `<div class="lec-fig lec-it${hid(G["図"] || 0)}"${at("図")}>${FigBox(S.f)}</div>` : ""}
         ${S.tb ? `<div class="lec-tbw lec-it${hid(G["表"] || 0)}"${at("表")}><table class="lec-tb">${lecTable(S.tb)}</table></div>` : ""}
       </div>` : ""}
       ${i === N - 1 ? `<button class="cta lec-go" onclick="lecDone()">この単元の問題を解く</button>` : ""}
     </div>
-    ${sub ? `<div class="lec-sub">${lecTx(LS.on && LS.seg >= 0 ? (S.g[LS.seg] || "") : S.g.join(""))}</div>` : ""}
+    ${sub ? `<div class="lec-sub">${lecTx(S.g[Math.min(cur, S.g.length - 1)] || S.g.find(x=> x.trim()) || "")}</div>` : ""}
     <div class="lec-ctl">
       <button class="lec-c" onclick="lecGo(-1)" ${i ? "" : "disabled"}>‹ 前</button>
       <button class="lec-c lec-play" onclick="lecToggle()" ${can ? "" : "disabled"}>${!can ? "読み上げ非対応" : (LS.on ? "❚❚ 止める" : "▶ 再生")}</button>
@@ -5095,9 +5136,9 @@ function Lec(){
     <div class="lec-ctl lec-ctl2">
       <button class="lec-c" onclick="lecRate()">速さ ×${rate}</button>
       <button class="lec-c" onclick="lecSubT()">字幕 ${sub ? "あり" : "なし"}</button>
+      <button class="lec-c lec-close" onclick="lecClose()">閉じる</button>
     </div>
     <div class="lec-cr">${au ? "音声：" + lecEsc(LEC_CREDIT) : "音声：この端末の読み上げ"}</div>
-    <div class="backbar"><button class="cta ghost big" onclick="lecClose()">‹　閉じる</button></div>
   </div>`;
 }
 (function(){
@@ -5110,6 +5151,9 @@ function Lec(){
     return r;
   };
   try{ if(window.speechSynthesis){ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged = ()=>{}; } }catch(e){}
+  const r1 = render;
+  render = function(){ r1.apply(this, arguments); if(view.screen === "lec") lecFit(); };
+  window.addEventListener("resize", ()=>{ if(view.screen === "lec") lecFit(); });
   document.addEventListener("keydown", e=>{
     if(view.screen !== "lec" || e.target && /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
     if(e.key === "ArrowRight"){ e.preventDefault(); lecGo(1); }
@@ -6526,6 +6570,9 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v6.69", date:"2026-10-24", items:[
+    { r:1, t:"講義をスマホで見やすく", d:"スライドの文字や図はスクロールしなくても全部見えるようにしました（入りきらないときは自動で縮めます）。流れ・大きな数字・比べる・カードの図を使えるようにし、1枚に1つのことだけを載せる形に作り直していきます。字幕はいま話している部分だけ。閉じるボタンは速さ・字幕と同じ列に移しました。" }
+  ]},
   { v:"v6.68", date:"2026-10-24", items:[
     { r:1, t:"講義の声が VOICEVOX に", d:"「細胞の構造」の講義を、聞き取りやすい音声（VOICEVOX:No.7）にしました。話に合わせて箇条・図・表が現れます。画面を消しても聞けます。ほかの講義も順に追加します。" }
   ]},
