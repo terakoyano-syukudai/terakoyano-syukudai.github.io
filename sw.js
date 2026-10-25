@@ -14,6 +14,7 @@
  *   確認は1分以内の連続を間引くだけで、通信は version.json（約60バイト）のみ。
  */
 var CACHE = 'terakoya';
+var ACACHE = 'terakoya-a';             // 講義の音声（v6.76。ページが「全部保存」で入れる。ここでは読むだけ）
 var META = './__meta';                 // 最終確認時刻と版を入れておく疑似エントリ
 var CHECK_INTERVAL = 60 * 1000;         // 連続した確認を1分間だけ間引く（v6.11。以前は6時間）
 
@@ -43,7 +44,7 @@ self.addEventListener('activate', function (e) {
     caches.keys()
       .then(function (keys) {
         return Promise.all(keys.map(function (k) {
-          return k === CACHE ? null : caches.delete(k);
+          return (k === CACHE || k === ACACHE) ? null : caches.delete(k);
         }));
       })
       .then(function () { return self.clients.claim(); })
@@ -69,8 +70,10 @@ self.addEventListener('fetch', function (e) {
   // ブラウザふつうのキャッシュにまかせる。
   if (url.pathname.indexOf('/textbook/') >= 0) return;
 
-  // 講義の音声（/a/、v6.67）も大きいので抱え込まない。シーク（Range）もブラウザにまかせる。
-  if (url.pathname.indexOf('/a/') >= 0) return;
+  // 講義の音声（/a/）。v6.76：ページが「全部保存」で terakoya-a に入れたものがあればそこから返す（電波なしで聞ける）。
+  // 無ければ通信で取る（ここでは保存しない。保存はページの「全部保存」だけ）。
+  // audio 要素はシークのたびに Range で一部を求めるので、保存したものから 206 を作って返す（iPhone は 206 でないと再生しない）。
+  if (url.pathname.indexOf('/a/') >= 0) { e.respondWith(serveAudio(req)); return; }
 
   e.respondWith(serve(req));
   e.waitUntil(checkUpdate());
@@ -100,6 +103,26 @@ function serve(req) {
       });
     });
   });
+}
+
+function serveAudio(req) {
+  return caches.open(ACACHE).then(function (c) {
+    return c.match(req, { ignoreSearch: true });
+  }).then(function (hit) {
+    if (!hit) return fetch(req);
+    var range = req.headers.get('range');
+    if (!range) return hit;
+    return hit.arrayBuffer().then(function (buf) {
+      var size = buf.byteLength, m = /bytes=(\d*)-(\d*)/.exec(range) || [];
+      var s = m[1] ? parseInt(m[1], 10) : 0, en = m[2] ? parseInt(m[2], 10) : size - 1;
+      if (!m[1] && m[2]) { s = Math.max(0, size - parseInt(m[2], 10)); en = size - 1; }
+      if (en >= size) en = size - 1;
+      if (s > en) return new Response(null, { status: 416, headers: { 'Content-Range': 'bytes */' + size } });
+      return new Response(buf.slice(s, en + 1), { status: 206, headers: {
+        'Content-Type': 'audio/mpeg', 'Accept-Ranges': 'bytes',
+        'Content-Range': 'bytes ' + s + '-' + en + '/' + size, 'Content-Length': String(en - s + 1) } });
+    });
+  }).catch(function () { return fetch(req); });
 }
 
 function readMeta(cache) {
