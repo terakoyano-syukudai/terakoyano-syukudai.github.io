@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v6.77｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v6.81｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -2732,7 +2732,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v6.77";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v6.81";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -3216,7 +3216,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v6.77（2026-10-24 更新）</span>
+      <br><span class="mono">アプリ版数：v6.81（2026-10-24 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -3886,7 +3886,7 @@ function SuppBox(q){
 
 /* ---------- 単位特化（v6.16・ref=1） ---------- */
 /* 大学の講義に合わせた問題。データは別ファイル（UFILE）にあり、ref=1 の端末だけが読みに行く。 */
-const UFILE = "./u/univ-3b41d4d347.json", UKEY = "terakoya-univ-2026";
+const UFILE = "./u/univ-6df06dc3e6.json", UKEY = "terakoya-univ-2026";
 const U_DAILY = 5;      /* 今日の10問のうち大学の問題の数 */
 const U_SET = 10;       /* 単位特化の1回の出題数 */
 let UQ = [], UC = [], UCK = {}, _uById = null, uState = "idle";
@@ -3902,7 +3902,7 @@ function uLoad(d){
   _uById = null; uState = "ok";
 }
 async function uFetch(){
-  if(!ST.ref || UQ.length || uState === "loading") return;
+  if(UQ.length || uState === "loading") return;   /* v6.81 全員に公開（以前は ref=1 だけ） */
   uState = "loading";
   try{
     const r = await fetch(UFILE);
@@ -3992,7 +3992,7 @@ function uStartLec(k, lec){ uStart(uShuffle(uQs(k, lec)).slice(0, 20), k); }
 /* 今日の10問（ref=1）：国試の問題に大学の問題を足す。日付で決まるので一日じゅう同じ */
 function dailyPick(key){
   const d = dailyPick0(key);
-  if(!ST.ref || !UQ.length) return d;
+  if(!UQ.length) return d;
   const mine = uMine().map(c=> c.k);
   const pool = UQ.filter(q=> mine.indexOf(q.c) >= 0);
   if(!pool.length) return d;
@@ -4033,8 +4033,7 @@ function UHomeTiles(){
     .map(([a,b])=> `<span class="ubig-row ubig-row2"><span class="ubig-rn">${a}</span><b>${b}</b></span>`).join("");
   return `<div class="umenu">
     <div class="tiles umain">
-    ${!ST.ref ? UBigTile({ cls:"ubig-exam ubig-soon", ic:U_IC_EXAM, t:"試験対策", s:"大学の定期試験", list:"", k:"準備中", v:"", pct:0, off:true }) /* v6.51 ref=1 以外は準備中 */
-      : UBigTile({ cls:"ubig-exam", ic:U_IC_EXAM, t:"試験対策", s:us, list: UQ.length ? rowsU : "", k:"", v:`${upct}%`, pct:upct,
+    ${UBigTile({ cls:"ubig-exam", ic:U_IC_EXAM, t:"試験対策", s:us, list: UQ.length ? rowsU : "", k:"", v:`${upct}%`, pct:upct,
       on: UQ.length ? "go('univ')" : "uState='idle';uFetch()" })}
     ${UBigTile({ cls:"ubig-daily", ic:U_IC_DAILY, t:"日々の学習", s:`国試対策`, list: rowsD,
       k:"", v:`${npct}%`, pct:npct, on:"go('dstudy')" })}
@@ -6745,6 +6744,10 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v6.81", date:"2026-10-26", items:[
+    { r:0, t:"試験対策モードを公開", d:"ホームの「試験対策」から、大学の定期試験向けの問題を解けます。学年のタブで科目を選び、講義の回ごとに出題します。★は学内の過去問での出題の多さです。" },
+    { t:"3年の衛生を追加", d:"試験対策に「環境衛生学1」「環境衛生学2」「食品衛生学」を追加しました（計257問、学内の過去問の論点から作成）。" }
+  ]},
   { v:"v6.77", date:"2026-10-25", items:[
     { r:1, t:"講義を追加", d:"微生物免疫学の「T細胞と細胞性免疫」の講義（音声つき）を追加しました。" }
   ]},
