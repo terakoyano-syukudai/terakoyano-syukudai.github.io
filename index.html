@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v6.85｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v6.86｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -1952,6 +1952,20 @@
   html.tabbed #app > .gscr > .gpad,html.tabbed #app > .gscr > .pad,html.tabbed #app > .plscr > .pad{flex:1 1 0;min-height:0}
   html.tabbed #app > .plscr > .pad{overflow-y:auto;-webkit-overflow-scrolling:touch}
   html.tabbed .gmrow > [onclick="go('records')"]{display:none}
+  /* v6.86 6つのタブ・今日の10問の画面・ゲーム */
+  #navtab button{font-size:10px;letter-spacing:-.02em}
+  #navtab button svg{width:22px;height:22px}
+  #navtab button.on svg{width:34px;height:26px}
+  html.tabbed .uhome .umenu,html.tabbed .uhome .recwrap{display:none}
+  /* 続きから・今日の10問・今日の復習を同じ高さで縦に並べる（heroes の枠をなくして3枚を兄弟にする） */
+  html.tabbed .uhome .home-pad{flex:1 1 auto;display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:minmax(0,1fr);gap:12px;min-height:0;padding-bottom:12px}
+  html.tabbed .uhome .heroes{display:contents}
+  html.tabbed .uhome .heroes .daily,html.tabbed .uhome .heroes .rev,html.tabbed .uhome .home-pad > .resume{flex:1 1 0;height:auto;min-height:0;max-height:none;margin:0}
+  html.tabbed .kg-back{display:none}
+  /* 日々の学習が2枚のとき、ランダムは今までどおり青 */
+  .bgrid > .tiles > .tile:nth-child(2):last-child .tile-ic{background:#2D4B80}
+  .bgrid > .tiles > .tile:nth-child(2):last-child{background:linear-gradient(170deg,var(--surface) 55%,#E1E8F4)}
+  html[data-theme="dark"] .bgrid > .tiles > .tile:nth-child(2):last-child{background:rgba(255,255,255,.05)}
   html.tabbed .gmrow > button{flex:1 1 auto;min-height:48px}
   html.tabbed .usetbtn{display:none}
   .rsegtab{display:flex;width:100%;margin:10px 0 6px}
@@ -2876,7 +2890,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v6.85";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v6.86";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -3295,7 +3309,7 @@ function HomeTiles(){
     homeTile({ ic:`<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h3.5c4 0 4 8 8 8H17"/><path d="M3 14h3.5c1.6 0 2.5-1.3 3.2-3"/><path d="M14.5 4 17 6l-2.5 2"/><path d="M14.5 12 17 14l-2.5 2"/><path d="M11.4 8.2C12 7 13 6 14.5 6H17"/></svg>`, t:"全単元から<wbr>ランダム", s:`全${QUESTIONS.length}問`,
       on:"openSetup('all',null)" }),
   ];
-  return `<div class="tiles">${t.join("")}</div>`;
+  return `<div class="tiles">${(ST.ref ? t.filter(x=> x.indexOf("startWeak()") < 0 && x.indexOf("弱点だけ") < 0) : t).join("")}</div>`;
 }
 
 /* ---------- 科目を選ぶ（v6.8） ---------- */
@@ -3361,7 +3375,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v6.85（2026-10-24 更新）</span>
+      <br><span class="mono">アプリ版数：v6.86（2026-10-24 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -7105,6 +7119,9 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v6.86", date:"2026-10-27", items:[
+    { r:1, t:"ゲームもタブから", d:"はじめのモード選択をやめ、いちばん下のタブを6つ（今日の10問・日々の学習・試験対策・講義資料・記録・ゲーム）にしました。最初のタブは「今日の10問」で、今日の10問と今日の復習だけを置いています。「弱点だけ10問」は「今日の復習」にまとめました（まちがえた問題は翌日から今日の復習に出ます）。" }
+  ]},
   { v:"v6.85", date:"2026-10-27", items:[
     { t:"光るボタンを新しい「習得」に合わせました", d:"単元は、まだ解いていない問題と今日が期限の復習が無くなれば、次の単元が光ります（習得は「今日の復習」で進みます）。「弱点」は直近でまちがえた問題だけを数えます。学習計画の1日の量は「今日の復習＋新しい問題」で、新しい問題は期限の4日前までに1回目を解き終えるように割り振ります。" },
     { r:1, t:"戻ったときに前の位置へ", d:"戻るボタン・問題をやめたとき・結果から戻ったとき・タブを切り替えたときは、前に見ていた位置に戻ります。タブはそのタブで最後に見ていた画面に戻り、開いているタブをもう一度押すと最初の画面の一番上へ。日々の学習の「講義資料を開く」は講義資料タブと同じなので外しました。" }
@@ -7659,14 +7676,16 @@ const NAV_IC = {
   daily:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>`,
   exam:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M2.5 9.5 12 5l9.5 4.5L12 14 2.5 9.5Z"/><path d="M6.5 11.5v4.3c1.6 1.4 3.4 2.1 5.5 2.1s3.9-.7 5.5-2.1v-4.3"/><path d="M21.5 9.5v5"/></svg>`,
   book:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 6.5C9.6 4.8 6.6 4.5 3.5 5.1v13.2c3.1-.6 6.1-.3 8.5 1.4 2.4-1.7 5.4-2 8.5-1.4V5.1c-3.1-.6-6.1-.3-8.5 1.4Z"/><path d="M12 6.5v13.2"/></svg>`,
-  rec:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 20.5h16"/><path d="M6.5 17V11"/><path d="M11 17V6.5"/><path d="M15.5 17v-4"/><path d="M20 17V9"/></svg>`
+  rec:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 20.5h16"/><path d="M6.5 17V11"/><path d="M11 17V6.5"/><path d="M15.5 17v-4"/><path d="M20 17V9"/></svg>`,
+  game:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7.5h10a4.5 4.5 0 0 1 4.4 5.5l-.9 4a2.6 2.6 0 0 1-4.5 1.1L14.3 16H9.7L8 18.1a2.6 2.6 0 0 1-4.5-1.1l-.9-4A4.5 4.5 0 0 1 7 7.5Z"/><path d="M7.5 10.5v3M6 12h3"/><path d="M15.5 11.2h.01M17.5 13h.01"/></svg>`
 };
 const NAV_TABS = [
-  { k:"home",  t:"ホーム",     on:"go('home')" },
+  { k:"home",  t:"今日の10問", on:"go('home')" },
   { k:"daily", t:"日々の学習", on:"go('dstudy')" },
   { k:"exam",  t:"試験対策",   on:"view.uEdit=false;go('univ')" },
   { k:"book",  t:"講義資料",   on:"openTextbook()" },
-  { k:"rec",   t:"記録",       on:"go('records',{rtab:'rec'})" }
+  { k:"rec",   t:"記録",       on:"go('records',{rtab:'rec'})" },
+  { k:"game",  t:"ゲーム",     on:"go('kgame')" }
 ];
 /* ---------- v6.85 スクロール位置を覚えて戻す・タブごとに最後の画面 ---------- */
 const NAV_SC = {}, NAV_LAST = {};
@@ -7708,7 +7727,7 @@ function navTabGo(k){
   navWant = true;
   if(L) go(L.screen, Object.assign({}, L.patch)); else new Function(tab.on)();
 }
-const NAV_ROOT = { home:"home", dstudy:"daily", univ:"exam", tbook:"book", records:"rec" };
+const NAV_ROOT = { home:"home", dstudy:"daily", univ:"exam", tbook:"book", records:"rec", kgame:"game" };
 const NAV_DEEP = { search:"home", subjects:"daily", units:"daily", setup:"daily", plan:"daily", ucourse:"exam",
                    tvols:"book", tchaps:"book", notes:"rec", stats:"rec", analysis:"rec", sync:"rec", profile:"rec" };
 let navFrom = "home";
@@ -7716,6 +7735,7 @@ function navTab(){
   const s = view.screen;
   if(!ST.ref || view.study) return null;
   if(s === "profile" && !view.fromSettings) return null;
+  if(s === "kgame" && typeof KG !== "undefined" && KG && KG.phase === "play") return null;   /* 遊んでいる間は隠す */
   if(s === "result") return navResTab();
   return NAV_ROOT[s] || NAV_DEEP[s] || null;
 }
@@ -7728,7 +7748,7 @@ function navResTab(){
 /* 奥の画面の「戻る」：[ことば, onclick]。各タブの最初の画面は null */
 function navBack(){
   switch(view.screen){
-    case "search":   return ["ホームにもどる", "go('home')"];
+    case "search":   return ["今日の10問にもどる", "go('home')"];
     case "subjects": return ["日々の学習にもどる", "go('dstudy')"];
     case "units":    return ["科目の一覧にもどる", "go('subjects')"];
     case "setup":    return (view.subject && EXAMS[view.subject]) ? ["単元の一覧にもどる", "go('units')"] : ["日々の学習にもどる", "go('dstudy')"];
@@ -7745,7 +7765,7 @@ function navBack(){
 function navResBack(){
   if(view.fromUniv) return view.uc ? ["科目にもどる（続けて解く）", "go('ucourse')"] : ["試験対策にもどる", "go('univ')"];
   if(view.fromSearch) return ["検索結果にもどる", "go('search')"];
-  if(view.daily || view.review) return ["ホームにもどる", "go('home')"];
+  if(view.daily || view.review) return ["今日の10問にもどる", "go('home')"];
   if(view.subject) return ["出題設定にもどる（続けて解く）", "backToSetup()"];
   const t = NAV_TABS.find(x=> x.k === navFrom) || NAV_TABS[0];
   return [t.t + "にもどる", t.on];
@@ -7836,7 +7856,8 @@ function navApply(){
   setupBackBtn = function(){ return navTab() ? "" : sb0.apply(this, arguments); };
   /* v6.85 画面を離れるときに位置を覚え、戻る・やめる・タブのときだけ戻す */
   const g0 = go;
-  go = function(){
+  go = function(screen){
+    if(ST.ref && screen === "gtop") arguments[0] = "home";   /* v6.86 モード選択はやめた */
     const want = navWant; navWant = false;
     if(ST.ref){ try{ navSave(); }catch(e){} }
     const r = g0.apply(this, arguments);
@@ -7845,6 +7866,15 @@ function navApply(){
   };
   const q0 = quitQuiz;
   quitQuiz = function(){ navWant = true; const r = q0.apply(this, arguments); navWant = false; return r; };
+  /* v6.86 ゲーム：遊び始め・メニュー・結果でタブを出し入れ（ゲームは render を通らずに画面を描くため） */
+  ["kgMenu", "kgStart", "kgFinish", "kgQuit"].forEach(name=>{
+    if(typeof window[name] !== "function") return;
+    const f0 = window[name];
+    window[name] = function(){ const r = f0.apply(this, arguments); try{ if(view.screen === "kgame") navBar(navTab()); }catch(e){} return r; };
+  });
+  /* v6.86 弱点だけ10問をやめたので、光る案内の「弱点が先」も出さない（ref=1） */
+  const t0 = gdTarget;
+  gdTarget = function(){ const t = t0.apply(this, arguments); if(ST.ref && t && t.step === "weak") t.step = t.pick ? "order" : ""; return t; };
 })();
 
 /* ---------- v6.85 光らせる単元・学習計画・弱点を新しい習得の基準に合わせる ---------- */
@@ -7951,7 +7981,7 @@ async function resetAll(){
     if(rp === "1"){ ST.ref = 1; } else if(rp === "0"){ delete ST.ref; }
   }catch(e){}
   if(!ST.consentAsked){ view.screen = "profile"; view.firstRun = true; }
-  if(view.screen === "home") view.screen = "gtop";
+  if(view.screen === "home" && !ST.ref) view.screen = "gtop";   /* v6.86 ref=1 はタブから */
   render();
   try{ guideBoot(); }catch(e){}
   flushFlags();
