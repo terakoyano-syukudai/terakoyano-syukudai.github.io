@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v6.86｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v6.87｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -1958,9 +1958,17 @@
   #navtab button.on svg{width:34px;height:26px}
   html.tabbed .uhome .umenu,html.tabbed .uhome .recwrap{display:none}
   /* 続きから・今日の10問・今日の復習を同じ高さで縦に並べる（heroes の枠をなくして3枚を兄弟にする） */
-  html.tabbed .uhome .home-pad{flex:1 1 auto;display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:minmax(0,1fr);gap:12px;min-height:0;padding-bottom:12px}
-  html.tabbed .uhome .heroes{display:contents}
-  html.tabbed .uhome .heroes .daily,html.tabbed .uhome .heroes .rev,html.tabbed .uhome .home-pad > .resume{flex:1 1 0;height:auto;min-height:0;max-height:none;margin:0}
+  /* v6.87 学習タブ：帯 → 続きから → 今日の10問・今日の復習（縦に2枚）→ 学習計画の帯 → 科目別で解く・ランダム（横に2枚） */
+  html.tabbed .uhome .home-pad{flex:1 1 auto;display:flex;flex-direction:column;gap:10px;min-height:0;padding-bottom:12px}
+  html.tabbed .uhome .home-pad > .resume,html.tabbed .uhome .heroes > .resume{flex:1 1 0;height:auto;min-height:0;max-height:none;margin:0}
+  html.tabbed .uhome .heroes{flex:1.3 1 0;display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:minmax(0,1fr);gap:10px;min-height:0;max-height:none;margin:0}
+  html.tabbed .uhome .heroes .daily,html.tabbed .uhome .heroes .rev{flex:1 1 0;height:auto;min-height:0;max-height:none;margin:0}
+  html.tabbed .uhome .hmore{flex:1 1 0;display:flex;flex-direction:column;gap:10px;min-height:0}
+  html.tabbed .uhome .hmore .plband{flex:none;margin:0;width:100%;max-width:none;box-sizing:border-box}
+  html.tabbed .uhome .hbgrid > .tiles,html.wide.tabbed .uhome .hbgrid > .tiles{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  html.tabbed .uhome .hbgrid{flex:1 1 0;padding:0;min-height:0}
+  html.tabbed .uhome .hbgrid > .tiles{flex:1;height:100%;grid-auto-rows:minmax(0,1fr);gap:10px}
+  html.tabbed .uhome .daily-sub{word-break:keep-all;overflow-wrap:anywhere}
   html.tabbed .kg-back{display:none}
   /* 日々の学習が2枚のとき、ランダムは今までどおり青 */
   .bgrid > .tiles > .tile:nth-child(2):last-child .tile-ic{background:#2D4B80}
@@ -2890,7 +2898,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v6.86";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v6.87";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -3375,7 +3383,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v6.86（2026-10-24 更新）</span>
+      <br><span class="mono">アプリ版数：v6.87（2026-10-24 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -7119,6 +7127,9 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v6.87", date:"2026-10-27", items:[
+    { r:1, t:"今日の10問と日々の学習を「学習」タブに", d:"いちばん左のタブ「学習」に、今日の10問・今日の復習と、学習計画・科目別で解く・全単元からランダムをまとめました。タブは5つ（学習・試験対策・講義資料・記録・ゲーム）です。" }
+  ]},
   { v:"v6.86", date:"2026-10-27", items:[
     { r:1, t:"ゲームもタブから", d:"はじめのモード選択をやめ、いちばん下のタブを6つ（今日の10問・日々の学習・試験対策・講義資料・記録・ゲーム）にしました。最初のタブは「今日の10問」で、今日の10問と今日の復習だけを置いています。「弱点だけ10問」は「今日の復習」にまとめました（まちがえた問題は翌日から今日の復習に出ます）。" }
   ]},
@@ -7680,8 +7691,7 @@ const NAV_IC = {
   game:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7.5h10a4.5 4.5 0 0 1 4.4 5.5l-.9 4a2.6 2.6 0 0 1-4.5 1.1L14.3 16H9.7L8 18.1a2.6 2.6 0 0 1-4.5-1.1l-.9-4A4.5 4.5 0 0 1 7 7.5Z"/><path d="M7.5 10.5v3M6 12h3"/><path d="M15.5 11.2h.01M17.5 13h.01"/></svg>`
 };
 const NAV_TABS = [
-  { k:"home",  t:"今日の10問", on:"go('home')" },
-  { k:"daily", t:"日々の学習", on:"go('dstudy')" },
+  { k:"home",  t:"学習",       on:"go('home')" },
   { k:"exam",  t:"試験対策",   on:"view.uEdit=false;go('univ')" },
   { k:"book",  t:"講義資料",   on:"openTextbook()" },
   { k:"rec",   t:"記録",       on:"go('records',{rtab:'rec'})" },
@@ -7728,7 +7738,7 @@ function navTabGo(k){
   if(L) go(L.screen, Object.assign({}, L.patch)); else new Function(tab.on)();
 }
 const NAV_ROOT = { home:"home", dstudy:"daily", univ:"exam", tbook:"book", records:"rec", kgame:"game" };
-const NAV_DEEP = { search:"home", subjects:"daily", units:"daily", setup:"daily", plan:"daily", ucourse:"exam",
+const NAV_DEEP = { search:"home", subjects:"home", units:"home", setup:"home", plan:"home", dstudy:"home", ucourse:"exam",
                    tvols:"book", tchaps:"book", notes:"rec", stats:"rec", analysis:"rec", sync:"rec", profile:"rec" };
 let navFrom = "home";
 function navTab(){
@@ -7742,17 +7752,17 @@ function navTab(){
 function navResTab(){
   if(view.fromUniv) return "exam";
   if(view.fromSearch || view.daily || view.review) return "home";
-  if(view.subject) return "daily";
+  if(view.subject) return "home";
   return navFrom;
 }
 /* 奥の画面の「戻る」：[ことば, onclick]。各タブの最初の画面は null */
 function navBack(){
   switch(view.screen){
-    case "search":   return ["今日の10問にもどる", "go('home')"];
-    case "subjects": return ["日々の学習にもどる", "go('dstudy')"];
+    case "search":   return ["学習にもどる", "go('home')"];
+    case "subjects": return ["学習にもどる", "go('home')"];
     case "units":    return ["科目の一覧にもどる", "go('subjects')"];
-    case "setup":    return (view.subject && EXAMS[view.subject]) ? ["単元の一覧にもどる", "go('units')"] : ["日々の学習にもどる", "go('dstudy')"];
-    case "plan":     return ["日々の学習にもどる", "view.pl=null;go('dstudy')"];
+    case "setup":    return (view.subject && EXAMS[view.subject]) ? ["単元の一覧にもどる", "go('units')"] : ["学習にもどる", "go('home')"];
+    case "plan":     return ["学習にもどる", "view.pl=null;go('home')"];
     case "ucourse":  return ["試験対策にもどる", "view.uEdit=false;go('univ')"];
     case "tvols":    return ["講義資料にもどる", "go('tbook')"];
     case "tchaps":   return ["巻の一覧にもどる", "go('tvols')"];
@@ -7765,7 +7775,7 @@ function navBack(){
 function navResBack(){
   if(view.fromUniv) return view.uc ? ["科目にもどる（続けて解く）", "go('ucourse')"] : ["試験対策にもどる", "go('univ')"];
   if(view.fromSearch) return ["検索結果にもどる", "go('search')"];
-  if(view.daily || view.review) return ["今日の10問にもどる", "go('home')"];
+  if(view.daily || view.review) return ["学習にもどる", "go('home')"];
   if(view.subject) return ["出題設定にもどる（続けて解く）", "backToSetup()"];
   const t = NAV_TABS.find(x=> x.k === navFrom) || NAV_TABS[0];
   return [t.t + "にもどる", t.on];
@@ -7844,6 +7854,8 @@ function navApply(){
   const t = navTab(), root = $app.firstElementChild;
   navBar(t);    /* 先に html.tabbed を付けて、画面の高さをタブのぶん縮めてから組み替える */
   if(t && root){
+    /* v6.87 学習タブ：続きからを今日の10問・今日の復習と同じ縦の列に入れて同じ高さに */
+    if(view.screen === "home"){ const rs = root.querySelector(".home-pad > .resume"), hr = root.querySelector(".home-pad > .heroes"); if(rs && hr) hr.insertBefore(rs, hr.firstChild); }
     if(view.screen === "records") navRecords(root);
     if(view.screen === "setup" && !document.documentElement.classList.contains("wide")) navSetup(root);
     navBackbar(root);
@@ -7857,7 +7869,7 @@ function navApply(){
   /* v6.85 画面を離れるときに位置を覚え、戻る・やめる・タブのときだけ戻す */
   const g0 = go;
   go = function(screen){
-    if(ST.ref && screen === "gtop") arguments[0] = "home";   /* v6.86 モード選択はやめた */
+    if(ST.ref && (screen === "gtop" || screen === "dstudy")) arguments[0] = "home";   /* v6.86 モード選択はやめた・v6.87 日々の学習は学習タブに統合 */
     const want = navWant; navWant = false;
     if(ST.ref){ try{ navSave(); }catch(e){} }
     const r = g0.apply(this, arguments);
@@ -7875,6 +7887,20 @@ function navApply(){
   /* v6.86 弱点だけ10問をやめたので、光る案内の「弱点が先」も出さない（ref=1） */
   const t0 = gdTarget;
   gdTarget = function(){ const t = t0.apply(this, arguments); if(ST.ref && t && t.step === "weak") t.step = t.pick ? "order" : ""; return t; };
+  /* v6.87 学習タブ：上に今日の10問・今日の復習、下に学習計画の帯と 科目別で解く・全単元からランダム */
+  const h0 = Home;
+  Home = function(){
+    const h = h0.apply(this, arguments);
+    if(!ST.ref || h.indexOf('<div class="umenu">') < 0) return h;
+    let plan = ""; try{ plan = PlanBand(); }catch(e){}
+    return h.replace('<div class="umenu">', `<div class="hmore">${plan}<div class="bgrid hbgrid">${HomeTiles()}</div></div><div class="umenu">`);
+  };
+  /* 光る案内：復習が残っていれば今日の復習、なければ 科目別で解く（今日の10問は光らせない） */
+  const s0 = gdSel;
+  gdSel = function(t){
+    if(ST.ref && view.screen === "home") return t.due ? "startReview()" : (t.step === "order" && t.pick ? "go('subjects')" : "");
+    return s0.apply(this, arguments);
+  };
 })();
 
 /* ---------- v6.85 光らせる単元・学習計画・弱点を新しい習得の基準に合わせる ---------- */
