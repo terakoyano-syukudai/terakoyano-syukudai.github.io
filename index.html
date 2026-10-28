@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v6.90｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v6.91｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -1762,6 +1762,13 @@
   .lec-h{font-size:calc(22px * var(--lz));line-height:1.35;margin:0}
   .lec-vis{display:flex;flex-direction:column;gap:10px;align-items:center}
   .lec-fig{display:flex;justify-content:center;width:100%}
+  .lec-img{flex-direction:column;align-items:center}
+  .lec-iw{position:relative;max-width:100%;max-height:calc(46vh * var(--lz));margin:0 auto}
+  .lec-iw img{display:block;width:100%;height:100%;object-fit:contain;border-radius:8px;background:#fff}
+  .lec-lb{position:absolute;transform:translate(-50%,-50%);font-size:calc(12px * var(--lz));font-weight:700;line-height:1.2;color:#1a1a1a;
+    background:rgba(255,255,255,.88);padding:1px 4px;border-radius:4px;white-space:nowrap;pointer-events:none}
+  .lec-cr{font-size:10.5px;color:var(--sub,#777);margin-top:3px;text-align:center}
+  .lec-cr a{color:inherit}
   .lec-fig .figbox{max-width:100%}
   .lec-fig svg{max-width:100%;height:auto;max-height:calc(46vh * var(--lz))}
   .lec-b{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px;font-size:calc(17.5px * var(--lz));line-height:1.55}
@@ -2918,7 +2925,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v6.90";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v6.91";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -3403,7 +3410,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v6.90（2026-10-24 更新）</span>
+      <br><span class="mono">アプリ版数：v6.91（2026-10-24 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -5297,9 +5304,82 @@ function lecV(v, hid, at){
   if(v.type === "big") return `<div class="lv-big lec-it${hid(LS_G["図"] || 0)}"${at("図")}><div class="lv-bv">${lecTx(v.value)}</div><div class="lv-bl">${lecTx(v.label || "")}</div></div>`;
   if(v.type === "vs") return `<div class="lv-vs">${[v.a, v.b].map((c, j)=> it(j, `<div class="lv-vt">${lecTx(c.t)}</div>${(c.b || []).map(x=> `<div class="lv-vb">${lecTx(x)}</div>`).join("")}`, "lv-vc lv-vc" + j)).join("")}</div>`;
   if(v.type === "cards") return `<div class="lv-cards n${v.items.length}">${v.items.map((c, j)=> it(j, `<div class="lv-ct">${lecTx(c.t)}</div><div class="lv-cd">${lecTx(c.d || "")}</div>`, "lv-card")).join("")}</div>`;
+  if(LV_FIG[v.type]) return `<div class="lec-fig lec-it${hid(LS_G["図"] || 0)}"${at("図")}>${lvFig(v)}</div>`;
   return "";
 }
+/* ---------- v6.91 型の図を増やす：mech 作用機序／cycle 循環／tree 分類の木／curve 典型グラフ ---------- */
+const LV_INH = /遮断|阻害|拮抗|抑制|不活性/;
+function lvW(s){ return figLines(String(s || ""), 14, true).reduce((a, l)=> Math.max(a, l.w), 0) + 24; }
+function lvNice(m){ const p = Math.pow(10, Math.floor(Math.log10(m))), r = m / p; return (r <= 1 ? 1 : r <= 2 ? 2 : r <= 2.5 ? 2.5 : r <= 5 ? 5 : 10) * p; }
+const LV_FIG = {
+  mech(v){
+    const ef = (v.effect || []).slice(0, 3), inh = LV_INH.test(v.act || "");
+    const ws = ef.map(lvW), gap = 18, tot = ws.reduce((a, b)=> a + b, 0) + gap * (ef.length - 1);
+    const W = Math.max(480, tot + 40, lvW(v.drug) + 200, lvW(v.target) + 200), cx = W / 2;
+    const n = [["d", cx, 42, v.drug || "", "g:pill"], ["t", cx, 150, v.target || "", "b"]];
+    const e = [["d", "t", inh ? "-" : "+", v.act || "", { fs: 13 }]];
+    let x = cx - tot / 2;
+    ef.forEach((s, k)=>{ n.push(["e" + k, x + ws[k] / 2, 262, s, "y"]); e.push(["t", "e" + k, ">"]); x += ws[k] + gap; });
+    const S = { title: v.drug + "の作用", w: W, h: 300, n, e };
+    if(v.o && FIG_ICON[v.o]) S.i = [[v.o, cx - lvW(v.target) / 2 - 48, 150, 64]];
+    return S;
+  },
+  cycle(v){
+    const it = (v.items || []).slice(0, 6), k = it.length, W = 520, H = 360, cx = W / 2, cy = H / 2;
+    const n = it.map((s, j)=>{ const a = -Math.PI / 2 + j * 2 * Math.PI / k; return ["c" + j, cx + 175 * Math.cos(a), cy + 125 * Math.sin(a), s, "c"]; });
+    const e = it.map((s, j)=> ["c" + j, "c" + ((j + 1) % k), ">>"]);
+    if(v.c) n.push(["m", cx, cy, v.c, "w:none", { fs: 15 }]);
+    return { title: v.c || "循環", w: W, h: H, n, e };
+  },
+  tree(v){
+    const br = (v.items || []).slice(0, 4), ws = br.map(b=> Math.max(lvW(b.t), ...(b.d || []).map(x=> figLines("・" + x, 14, true)[0].w + 24), 110));
+    const gap = 16, tot = ws.reduce((a, b)=> a + b, 0) + gap * (br.length - 1), W = Math.max(480, tot + 30);
+    const hs = br.map(b=> 35 + 15.9 * (b.d || []).length), H = 120 + Math.max(...hs, 40);
+    const n = [["r", W / 2, 38, v.t || "", "v"]], e = [];
+    let x = (W - tot) / 2;
+    br.forEach((b, j)=>{
+      n.push(["b" + j, x + ws[j] / 2, 104 + hs[j] / 2, [b.t].concat((b.d || []).map(s=> "・" + s)).join("\n"), "w", { w: ws[j] }]);
+      e.push(["r.b", "b" + j + ".t", "~"]);
+      x += ws[j] + gap;
+    });
+    return { title: v.t || "分類", w: W, h: H, n, e };
+  },
+  curve(v){
+    const K = { dose: { x: [-3, 3, "濃度（log）", 1], y: "反応（%）", f: l=> `${l.emax || 100}/(1+pow(10,${Math.log10(l.ec50 || 1)}-x))`, lp: 0.62 },
+                iv:   { x: [0, v.t || 12, "時間", (v.t || 12) / 6], y: "血中濃度", f: l=> `${l.c0 || 100}*exp(-${l.k || 0.3}*x)`, lp: 0.3 },
+                po:   { x: [0, v.t || 12, "時間", (v.t || 12) / 6], y: "血中濃度", f: l=>{ const a = l.ka || 1, b = l.ke || 0.2, F = l.f || 100; return a === b ? `${F}*${b}*x*exp(-${b}*x)` : `${F}*${a}/(${a}-${b})*(exp(-${b}*x)-exp(-${a}*x))`; }, lp: 0.45 },
+                mm:   { x: [0, v.t || 10, "基質濃度", (v.t || 10) / 5], y: "反応速度", f: l=> `${l.vmax || 100}*x/(${l.km || 1}+x)`, lp: 0.9 } }[v.kind] || null;
+    if(!K) return null;
+    const ls = (v.lines || [{}]).slice(0, 4), X = K.x.slice();
+    if(v.xn) X[2] = v.xn;
+    let mx = 1;
+    ls.forEach(l=>{ const fn = new Function("x", "with(Math){return (" + K.f(l) + ");}"); for(let i = 0; i <= 200; i++){ const y = fn(X[0] + (X[1] - X[0]) * i / 200); if(isFinite(y)) mx = Math.max(mx, y); } });
+    (v.h || []).forEach(h=>{ mx = Math.max(mx, +h[0] || 0); });
+    const step = lvNice(mx / 4), Y = [0, step * Math.ceil(mx / step - 1e-9), v.yn || K.y, step];
+    /* 線の名前は重ならないよう、空いている隅に凡例として縦に並べる（dose 左上・iv/po 右上・mm 右下） */
+    const R = X[1] - X[0], lx = X[0] + R * ({ dose: 0.03, mm: 0.6 }[v.kind] ?? 0.55);
+    const ly = j=> v.kind === "mm" ? Y[1] * (0.08 + 0.1 * (ls.length - 1 - j)) : Y[1] * (0.93 - 0.1 * j);
+    return { title: v.yn || K.y, w: 480, h: 290, p: [{ at: [56, 40, 330, 200], x: X, y: Y, lp: K.lp,
+      f: ls.map((l, j)=> [K.f(l), l.n ? "― " + l.n : "", "brgv"[j], [lx, ly(j)]]), h: (v.h || []).map(h=> [+h[0], String(h[1] || "")]) }] };
+  }
+};
+const _lvIds = {};
+function lvFig(v){
+  const key = JSON.stringify(v);
+  if(!_lvIds[key]){
+    let S = null; try{ S = LV_FIG[v.type](v); }catch(e){ S = null; }
+    let h = 0; for(let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) | 0;
+    const id = "LV-" + (h >>> 0).toString(36);
+    if(S) FIGDEF[id] = S;
+    _lvIds[key] = id;
+  }
+  return FigBox(_lvIds[key]);
+}
 let LS_G = {};
+/* v6.91 写実的な画像（パブリックドメイン等を自動で集めて文字を消したもの）。ラベルはアプリが重ねる（lb：[左%,上%,"文字"]） */
+function lecImg(im, hidc, atg){
+  return `<div class="lec-fig lec-img lec-it${hidc}"${atg}><div class="lec-iw" style="aspect-ratio:${im.w}/${im.h}"><img src="${im.u}" alt="" loading="lazy" draggable="false">${(im.lb || []).map(l=> `<span class="lec-lb" style="left:${l[0]}%;top:${l[1]}%">${lecTx(l[2])}</span>`).join("")}</div><div class="lec-cr">図：${im.src ? `<a href="${lecEsc(im.src)}" target="_blank" rel="noopener">${lecEsc(im.cr)}</a>` : lecEsc(im.cr)}</div></div>`;
+}
 /* v6.70 立ち絵（字幕の左の話し手）と口パク。音声ファイルは au.m（センチ秒の差分：開く・長さ・閉じる・長さ…）、
    端末の読み上げは話している間だけ一定の間隔で開け閉め */
 function lecChara(){
@@ -5352,7 +5432,7 @@ function Lec(){
   const G = {}; (S.k || []).forEach((m, j)=>{ if(m) G[m] = j; }); LS_G = G;
   const hid = g=> (LS.on && LS.seg >= 0 && g > LS.seg) ? " lec-hid" : "";
   const at = (m)=> { const g = G[m] || 0; return ` data-g="${g}"`; };
-  const vis = (S.f || S.tb || S.v) && S.b && S.b.length;
+  const vis = (S.f || S.tb || S.v || S.img) && S.b && S.b.length;
   const cur = LS.on && LS.seg >= 0 ? LS.seg : (LS.last || 0);
   return `<div class="lec">
     <div class="lec-head"><span class="lec-u">${lecEsc(L.t)}</span>${L.ok ? "" : `<span class="lec-mi">未確認</span>`}<span class="lec-n">${i + 1} / ${N}</span></div>
@@ -5360,8 +5440,9 @@ function Lec(){
     <div class="lec-card${vis ? " lec-two" : ""}">
       <h2 class="lec-h">${lecTx(S.h)}</h2>
       ${(S.b && S.b.length) ? `<ul class="lec-b">${S.b.map((b, j)=> `<li class="lec-it${hid(G["b" + (j + 1)] || 0)}"${at("b" + (j + 1))}>${lecTx(b)}</li>`).join("")}</ul>` : ""}
-      ${(S.f || S.tb || S.v) ? `<div class="lec-vis">
+      ${(S.f || S.tb || S.v || S.img) ? `<div class="lec-vis">
         ${S.v ? lecV(S.v, hid, at) : ""}
+        ${S.img ? lecImg(S.img, hid(G["図"] || 0), at("図")) : ""}
         ${S.f ? `<div class="lec-fig lec-it${hid(G["図"] || 0)}"${at("図")}>${FigBox(S.f)}</div>` : ""}
         ${S.tb ? `<div class="lec-tbw lec-it${hid(G["表"] || 0)}"${at("表")}><table class="lec-tb">${lecTable(S.tb)}</table></div>` : ""}
       </div>` : ""}
@@ -5415,7 +5496,7 @@ function Lec(){
 const AUD_CACHE = "terakoya-a";
 const AUD = { have:0, miss:[], busy:false, n:0, of:0, err:0, msg:"", scanned:false };
 function audName(u){ return String(u).split("/").pop().split("?")[0]; }
-function audAll(){ const o = []; for(const k in LECS){ const au = LECS[k].au; if(au && lecShown(k)) o.push({ u:au.u, sz:au.sz||0 }); } return o; }
+function audAll(){ const o = []; for(const k in LECS){ const au = LECS[k].au; if(!lecShown(k)) continue; if(au) o.push({ u:au.u, sz:au.sz||0 }); (LECS[k].s || []).forEach(x=>{ if(x.img) o.push({ u:x.img.u, sz:x.img.sz||0 }); }); } return o; }
 function audMB(b){ return Math.max(1, Math.round(b / 1048576)); }
 async function audScan(){
   const L = audAll();
@@ -5423,7 +5504,7 @@ async function audScan(){
   try{
     const c = await caches.open(AUD_CACHE), ks = await c.keys();
     const got = new Set(ks.map(r=>audName(r.url)));
-    const used = new Set(); for(const k in LECS){ const au = LECS[k].au; if(au) used.add(audName(au.u)); }
+    const used = new Set(); for(const k in LECS){ const au = LECS[k].au; if(au) used.add(audName(au.u)); (LECS[k].s || []).forEach(x=>{ if(x.img) used.add(audName(x.img.u)); }); }
     for(const r of ks){ if(!used.has(audName(r.url))) c.delete(r).catch(()=>{}); }
     AUD.miss = L.filter(x=>!got.has(audName(x.u)));
     AUD.have = L.length - AUD.miss.length;
@@ -5451,14 +5532,14 @@ async function audSave(force){
         if(!res.ok) throw 0;
         const b = await res.blob();
         if(!b.size) throw 0;
-        await c.put(x.u, new Response(b, { headers:{ "Content-Type":"audio/mpeg", "Content-Length":String(b.size) } }));
+        await c.put(x.u, new Response(b, { headers:{ "Content-Type":/\.webp$/.test(x.u) ? "image/webp" : "audio/mpeg", "Content-Length":String(b.size) } }));
       }catch(e){ AUD.err++; if(e && e.name === "QuotaExceededError"){ AUD.msg = "端末の空き容量が足りません。空きを作ってから「入れ直す」を押してください。"; break; } }
       AUD.n++; audPaint();
     }
   }catch(e){ AUD.msg = "保存できませんでした。"; }
   AUD.busy = false;
   await audScan();
-  if(!AUD.msg && AUD.err) AUD.msg = AUD.err + "本を保存できませんでした。電波のよい所で「入れ直す」を押してください。";
+  if(!AUD.msg && AUD.err) AUD.msg = AUD.err + "件を保存できませんでした。電波のよい所で「入れ直す」を押してください。";
   audPaint();
 }
 function AudRow(){
@@ -5466,13 +5547,13 @@ function AudRow(){
   if(!L.length) return `<div id="audrow"></div>`;
   const tot = L.reduce((a,x)=>a + x.sz, 0), mb = AUD.miss.reduce((a,x)=>a + x.sz, 0);
   let s, btn;
-  if(AUD.busy){ s = `保存しています… ${AUD.n} / ${AUD.of} 本`; btn = ""; }
+  if(AUD.busy){ s = `保存しています… ${AUD.n} / ${AUD.of} 件`; btn = ""; }
   else if(!AUD.scanned){ s = "確かめています…"; btn = ""; }
   else if(AUD.miss.length){
-    s = `保存済み ${AUD.have} / ${L.length} 本。残り約${audMB(mb)}MB`;
+    s = `保存済み ${AUD.have} / ${L.length} 件。残り約${audMB(mb)}MB`;
     btn = `<span class="seg themeseg"><button onclick="ST.aud=1;saveProgress(true);audSave(false)">保存する</button></span>`;
   }else{
-    s = `全${L.length}本を保存済み（約${audMB(tot)}MB）。電波がなくても音声つきで聞けます`;
+    s = `全${L.length}件を保存済み（約${audMB(tot)}MB）。電波がなくても音声・画像つきで見られます`;
     btn = `<span class="seg themeseg"><button onclick="if(confirm('音声を消して、すべて取り直します（約${audMB(tot)}MB の通信）。よろしいですか？'))audSave(true)">入れ直す</button></span>`;
   }
   return `<div class="row themerow" id="audrow">
@@ -5489,7 +5570,7 @@ function audAsk(){
   d.id = "audask";
   d.innerHTML = `<div class="audbox" role="dialog" aria-modal="true">
     <div class="audt">講義の音声を端末に保存しますか？</div>
-    <p>全${L.length}本・約${mb}MB。保存すると、電波がなくても講義を音声つきで聞けます。新しい講義の音声も、あとから自動で足します。</p>
+    <p>全${L.length}件・約${mb}MB。保存すると、電波がなくても講義を音声・画像つきで見られます。新しい講義の音声も、あとから自動で足します。</p>
     <p><b>携帯回線だと通信量を使うので、Wi-Fi につないでから押してください。</b></p>
     ${audIOS() && !audStandalone() ? `<p>iPhone・iPad は、Safari の共有ボタン →「ホーム画面に追加」から開くと、保存が消されにくくなります。</p>` : ""}
     <div class="audbtns"><button class="cta" onclick="audAnswer(1)">保存する</button><button class="cta ghost" onclick="audAnswer(0)">あとで（記録・設定から）</button></div>
@@ -7176,6 +7257,8 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v6.91", date:"2026-10-28", items:[
+    { t:"講義の図が増えました", d:"薬の作用機序・循環・分類・典型的なグラフ（用量反応・血中濃度・酵素反応）を講義のスライドに描けるようにしました。新しく作る講義から順に使われます。" } ] },
   { v:"v6.90", date:"2026-10-28", items:[
     { r:0, t:"講義資料（統合教材 巻01〜08・衛生の解説資料）を公開", d:"日々の学習の「講義資料を開く」から読めます。問題の解説の「周辺ごと学ぶ」、結果画面の「教材で復習する」、解説の上の図、検索での用語・本文も使えるようになりました。ほかの巻は確認が済みしだい公開します。" }
   ]},
