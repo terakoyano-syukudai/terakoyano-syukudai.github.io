@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.12｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.12.1｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -3846,7 +3846,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.12";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.12.1";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -4326,7 +4326,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.12（2026-11-09 更新）</span>
+      <br><span class="mono">アプリ版数：v7.12.1（2026-11-09 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -11565,6 +11565,33 @@ function tierPlaceHtml(out){
     const A = $app, vis = el=> r1Vis(el);
     return [...A.querySelectorAll(".r1x-rv, .r1x-tg")].find(vis)
       || [...A.querySelectorAll(".r1s-c")].find(b=> vis(b) && !b.classList.contains("dim") && !b.classList.contains("off")) || null;
+  };
+})();
+
+/* ---------- v7.13 おすすめは今日できる問題から（同じ20問のループを直す、ref=1） ---------- */
+function r1Act(q){
+  const r = ST.srs && ST.srs[q.id];
+  return !r || (!isMastered(q.id) && r[1] <= srsToday());   /* 未出題 か 期限の来た未習得 */
+}
+(function(){
+  const rc0 = r1RecCfg, rb0 = r1Build;
+  r1RecCfg = function(s, units){
+    let c = rc0.apply(this, arguments);
+    if(!c.tr){
+      /* ★の下げ方：今日できる問題がある★を先に */
+      for(const st of [4, 3, 0]){
+        const c2 = Object.assign({}, c, { st });
+        if(rb0(s, units, c2, 0).some(r1Act)){ c = c2; break; }
+      }
+    }
+    return Object.assign({}, c, { td: 1 });
+  };
+  r1Build = function(s, units, c, size){
+    if(!c || !c.td) return rb0.apply(this, arguments);
+    const full = rb0(s, units, c, 0), act = full.filter(r1Act);
+    const out = act.length ? act : full;
+    const n = size === undefined ? c.n : size;
+    return n ? out.slice(0, n) : out;
   };
 })();
 
