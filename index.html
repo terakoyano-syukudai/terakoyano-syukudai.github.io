@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.14｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.15｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -4062,7 +4062,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.14";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.15";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -4542,7 +4542,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.14（2026-11-09 更新）</span>
+      <br><span class="mono">アプリ版数：v7.15（2026-11-09 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -8380,6 +8380,9 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.15", date:"2026-11-09", items:[
+    { t:"送信設定に 年齢・大学・目的", d:"年代を年齢に変え、大学といちばんの目的を足しました。まだ答えていない人には、一度だけ送信設定の画面が出ます。大学に「ほか」を選んだ人の今日の10問には、大学の問題を混ぜません。" },
+  ]},
   { v:"v7.14", date:"2026-11-09", items:[
     { t:"問題を解く画面をそろえました", d:"答えたあとは、下から画面の8割の解説シートが出ます。正解・あなたの答え・ほかの選択肢・解説の順に並び、「次の問題へ」はいつも一番下です。横画面では右の列に出ます。" },
     { r:1, t:"おすすめの出題を直しました", d:"光るボタンどおりに解くと同じ20問がくり返される不具合を直しました。おすすめは、まだ解いていない問題と復習の日が来た問題から出ます。" },
@@ -11474,7 +11477,7 @@ dueQuestions = function(){ const d = dueQ0.apply(this, arguments); return ST.ref
 })();
 
 /* ---------- v7.12 5段（ref=1）：単元ごとの段・基礎の一問一答 ---------- */
-const TIER_FILE = "./u/tier-e7604cf518.json";
+const TIER_FILE = "./u/tier-5f66276c78.json";
 const TIER_NM = ["入門", "基礎", "標準", "応用", "難関"];
 const TIER_UP = 0.75;
 let TIERD = null, tierSt = "idle", KQ = [], _kqById = {}, _tierIx = null;
@@ -12222,7 +12225,7 @@ function qsApply(){
   next = function(){ view.qsall = null; view.qsf = null; return n0.apply(this, arguments); };
 })();
 
-/* ---------- v7.14 入口のアンケート：大学・目的・年齢（ref=1） ---------- */
+/* ---------- v7.14 入口のアンケート：大学・目的・年齢（v7.15 から全員） ---------- */
 const AGES_Y = ["18", "19", "20", "21", "22", "23〜25", "26以上", "回答しない"];
 const UNIVS = ["武蔵野大学", "ほか"];
 const PURPOSES = ["授業についていく", "定期試験", "CBT", "国試"];
@@ -12236,7 +12239,6 @@ function profSeg(arr, cur, fn){
   const p0 = Profile;
   Profile = function(){
     let h = p0.apply(this, arguments);
-    if(!r1On()) return h;
     const p = ST.profile || {};
     /* 年代の行を 年齢 に置きかえ、その下に 大学・目的 */
     const a = h.indexOf('<div class="sect-label">年代</div>'), b = h.indexOf('<div class="sect-label">性別</div>');
@@ -12245,16 +12247,51 @@ function profSeg(arr, cur, fn){
     const tail = `<div class="sect-label">大学</div>${profSeg(UNIVS, p.univ, "setUniv")}<div class="sect-label">いちばんの目的</div>${profSeg(PURPOSES, p.purpose, "setPurpose")}`;
     const c = h.indexOf("</div>", h.indexOf('<div class="seg"', b)) + 6;
     h = h.slice(0, a) + add + h.slice(b, c) + tail + h.slice(c);
-    return h.split("学年・年代・性別").join("学年・年齢・性別・大学・目的");
+    h = h.split("学年・年代・性別").join("学年・年齢・性別・大学・目的");
+    if(view.profAsk){
+      /* 今まで使っている人に1回だけ：説明は1行、戻るボタンは出さない */
+      h = h.replace(/<p style="[^"]*">\s*学年・年齢・性別・大学・目的と正答率を匿名で送信するかどうかを、ここで変更できます。[\s\S]*?<\/p>/,
+        `<p class="profask">項目が増えました。答えて保存してください。</p>`);
+      h = h.replace(/<div class="verdict"[\s\S]*<\/div>\s*<\/div>\s*$/, `<div class="verdict" style="animation:none;display:flex;flex-direction:column;gap:9px">
+      <button class="cta" onclick="saveProfile(true)">送信に同意して保存する</button>
+      <button class="cta ghost" onclick="saveProfile(false)">送信せずに続ける</button></div></div>`);
+    }
+    return h;
   };
 })();
 /* 今日の10問：大学の問題は武蔵野大学の人だけ（答えていない人は今までどおり） */
 (function(){
   const dp = dailyPick;
   dailyPick = function(key){
-    if(r1On() && ST.profile && ST.profile.univ && ST.profile.univ !== "武蔵野大学") return dailyPick0(key);
+    if(ST.profile && ST.profile.univ && ST.profile.univ !== "武蔵野大学") return dailyPick0(key);
     return dp.apply(this, arguments);
   };
+})();
+/* 今まで使っている人：次に開いたとき送信設定を1回だけ（大学をまだ答えていない人） */
+(function(){
+  const g0 = go;
+  go = function(screen, patch){ if(!(patch && "profAsk" in patch)) view.profAsk = false; return g0.apply(this, arguments); };
+})();
+function profAskWant(){
+  return !!ST.consentAsked && !ST.prof2Asked && !(ST.profile && ST.profile.univ) && view.screen === "home" && !view.firstRun
+    && !document.querySelector(".gd") && !document.querySelector(".obd");
+}
+function profAskCheck(){
+  try{
+    if(!profAskWant()) return;
+    ST.prof2Asked = Date.now(); saveProgress(true);
+    go("profile", { profAsk:true, firstRun:false });
+  }catch(e){}
+}
+(function(){
+  const r0 = render;
+  render = function(){ const out = r0.apply(this, arguments); if(!ST.prof2Asked) setTimeout(profAskCheck, 0); return out; };
+  const sp0 = saveProfile;
+  saveProfile = function(){ const was = !!view.profAsk; view.profAsk = false; const r = sp0.apply(this, arguments); if(was) ST.prof2Asked = ST.prof2Asked || Date.now(); return r; };
+  if(typeof guideClose === "function"){ const gc0 = guideClose; guideClose = function(){ const r = gc0.apply(this, arguments); setTimeout(profAskCheck, 50); return r; }; }
+  /* はじめて使う人は入口で答えるので、もう聞かない */
+  const sp1 = saveProfile;
+  saveProfile = function(){ if(view.firstRun) ST.prof2Asked = Date.now(); return sp1.apply(this, arguments); };
 })();
 /* 送る記録に 段・講義の種類 */
 function sendTierLabel(){
