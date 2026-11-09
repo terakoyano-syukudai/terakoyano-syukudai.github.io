@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.13｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.14｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -2833,6 +2833,220 @@
   html.r1 .r1tp-hint{margin:0 2px 6px;font:700 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--jp);color:var(--glow,var(--act))}
   html.r1 .r1sh-tauto{align-self:flex-end;padding:4px 10px;border:0;border-radius:10px;background:var(--surface);color:var(--act);font:600 max(var(--fmin,0px),calc(13px*var(--fs,1))) var(--jp)}
 
+  /* ---------- v7.13 ゲームを選ぶ・薬草園テラリウム（ref=1） ---------- */
+  html.r1{--hg-glass:rgba(214,236,230,.42);--hg-rim:#9DB8B0;--hg-soil:#7A5A3C;--hg-base:#B9A58A;--hg-leaf:#4E9A4C;--hg-leaf2:#3D7E3B;--hg-stem:#5B8A44;--hg-seed:#8B5E34}
+  html.r1[data-theme="dark"]{--hg-glass:rgba(120,170,160,.16);--hg-rim:#5E7F78;--hg-soil:#5B4330;--hg-base:#6E6152;--hg-leaf:#66B862;--hg-leaf2:#4E9A4C;--hg-stem:#79A85F;--hg-seed:#A8774A}
+  html.r1 .hg-svg{display:block;width:100%;height:100%}
+  html.r1 .hg-glass{fill:var(--hg-glass)}
+  html.r1 .hg-rim{stroke:var(--hg-rim);stroke-width:2.5}
+  html.r1 .hg-shine{stroke:#fff;stroke-opacity:.55;stroke-width:4;stroke-linecap:round}
+  html.r1 .hg-knob{fill:var(--hg-rim)}
+  html.r1 .hg-base{fill:var(--hg-base)}
+  html.r1 .hg-soil{fill:var(--hg-soil)}
+  html.r1 .hg-seed{fill:var(--hg-seed)}
+  html.r1 .hg-stem{stroke:var(--hg-stem);stroke-width:3.2;stroke-linecap:round}
+  html.r1 .hg-leaf{fill:var(--hg-leaf)}
+  html.r1 .hg-leaf:nth-of-type(2n){fill:var(--hg-leaf2)}
+  html.r1 .hg-fc{fill:#FCD34D}
+  html.r1 .hg-spark path{fill:#FBBF24}
+  html.r1 .hg-drops path{fill:#7CC3E8;opacity:0}
+  html.r1 .hg-ray{opacity:.55}
+  html.r1 .hg-sway{transform-box:view-box;transform-origin:100px 190px;animation:hgSway 4.5s ease-in-out infinite}
+  html.r1 .hg-drops path{animation:hgDrop 3.6s ease-in infinite}
+  html.r1 .hg-drops path:nth-child(2){animation-delay:1.2s}
+  html.r1 .hg-drops path:nth-child(3){animation-delay:2.4s}
+  html.r1 .hg-ray{animation:hgRay 6s ease-in-out infinite}
+  html.r1 .hg-spark{animation:hgSpark 1.8s ease-in-out infinite}
+  @keyframes hgSway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+  @keyframes hgDrop{0%{opacity:0;transform:translateY(0)}15%{opacity:.9}80%{opacity:.8}100%{opacity:0;transform:translateY(120px)}}
+  @keyframes hgRay{0%,100%{opacity:.35}50%{opacity:.7}}
+  @keyframes hgSpark{0%,100%{opacity:.3}50%{opacity:1}}
+  @media (prefers-reduced-motion: reduce){ html.r1 .hg-sway,html.r1 .hg-drops path,html.r1 .hg-ray,html.r1 .hg-spark,html.r1 .hg-glow,html.r1 #hgToast{animation:none !important;transition:none !important} html.r1 .hg-drops{display:none} }
+  html.r1 .hg-stars{display:inline-flex;gap:1px;font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));letter-spacing:0}
+  html.r1 .hg-stars i{font-style:normal;color:var(--line)}
+  html.r1 .hg-stars i.on{color:#F59E0B}
+
+  /* ゲームを選ぶ */
+  html.r1 .gsel{height:var(--appH,100dvh);max-width:560px;margin:0 auto;padding:12px 14px 14px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px}
+  html.r1 .gsel-top{flex:1 1 0;min-height:0;display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 16px 14px;border:0;border-radius:22px;
+    background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+  html.r1 .gsel-h{align-self:flex-start;font:800 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head)}
+  html.r1 .gsel-dome{flex:1 1 0;min-height:0;width:100%;max-width:240px;display:flex}
+  html.r1 .gsel-st{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));color:var(--ink-2)}
+  html.r1 .gsel-st b{font:800 max(var(--fmin,0px),calc(18px*var(--fs,1))) var(--head);color:var(--ink)}
+  html.r1 .gsel-st .hg-hot{font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)));color:var(--glow)}
+  html.r1 .gsel-grid{flex:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+  html.r1 .gsel-c{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto auto;column-gap:10px;row-gap:2px;align-items:center;text-align:left;
+    min-height:104px;padding:14px;border:0;border-radius:18px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+  html.r1 .gsel-ic{grid-row:1 / span 2;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center}
+  html.r1 .gsel-ic svg{width:24px;height:24px}
+  html.r1 .gsel-t{font:800 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--head)}
+  html.r1 .gsel-s{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .gsel-r{grid-column:1 / span 2;margin-top:6px;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--ink-2)}
+  html.r1 .gsel-r b{font:800 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--head);color:var(--ink)}
+  html.r1 .gsel-kampo .gsel-ic{background:var(--shoyaku-soft);color:var(--shoyaku)}
+  html.r1 .gsel-garden .gsel-ic{background:var(--kankyo-soft);color:var(--kankyo)}
+  html.r1 .gsel-soon{cursor:default;opacity:.55}
+  html.r1 .gsel-soon .gsel-ic{background:var(--line);color:var(--muted)}
+  html.r1 .gsel-c:active:not(:disabled),html.r1 .gsel-top:active{transform:scale(.985)}
+  html.r1 #kg .kg-menu > .kg-back.kg-gsel{display:block}
+
+  /* 薬草園 */
+  html.r1 #hg{position:fixed;top:0;left:var(--sideW,0px);right:0;bottom:var(--tabh,0px);z-index:40;background:var(--paper);color:var(--ink)}
+  html.r1 .hg-scr{height:100%;max-width:520px;margin:0 auto;padding:calc(12px + env(safe-area-inset-top)) 14px 12px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;position:relative}
+  html.r1 .hg-head{flex:none;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  html.r1 .hg-name{display:flex;align-items:baseline;gap:8px;min-width:0}
+  html.r1 .hg-name b{font:800 max(var(--fmin,0px),calc(22px*var(--fs,1))) var(--head)}
+  html.r1 .hg-name small{font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));color:var(--muted);white-space:nowrap}
+  html.r1 .hg-zk{flex:none;height:36px;padding:0 12px;border:1px solid var(--line);border-radius:99px;background:var(--surface);color:var(--ink-2);font:700 max(var(--fmin,0px),calc(13px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .hg-zk b{color:var(--ink)}
+  html.r1 .hg-dome{flex:1 1 0;min-height:0;display:flex;justify-content:center;padding:4px 0;border-radius:22px;
+    background:radial-gradient(120% 80% at 30% 10%,var(--surface),transparent 70%)}
+  html.r1 .hg-dome .hg-svg{max-width:340px}
+  html.r1 .hg-meter{flex:none;padding:12px 14px;border-radius:18px;background:var(--surface)}
+  html.r1 .hg-lbl{display:flex;justify-content:space-between;align-items:baseline;font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));color:var(--ink-2)}
+  html.r1 .hg-stg{font:800 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--head);color:var(--ink)}
+  html.r1 #hgTime{font:700 max(var(--fmin,0px),calc(15px*var(--fs,1))) var(--head);font-variant-numeric:tabular-nums;color:var(--ink)}
+  html.r1 .hg-bar{position:relative;height:12px;margin:8px 0 6px;border-radius:99px;background:var(--line);overflow:hidden}
+  html.r1 .hg-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--kankyo);transition:width .9s linear}
+  html.r1 .hg-bar u{position:absolute;top:0;bottom:0;width:2px;background:var(--surface);opacity:.8}
+  html.r1 .hg-sub{display:flex;justify-content:space-between;align-items:center;font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));color:var(--ink-2)}
+  html.r1 .hg-sub b{font:800 max(var(--fmin,0px),calc(15px*var(--fs,1))) var(--head);color:var(--ink)}
+  html.r1 .hg-sub small{color:var(--kankyo);font-weight:700}
+  html.r1 .hg-big{font:800 max(var(--fmin,0px),calc(40px*var(--fs,1))) var(--head);text-align:center;font-variant-numeric:tabular-nums;padding:4px 0 0}
+  html.r1 .hg-act{flex:none;display:flex;gap:10px}
+  html.r1.hand-l .hg-act{flex-direction:row-reverse}
+  html.r1 .hg-btn{flex:1 1 0;min-height:52px;padding:0 12px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);font:800 max(var(--fmin,0px),calc(15px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .hg-main{flex:1.6 1 0;background:var(--act);border-color:var(--act);color:var(--act-ink)}
+  html.r1 .hg-glow{box-shadow:0 0 0 3px var(--glow)}
+  html.r1 .hg-cardwrap{position:absolute;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;padding:14px;background:rgba(10,14,24,.45)}
+  html.r1 .hg-card{width:100%;max-width:420px;max-height:100%;overflow-y:auto;box-sizing:border-box;padding:16px;border-radius:20px;background:var(--surface);color:var(--ink);
+    border-top:6px solid var(--hgc,var(--kankyo));box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  html.r1 .hg-ch{display:flex;gap:12px;align-items:center}
+  html.r1 .hg-cpic{flex:none;width:84px;height:94px;display:flex}
+  html.r1 .hg-cn{display:flex;flex-direction:column;gap:2px;min-width:0}
+  html.r1 .hg-cn small{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .hg-cn b{font:800 max(var(--fmin,0px),calc(24px*var(--fs,1))) var(--head);color:var(--hgc,var(--ink))}
+  html.r1 .hg-cn > span:not(.hg-stars){font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));color:var(--ink-2)}
+  html.r1 .hg-cn .hg-stars{font-size:max(var(--fmin,0px),calc(18px*var(--fs,1)))}
+  html.r1 .hg-cl{margin:12px 0 0;display:flex;flex-direction:column;gap:8px}
+  html.r1 .hg-cr{display:grid;grid-template-columns:5.2em minmax(0,1fr);gap:8px;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));line-height:1.5}
+  html.r1 .hg-cr dt{color:var(--muted);font-weight:700}
+  html.r1 .hg-cr dd{margin:0}
+  html.r1 .hg-tip{margin-top:12px;padding:10px 12px;border-radius:12px;background:var(--act-soft);font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));line-height:1.6}
+  html.r1 .hg-tip b{display:inline-block;margin-right:6px;padding:0 6px;border-radius:6px;background:var(--act);color:var(--act-ink);font:800 max(var(--fmin,0px),calc(12px*var(--fs,1)))/1.6 var(--head)}
+  html.r1 .hg-cf{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
+  html.r1 .hg-cf .hg-btn{flex:0 0 auto;min-width:120px}
+  html.r1 .hg-brk{font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));color:var(--ink-2)}
+  html.r1 .hg-brk b{font:800 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head);color:var(--ink);font-variant-numeric:tabular-nums}
+  html.r1 .hg-bh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+  html.r1 .hg-bh b{font:800 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head)}
+  html.r1 .hg-bh span{color:var(--muted);font-weight:700}
+  html.r1 .hg-bookc{border-top-color:var(--kankyo)}
+  html.r1 .hg-bg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  html.r1 .hg-bi{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+  html.r1 .hg-bi b{font:800 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head)}
+  html.r1 .hg-bi.off{cursor:default;opacity:.5}
+  html.r1 .hg-bpic{width:64px;height:72px;display:flex}
+  html.r1 #hgToast{position:fixed;left:50%;top:calc(10px + env(safe-area-inset-top));z-index:300;display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:99px;
+    background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:0 6px 18px rgba(0,0,0,.18);font:800 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head);
+    transform:translate(-50%,-140%);opacity:0;transition:transform .25s,opacity .25s;pointer-events:none}
+  html.r1 #hgToast.show{transform:translate(-50%,0);opacity:1}
+  html.r1 #hgToast.sm{font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));padding:6px 12px}
+  html.r1 #hgToast svg{width:18px;height:18px;color:var(--kankyo)}
+  html.r1 #navtab button.hg-on svg,html.r1 #navtab button.hg-bloom svg{overflow:visible}
+  html.r1 #navtab button{position:relative}
+  html.r1 #navtab button.hg-on::after,html.r1 #navtab button.hg-bloom::after{content:"";position:absolute;top:6px;left:calc(50% + 9px);width:8px;height:8px;border-radius:50%;background:var(--kankyo);border:2px solid var(--surface)}
+  html.r1 #navtab button.hg-bloom::after{background:var(--glow)}
+
+  /* ---------- v7.14 問題を解く画面をそろえる・8割のシート（全員） ---------- */
+  .qscreen.qs .qfit::before{display:none !important}
+  /* 問題文は答える前と同じ位置（ref=1 の答えたあとの詰めを打ち消す） */
+  html.r1:not(.wide) .qscreen.qs.qdone .qbody{padding-top:18px}
+  html.r1:not(.wide) .qscreen.qs.qdone .qtext{margin-top:12px !important}
+  .qscreen.qs .qs-tags{display:flex;align-items:center;flex-wrap:nowrap;gap:6px;min-width:0;overflow:hidden;white-space:nowrap}
+  .qscreen.qs .qs-tags > *{flex:none}
+  .qscreen.qs .qs-two{padding:2px 8px;border-radius:6px;background:#FDF0C8;color:#8A5A00;font-weight:800;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)))}
+  .qscreen.qs .opts > .cta.qs-go{margin-top:auto}
+  .qscreen.qs .opts > .cta.qs-go:disabled{opacity:1;background:var(--line);color:var(--muted)}
+  /* ref=0 の上の帯 */
+  html:not(.r1) .qscreen.qs .qhead-row .qcount,html:not(.r1) .qscreen.qs .qhead-row .qscore{display:none}
+  html:not(.r1) .qscreen.qs .qhead .back{width:auto;min-width:64px;padding:0 12px;font-weight:700;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)))}
+  .qscreen.qs .qs-m{flex:1;min-width:0;display:flex;align-items:center;gap:8px;margin-left:8px}
+  .qscreen.qs .qs-m i{width:22px;height:22px;flex:none;border-radius:7px;background:var(--sc);transform:rotate(-4deg)}
+  .qscreen.qs .qs-m > span{display:flex;flex-direction:column;min-width:0}
+  .qscreen.qs .qs-m b{font-weight:800;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .qscreen.qs .qs-m small{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));line-height:1.3;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .qscreen.qs .qs-n{flex:none;font-weight:700;font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));color:var(--muted)}
+  .qscreen.qs .qs-n b{font-size:max(var(--fmin,0px),calc(18px*var(--fs,1)));color:var(--ink)}
+  /* シート */
+  .qscreen.qs .verdict.qs-sheet{display:flex;flex-direction:column;gap:0;padding:6px 16px 12px;box-sizing:border-box;background:var(--surface) !important;
+    border-top:0 !important;border-radius:20px 20px 0 0;box-shadow:0 -4px 0 0 var(--ng),0 -10px 30px -12px rgba(0,0,0,.35)}
+  .qscreen.qs .verdict.qs-sheet.v-ok{box-shadow:0 -4px 0 0 var(--ok),0 -10px 30px -12px rgba(0,0,0,.35)}
+  .qscreen.qs .verdict.qs-sheet.v-skip{box-shadow:0 -4px 0 0 var(--skip),0 -10px 30px -12px rgba(0,0,0,.35)}
+  html:not(.wide) .qscreen.qs .verdict.qs-sheet{min-height:var(--qsmin,80dvh) !important;max-height:var(--qsmax,92dvh) !important;height:auto !important}
+  .qscreen.qs .qs-grip{flex:none;width:40px;height:5px;margin:2px auto 8px;border-radius:3px;background:var(--line)}
+  .qscreen.qs .qs-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:8px;padding-bottom:6px}
+  .qscreen.qs .verdict.qs-sheet > .cta{flex:none;margin-top:10px}
+  .qscreen.qs .qs-h{display:flex;align-items:center;gap:10px;min-width:0}
+  .qscreen.qs .qs-h .vmark{flex:none;margin:0}
+  .qscreen.qs .qs-h .vname{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+  .qscreen.qs .qs-l{margin-top:4px;font-weight:700;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  .qscreen.qs .qs-q{padding:10px 12px;border-radius:12px;background:var(--paper)}
+  .qscreen.qs .qs-qt{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));line-height:1.65;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;white-space:pre-wrap}
+  .qscreen.qs .qs-q.open .qs-qt{display:block;-webkit-line-clamp:unset}
+  .qscreen.qs .qs-all{display:block;margin:4px 0 0 auto;padding:2px 4px;border:0;background:none;color:var(--act,var(--accent));font-weight:700;font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));cursor:pointer}
+  .qscreen.qs .qs-c{padding:10px 12px;border-radius:12px;border-left:5px solid}
+  .qscreen.qs .qs-c.ok{background:var(--ok-soft);border-color:var(--ok)}
+  .qscreen.qs .qs-c.ng{background:var(--ng-soft);border-color:var(--ng)}
+  .qscreen.qs .qs-ct{display:flex;align-items:baseline;gap:8px;font-weight:800;font-size:max(var(--fmin,0px),calc(15px*var(--fs,1)));line-height:1.5}
+  .qscreen.qs .qs-ct > span:last-child{flex:1;min-width:0}
+  .qscreen.qs .qs-b{flex:none;padding:1px 7px;border-radius:6px;color:#fff;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)))}
+  .qscreen.qs .qs-c.ok .qs-b{background:var(--ok)}
+  .qscreen.qs .qs-c.ng .qs-b{background:var(--ng)}
+  .qscreen.qs .qs-x{margin-top:4px;font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));line-height:1.6;color:var(--ink)}
+  .qscreen.qs .qs-x::before{content:"→ ";color:var(--ng);font-weight:700}
+  .qscreen.qs .qs-f{border-radius:12px;background:var(--act-soft,var(--accent-soft))}
+  .qscreen.qs .qs-f > summary{list-style:none;display:flex;align-items:center;gap:8px;padding:10px 12px;cursor:pointer;font-weight:700;color:var(--act,var(--accent));font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)))}
+  .qscreen.qs .qs-f > summary::-webkit-details-marker{display:none}
+  .qscreen.qs .qs-f > summary span{flex:1}
+  .qscreen.qs .qs-f[open] > summary i{transform:rotate(180deg)}
+  .qscreen.qs .qs-fl{display:flex;flex-direction:column;gap:6px;padding:0 8px 8px}
+  .qscreen.qs .qs-fi{padding:8px 10px;border-radius:10px;background:var(--surface)}
+  .qscreen.qs .qs-ft{display:flex;gap:8px;font-weight:700;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));line-height:1.5}
+  .qscreen.qs .qs-ft span{flex:1;min-width:0}
+  .qscreen.qs .qs-note{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted);text-align:right}
+  .qscreen.qs .qs-e .vexp{max-height:none !important;overflow:visible !important;margin:0}
+  .qscreen.qs .qs-lk{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .qscreen.qs .qs-lk .studybtn{width:auto;flex:none;margin:0;padding:8px 12px !important}
+  .qscreen.qs .qs-lk .studybtn .studybtn-s{display:none}
+  .qscreen.qs .qs-lk .flagwrap{margin:0 0 0 auto}
+  .qscreen.qs .qs-lk .flagbox,.qscreen.qs .qs-lk .flagdone{flex:1 1 100%}
+  /* 上の2割は暗く（縦画面） */
+  html:not(.wide) .qscreen.qs.qdone::after{content:"";position:fixed;inset:0;z-index:29;background:rgba(16,20,32,.42)}
+  html:not(.wide) .qscreen.qs.qdone .verdict.qs-sheet{z-index:30}
+  /* 横画面：重ねずに右の列 */
+  html.wide .qscreen.qs .verdict.qs-sheet{border-radius:20px;min-height:0;max-height:none}
+  html.wide .qscreen.qs.qdone::after{display:none}
+  html.wide .qscreen.qs .qs-lq,html.wide .qscreen.qs .qs-q{display:none}
+
+  /* ---------- v7.14 前提カード・基礎編｜標準編（ref=1） ---------- */
+  html.r1 .r1l-lk{margin:10px 16px 0}
+  html.r1 .precard{--lz:1;height:var(--appH,100dvh);max-width:560px;margin:0 auto;box-sizing:border-box;display:flex;flex-direction:column;padding:16px 16px 12px;gap:12px}
+  html.r1.tabbed .precard{height:calc(var(--appH,100dvh) - var(--tabh,0px))}
+  html.r1 .pc-hd{display:flex;flex-direction:column;gap:2px}
+  html.r1 .pc-k{align-self:flex-start;padding:2px 10px;border-radius:8px;background:var(--sc);color:#fff;font:800 max(var(--fmin,0px),calc(13px*var(--fs,1))) var(--head)}
+  html.r1 .pc-hd b{margin-top:6px;font:800 max(var(--fmin,0px),calc(20px*var(--fs,1)))/1.35 var(--head)}
+  html.r1 .pc-hd small{font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));color:var(--muted)}
+  html.r1 .pc-body{flex:1 1 auto;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding:14px;border-radius:18px;background:var(--surface)}
+  html.r1 .pc-b{margin:0;padding-left:1.2em;font-size:max(var(--fmin,0px),calc(15px*var(--fs,1)));line-height:1.7}
+  html.r1 .pc-vis{display:flex;justify-content:center}
+  html.r1 .pc-say{margin:0;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));line-height:1.75;color:var(--ink-2)}
+  html.r1 .pc-ft{flex:none}
+  html.r1 .pc-go{width:100%;background:var(--act);color:var(--act-ink)}
+  html.r1 .pc-go .kb{display:none;margin-left:10px;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));opacity:.7}
+  html.r1.kbd .pc-go .kb{display:inline}
+
   /* ---------- v6.98 文字の大きさ（ref=1：標準／大）。ref=0 は --fs=1・--fmin=0px で元のまま ---------- */
   :root{--fs:1;--fmin:0px}
   html.r1{--fmin:12px}
@@ -3034,6 +3248,8 @@ function render(){
   if(s==="lec")    $app.innerHTML = Lec();
   if(s==="plan")   $app.innerHTML = Plan();
   if(s==="kgame")  $app.innerHTML = KGame();
+  if(s==="games")  $app.innerHTML = GamesSel();
+  if(s==="garden") $app.innerHTML = `<div class="hg-host"></div>`;
   if(s==="univ")   $app.innerHTML = Univ();
   if(s==="ucourse") $app.innerHTML = UCourse();
   if(s==="dstudy") $app.innerHTML = DStudy();
@@ -3846,7 +4062,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.13";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.14";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -4326,7 +4542,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.13（2026-11-09 更新）</span>
+      <br><span class="mono">アプリ版数：v7.14（2026-11-09 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -8164,6 +8380,13 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.14", date:"2026-11-09", items:[
+    { t:"問題を解く画面をそろえました", d:"答えたあとは、下から画面の8割の解説シートが出ます。正解・あなたの答え・ほかの選択肢・解説の順に並び、「次の問題へ」はいつも一番下です。横画面では右の列に出ます。" },
+    { r:1, t:"おすすめの出題を直しました", d:"光るボタンどおりに解くと同じ20問がくり返される不具合を直しました。おすすめは、まだ解いていない問題と復習の日が来た問題から出ます。" },
+    { r:1, t:"ゲームを選べるように・新しいゲーム「薬草園」（試作）", d:"ゲームのタブを開くと4つのゲームから選べます（2つは準備中）。薬草園は30分の学習で薬草を育てるゲームです。育てている間に問題に正解すると1問30秒早く育ち、開花して収穫すると生薬カードと5分の休憩が始まります。" },
+    { r:1, t:"送信設定に 年齢・大学・目的（試作）", d:"年代を年齢に変え、大学といちばんの目的を足しました。大学に「ほか」を選んだ人の今日の10問には、大学の問題を混ぜません。" },
+    { r:1, t:"講義の基礎編・前提カード（試作）", d:"講義の一覧で「基礎編｜標準編」を切り替えられます。基礎編は音声の準備中のため、端末の読み上げで再生します。入門の段の単元では、問題の前に「この単元の前に」のカードが1枚出ます。" },
+  ]},
   { v:"v7.12", date:"2026-11-09", items:[
     { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：001 細胞の構造、002 上皮組織、003 外皮系（皮膚）、004 骨と軟骨（骨格系）、005 筋組織、006 神経系（総論・中枢神経）、007 脊髄と末梢神経・脳神経、008 自律神経系と伝導路、009 脳血管と脳脊髄液、010 循環器系（心臓・脈管系）、011 血液と骨髄・リンパ性器官、012 呼吸器系、013 消化器系、014 泌尿器系、015 生殖器系、016 感覚器系、017 ヒトの先天異常、018 微生物学総論、019 細菌、020 細菌毒素と遺伝子伝達、021 ウイルス・寄生虫、022 抗菌薬、023 免疫学総論、025 T細胞と細胞性免疫、027 サイトカイン・補体・免疫寛容、028 移植免疫と腫瘍免疫、029 アレルギーと免疫疾患の全貌、030 免疫療法と免疫学的検査、031 薬理総論と有害事象、032 自律神経系に作用する薬の完全マスター、033 体性神経系に作用する薬、034 精神神経疾患の病態と薬物治療、035 中枢神経系に作用する薬、036 循環器疾患の病態と薬物治療、037 循環器系に作用する薬、038 血液疾患の病態と薬物治療（貧血・止血）、039 血液腫瘍の病態と薬物治療、040 血液に作用する薬、042 呼吸器系に作用する薬、043 消化器疾患の病態と薬物治療、044 消化器系に作用する薬、045 腎・泌尿器疾患の病態と薬物治療、046 内分泌・代謝疾患の病態と薬物治療、047 内分泌・ホルモン療法薬、048 代謝系疾患治療薬、049 産婦人科・生殖器疾患の病態と薬物治療、052 アレルギー・免疫・関節リウマチ治療薬、054 皮膚疾患の病態と治療薬、055 皮膚に作用する薬、056 眼科疾患の病態と薬物治療、057 眼に作用する薬、058 耳鼻咽喉科疾患の病態と治療薬、059 感染症各論の病態と薬物治療、061 抗菌薬の作用機序と特徴、063 抗ウイルス薬の作用機序と臨床応用、064 抗原虫薬・駆虫薬、065 消毒薬、066 抗悪性腫瘍薬の薬理と支持療法、067 構造活性相関と薬物設計、069 吸収と生物学的利用能、071 薬物代謝の機構と臨床的意義、072 排泄（腎・胆汁）のしくみと評価、073 薬物動態学：トランスポーター、074 薬物相互作用、076 動態パラメータの計算、077 TDM（治療薬物モニタリング）と投与設計、078 特殊集団の薬物動態、079 非線形薬物動態と中毒・PK-PD解析、082 生体異物の代謝：第Ⅱ相反応（抱合反応）、084 農薬の分類と毒性・解毒、087 器官毒性、095 生薬の総論と日本薬局方、096 生合成の経路と品質評価、097 ポリケタイド・フラボノイドの生薬、098 フェニルプロパノイド・タンニン・精油の生薬、099 テルペノイド・ステロイドの生薬、100 アルカロイドの生薬、101 麻薬原料植物と動物・鉱物の生薬、102 漢方医学の基礎と証、103 漢方薬の副作用と相互作用、104 消化器の漢方、105 精神・神経・筋の漢方" },
     { r:1, t:"問題の段（試作）", d:"問題を 基礎・標準・応用・難関 の段に分けました。段は単元ごとで、今の段の問題を75%習得すると、その単元だけ1つ上がります（自動では下がりません）。今日の10問と出題設定の「おすすめ」は、その単元の段の問題から出ます。段が上がったときは、結果画面の習得の横に「↑」が出ます。段は出題設定の「細かく」→「問題の段」で、自分で上げ下げもできます。基礎の一問一答 1,880問（AIの下書き・未確認）も足しました。" },
@@ -11251,7 +11474,7 @@ dueQuestions = function(){ const d = dueQ0.apply(this, arguments); return ST.ref
 })();
 
 /* ---------- v7.12 5段（ref=1）：単元ごとの段・基礎の一問一答 ---------- */
-const TIER_FILE = "./u/tier-6a8bb35075.json";
+const TIER_FILE = "./u/tier-e7604cf518.json";
 const TIER_NM = ["入門", "基礎", "標準", "応用", "難関"];
 const TIER_UP = 0.75;
 let TIERD = null, tierSt = "idle", KQ = [], _kqById = {}, _tierIx = null;
@@ -11568,6 +11791,287 @@ function tierPlaceHtml(out){
   };
 })();
 
+/* ---------- v7.13 ゲームを選ぶ・薬草園テラリウム（ref=1） ---------- */
+const HG_PLANTS = [{"id":"touki","name":"トウキ","kanji":"当帰","family":"セリ科","partUsed":"根を、通例、湯通ししたもの","components":["リグスチリド（精油）","ファルカリンジオール"],"prescriptions":["当帰芍薬散","四物湯","加味逍遥散","補中益気湯"],"nationalExamTip":"補血の代表。婦人科の処方で頻出。センキュウ（同じセリ科）とともに精油のリグスチリドを含む。","accentColor":"#C2410C"},{"id":"kanzou","name":"カンゾウ","kanji":"甘草","family":"マメ科","partUsed":"根及びストロン","components":["グリチルリチン酸（サポニン）","リクイリチン（フラボノイド）"],"prescriptions":["芍薬甘草湯","葛根湯","小柴胡湯","桂枝湯"],"nationalExamTip":"医療用漢方製剤の約7割に入る。グリチルリチン酸の代謝物が11β-HSD2を阻害し、偽アルドステロン症（低カリウム血症・高血圧・浮腫）を起こす。","accentColor":"#A16207"},{"id":"maou","name":"マオウ","kanji":"麻黄","family":"マオウ科","partUsed":"地上茎","components":["エフェドリン","プソイドエフェドリン"],"prescriptions":["麻黄湯","葛根湯","小青竜湯","麻杏甘石湯"],"nationalExamTip":"エフェドリンは交感神経を刺激する（長井長義が単離）。動悸・不眠・排尿障害・血圧上昇に注意。","accentColor":"#9F1239"},{"id":"daiou","name":"ダイオウ","kanji":"大黄","family":"タデ科","partUsed":"通例、根茎","components":["センノシドA（ジアンスロン配糖体）","レイン（アントラキノン）"],"prescriptions":["大黄甘草湯","大柴胡湯","桃核承気湯","麻子仁丸"],"nationalExamTip":"センノシドは腸内細菌でレインアンスロンになり、大腸を刺激して瀉下。妊婦・授乳婦は注意。","accentColor":"#B91C1C"},{"id":"shakuyaku","name":"シャクヤク","kanji":"芍薬","family":"ボタン科","partUsed":"根","components":["ペオニフロリン（モノテルペン配糖体）"],"prescriptions":["芍薬甘草湯","当帰芍薬散","桂枝湯","四物湯"],"nationalExamTip":"鎮痙・鎮痛。芍薬甘草湯はこむら返り。同じボタン科のボタンピ（根皮・ペオノール）と区別する。","accentColor":"#DB2777"},{"id":"ninjin","name":"ニンジン","kanji":"人参","family":"ウコギ科","partUsed":"細根を除いた根又はこれを軽く湯通ししたもの","components":["ギンセノシド（ジンセノシド）Rb1・Rg1"],"prescriptions":["人参湯","六君子湯","補中益気湯","小柴胡湯"],"nationalExamTip":"補気の代表。蒸して乾かしたものはコウジン（紅参）で、日局では別の生薬。","accentColor":"#DC2626"}];
+const HG_GOAL = 1800, HG_BOOST = 30, HG_BREAK = 300;   /* 開花の EXP・正解1問の EXP・休憩の秒 */
+const HG_STAR = [8, 20];                                 /* 正解がこれ以上で ★2・★3 */
+const HG_STAGES = [ { k:"seed", t:"種", at:0 }, { k:"sprout", t:"芽生え", at:.2 }, { k:"growing", t:"若葉", at:.6 }, { k:"harvestable", t:"開花", at:1 } ];
+const GAME_LIST = [
+  { k:"kampo",  t:"漢方調合", s:"証から生薬を選ぶ",   on:"go('kgame')" },
+  { k:"garden", t:"薬草園",   s:"30分の学習で育てる", on:"go('garden')" },
+  { k:"soon1",  t:"準備中" },
+  { k:"soon2",  t:"準備中" }
+];
+function hgSt(){
+  if(!ST.hg || typeof ST.hg !== "object") ST.hg = {};
+  const s = ST.hg;
+  if(!s.ph) s.ph = "idle";        /* idle 空き鉢 / grow 育てている / paused 一時停止 / bloom 開花 / break 休憩 */
+  if(!s.col) s.col = {};          /* 図鑑 {id:{n:収穫数, best:★}} */
+  return s;
+}
+function hgPlant(id){ return HG_PLANTS.find(p=> p.id === id) || null; }
+function hgSecs(s, now){ return (s.base || 0) + (s.ph === "grow" && s.run ? Math.max(0, ((now || Date.now()) - s.run) / 1000) : 0); }
+function hgExp(s, now){ return Math.floor(hgSecs(s, now)) + HG_BOOST * (s.ok || 0); }
+function hgStage(e){ const r = e / HG_GOAL; let st = HG_STAGES[0]; HG_STAGES.forEach(x=>{ if(r >= x.at) st = x; }); return st; }
+function hgStar(ok){ return ok >= HG_STAR[1] ? 3 : ok >= HG_STAR[0] ? 2 : 1; }
+function hgClock(sec){ sec = Math.max(0, Math.ceil(sec)); return `${(sec / 60) | 0}:${String(sec % 60).padStart(2, "0")}`; }
+function hgStars(n){ return `<span class="hg-stars" aria-label="★${n}">${[1,2,3].map(i=> `<i class="${i <= n ? "on" : ""}">★</i>`).join("")}</span>`; }
+function hgSave(){ try{ saveProgress(true); }catch(e){} }
+
+/* ---------- 絵（SVG） ---------- */
+function hgLeaf(x, y, a, L){ return `<path class="hg-leaf" d="M0 0Q${L/2} ${-L/3} ${L} 0Q${L/2} ${L/3} 0 0Z" transform="translate(${x} ${y}) rotate(${a})"/>`; }
+function hgPlantSvg(stageK, color, opt){
+  opt = opt || {};
+  const c = color || "#15803D";
+  let plant = "";
+  if(stageK === "seed"){
+    plant = `<ellipse class="hg-seed" cx="100" cy="185" rx="7" ry="4.5"/><path class="hg-stem" d="M101 182q2 -5 0 -9" fill="none"/>`;
+  } else if(stageK === "sprout"){
+    plant = `<path class="hg-stem" d="M100 190Q98 172 100 158" fill="none"/>${hgLeaf(100, 158, -160, 22)}${hgLeaf(100, 158, -20, 22)}`;
+  } else {
+    const top = stageK === "harvestable" ? 92 : 118;
+    plant = `<path class="hg-stem" d="M100 190Q96 ${(190 + top) / 2} 100 ${top}" fill="none"/>`;
+    const ys = stageK === "harvestable" ? [172, 152, 132, 112] : [172, 152, 134];
+    ys.forEach((y, i)=>{ const L = 30 - i * 3; plant += hgLeaf(99, y, i % 2 ? -150 : -30, L) + hgLeaf(99, y + 6, i % 2 ? -30 : -150, L - 6); });
+    if(stageK === "growing") plant += `<circle class="hg-bud" cx="100" cy="${top - 2}" r="4" style="fill:${c}"/>`;
+    if(stageK === "harvestable"){
+      const fl = (cx, cy, r)=> [0,1,2,3,4,5].map(i=>{ const a = i * 60 * Math.PI / 180; return `<circle cx="${(cx + Math.cos(a) * r).toFixed(1)}" cy="${(cy + Math.sin(a) * r).toFixed(1)}" r="${(r * .72).toFixed(1)}" style="fill:${c}"/>`; }).join("") + `<circle class="hg-fc" cx="${cx}" cy="${cy}" r="${(r * .6).toFixed(1)}"/>`;
+      plant += `<g class="hg-flower">${fl(100, 84, 9)}${fl(82, 98, 6)}${fl(118, 98, 6)}</g>`;
+      plant += `<g class="hg-spark"><path d="M58 70l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/><path d="M144 58l1.5 4.5 4.5 1.5-4.5 1.5-1.5 4.5-1.5-4.5-4.5-1.5 4.5-1.5z"/><path d="M150 112l1.2 3.6 3.6 1.2-3.6 1.2-1.2 3.6-1.2-3.6-3.6-1.2 3.6-1.2z"/></g>`;
+    }
+  }
+  const drops = opt.drops ? `<g class="hg-drops"><path d="M70 60q3 5 0 7q-3-2 0-7z"/><path d="M128 50q3 5 0 7q-3-2 0-7z"/><path d="M104 40q3 5 0 7q-3-2 0-7z"/></g>` : "";
+  const empty = opt.empty ? `` : `<g class="hg-sway">${plant}</g>`;
+  return `<svg class="hg-svg" viewBox="0 0 200 222" role="img" aria-label="${opt.label || "薬草"}">
+    <defs><linearGradient id="hgRay" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></linearGradient></defs>
+    <path class="hg-glass" d="M32 200V112a68 68 0 0 1 136 0V200Z"/>
+    <path class="hg-ray" d="M44 74L98 60L150 200H70Z" fill="url(#hgRay)"/>
+    <path class="hg-soil" d="M34 200V186q66-12 132 0V200Z"/>
+    ${empty}${drops}
+    <path class="hg-shine" d="M52 150V114a50 50 0 0 1 26-44" fill="none"/>
+    <path class="hg-rim" d="M32 200V112a68 68 0 0 1 136 0V200" fill="none"/>
+    <circle class="hg-knob" cx="100" cy="40" r="6"/>
+    <rect class="hg-base" x="22" y="198" width="156" height="14" rx="5"/>
+  </svg>`;
+}
+
+/* ---------- 状態の変化 ---------- */
+let hgTimer = 0, hgCardOpen = "", hgBookOpen = false;
+function hgTick(){
+  if(!r1On()) return;
+  const s = hgSt(), now = Date.now();
+  if(s.ph === "grow" && hgExp(s, now) >= HG_GOAL){
+    s.base = hgSecs(s, now); s.run = 0; s.ph = "bloom"; hgSave();
+    if(view.screen !== "garden") hgToast("薬草園：花が咲きました");
+    try{ if(navigator.vibrate) navigator.vibrate([20, 60, 20]); }catch(e){}
+    hgDraw(true);
+  } else if(s.ph === "break" && now >= (s.be || 0)){
+    s.ph = "idle"; s.be = 0; hgSave();
+    if(view.screen !== "garden") hgToast("薬草園：休憩おわり");
+    hgDraw(true);
+  } else hgDraw(false);
+  hgBadge();
+}
+function hgSow(){
+  const s = hgSt();
+  if(s.ph === "grow" || s.ph === "paused" || s.ph === "bloom") return;
+  const min = Math.min(...HG_PLANTS.map(p=> (s.col[p.id] || {}).n || 0));
+  const cand = HG_PLANTS.filter(p=> ((s.col[p.id] || {}).n || 0) === min && p.id !== s.p);
+  const pool = cand.length ? cand : HG_PLANTS;
+  s.p = pool[(Math.random() * pool.length) | 0].id;
+  s.ph = "grow"; s.base = 0; s.run = Date.now(); s.ok = 0; s.be = 0;
+  hgCardOpen = ""; hgSave(); hgDraw(true); hgBadge();
+}
+function hgPause(){ const s = hgSt(); if(s.ph !== "grow") return; s.base = hgSecs(s); s.run = 0; s.ph = "paused"; hgSave(); hgDraw(true); hgBadge(); }
+function hgResume(){ const s = hgSt(); if(s.ph !== "paused") return; s.run = Date.now(); s.ph = "grow"; hgSave(); hgDraw(true); hgBadge(); }
+function hgHarvest(){
+  const s = hgSt(); if(s.ph !== "bloom") return;
+  const star = hgStar(s.ok || 0), c = s.col[s.p] || { n:0, best:0 };
+  c.n++; c.best = Math.max(c.best || 0, star); s.col[s.p] = c;
+  s.last = { p:s.p, star, ok:s.ok || 0, at:Date.now() };
+  s.ph = "break"; s.be = Date.now() + HG_BREAK * 1000; s.base = 0; s.run = 0;
+  hgCardOpen = s.p; hgSave(); hgDraw(true); hgBadge();
+  try{ if(navigator.vibrate) navigator.vibrate(15); }catch(e){}
+}
+function hgEndBreak(){ const s = hgSt(); if(s.ph !== "break") return; s.ph = "idle"; s.be = 0; hgCardOpen = ""; hgSave(); hgDraw(true); hgBadge(); }
+function hgBoost(){
+  const s = hgSt(); if(s.ph !== "grow" || !s.run) return;
+  s.ok = (s.ok || 0) + 1; hgSave();
+  hgToast(`薬草園 +${HG_BOOST}`, true);
+  hgTick();
+}
+
+/* ---------- 知らせ・タブの印 ---------- */
+function hgToast(msg, small){
+  let t = document.getElementById("hgToast");
+  if(!t){ t = document.createElement("div"); t.id = "hgToast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+  t.innerHTML = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 17V9M10 10C10 6 7 4 3.5 4.5 3.5 8 6 10.5 10 10ZM10 9c0-3 2.4-5 6.5-4.6C16.6 8 14 10 10 9Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span>${msg}</span>`;
+  t.className = "show" + (small ? " sm" : "");
+  clearTimeout(t._h); t._h = setTimeout(()=>{ t.className = ""; }, small ? 1300 : 3200);
+}
+function hgBadge(){
+  const b = document.querySelector('#navtab button[onclick="navTabGo(\'game\')"]'); if(!b) return;
+  const ph = r1On() ? hgSt().ph : "idle";
+  b.classList.toggle("hg-on", ph === "grow" || ph === "break");
+  b.classList.toggle("hg-bloom", ph === "bloom");
+}
+
+/* ---------- ゲームを選ぶ ---------- */
+function GamesSel(){
+  const s = hgSt(), p = hgPlant(s.p), got = HG_PLANTS.filter(x=> s.col[x.id]).length;
+  let best = 0; try{ best = kgSt().m.normal.best || 0; }catch(e){}
+  const harv = HG_PLANTS.reduce((n, x)=> n + ((s.col[x.id] || {}).n || 0), 0);
+  const e = hgExp(s), act = (s.ph === "grow" || s.ph === "paused" || s.ph === "bloom") && p;
+  const stage = act ? hgStage(e) : HG_STAGES[0];
+  const st = act ? (s.ph === "bloom" ? `<b class="hg-hot">収穫できます</b>` : `${p.name}　<b>${Math.min(100, Math.floor(e / HG_GOAL * 100))}</b>%${s.ph === "paused" ? "　一時停止中" : ""}`)
+              : s.ph === "break" ? `休憩中　<b>${hgClock((s.be - Date.now()) / 1000)}</b>` : `図鑑 <b>${got}</b>/${HG_PLANTS.length}`;
+  const rec = { kampo:`最高 <b>${best}</b> 点`, garden:`収穫 <b>${harv}</b>` };
+  const ic = {
+    kampo:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="4" width="17" height="16" rx="2"/><path d="M3.5 9.3h17M3.5 14.7h17M9.2 4v16M14.8 4v16"/></svg>`,
+    garden:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 20.5V12a7 7 0 0 1 14 0v8.5Z"/><path d="M12 19v-5.5M12 15c0-2.6-1.8-4-4.3-3.7 0 2.4 1.7 3.9 4.3 3.7Zm0-1.5c0-2.4 1.6-3.7 4-3.4 0 2.2-1.6 3.6-4 3.4Z"/><path d="M3.5 20.5h17"/></svg>`,
+    soon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>`
+  };
+  return `<div class="gsel">
+    <button class="gsel-top" onclick="go('garden')" aria-label="薬草園をひらく">
+      <span class="gsel-h">ゲーム</span>
+      <span class="gsel-dome">${hgPlantSvg(stage.k, p ? p.accentColor : "", { empty: !act, label:"薬草園" })}</span>
+      <span class="gsel-st">${st}</span>
+    </button>
+    <div class="gsel-grid">${GAME_LIST.map(g=>{
+      const soon = !g.on;
+      return `<button class="gsel-c gsel-${soon ? "soon" : g.k}" ${soon ? 'disabled aria-disabled="true"' : `onclick="${g.on}"`}>
+        <span class="gsel-ic">${ic[soon ? "soon" : g.k]}</span>
+        <span class="gsel-t">${g.t}</span>
+        <span class="gsel-s">${soon ? "近日追加" : g.s}</span>
+        ${soon ? "" : `<span class="gsel-r">${rec[g.k]}</span>`}
+      </button>`; }).join("")}</div>
+  </div>`;
+}
+
+/* ---------- 薬草園 ---------- */
+function hgRoot(){ let r = document.getElementById("hg"); if(!r){ r = document.createElement("div"); r.id = "hg"; document.body.appendChild(r); } return r; }
+function hgUnmount(){ const r = document.getElementById("hg"); if(r) r.remove(); hgCardOpen = ""; hgBookOpen = false; }
+function hgCardHtml(id, withBreak){
+  const p = hgPlant(id); if(!p) return "";
+  const s = hgSt(), c = s.col[id] || {}, star = withBreak && s.last && s.last.p === id ? s.last.star : (c.best || 1);
+  const row = (k, v)=> `<div class="hg-cr"><dt>${k}</dt><dd>${v}</dd></div>`;
+  const left = withBreak && s.ph === "break" ? Math.max(0, (s.be - Date.now()) / 1000) : 0;
+  return `<div class="hg-cardwrap show" onclick="if(event.target===this)hgCloseCard()">
+    <div class="hg-card" role="dialog" aria-label="生薬カード ${p.name}" style="--hgc:${p.accentColor}">
+      <div class="hg-ch"><span class="hg-cpic">${hgPlantSvg("harvestable", p.accentColor, { label:p.name })}</span>
+        <span class="hg-cn"><small>生薬カード</small><b>${p.name}</b><span>${p.kanji}・${p.family}</span>${hgStars(star)}</span></div>
+      <dl class="hg-cl">
+        ${row("薬用部位", p.partUsed)}
+        ${row("主成分", p.components.join("、"))}
+        ${row("配合処方", p.prescriptions.join("、"))}
+      </dl>
+      <div class="hg-tip"><b>国試</b>${p.nationalExamTip}</div>
+      <div class="hg-cf">
+        ${withBreak && s.ph === "break" ? `<span class="hg-brk">休憩 <b id="hgBrk">${hgClock(left)}</b></span>` : `<span></span>`}
+        <button class="hg-btn" onclick="hgCloseCard()">とじる</button>
+      </div>
+    </div></div>`;
+}
+function hgCloseCard(){ hgCardOpen = ""; hgDraw(true); }
+function hgOpenCard(id){ hgCardOpen = id; hgBookOpen = false; hgDraw(true); }
+function hgBook(on){ hgBookOpen = !!on; hgDraw(true); }
+function hgBookHtml(){
+  const s = hgSt();
+  return `<div class="hg-cardwrap show" onclick="if(event.target===this)hgBook(false)">
+    <div class="hg-card hg-bookc" role="dialog" aria-label="図鑑">
+      <div class="hg-bh"><b>図鑑</b><span>${HG_PLANTS.filter(p=> s.col[p.id]).length}/${HG_PLANTS.length}</span></div>
+      <div class="hg-bg">${HG_PLANTS.map(p=>{ const c = s.col[p.id];
+        return c ? `<button class="hg-bi" onclick="hgOpenCard('${p.id}')"><span class="hg-bpic">${hgPlantSvg("harvestable", p.accentColor, { label:p.name })}</span><b>${p.name}</b>${hgStars(c.best || 1)}</button>`
+                 : `<span class="hg-bi off"><span class="hg-bpic">${hgPlantSvg("seed", "", { label:"まだ" })}</span><b>？？？</b><span class="hg-stars"></span></span>`; }).join("")}</div>
+      <div class="hg-cf"><span></span><button class="hg-btn" onclick="hgBook(false)">とじる</button></div>
+    </div></div>`;
+}
+let hgLastKey = "";
+function hgDraw(full){
+  if(view.screen !== "garden" || !r1On()) return;
+  const s = hgSt(), p = hgPlant(s.p), now = Date.now();
+  const act = (s.ph === "grow" || s.ph === "paused" || s.ph === "bloom") && p;
+  const e = act ? Math.min(HG_GOAL, hgExp(s, now)) : 0, stage = act ? hgStage(e) : HG_STAGES[0];
+  const key = [s.ph, s.p, stage.k, hgCardOpen, hgBookOpen].join("|");
+  const root = hgRoot();
+  if(full || key !== hgLastKey || !root.firstElementChild){
+    hgLastKey = key;
+    const got = HG_PLANTS.filter(x=> s.col[x.id]).length;
+    const head = act ? `<span class="hg-name"><b>${p.name}</b><small>${p.kanji}・${p.family}</small></span>`
+                     : `<span class="hg-name"><b>薬草園</b><small>${s.ph === "break" ? "休憩中" : "空き鉢"}</small></span>`;
+    let meter, btns;
+    if(act){
+      meter = `<div class="hg-lbl"><span class="hg-stg">${stage.t}</span><span id="hgTime">${s.ph === "bloom" ? "収穫できます" : s.ph === "paused" ? "一時停止中" : "のこり " + hgClock(HG_GOAL - e)}</span></div>
+        <div class="hg-bar"><i id="hgBar" style="width:${(e / HG_GOAL * 100).toFixed(1)}%;background:${p.accentColor}"></i>${[20, 60].map(x=> `<u style="left:${x}%"></u>`).join("")}</div>
+        <div class="hg-sub"><span>正解 <b id="hgOk">${s.ok || 0}</b>　<small>+${(s.ok || 0) * HG_BOOST}</small></span><span id="hgNext">${hgNextStar(s.ok || 0, s.ph === "bloom")}</span></div>`;
+    } else if(s.ph === "break"){
+      meter = `<div class="hg-lbl"><span class="hg-stg">休憩</span><span>目を休めましょう</span></div><div class="hg-big" id="hgBrk2">${hgClock((s.be - now) / 1000)}</div>`;
+    } else {
+      meter = `<div class="hg-lbl"><span class="hg-stg">30分で開花</span><span>正解1問で30秒短縮</span></div><div class="hg-bar"><i style="width:0"></i></div>`;
+    }
+    if(s.ph === "grow") btns = `<button class="hg-btn" onclick="hgPause()">一時停止</button><button class="hg-btn hg-main" onclick="go('home')">学習へ</button>`;
+    else if(s.ph === "paused") btns = `<button class="hg-btn" onclick="go('home')">学習へ</button><button class="hg-btn hg-main hg-glow" onclick="hgResume()">再開する</button>`;
+    else if(s.ph === "bloom") btns = `<button class="hg-btn hg-main hg-glow" onclick="hgHarvest()">収穫する</button>`;
+    else if(s.ph === "break") btns = `<button class="hg-btn" onclick="hgOpenCard('${(s.last || {}).p || ""}')">カード</button><button class="hg-btn hg-main" onclick="hgEndBreak();hgSow()">次の種をまく</button>`;
+    else btns = `<button class="hg-btn hg-main hg-glow" onclick="hgSow()">種をまく</button>`;
+    root.innerHTML = `<div class="hg-scr hg-${stage.k} hg-p-${s.ph}">
+      <div class="hg-head">${head}<button class="hg-zk" onclick="hgBook(true)">図鑑 <b>${got}</b>/${HG_PLANTS.length}</button></div>
+      <div class="hg-dome">${hgPlantSvg(stage.k, p ? p.accentColor : "", { empty: !act, drops: s.ph === "grow", label: act ? p.name : "空き鉢" })}</div>
+      <div class="hg-meter">${meter}</div>
+      <div class="hg-act">${btns}</div>
+      ${hgCardOpen ? hgCardHtml(hgCardOpen, true) : ""}${hgBookOpen ? hgBookHtml() : ""}
+    </div>`;
+    return;
+  }
+  /* 毎秒：数字とゲージだけ書きかえる */
+  const t = document.getElementById("hgTime"), b = document.getElementById("hgBar");
+  if(act && s.ph === "grow"){ if(t) t.textContent = "のこり " + hgClock(HG_GOAL - e); if(b) b.style.width = (e / HG_GOAL * 100).toFixed(1) + "%"; }
+  if(s.ph === "break"){ const left = hgClock((s.be - now) / 1000); ["hgBrk", "hgBrk2"].forEach(id=>{ const el = document.getElementById(id); if(el) el.textContent = left; }); }
+}
+function hgNextStar(ok, done){
+  if(done || ok >= HG_STAR[1]) return `品質 ${hgStars(hgStar(ok))}`;
+  const n = ok >= HG_STAR[0] ? HG_STAR[1] : HG_STAR[0];
+  return `${hgStars(hgStar(ok) + 1)} まで あと<b>${n - ok}</b>問`;
+}
+
+(function(){
+  /* 答え：はじめて答えた問題が正解なら +30（育てている間だけ） */
+  const a0 = answer;
+  answer = function(k){
+    const fresh = view.picked === null;
+    const r = a0.apply(this, arguments);
+    try{ if(r1On() && fresh && view.picked !== null){ const L = view.log[view.i]; if(L && L.ok) hgBoost(); } }catch(e){}
+    return r;
+  };
+  /* 画面：ゲームを選ぶ（#app）・薬草園（body 直下 #hg） */
+  const r0 = render;
+  render = function(){
+    r0.apply(this, arguments);
+    if(view.screen === "garden" && r1On()) hgDraw(true); else hgUnmount();
+    hgBadge();
+  };
+  /* 漢方調合のメニューに「‹ ゲームをえらぶ」 */
+  if(typeof kgMenu === "function"){
+    const m0 = kgMenu;
+    kgMenu = function(){
+      const r = m0.apply(this, arguments);
+      try{ if(r1On()){ const b = document.querySelector("#kg .kg-menu > .kg-back"); if(b){ b.textContent = "‹　ゲームをえらぶ"; b.setAttribute("onclick", "go('games')"); b.classList.add("kg-gsel"); } } }catch(e){}
+      return r;
+    };
+  }
+  /* タブ：ゲームの最初の画面は「ゲームを選ぶ」 */
+  try{
+    const g = NAV_TABS.find(x=> x.k === "game"); if(g) g.on = "go('games')";
+    delete NAV_ROOT.kgame; NAV_ROOT.games = "game";
+    NAV_DEEP.kgame = "game"; NAV_DEEP.garden = "game";
+    NAV_NOSAVE.push("garden");
+    const nb0 = navBar;
+    navBar = function(){ const r = nb0.apply(this, arguments); try{ hgBadge(); }catch(e){} return r; };
+  }catch(e){}
+  hgTimer = setInterval(hgTick, 1000);
+  document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) hgTick(); });
+})();
+
 /* ---------- v7.13 おすすめは今日できる問題から（同じ20問のループを直す、ref=1） ---------- */
 function r1Act(q){
   const r = ST.srs && ST.srs[q.id];
@@ -11593,6 +12097,359 @@ function r1Act(q){
     const n = size === undefined ? c.n : size;
     return n ? out.slice(0, n) : out;
   };
+})();
+
+/* ---------- v7.14 問題を解く画面をそろえる・答えたあとは8割のシート（全員） ---------- */
+function qsOn(){ return view.screen === "quiz" && !view.study && !!view.set && !!view.set[view.i]; }
+function qsWide(){ return document.documentElement.classList.contains("wide"); }
+function qsAll(b){
+  const box = b && b.closest(".qs-q"); if(!box) return;
+  const open = !box.classList.contains("open");
+  box.classList.toggle("open", open);
+  b.textContent = open ? "たたむ ▴" : "全文 ▾";
+  view.qsall = open ? view.i : null;
+  qsSize();
+}
+function qsFold(d){ view.qsf = d.open ? view.i : null; }
+/* 上の帯（ref=0 も ref=1 と同じ形に） */
+function qsHead(scr, q){
+  const row = scr.querySelector(".qhead-row"); if(!row || row.querySelector(".r1q-m") || row.querySelector(".qs-m")) return;
+  const e = EXAMS[q.s];
+  const sn = e ? e.name : (q.uq && typeof UCK !== "undefined" && UCK[q.c] ? UCK[q.c].name : "");
+  const back = row.querySelector(".back");
+  if(back){ back.textContent = "やめる"; back.setAttribute("aria-label", "やめる"); }
+  row.insertAdjacentHTML("beforeend", `<span class="qs-m" style="--sc:${e && e.color ? e.color : "var(--accent)"}"><i></i><span><b>${esc(sn)}</b><small>${esc(q.u || "")}</small></span></span>`
+    + `<span class="qs-n" aria-label="${view.i + 1}問目／${view.set.length}問"><b>${view.i + 1}</b>／${view.set.length}</span>`);
+}
+/* 解く前：札の行・2つ選ぶ */
+function qsBefore(scr, q){
+  const multi = q.a.length > 1;
+  const body = scr.querySelector(".qbody");
+  if(body && !body.querySelector(".qs-tags")){
+    const tags = document.createElement("div"); tags.className = "qs-tags";
+    [...body.children].filter(el=> !el.classList.contains("qtext") && !el.classList.contains("figwrap") && !el.classList.contains("figtop") && el.tagName === "SPAN").forEach(el=> tags.appendChild(el));
+    if(multi) tags.insertAdjacentHTML("beforeend", `<span class="qs-two">${q.a.length}つ選ぶ</span>`);
+    body.insertBefore(tags, body.firstChild);
+  }
+  if(multi && view.picked === null){
+    const pi = scr.querySelector(".opts .pickinfo"); if(pi) pi.remove();
+    const b = scr.querySelector('.opts > .cta[onclick="submitMulti()"]');
+    if(b){
+      const left = q.a.length - (view.sel || []).length;
+      b.textContent = left > 0 ? `決定（あと${left}つ選ぶ）` : "決定";
+      b.classList.add("qs-go");
+    }
+  }
+}
+/* 答えたあと：シート */
+function qsSheet(scr, q){
+  const ver = scr.querySelector(":scope > .verdict"); if(!ver || ver.dataset.qs) return;
+  ver.dataset.qs = "1";
+  scr.classList.remove("vfolded");
+  const picked = view.picked, skipped = picked === -1, chosen = Array.isArray(picked) ? picked : [];
+  const ord = optOrder(q), no = k=> ord.indexOf(k) + 1;
+  const isOK = !skipped && chosen.length === q.a.length && chosen.every(x=> q.a.includes(x));
+  const why = k=> (typeof optxOf === "function" && r1On()) ? optxOf(q, k) : "";
+  const vm = ver.querySelector(".vmark"), vn = ver.querySelector(".vname");
+  if(vm && !/^[○×？]/.test(vm.textContent)) vm.textContent = (isOK ? "○ " : skipped ? "？ " : "× ") + vm.textContent;
+  const exp = ver.querySelector(".vexp"), next = ver.querySelector(":scope > .cta");
+  const study = ver.querySelector(".studybtn"), flag = ver.querySelector(".flagwrap, .flagbox, .flagdone");
+  const scroller = ver.querySelector(".vscroll") || ver;
+  const extra = [...scroller.children].filter(el=> el !== exp && el !== study && el !== flag && el !== next && !el.classList.contains("vans") && !el.classList.contains("vhead"));
+  const card = (cls, lab, k, x)=> `<div class="qs-c ${cls}"><div class="qs-ct"><span class="qs-b">${lab}</span><b>${no(k)}</b><span>${esc(q.o[k])}</span></div>${x ? `<div class="qs-x">${esc(x)}</div>` : ""}</div>`;
+  const mine = chosen.filter(k=> !q.a.includes(k));
+  const right = q.a.map(k=> card("ok", "正解", k, "")).join("");
+  const you = mine.map(k=>{ return card("ng", "あなた", k, why(k)); }).join("");
+  const others = ord.filter(k=> !q.a.includes(k) && !chosen.includes(k));
+  const xs = others.map(k=> [k, why(k)]), hasX = xs.some(x=> x[1]);
+  const lab = (mine.length ? "ほかの誤りの選択肢" : "誤りの選択肢") + `（${others.length}）` + (hasX ? "と違う理由" : "");
+  const youX = mine.some(k=> why(k));
+  const fold = others.length ? `<details class="qs-f"${view.qsf === view.i ? " open" : ""} ontoggle="qsFold(this)"><summary><span>${lab}</span><i>▾</i></summary><div class="qs-fl">${
+    xs.map(([k, x])=> `<div class="qs-fi"><div class="qs-ft"><b>${no(k)}</b><span>${esc(q.o[k])}</span></div>${x ? `<div class="qs-x">${esc(x)}</div>` : ""}</div>`).join("")}${hasX && !youX ? `<div class="qs-note">違う理由は AI の下書きです（未確認）</div>` : ""}</div></details>` : "";
+  const note = youX ? `<div class="qs-note">違う理由は AI の下書きです（未確認）</div>` : "";
+  const qopen = view.qsall === view.i;
+  ver.classList.add("qs-sheet");
+  ver.innerHTML = `<div class="qs-grip" aria-hidden="true"></div><div class="qs-body">
+      <div class="qs-h"></div>
+      <div class="qs-l qs-lq">問題</div>
+      <div class="qs-q${qopen ? " open" : ""}"><div class="qs-qt">${esc(q.q)}</div><button class="qs-all" onclick="qsAll(this)">${qopen ? "たたむ ▴" : "全文 ▾"}</button></div>
+      ${right}${you}${fold}${note}
+      <div class="qs-l">解説</div>
+      <div class="qs-e"></div>
+      <div class="qs-lk"></div>
+    </div>`;
+  const h = ver.querySelector(".qs-h"); if(vm) h.appendChild(vm); if(vn) h.appendChild(vn);
+  const e = ver.querySelector(".qs-e"); if(exp) e.appendChild(exp); extra.forEach(el=> e.appendChild(el));
+  const lk = ver.querySelector(".qs-lk"); if(study) lk.appendChild(study); if(flag) lk.appendChild(flag);
+  if(!lk.children.length) lk.remove();
+  if(next) ver.appendChild(next);
+  /* 選択肢の中の一言・「ほかの選択肢」ボタンはシートに移したので外す */
+  scr.querySelectorAll(".opts .r1q-x, .opts .r1q-xn, .opts .r1q-more").forEach(el=> el.remove());
+  scr.querySelectorAll(".opts .opt.r1q-hide").forEach(el=> el.classList.remove("r1q-hide"));
+}
+/* シートの高さ：8割から中身に合わせて伸び、最大で上の帯の下まで */
+function qsSize(){
+  const scr = $app && $app.querySelector(".qscreen.qs.qdone"); if(!scr) return;
+  const ver = scr.querySelector(":scope > .verdict.qs-sheet"); if(!ver) return;
+  const q = ver.querySelector(".qs-q"), qt = q && q.querySelector(".qs-qt"), qb = q && q.querySelector(".qs-all");
+  if(qt && qb && !q.classList.contains("open")) qb.style.display = qt.scrollHeight > qt.clientHeight + 2 ? "" : "none";
+  if(qsWide()){ ver.style.removeProperty("--qsmin"); ver.style.removeProperty("--qsmax"); return; }
+  const bot = parseFloat(getComputedStyle(ver).bottom) || 0;
+  const avail = window.innerHeight - bot;
+  const head = scr.querySelector(".qhead");
+  const top = head ? Math.max(0, head.getBoundingClientRect().bottom) : 0;
+  const mx = Math.max(200, Math.round(avail - top - 4)), mn = Math.min(mx, Math.round(avail * 0.8));
+  ver.style.setProperty("--qsmin", mn + "px");
+  ver.style.setProperty("--qsmax", mx + "px");
+}
+function qsApply(){
+  if(!qsOn()) return;
+  const scr = $app.querySelector(".qscreen"); if(!scr) return;
+  const q = view.set[view.i];
+  scr.classList.add("qs");
+  if(!r1On()) qsHead(scr, q);
+  qsBefore(scr, q);
+  if(view.picked !== null) qsSheet(scr, q);
+  qsSize();
+  if(typeof qFit === "function"){ try{ qFit(); }catch(e){} }
+}
+(function(){
+  const r0 = render;
+  render = function(){ const out = r0.apply(this, arguments); try{ qsApply(); }catch(e){ console.error(e); } return out; };
+  window.addEventListener("resize", ()=>{ try{ qsSize(); }catch(e){} });
+  /* 次の問題へ進むときは、問題文の開閉・たたみを戻す */
+  const n0 = next;
+  next = function(){ view.qsall = null; view.qsf = null; return n0.apply(this, arguments); };
+})();
+
+/* ---------- v7.14 入口のアンケート：大学・目的・年齢（ref=1） ---------- */
+const AGES_Y = ["18", "19", "20", "21", "22", "23〜25", "26以上", "回答しない"];
+const UNIVS = ["武蔵野大学", "ほか"];
+const PURPOSES = ["授業についていく", "定期試験", "CBT", "国試"];
+function setAgeY(v){ ST.profile = ST.profile || {}; ST.profile.agey = v; view.keepScroll = true; render(); }
+function setUniv(v){ ST.profile = ST.profile || {}; ST.profile.univ = v; view.keepScroll = true; render(); }
+function setPurpose(v){ ST.profile = ST.profile || {}; ST.profile.purpose = v; view.keepScroll = true; render(); }
+function profSeg(arr, cur, fn){
+  return `<div class="seg" style="flex-wrap:wrap;gap:8px">${arr.map(v=> `<button aria-pressed="${cur === v}" onclick="${fn}('${esc(v)}')">${esc(v)}${/^\d+$/.test(v) ? "歳" : ""}</button>`).join("")}</div>`;
+}
+(function(){
+  const p0 = Profile;
+  Profile = function(){
+    let h = p0.apply(this, arguments);
+    if(!r1On()) return h;
+    const p = ST.profile || {};
+    /* 年代の行を 年齢 に置きかえ、その下に 大学・目的 */
+    const a = h.indexOf('<div class="sect-label">年代</div>'), b = h.indexOf('<div class="sect-label">性別</div>');
+    if(a < 0 || b < a) return h;
+    const add = `<div class="sect-label">年齢</div>${profSeg(AGES_Y, p.agey, "setAgeY")}`;
+    const tail = `<div class="sect-label">大学</div>${profSeg(UNIVS, p.univ, "setUniv")}<div class="sect-label">いちばんの目的</div>${profSeg(PURPOSES, p.purpose, "setPurpose")}`;
+    const c = h.indexOf("</div>", h.indexOf('<div class="seg"', b)) + 6;
+    h = h.slice(0, a) + add + h.slice(b, c) + tail + h.slice(c);
+    return h.split("学年・年代・性別").join("学年・年齢・性別・大学・目的");
+  };
+})();
+/* 今日の10問：大学の問題は武蔵野大学の人だけ（答えていない人は今までどおり） */
+(function(){
+  const dp = dailyPick;
+  dailyPick = function(key){
+    if(r1On() && ST.profile && ST.profile.univ && ST.profile.univ !== "武蔵野大学") return dailyPick0(key);
+    return dp.apply(this, arguments);
+  };
+})();
+/* 送る記録に 段・講義の種類 */
+function sendTierLabel(){
+  try{
+    if(view.fromUniv) return "試験対策";
+    if(!r1On() || typeof tierOn !== "function" || !tierOn()) return "";
+    const s = view.subject, us = view.units;
+    if(EXAMS[s] && us && us.length === 1) return TIER_NM[tierOf(s, us[0])] || "";
+  }catch(e){}
+  return "";
+}
+(function(){
+  const sr = sendReport;
+  sendReport = function(kind, data){
+    if(kind === "quiz_result" && data && typeof data === "object"){
+      const t = sendTierLabel(); if(t) data.tier = t;
+      if(ST.lecKindLast) data.lecKind = ST.lecKindLast;
+    }
+    return sr.apply(this, arguments);
+  };
+  const ol = openLec;
+  openLec = function(k){
+    if(LECS[k]){ ST.lecKindLast = /#k$/.test(k) ? "基礎編" : "標準編"; }
+    return ol.apply(this, arguments);
+  };
+})();
+
+/* ---------- v7.14 講義の基礎編｜標準編・入門の前提カード（ref=1） ---------- */
+const LECK_FILE = "./u/leck-6ed7538093.json";
+let LECK = null, leckSt = "idle";
+function leckFetch(){
+  if(!LECK_FILE || LECK || leckSt === "loading") return;
+  leckSt = "loading";
+  fetch(LECK_FILE).then(r=> r.ok ? r.json() : Promise.reject(r.status)).then(d=>{
+    LECK = d || {}; Object.keys(LECK).forEach(k=>{ LECS[k + "#k"] = LECK[k]; }); leckSt = "ok";
+    if(view.screen !== "quiz" && view.screen !== "lec"){ view.keepScroll = true; render(); }
+  }).catch(()=>{ leckSt = "idle"; });
+}
+function lecIsK(k){ return /#k$/.test(String(k || "")); }
+function lecBase(k){ return String(k || "").replace(/#k$/, ""); }
+/* その科目の講義一覧で見せる種類：自分で選んだほう → 次の単元の段（入門・基礎＝基礎編） */
+function lecKindFor(s){
+  if(ST.r1lk && ST.r1lk[s]) return ST.r1lk[s];
+  if(!Object.keys(LECS).some(k=> lecIsK(k) && k.split("|")[0] === s)) return "std";
+  try{
+    const nx = r1NextUnit(s);
+    if(nx && typeof tierOn === "function" && tierOn() && tierOf(s, nx.u) <= 1) return "kiso";
+  }catch(e){}
+  return "std";
+}
+function lecKindSet(s, v){ ST.r1lk = ST.r1lk || {}; ST.r1lk[s] = v; saveProgress(true); view.keepScroll = true; render(); }
+/* 前提カード */
+function preCardOf(uk){
+  const L = LECS[uk + "#k"]; if(!L || !L.s) return null;
+  return L.s.find(x=> /^この単元の前に/.test(x.h || "")) || null;
+}
+function preWant(uk){
+  if(!r1On() || typeof tierOn !== "function" || !tierOn()) return false;
+  const p = uk.split("|"), s = p[0], u = p.slice(1).join("|");
+  if(!EXAMS[s] || tierOf(s, u) !== 0) return false;
+  if(ST.preSeen && ST.preSeen[uk]) return false;
+  return !!preCardOf(uk);
+}
+function preCardHtml(uk){
+  const S = preCardOf(uk); if(!S) return "";
+  const p = uk.split("|"), e = EXAMS[p[0]] || {};
+  LS_G = {};
+  const no = ()=> "", at = ()=> "";
+  const vis = S.v ? lecV(S.v, no, at) : (S.tb ? `<div class="lec-tbw"><table class="lec-tb">${lecTable(S.tb)}</table></div>` : (S.f ? FigBox(S.f) : ""));
+  const say = (S.g || []).join("").trim();
+  return `<div class="precard" style="--sc:${e.color || "var(--act)"}">
+    <div class="pc-hd"><span class="pc-k">${lecTx(S.h)}</span><b>${esc(p.slice(1).join("|"))}</b><small>${esc(e.name || "")}</small></div>
+    <div class="pc-body">
+      ${(S.b && S.b.length) ? `<ul class="pc-b">${S.b.map(b=> `<li>${lecTx(b)}</li>`).join("")}</ul>` : ""}
+      ${vis ? `<div class="pc-vis">${vis}</div>` : ""}
+      ${say ? `<p class="pc-say">${lecTx(say)}</p>` : ""}
+    </div>
+    <div class="pc-ft"><button class="cta pc-go gdglow" onclick="preGo()">問題へ<span class="kb">Enter</span></button></div></div>`;
+}
+function preOn(){ return r1On() && view.screen === "quiz" && !view.study && view.preK && !view.preDone && view.preAt === view.i && view.picked === null; }
+function preGo(){
+  if(!view.preK) return;
+  ST.preSeen = ST.preSeen || {}; ST.preSeen[view.preK] = Date.now();
+  view.preDone = true; saveProgress(true); render();
+}
+(function(){
+  /* ref=1 は開いたら基礎編を読む */
+  const rd0 = render;
+  render = function(){
+    if(r1On() && !LECK) leckFetch();
+    const out = rd0.apply(this, arguments);
+    if(preOn()){ try{ $app.innerHTML = preCardHtml(view.preK); $app.setAttribute("data-s", "precard"); }catch(e){ console.error(e); } }
+    return out;
+  };
+  /* 前提カードを出す位置を、問題を始めるときに決める */
+  const g0 = go;
+  go = function(screen, patch){
+    if(screen === "quiz" && patch && patch.set){
+      patch.preAt = -1; patch.preK = null; patch.preDone = false;
+      try{
+        const flow = r1On() && !patch.review && !patch.retry && !patch.tplace && !patch.fromUniv && !patch.fromSearch && !patch.r1vol
+          && (patch.daily || (view.screen === "setup" && view.subject && view.subject !== "all" && EXAMS[view.subject]));
+        if(flow && !(patch.i > 0)){
+          for(let i = 0; i < patch.set.length; i++){
+            const q = patch.set[i]; if(!q || !EXAMS[q.s]) continue;
+            const uk = q.s + "|" + q.u;
+            if(preWant(uk)){ patch.preAt = i; patch.preK = uk; break; }
+          }
+        }
+      }catch(e){}
+    }
+    return g0.apply(this, arguments);
+  };
+  /* カードの上では数字キーで答えない。Enter＝問題へ */
+  window.addEventListener("keydown", e=>{
+    if(!document.querySelector("#app .precard") || e.isComposing) return;
+    if(e.key === "Enter"){ e.preventDefault(); e.stopImmediatePropagation(); preGo(); }
+    else if(/^[0-9]$/.test(e.key)){ e.stopImmediatePropagation(); }
+  }, true);
+  /* 基礎編は ref=1 だけ */
+  const ls0 = lecShown;
+  lecShown = function(k){ return lecIsK(k) ? (!!LECS[k] && r1On()) : ls0.apply(this, arguments); };
+  /* 講義の一覧：選んだ種類だけ */
+  const lk0 = r1LecKeys;
+  r1LecKeys = function(s){
+    const ks = lk0.apply(this, arguments);
+    if(!r1On()) return ks.filter(k=> !lecIsK(k));
+    const kiso = lecKindFor(s) === "kiso";
+    const out = ks.filter(k=> lecIsK(k) === kiso);
+    return out.length ? out : ks.filter(k=> !lecIsK(k));
+  };
+  const ll0 = r1LecList;
+  r1LecList = function(s){
+    let h = ll0.apply(this, arguments);
+    if(!Object.keys(LECS).some(k=> lecIsK(k) && k.split("|")[0] === s && lecShown(k))) return h;
+    const m = lecKindFor(s);
+    const seg = `<div class="r1l-seg r1l-lk" role="tablist" aria-label="講義の種類"><button role="tab" aria-pressed="${m === "kiso"}" onclick="lecKindSet('${s}','kiso')">基礎編</button><button role="tab" aria-pressed="${m !== "kiso"}" onclick="lecKindSet('${s}','std')">標準編</button></div>`;
+    return h.replace('<div class="r1s-pn">', seg + '<div class="r1s-pn">');
+  };
+  /* 次の講義は同じ種類から */
+  r1LecNext = function(k){
+    const s = k.split("|")[0], kk = lecIsK(k);
+    const ks = Object.keys(LECS).filter(x=> x.split("|")[0] === s && lecShown(x) && lecIsK(x) === kk);
+    const i = ks.indexOf(k);
+    return i >= 0 && i + 1 < ks.length ? ks[i + 1] : null;
+  };
+  const le0 = r1LecEndHtml;
+  r1LecEndHtml = function(L, k){
+    if(!lecIsK(k)) return le0.apply(this, arguments);
+    const b = lecBase(k), p = b.split("|"), s = p[0], u = p.slice(1).join("|");
+    const nQ = ALLQ().filter(q=> q.s === s && q.u === u).length;
+    const nx = r1LecNext(k);
+    return `<div class="r1lec-end"><h2>講義おわり</h2><p>${lecEsc(L.t)}</p>
+      ${nQ ? `<button class="q gdglow" onclick="lecDone()">この単元の問題 ${Math.min(20, nQ)}問</button>` : ""}
+      ${LECS[b] && lecShown(b) ? `<button onclick="openLec('${esc(b)}')">標準編を見る ›</button>` : ""}
+      ${nx ? `<button onclick="openLec('${esc(nx)}')">次の講義　${lecEsc(LECS[nx].t)} ›</button>` : ""}
+      <button onclick="r1LecAgain()">もう一度見る</button>
+      <button onclick="lecClose()">閉じる</button></div>`;
+  };
+  const ld0 = lecDone;
+  lecDone = function(){
+    if(!lecIsK(view.lec)) return ld0.apply(this, arguments);
+    lecMark(); lecStop();
+    const p = lecBase(view.lec).split("|");
+    openSetup(p[0], [p.slice(1).join("|")]);
+  };
+  /* 出題設定の「講義を見る」：入門・基礎の単元は基礎編 */
+  const lb0 = lecBtn;
+  lecBtn = function(){
+    const k = lecKey(), kk = k + "#k";
+    try{
+      if(r1On() && LECS[kk] && typeof tierOn === "function" && tierOn() && tierOf(view.subject, view.units[0]) <= 1)
+        return `<button class="cta ghost lecbtn" onclick="openLec('${esc(kk)}')">▶ 基礎編を見る（約${LECS[kk].min}分）${lecSeen(kk) ? " ✓" : ""}</button>`;
+    }catch(e){}
+    return lb0.apply(this, arguments);
+  };
+  /* 同期：前提カードを見た記録はどちらかで見ていれば見た扱い */
+  if(typeof syncPack === "function"){
+    const p0 = syncPack;
+    syncPack = function(){ const o = p0.apply(this, arguments); if(ST.preSeen) o.preSeen = ST.preSeen; if(ST.r1lk) o.r1lk = ST.r1lk; return o; };
+    const m0 = syncMerge;
+    syncMerge = function(d0){
+      const r = m0.apply(this, arguments);
+      try{
+        const D = (d0 && d0.preSeen) || {};
+        ST.preSeen = ST.preSeen || {};
+        let ch = false, up = false;
+        Object.keys(D).forEach(k=>{ if(!ST.preSeen[k]){ ST.preSeen[k] = D[k]; ch = true; } });
+        if(Object.keys(ST.preSeen).some(k=> !(k in D))) up = true;
+        if(d0 && d0.r1lk && typeof d0.r1lk === "object" && !ST.r1lk){ ST.r1lk = d0.r1lk; ch = true; }
+        if(r){ r.ch = r.ch || ch; r.up = r.up || up; }
+      }catch(e){}
+      return r;
+    };
+  }
 })();
 
 async function resetAll(){
