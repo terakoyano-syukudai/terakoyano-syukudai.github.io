@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.15｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.16｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -2024,9 +2024,9 @@
   .urv-n{font-family:var(--mono);font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));font-weight:700;color:var(--ink-2)}
 
   /* ---------- v6.97 新しいデザインの土台（ref=1 だけ：html.r1） ---------- */
-  @font-face{font-family:"R1 Head";src:url(u/r1f-mp2-fb0255bf.woff2) format("woff2");font-weight:500 900;font-display:swap}
-  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic"),local("BIZUDPGothic-Regular"),url(u/r1f-bizud4-b696e839.woff2) format("woff2");font-weight:400 500;font-display:swap}
-  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic Bold"),local("BIZUDPGothic-Bold"),url(u/r1f-bizud7-44d9aa09.woff2) format("woff2");font-weight:600 900;font-display:swap}
+  @font-face{font-family:"R1 Head";src:url(u/r1f-mp2-eef91310.woff2) format("woff2");font-weight:500 900;font-display:swap}
+  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic"),local("BIZUDPGothic-Regular"),url(u/r1f-bizud4-0ba8a0a8.woff2) format("woff2");font-weight:400 500;font-display:swap}
+  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic Bold"),local("BIZUDPGothic-Bold"),url(u/r1f-bizud7-fa96d9e7.woff2) format("woff2");font-weight:600 900;font-display:swap}
   html.r1{
     --jp:"R1 Body",system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
     --head:"R1 Head","R1 Body",system-ui,-apple-system,"Hiragino Sans",sans-serif;
@@ -2875,6 +2875,8 @@
   html.r1 .gsel-st{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));color:var(--ink-2)}
   html.r1 .gsel-st b{font:800 max(var(--fmin,0px),calc(18px*var(--fs,1))) var(--head);color:var(--ink)}
   html.r1 .gsel-st .hg-hot{font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)));color:var(--glow)}
+  html.r1 .gsel-rx{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .gsel-rx b{color:var(--ink);font:800 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head)}
   html.r1 .gsel-grid{flex:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
   html.r1 .gsel-c{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto auto;column-gap:10px;row-gap:2px;align-items:center;text-align:left;
     min-height:104px;padding:14px;border:0;border-radius:18px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
@@ -2958,6 +2960,99 @@
   html.r1 #navtab button{position:relative}
   html.r1 #navtab button.hg-on::after,html.r1 #navtab button.hg-bloom::after{content:"";position:absolute;top:6px;left:calc(50% + 9px);width:8px;height:8px;border-radius:50%;background:var(--kankyo);border:2px solid var(--surface)}
   html.r1 #navtab button.hg-bloom::after{background:var(--glow)}
+
+  /* ---------- v7.13 生薬マージ（ref=1） ---------- */
+  html.r1 #mg{position:fixed;inset:0;z-index:45;background:#F3EDE2;color:#2B2118;--mgk:#8B5A3C;--mgs:#FFFDF8;--mgl:#E4D9C6}
+  html.r1[data-theme="dark"] #mg{background:#17130F;color:#F1E9DE;--mgk:#C08A62;--mgs:#241D17;--mgl:#3A3027}
+  html.r1 .mg-scr{height:100%;max-width:520px;margin:0 auto;padding:calc(10px + env(safe-area-inset-top)) 12px calc(10px + env(safe-area-inset-bottom));box-sizing:border-box;display:flex;flex-direction:column;gap:8px;position:relative}
+  html.r1 .mg-head{flex:none;display:flex;align-items:center;gap:10px}
+  html.r1 .mg-x{flex:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--mgl);background:var(--mgs);color:inherit;font:800 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .mg-sc{display:flex;flex-direction:column;line-height:1.1}
+  html.r1 .mg-sc i{font-style:normal;font-size:max(var(--fmin,0px),calc(11px*var(--fs,1)));opacity:.7;font-weight:700}
+  html.r1 .mg-sc b{font:800 max(var(--fmin,0px),calc(24px*var(--fs,1))) var(--head);font-variant-numeric:tabular-nums}
+  html.r1 .mg-best b{font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)));opacity:.85}
+  html.r1 .mg-nx{margin-left:auto;display:flex;align-items:center;gap:6px;padding:4px 8px 4px 10px;border-radius:99px;background:var(--mgs);border:1px solid var(--mgl)}
+  html.r1 .mg-nx i{font-style:normal;font:800 max(var(--fmin,0px),calc(11px*var(--fs,1))) var(--head);color:var(--mgk);letter-spacing:.05em}
+  html.r1 .mg-dot{display:inline-flex;align-items:center;justify-content:center;flex:none;border-radius:50%;font:800 max(var(--fmin,0px),calc(10px*var(--fs,1))) var(--head);font-style:normal;box-shadow:inset -2px -3px 0 rgba(0,0,0,.12)}
+  html.r1 .mg-area{flex:1 1 0;min-height:0;position:relative;touch-action:none;user-select:none;-webkit-user-select:none}
+  html.r1 .mg-area canvas{display:block;touch-action:none}
+  html.r1 .mg-toast{position:absolute;left:8px;right:8px;top:4px;padding:8px 12px;border-radius:12px;background:rgba(43,33,24,.88);color:#FFF8EE;font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));line-height:1.45;
+    opacity:0;transform:translateY(-8px);transition:opacity .25s,transform .25s;pointer-events:none}
+  html.r1 .mg-toast.show{opacity:1;transform:none}
+  html.r1 .mg-toast b{color:#FCD34D}
+  html.r1 .mg-hint{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);padding:6px 12px;border-radius:99px;background:#B91C1C;color:#fff;font:800 max(var(--fmin,0px),calc(13px*var(--fs,1))) var(--head);display:none}
+  html.r1 .mg-hint.show{display:block}
+  html.r1 .mg-tip{flex:none;height:84px;overflow:hidden;display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:14px;background:var(--mgs);border:1px solid var(--mgl);border-left:5px solid var(--mgc,var(--mgk));box-sizing:border-box}
+  html.r1 .mg-tip0{font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));opacity:.75}
+  html.r1 .mg-tipb{display:flex;flex-direction:column;gap:1px;min-width:0;font-size:max(var(--fmin,0px),calc(12.5px*var(--fs,1)));line-height:1.4}
+  html.r1 .mg-tipb b{font:800 max(var(--fmin,0px),calc(15px*var(--fs,1))) var(--head)}
+  html.r1 .mg-tipb b small{margin-left:6px;font:700 max(var(--fmin,0px),calc(12px*var(--fs,1))) var(--jp);opacity:.7}
+  html.r1 .mg-tipb em{font-style:normal;opacity:.85;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+  html.r1 .mg-tipb > span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .mg-help{flex:none;display:flex;gap:8px}
+  html.r1 .mg-hb{flex:1 1 0;min-height:50px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;border-radius:14px;border:1px solid var(--mgk);background:var(--mgs);color:inherit;cursor:pointer;font:inherit}
+  html.r1 .mg-hb b{font:800 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head)}
+  html.r1 .mg-hb small{font-size:max(var(--fmin,0px),calc(11.5px*var(--fs,1)));opacity:.75}
+  html.r1 .mg-hb.on{background:var(--mgk);color:#fff}
+  html.r1 .mg-hb:disabled{opacity:.45;cursor:default}
+  html.r1 .mg-modal{position:absolute;inset:0;z-index:5;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(20,14,8,.5)}
+  html.r1 .mg-modal.show{display:flex}
+  html.r1 .mg-box{width:100%;max-width:320px;display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:20px;border-radius:20px;background:var(--mgs);color:inherit;text-align:center}
+  html.r1 .mg-mt{font:800 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head)}
+  html.r1 .mg-res{display:flex;align-items:baseline;justify-content:center;gap:4px;flex-wrap:wrap}
+  html.r1 .mg-res b{font:800 max(var(--fmin,0px),calc(40px*var(--fs,1))) var(--head)}
+  html.r1 .mg-res em{flex-basis:100%;font-style:normal;font:800 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head);color:#D97706}
+  html.r1 .mg-top{display:flex;align-items:center;justify-content:center;gap:10px;text-align:left}
+  html.r1 .mg-top small{display:block;font-size:max(var(--fmin,0px),calc(11px*var(--fs,1)));opacity:.7}
+  html.r1 .mg-top b{font:800 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--head)}
+  html.r1 .mg-btn{min-height:48px;border-radius:14px;border:1px solid var(--mgl);background:transparent;color:inherit;font:800 max(var(--fmin,0px),calc(15px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .mg-main{background:var(--mgk);border-color:var(--mgk);color:#fff}
+  html.r1 .gsel-merge .gsel-ic{background:var(--seika-soft);color:var(--seika)}
+
+  /* ---------- v7.13 免疫バトル（ref=1） ---------- */
+  html.r1 #im{position:fixed;inset:0;z-index:45;background:#FFF1F2;color:#4C0519;--ims:#FFFFFF;--iml:#FBCFE8}
+  html.r1[data-theme="dark"] #im{background:#1F0A10;color:#FFE4E6;--ims:#2E1219;--iml:#5B1A2A}
+  html.r1 .im-scr{height:100%;max-width:560px;margin:0 auto;padding:calc(10px + env(safe-area-inset-top)) 12px calc(10px + env(safe-area-inset-bottom));box-sizing:border-box;display:flex;flex-direction:column;gap:8px;position:relative}
+  html.r1 .im-head{flex:none;display:flex;align-items:center;gap:10px}
+  html.r1 .im-bars{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:5px}
+  html.r1 .im-bl{display:grid;grid-template-columns:3.6em minmax(0,1fr) 3em;align-items:center;gap:6px;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)))}
+  html.r1 .im-bl i{font-style:normal;font-weight:700;opacity:.8}
+  html.r1 .im-bl b{font:800 max(var(--fmin,0px),calc(13px*var(--fs,1))) var(--head);text-align:right;font-variant-numeric:tabular-nums}
+  html.r1 .im-bar{height:10px;border-radius:99px;background:var(--iml);overflow:hidden}
+  html.r1 .im-bar u{display:block;height:100%;border-radius:99px;transition:width .2s}
+  html.r1 .im-hp u{background:linear-gradient(90deg,#BE123C,#F43F5E)}
+  html.r1 .im-pg u{background:linear-gradient(90deg,#9F1239,#7C2D12)}
+  html.r1 .im-rx{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:64px;height:48px;border-radius:14px;background:var(--ims);border:1px solid var(--iml)}
+  html.r1 .im-rx i{font-style:normal;font:800 max(var(--fmin,0px),calc(11px*var(--fs,1))) var(--head);opacity:.7}
+  html.r1 .im-rx b{font:800 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head);color:#BE123C;font-variant-numeric:tabular-nums}
+  html.r1[data-theme="dark"] .im-rx b{color:#FB7185}
+  html.r1 .im-area{flex:1 1 0;min-height:0;position:relative;border-radius:16px;overflow:hidden}
+  html.r1 .im-area canvas{display:block}
+  html.r1 .im-toast{position:absolute;left:8px;right:8px;bottom:8px;padding:8px 12px;border-radius:12px;background:rgba(76,5,25,.88);color:#FFF1F2;font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));line-height:1.45;
+    opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;pointer-events:none}
+  html.r1 .im-toast.show{opacity:1;transform:none}
+  html.r1 .im-toast b{color:#FDA4AF}
+  html.r1 .im-slots{flex:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  html.r1 .im-dr{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-height:52px;padding:6px 44px 6px 12px;border-radius:14px;
+    border:1.5px solid var(--imc);background:var(--ims);color:inherit;font:inherit;text-align:left;cursor:pointer}
+  html.r1 .im-dr b{font:800 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head);color:var(--imc)}
+  html.r1 .im-dr small{font-size:max(var(--fmin,0px),calc(11px*var(--fs,1)));opacity:.75}
+  html.r1 .im-dr em{position:absolute;right:8px;top:50%;transform:translateY(-50%);min-width:28px;height:28px;border-radius:99px;background:var(--imc);color:#fff;font:800 max(var(--fmin,0px),calc(13px*var(--fs,1)))/28px var(--head);font-style:normal;text-align:center}
+  html.r1 .im-dr:disabled{opacity:.4;cursor:default}
+  html.r1 .im-ctl{flex:none;display:flex;gap:8px}
+  html.r1 .im-b{flex:1 1 0;min-height:44px;border-radius:12px;border:1px solid var(--iml);background:var(--ims);color:inherit;font:800 max(var(--fmin,0px),calc(13px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .im-test{border-style:dashed}
+  html.r1 .im-modal{position:absolute;inset:0;z-index:5;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(40,5,15,.5)}
+  html.r1 .im-modal.show{display:flex}
+  html.r1 .im-box{width:100%;max-width:320px;display:flex;flex-direction:column;gap:10px;padding:20px;border-radius:20px;background:var(--ims);color:inherit;text-align:center}
+  html.r1 .im-mt{font:800 max(var(--fmin,0px),calc(22px*var(--fs,1))) var(--head)}
+  html.r1 .im-win{color:#BE123C}
+  html.r1 .im-res{display:flex;flex-direction:column;gap:4px;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)))}
+  html.r1 .im-res b{font:800 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head)}
+  html.r1 .im-res em{font-style:normal;font:800 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head);color:#D97706}
+  html.r1 .im-btn{min-height:48px;border-radius:14px;border:1px solid var(--iml);background:transparent;color:inherit;font:800 max(var(--fmin,0px),calc(15px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .im-main{background:#BE123C;border-color:#BE123C;color:#fff}
+  html.r1 .gsel-immune .gsel-ic{background:var(--patho-soft);color:var(--patho)}
 
   /* ---------- v7.14 問題を解く画面をそろえる・8割のシート（全員） ---------- */
   .qscreen.qs .qfit::before{display:none !important}
@@ -3250,6 +3345,8 @@ function render(){
   if(s==="kgame")  $app.innerHTML = KGame();
   if(s==="games")  $app.innerHTML = GamesSel();
   if(s==="garden") $app.innerHTML = `<div class="hg-host"></div>`;
+  if(s==="merge")  $app.innerHTML = `<div class="mg-host"></div>`;
+  if(s==="immune") $app.innerHTML = `<div class="im-host"></div>`;
   if(s==="univ")   $app.innerHTML = Univ();
   if(s==="ucourse") $app.innerHTML = UCourse();
   if(s==="dstudy") $app.innerHTML = DStudy();
@@ -4062,7 +4159,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.15";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.16";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -4542,7 +4639,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.15（2026-11-09 更新）</span>
+      <br><span class="mono">アプリ版数：v7.16（2026-11-09 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -8380,6 +8477,9 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.16", date:"2026-11-09", items:[
+    { r:1, t:"ゲームが4つに（試作）", d:"ゲームのタブを開くと4つのゲームから選べます。新しく、学習しながら薬草を育てる「薬草園」、同じ生薬をくっつけて大きくする「生薬マージ」、免疫細胞で病原体を迎え撃つ「免疫バトル」を足しました。問題に1問正解するごとに処方ポイントが10たまり、生薬マージのお助けと免疫バトルの薬に使えます。" },
+  ]},
   { v:"v7.15", date:"2026-11-09", items:[
     { t:"送信設定に 年齢・大学・目的", d:"年代を年齢に変え、大学といちばんの目的を足しました。まだ答えていない人には、一度だけ送信設定の画面が出ます。大学に「ほか」を選んだ人の今日の10問には、大学の問題を混ぜません。" },
   ]},
@@ -11477,7 +11577,7 @@ dueQuestions = function(){ const d = dueQ0.apply(this, arguments); return ST.ref
 })();
 
 /* ---------- v7.12 5段（ref=1）：単元ごとの段・基礎の一問一答 ---------- */
-const TIER_FILE = "./u/tier-5f66276c78.json";
+const TIER_FILE = "./u/tier-ffb027af27.json";
 const TIER_NM = ["入門", "基礎", "標準", "応用", "難関"];
 const TIER_UP = 0.75;
 let TIERD = null, tierSt = "idle", KQ = [], _kqById = {}, _tierIx = null;
@@ -11799,12 +11899,26 @@ const HG_PLANTS = [{"id":"touki","name":"トウキ","kanji":"当帰","family":"�
 const HG_GOAL = 1800, HG_BOOST = 30, HG_BREAK = 300;   /* 開花の EXP・正解1問の EXP・休憩の秒 */
 const HG_STAR = [8, 20];                                 /* 正解がこれ以上で ★2・★3 */
 const HG_STAGES = [ { k:"seed", t:"種", at:0 }, { k:"sprout", t:"芽生え", at:.2 }, { k:"growing", t:"若葉", at:.6 }, { k:"harvestable", t:"開花", at:1 } ];
+const GAME_IC = {
+  kampo:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="4" width="17" height="16" rx="2"/><path d="M3.5 9.3h17M3.5 14.7h17M9.2 4v16M14.8 4v16"/></svg>`,
+  garden:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 20.5V12a7 7 0 0 1 14 0v8.5Z"/><path d="M12 19v-5.5M12 15c0-2.6-1.8-4-4.3-3.7 0 2.4 1.7 3.9 4.3 3.7Zm0-1.5c0-2.4 1.6-3.7 4-3.4 0 2.2-1.6 3.6-4 3.4Z"/><path d="M3.5 20.5h17"/></svg>`,
+  soon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>`
+};
+/* ゲームの一覧（あとのパッチが soon を置きかえる）。rec は記録の1行、cls は色 */
 const GAME_LIST = [
-  { k:"kampo",  t:"漢方調合", s:"証から生薬を選ぶ",   on:"go('kgame')" },
-  { k:"garden", t:"薬草園",   s:"30分の学習で育てる", on:"go('garden')" },
+  { k:"kampo",  t:"漢方調合", s:"証から生薬を選ぶ",   on:"go('kgame')",  rec:()=>{ let b = 0; try{ b = kgSt().m.normal.best || 0; }catch(e){} return `最高 <b>${b}</b> 点`; } },
+  { k:"garden", t:"薬草園",   s:"30分の学習で育てる", on:"go('garden')", rec:()=>{ const s = hgSt(); return `収穫 <b>${HG_PLANTS.reduce((n, x)=> n + ((s.col[x.id] || {}).n || 0), 0)}</b>`; } },
   { k:"soon1",  t:"準備中" },
   { k:"soon2",  t:"準備中" }
 ];
+/* 学習で正解したときに各ゲームへ知らせる（返した文を1つの知らせにまとめて出す） */
+const GAME_OK = [];
+/* 処方ポイント（Rx pt）：正解1問で +10。生薬マージ・免疫バトルで使う（上限 200） */
+const RX_PER_OK = 10, RX_MAX = 200;
+function rxPt(){ return Math.max(0, Math.min(RX_MAX, ST.rx | 0)); }
+function rxAdd(n){ ST.rx = Math.max(0, Math.min(RX_MAX, rxPt() + n)); try{ saveProgress(false); }catch(e){} }
+function rxUse(n){ if(rxPt() < n) return false; ST.rx = rxPt() - n; try{ saveProgress(false); }catch(e){} return true; }
+GAME_OK.push(()=>{ const had = rxPt(); rxAdd(RX_PER_OK); return (ST.mg || ST.im) && rxPt() > had ? `処方pt +${RX_PER_OK}` : ""; });
 function hgSt(){
   if(!ST.hg || typeof ST.hg !== "object") ST.hg = {};
   const s = ST.hg;
@@ -11898,11 +12012,12 @@ function hgHarvest(){
 }
 function hgEndBreak(){ const s = hgSt(); if(s.ph !== "break") return; s.ph = "idle"; s.be = 0; hgCardOpen = ""; hgSave(); hgDraw(true); hgBadge(); }
 function hgBoost(){
-  const s = hgSt(); if(s.ph !== "grow" || !s.run) return;
+  const s = hgSt(); if(s.ph !== "grow" || !s.run) return "";
   s.ok = (s.ok || 0) + 1; hgSave();
-  hgToast(`薬草園 +${HG_BOOST}`, true);
-  hgTick();
+  setTimeout(hgTick, 0);
+  return `薬草園 +${HG_BOOST}`;
 }
+GAME_OK.push(hgBoost);
 
 /* ---------- 知らせ・タブの印 ---------- */
 function hgToast(msg, small){
@@ -11922,31 +12037,23 @@ function hgBadge(){
 /* ---------- ゲームを選ぶ ---------- */
 function GamesSel(){
   const s = hgSt(), p = hgPlant(s.p), got = HG_PLANTS.filter(x=> s.col[x.id]).length;
-  let best = 0; try{ best = kgSt().m.normal.best || 0; }catch(e){}
-  const harv = HG_PLANTS.reduce((n, x)=> n + ((s.col[x.id] || {}).n || 0), 0);
   const e = hgExp(s), act = (s.ph === "grow" || s.ph === "paused" || s.ph === "bloom") && p;
   const stage = act ? hgStage(e) : HG_STAGES[0];
   const st = act ? (s.ph === "bloom" ? `<b class="hg-hot">収穫できます</b>` : `${p.name}　<b>${Math.min(100, Math.floor(e / HG_GOAL * 100))}</b>%${s.ph === "paused" ? "　一時停止中" : ""}`)
               : s.ph === "break" ? `休憩中　<b>${hgClock((s.be - Date.now()) / 1000)}</b>` : `図鑑 <b>${got}</b>/${HG_PLANTS.length}`;
-  const rec = { kampo:`最高 <b>${best}</b> 点`, garden:`収穫 <b>${harv}</b>` };
-  const ic = {
-    kampo:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="4" width="17" height="16" rx="2"/><path d="M3.5 9.3h17M3.5 14.7h17M9.2 4v16M14.8 4v16"/></svg>`,
-    garden:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 20.5V12a7 7 0 0 1 14 0v8.5Z"/><path d="M12 19v-5.5M12 15c0-2.6-1.8-4-4.3-3.7 0 2.4 1.7 3.9 4.3 3.7Zm0-1.5c0-2.4 1.6-3.7 4-3.4 0 2.2-1.6 3.6-4 3.4Z"/><path d="M3.5 20.5h17"/></svg>`,
-    soon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>`
-  };
   return `<div class="gsel">
     <button class="gsel-top" onclick="go('garden')" aria-label="薬草園をひらく">
       <span class="gsel-h">ゲーム</span>
       <span class="gsel-dome">${hgPlantSvg(stage.k, p ? p.accentColor : "", { empty: !act, label:"薬草園" })}</span>
-      <span class="gsel-st">${st}</span>
+      <span class="gsel-st">${st}</span>${ST.mg || ST.im ? `<span class="gsel-rx">処方pt <b>${rxPt()}</b></span>` : ""}
     </button>
     <div class="gsel-grid">${GAME_LIST.map(g=>{
       const soon = !g.on;
       return `<button class="gsel-c gsel-${soon ? "soon" : g.k}" ${soon ? 'disabled aria-disabled="true"' : `onclick="${g.on}"`}>
-        <span class="gsel-ic">${ic[soon ? "soon" : g.k]}</span>
+        <span class="gsel-ic">${GAME_IC[soon ? "soon" : g.k] || ""}</span>
         <span class="gsel-t">${g.t}</span>
         <span class="gsel-s">${soon ? "近日追加" : g.s}</span>
-        ${soon ? "" : `<span class="gsel-r">${rec[g.k]}</span>`}
+        ${soon ? "" : `<span class="gsel-r">${g.rec ? g.rec() : ""}</span>`}
       </button>`; }).join("")}</div>
   </div>`;
 }
@@ -12043,7 +12150,8 @@ function hgNextStar(ok, done){
   answer = function(k){
     const fresh = view.picked === null;
     const r = a0.apply(this, arguments);
-    try{ if(r1On() && fresh && view.picked !== null){ const L = view.log[view.i]; if(L && L.ok) hgBoost(); } }catch(e){}
+    try{ if(r1On() && fresh && view.picked !== null){ const L = view.log[view.i];
+      if(L && L.ok){ const m = GAME_OK.map(f=>{ try{ return f() || ""; }catch(e){ return ""; } }).filter(Boolean); if(m.length) hgToast(m.join("　"), true); } } }catch(e){}
     return r;
   };
   /* 画面：ゲームを選ぶ（#app）・薬草園（body 直下 #hg） */
@@ -12073,6 +12181,615 @@ function hgNextStar(ok, done){
   }catch(e){}
   hgTimer = setInterval(hgTick, 1000);
   document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) hgTick(); });
+})();
+
+/* ---------- v7.13 生薬マージ（ref=1） ---------- */
+const MG_H = [{"n":"ショウキョウ","k":"生姜","d":32,"c":"#C9A24D","i":"#3A2A10","fam":"ショウガ科","part":"根茎","comp":"ギンゲロール・ショウガオール","tip":"加熱でギンゲロール→ショウガオール","long":"乾燥・加熱でギンゲロールがショウガオールに変わる。蒸して乾かしたものはカンキョウ（乾姜）。"},{"n":"タイソウ","k":"大棗","d":44,"c":"#8E3B2F","i":"#FFF4EC","fam":"クロウメモドキ科","part":"果実","comp":"糖類・ジジフスサポニン","tip":"生姜と組で多くの処方に","long":"ショウキョウと組で、桂枝湯・小柴胡湯など多くの処方に入る。作用をやわらげる。"},{"n":"ケイヒ","k":"桂皮","d":56,"c":"#B5703A","i":"#FFF6EC","fam":"クスノキ科","part":"樹皮","comp":"シンナムアルデヒド","tip":"処方名では「桂枝」","long":"精油のシンナムアルデヒドを含む。処方名では「桂枝」（桂枝湯・桂枝茯苓丸）。"},{"n":"シャクヤク","k":"芍薬","d":72,"c":"#F2A7C3","i":"#4A1028","fam":"ボタン科","part":"根","comp":"ペオニフロリン","tip":"芍薬甘草湯はこむら返り","long":"鎮痙・鎮痛。芍薬甘草湯はこむら返り。同じボタン科のボタンピ（根皮・ペオノール）と区別する。"},{"n":"カンゾウ","k":"甘草","d":90,"c":"#F2D04B","i":"#4A3600","fam":"マメ科","part":"根/ストロン","comp":"グリチルリチン酸","tip":"偽アルドステロン症に注意","long":"医療用漢方製剤の約7割に入る。グリチルリチン酸の代謝物が11β-HSD2を阻害し、偽アルドステロン症（低カリウム血症・高血圧・浮腫）を起こす。"},{"n":"トウキ","k":"当帰","d":110,"c":"#5B2A6E","i":"#F6ECFA","fam":"セリ科","part":"根","comp":"リグスチリド","tip":"補血の代表（婦人科）","long":"補血の代表。当帰芍薬散・四物湯など婦人科の処方で頻出。センキュウとともに精油のリグスチリドを含む。"},{"n":"オウレン","k":"黄連","d":132,"c":"#E0A800","i":"#3D2A00","fam":"キンポウゲ科","part":"根茎","comp":"ベルベリン","tip":"オウバク（ミカン科）にも含む","long":"苦味のイソキノリンアルカロイド、ベルベリンを含む。ミカン科のオウバク（黄柏）にも含まれる。黄連解毒湯・半夏瀉心湯。"},{"n":"ブクリョウ","k":"茯苓","d":156,"c":"#ECE8DE","i":"#3B362C","fam":"サルノコシカケ科","part":"菌核","comp":"エブリコ酸・パキマン","tip":"菌核の生薬・利水の代表","long":"マツの根に寄生する菌の菌核。利水の代表で、五苓散・苓桂朮甘湯・桂枝茯苓丸に入る。"},{"n":"ジオウ","k":"地黄","d":182,"c":"#1E1B1A","i":"#F3EEE8","fam":"ゴマノハグサ科","part":"根","comp":"カタルポール","tip":"胃腸の弱い人は胃もたれに注意","long":"イリドイド配糖体のカタルポールを含む。胃腸の弱い人は食欲不振・胃もたれに注意。八味地黄丸・四物湯。"},{"n":"チョウセンニンジン","k":"人参","d":210,"c":"#E9C9A0","i":"#3E2A14","fam":"ウコギ科","part":"根","comp":"ギンセノシド","tip":"補気の代表","long":"補気の代表（人参湯・六君子湯・補中益気湯）。蒸して乾かしたものはコウジン（紅参）で、日局では別の生薬。"},{"n":"レイシ","k":"霊芝","d":240,"c":"#8A3B12","i":"#FFF1E6","fam":"マンネンタケ科","part":"子実体","comp":"トリテルペン・β-グルカン","tip":"日本薬局方には載っていない","long":"マンネンタケの子実体。日本薬局方の生薬ではない（健康食品などで流通）。人参どうしの合体でだけ出るボーナス。"}];
+const MG_W = 400, MG_HT = 560, MG_DL = 104, MG_DROPY = 52;   /* 鍋の中の大きさ・デッドライン・落とす高さ（世界の単位） */
+const MG_G = 2200, MG_E = 0.25, MG_MU = 0.12, MG_SUB = 6;
+const MG_PTS = [0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55], MG_BONUS = 500, MG_HELP = 10;
+const MG_DROP_W = [30, 25, 20, 15, 10];   /* 落ちてくる生薬：小さい5段から */
+let MG = null;
+function mgSt(){ if(!ST.mg || typeof ST.mg !== "object") ST.mg = { best:0, plays:0, top:0 }; return ST.mg; }
+function mgR(lv){ return MG_H[lv].d / 2; }
+function mgRand(){ let x = Math.random() * 100; for(let i = 0; i < MG_DROP_W.length; i++){ if(x < MG_DROP_W[i]) return i; x -= MG_DROP_W[i]; } return 0; }
+function mgRoot(){ let r = document.getElementById("mg"); if(!r){ r = document.createElement("div"); r.id = "mg"; document.body.appendChild(r); } return r; }
+function mgUnmount(){ if(MG){ cancelAnimationFrame(MG.raf); MG.dead = true; try{ MG.ro && MG.ro.disconnect(); }catch(e){} } MG = null; const r = document.getElementById("mg"); if(r) r.remove(); }
+function mgRR(g, x, y, w, h, r){ if(g.roundRect){ g.roundRect(x, y, w, h, r); } else g.rect(x, y, w, h); }
+function mgDot(lv, px){ const h = MG_H[lv]; return `<i class="mg-dot" style="width:${px}px;height:${px}px;background:${h.c};color:${h.i}">${h.k}</i>`; }
+
+function mgStart(){
+  if(MG){ cancelAnimationFrame(MG.raf); MG.dead = true; try{ MG.ro && MG.ro.disconnect(); }catch(e){} }
+  const st = mgSt();
+  MG = { bodies:[], parts:[], score:0, top:0, cur:mgRand(), next:mgRand(), aim:MG_W / 2, aiming:false, cool:0, danger:0, over:false, paused:false,
+         free:{ crush:1, shake:1 }, crushMode:false, shakeT:0, flash:0, t:0, last:0, acc:0, raf:0, id:0, toastT:0, tipLv:-1 };
+  mgRoot().innerHTML = `<div class="mg-scr">
+    <div class="mg-head">
+      <button class="mg-x" onclick="mgPause(true)" aria-label="一時停止">Ⅱ</button>
+      <span class="mg-sc"><i>スコア</i><b id="mgS">0</b></span>
+      <span class="mg-sc mg-best"><i>ハイスコア</i><b id="mgB">${st.best || 0}</b></span>
+      <span class="mg-nx"><i>NEXT</i><span id="mgN"></span></span>
+    </div>
+    <div class="mg-area" id="mgA"><canvas id="mgC"></canvas><div class="mg-toast" id="mgT"></div><div class="mg-hint" id="mgHint">消す生薬をタップ</div></div>
+    <div class="mg-tip" id="mgTip"><span class="mg-tip0">同じ生薬をくっつけると大きくなる</span></div>
+    <div class="mg-help">
+      <button class="mg-hb" id="mgCrush" onclick="mgCrush()"><b>乳鉢ですりつぶし</b><small id="mgCrushC"></small></button>
+      <button class="mg-hb" id="mgShake" onclick="mgShake()"><b>煎じ薬シェイク</b><small id="mgShakeC"></small></button>
+    </div>
+    <div class="mg-modal" id="mgM"></div>
+  </div>`;
+  const cv = document.getElementById("mgC");
+  const pt = ev=>{ const r = cv.getBoundingClientRect(), L = MG.lay; return { x:(ev.clientX - r.left - L.ox) / L.s, y:(ev.clientY - r.top - L.oy) / L.s }; };
+  cv.addEventListener("pointermove", ev=>{ if(!MG) return; MG.aim = pt(ev).x; MG.aiming = true; });
+  cv.addEventListener("pointerdown", ev=>{ if(!MG) return; MG.aim = pt(ev).x; MG.aiming = true; try{ cv.setPointerCapture(ev.pointerId); }catch(e){} });
+  cv.addEventListener("pointerup", ev=>{ if(!MG) return; const p = pt(ev); if(MG.crushMode) mgCrushAt(p); else { MG.aim = p.x; mgDrop(); } if(ev.pointerType !== "mouse") MG.aiming = false; });
+  cv.addEventListener("pointerleave", ()=>{ if(MG) MG.aiming = false; });
+  MG.font = (getComputedStyle(document.documentElement).getPropertyValue("--head") || "").trim() || "sans-serif";
+  mgFit(); mgHud(); mgHelpHud();
+  const loop = t=>{
+    if(!MG || MG.dead) return;
+    if(!MG.last) MG.last = t;
+    let dt = Math.min(0.05, (t - MG.last) / 1000); MG.last = t;
+    if(!MG.paused && !MG.over && !document.hidden){ MG.acc += dt; while(MG.acc >= 1/60){ mgStep(1/60); MG.acc -= 1/60; } } else MG.acc = 0;
+    mgDraw(dt);
+    MG.raf = requestAnimationFrame(loop);
+  };
+  MG.raf = requestAnimationFrame(loop);
+  try{ navBar(null); }catch(e){}
+  try{ const a = document.getElementById("mgA"); if(window.ResizeObserver && a){ MG.ro = new ResizeObserver(()=>{ if(MG) mgFit(); }); MG.ro.observe(a); } }catch(e){}
+}
+function mgFit(){
+  const cv = document.getElementById("mgC"), a = document.getElementById("mgA"); if(!cv || !a || !MG) return;
+  const w = a.clientWidth, h = a.clientHeight, dpr = Math.min(2, window.devicePixelRatio || 1);
+  cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); cv.style.width = w + "px"; cv.style.height = h + "px";
+  const s = Math.min((w - 24) / MG_W, (h - 18) / MG_HT);
+  MG.lay = { s, ox:(w - MG_W * s) / 2, oy:h - 12 - MG_HT * s, dpr, w, h };
+}
+function mgHud(){
+  const s = document.getElementById("mgS"); if(s) s.textContent = MG.score;
+  const n = document.getElementById("mgN"); if(n) n.innerHTML = mgDot(MG.next, 30);
+}
+function mgHelpHud(){
+  const pt = rxPt();
+  [["crush", "mgCrush"], ["shake", "mgShake"]].forEach(([k, id])=>{
+    const b = document.getElementById(id), c = document.getElementById(id + "C"); if(!b) return;
+    const free = MG.free[k] > 0;
+    c.textContent = free ? "無料 1回" : `処方pt ${MG_HELP}（${pt}）`;
+    b.disabled = !free && pt < MG_HELP;
+    b.classList.toggle("on", k === "crush" && MG.crushMode);
+  });
+  const h = document.getElementById("mgHint"); if(h) h.classList.toggle("show", MG.crushMode);
+}
+function mgPay(k){ if(MG.free[k] > 0){ MG.free[k]--; return true; } return rxUse(MG_HELP); }
+
+/* ---------- 物理 ---------- */
+function mgAdd(lv, x, y, vx, vy){ const b = { id:++MG.id, lv, r:mgR(lv), x, y, vx:vx || 0, vy:vy || 0, a:0, age:0, pop:0 }; MG.bodies.push(b); return b; }
+function mgDrop(){
+  if(!MG || MG.over || MG.paused || MG.cool > 0) return;
+  const r = mgR(MG.cur), x = Math.max(r, Math.min(MG_W - r, MG.aim));
+  mgAdd(MG.cur, x, MG_DROPY, 0, 60);
+  MG.cur = MG.next; MG.next = mgRand(); MG.cool = 0.45; mgHud();
+}
+function mgStep(dt){
+  MG.t += dt; MG.cool = Math.max(0, MG.cool - dt); MG.shakeT = Math.max(0, MG.shakeT - dt); MG.flash = Math.max(0, MG.flash - dt);
+  const B = MG.bodies, h = dt / MG_SUB, merges = [];
+  for(let k = 0; k < MG_SUB; k++){
+    for(const b of B){ b.vy += MG_G * h; b.vx *= 0.9995; b.vy *= 0.9995; b.x += b.vx * h; b.y += b.vy * h; b.a += b.vx * h / b.r; }
+    for(let pass = 0; pass < 2; pass++){
+      for(let i = 0; i < B.length; i++){
+        const a = B[i]; if(a.gone) continue;
+        for(let j = i + 1; j < B.length; j++){
+          const b = B[j]; if(b.gone) continue;
+          const dx = b.x - a.x, dy = b.y - a.y, rr = a.r + b.r;
+          if(dx * dx + dy * dy >= rr * rr) continue;
+          const d = Math.sqrt(dx * dx + dy * dy) || 0.01, nx = dx / d, ny = dy / d;
+          if(a.lv === b.lv && a.lv < MG_H.length - 1){ a.gone = b.gone = true; merges.push([a, b]); continue; }
+          const ia = 1 / (a.r * a.r), ib = 1 / (b.r * b.r), pen = rr - d, c = pen / (ia + ib) * 0.8;
+          a.x -= nx * c * ia; a.y -= ny * c * ia; b.x += nx * c * ib; b.y += ny * c * ib;
+          const vn = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny;
+          if(vn < 0){
+            const jn = -(1 + MG_E) * vn / (ia + ib);
+            a.vx -= jn * ia * nx; a.vy -= jn * ia * ny; b.vx += jn * ib * nx; b.vy += jn * ib * ny;
+            const tx = -ny, ty = nx, vt = (b.vx - a.vx) * tx + (b.vy - a.vy) * ty;
+            let jt = -vt / (ia + ib); const lim = MG_MU * jn; jt = Math.max(-lim, Math.min(lim, jt));
+            a.vx -= jt * ia * tx; a.vy -= jt * ia * ty; b.vx += jt * ib * tx; b.vy += jt * ib * ty;
+          }
+        }
+      }
+      for(const b of B){
+        if(b.x - b.r < 0){ b.x = b.r; if(b.vx < 0) b.vx = -b.vx * MG_E; b.vy *= 0.99; }
+        if(b.x + b.r > MG_W){ b.x = MG_W - b.r; if(b.vx > 0) b.vx = -b.vx * MG_E; b.vy *= 0.99; }
+        if(b.y + b.r > MG_HT){ b.y = MG_HT - b.r; if(b.vy > 0) b.vy = -b.vy * MG_E; b.vx *= 0.985; }
+      }
+    }
+    if(merges.length) break;
+  }
+  for(const [a, b] of merges) mgMerge(a, b);
+  MG.bodies = B.filter(b=> !b.gone);
+  for(const b of MG.bodies){ b.age += dt; b.pop = Math.max(0, b.pop - dt); }
+  for(const p of MG.parts){ p.t -= dt; p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 900 * dt; }
+  MG.parts = MG.parts.filter(p=> p.t > 0);
+  /* デッドライン：落としてから1.5秒たった生薬が線の上に2秒いたら終わり */
+  const hi = MG.bodies.some(b=> b.age > 1.5 && b.y - b.r < MG_DL);
+  MG.danger = hi ? MG.danger + dt : Math.max(0, MG.danger - dt * 2);
+  if(MG.danger >= 2) mgOver();
+  if(MG.toastT > 0){ MG.toastT -= dt; if(MG.toastT <= 0){ const t = document.getElementById("mgT"); if(t) t.classList.remove("show"); } }
+}
+function mgBurst(x, y, col, n, sp){ for(let i = 0; i < n; i++){ const a = Math.random() * Math.PI * 2, v = sp * (0.4 + Math.random() * 0.8); MG.parts.push({ x, y, vx:Math.cos(a) * v, vy:Math.sin(a) * v - sp * 0.3, t:0.5 + Math.random() * 0.5, c:col, r:2 + Math.random() * 3 }); } }
+function mgMerge(a, b){
+  const lv = a.lv + 1, x = (a.x + b.x) / 2, y = (a.y + b.y) / 2;
+  if(lv === MG_H.length - 1){
+    /* 人参どうし → 霊芝：大爆発・ボーナス・まわりを吹き飛ばす */
+    MG.score += MG_PTS[10] + MG_BONUS; MG.flash = 1.1; MG.shakeT = 0.6;
+    mgBurst(x, y, MG_H[lv].c, 70, 900); mgBurst(x, y, "#FBBF24", 50, 700);
+    for(const o of MG.bodies){ if(o.gone) continue; const dx = o.x - x, dy = o.y - y, d = Math.hypot(dx, dy) || 1; const f = 1600 * Math.max(0, 1 - d / 420); o.vx += dx / d * f; o.vy += dy / d * f - 300; }
+  } else {
+    const n = mgAdd(lv, x, y, (a.vx + b.vx) / 2, (a.vy + b.vy) / 2 - 80); n.pop = 0.25; n.age = 2;
+    MG.score += MG_PTS[lv];
+    mgBurst(x, y, MG_H[lv].c, 12 + lv * 2, 260 + lv * 25);
+  }
+  MG.top = Math.max(MG.top, lv);
+  mgTell(lv); mgHud();
+  try{ if(navigator.vibrate) navigator.vibrate(lv >= 9 ? [30, 40, 30] : 8); }catch(e){}
+}
+function mgTell(lv){
+  const h = MG_H[lv];
+  const t = document.getElementById("mgT");
+  if(t){ t.innerHTML = `<b>${h.n}</b>：${h.fam}・${h.part}｜${h.comp}・${h.tip}`; t.classList.add("show"); MG.toastT = 1.5; }
+  const c = document.getElementById("mgTip");
+  if(c){ c.style.setProperty("--mgc", h.c); c.innerHTML = `${mgDot(lv, 34)}<span class="mg-tipb"><b>${h.n}<small>${h.k}・${h.fam}・${h.part}</small></b><span>${h.comp}</span><em>${h.long}</em></span>`; }
+  MG.tipLv = lv;
+}
+
+/* ---------- お助け ---------- */
+function mgCrush(){
+  if(!MG || MG.over || MG.paused) return;
+  if(MG.crushMode){ MG.crushMode = false; mgHelpHud(); return; }
+  if(!MG.bodies.length) return;
+  if(!(MG.free.crush > 0) && rxPt() < MG_HELP) return;
+  MG.crushMode = true; mgHelpHud();
+}
+function mgCrushAt(p){
+  const b = MG.bodies.slice().reverse().find(b=> Math.hypot(b.x - p.x, b.y - p.y) <= b.r + 6);
+  if(!b){ return; }
+  if(!mgPay("crush")){ MG.crushMode = false; mgHelpHud(); return; }
+  b.gone = true; MG.bodies = MG.bodies.filter(o=> !o.gone);
+  mgBurst(b.x, b.y, MG_H[b.lv].c, 26, 320);
+  MG.crushMode = false; mgHelpHud();
+}
+function mgShake(){
+  if(!MG || MG.over || MG.paused || !MG.bodies.length) return;
+  if(!mgPay("shake")) return;
+  MG.crushMode = false;
+  for(const b of MG.bodies){ b.vx += (Math.random() - 0.5) * 520; b.vy -= 250 + Math.random() * 350; }
+  MG.shakeT = 0.6; mgHelpHud();
+}
+
+/* ---------- 描く ---------- */
+function mgBall(g, b, s){
+  const h = MG_H[b.lv], r = b.r * s * (1 + (b.pop > 0 ? b.pop * 0.6 : 0));
+  g.save(); g.translate(b.x * s, b.y * s);
+  const gr = g.createRadialGradient(-r * .35, -r * .4, r * .1, 0, 0, r);
+  const matte = b.lv === 7, gloss = b.lv === 8 || b.lv === 10;
+  gr.addColorStop(0, matte ? h.c : "rgba(255,255,255,.55)"); gr.addColorStop(matte ? 1 : .25, h.c); gr.addColorStop(1, h.c);
+  g.beginPath(); g.arc(0, 0, r, 0, Math.PI * 2); g.fillStyle = h.c; g.fill(); g.fillStyle = gr; g.fill();
+  g.lineWidth = Math.max(1, r * .06); g.strokeStyle = "rgba(0,0,0,.22)"; g.stroke();
+  g.rotate(b.a);
+  if(b.lv === 4){   /* 甘草：輪切り */
+    g.strokeStyle = "rgba(150,100,0,.45)"; g.lineWidth = Math.max(1, r * .04);
+    [.82, .6, .38].forEach(k=>{ g.beginPath(); g.arc(0, 0, r * k, 0, Math.PI * 2); g.stroke(); });
+    for(let i = 0; i < 12; i++){ const a = i * Math.PI / 6; g.beginPath(); g.moveTo(Math.cos(a) * r * .2, Math.sin(a) * r * .2); g.lineTo(Math.cos(a) * r * .85, Math.sin(a) * r * .85); g.stroke(); }
+  }
+  if(matte){ g.fillStyle = "rgba(120,110,90,.18)"; for(let i = 0; i < 14; i++){ const a = i * 2.4, d = r * (.2 + (i % 5) * .15); g.beginPath(); g.arc(Math.cos(a) * d, Math.sin(a) * d, Math.max(1, r * .03), 0, Math.PI * 2); g.fill(); } }
+  g.rotate(-b.a);
+  if(gloss){ g.fillStyle = "rgba(255,255,255,.35)"; g.beginPath(); g.ellipse(-r * .35, -r * .45, r * .32, r * .16, -.6, 0, Math.PI * 2); g.fill(); }
+  if(b.lv === 9){   /* 人参：王冠 */
+    const w = r * .5, y = -r * .98;
+    g.fillStyle = "#E6B422"; g.strokeStyle = "#8A6A00"; g.lineWidth = Math.max(1, r * .03);
+    g.beginPath(); g.moveTo(-w, y); g.lineTo(-w, y - r * .22); g.lineTo(-w * .5, y - r * .1); g.lineTo(0, y - r * .3); g.lineTo(w * .5, y - r * .1); g.lineTo(w, y - r * .22); g.lineTo(w, y); g.closePath(); g.fill(); g.stroke();
+    g.strokeStyle = "rgba(110,70,30,.35)"; g.lineWidth = Math.max(1, r * .025);
+    [-.3, .05, .35].forEach(k=>{ g.beginPath(); g.moveTo(-r * .55, r * k); g.quadraticCurveTo(0, r * (k + .08), r * .55, r * k); g.stroke(); });
+  }
+  const fs = Math.max(9, r * (h.k.length > 1 ? .52 : .7));
+  g.fillStyle = h.i; g.font = `800 ${fs}px ${MG.font}`; g.textAlign = "center"; g.textBaseline = "middle";
+  g.fillText(h.k, 0, fs * .05);
+  g.restore();
+}
+function mgDraw(dt){
+  const cv = document.getElementById("mgC"); if(!cv || !MG || !MG.lay) return;
+  const g = cv.getContext("2d"), L = MG.lay, s = L.s, dark = document.documentElement.getAttribute("data-theme") === "dark";
+  g.setTransform(L.dpr, 0, 0, L.dpr, 0, 0); g.clearRect(0, 0, L.w, L.h);
+  let sx = 0, sy = 0; if(MG.shakeT > 0){ const k = MG.shakeT * 14; sx = (Math.random() - .5) * k; sy = (Math.random() - .5) * k; }
+  g.save(); g.translate(L.ox + sx, L.oy + sy);
+  /* 土鍋 */
+  const W = MG_W * s, H = MG_HT * s, th = 10;
+  g.fillStyle = dark ? "#2A221C" : "#FBF6EE"; g.beginPath(); mgRR(g, 0, 0, W, H, [0, 0, 18, 18]); g.fill();
+  g.strokeStyle = dark ? "#7A5236" : "#8B5A3C"; g.lineWidth = th; g.beginPath(); g.moveTo(-th / 2, -8); g.lineTo(-th / 2, H - 14); g.quadraticCurveTo(-th / 2, H + th / 2, 18, H + th / 2); g.lineTo(W - 18, H + th / 2); g.quadraticCurveTo(W + th / 2, H + th / 2, W + th / 2, H - 14); g.lineTo(W + th / 2, -8); g.stroke();
+  g.fillStyle = dark ? "#7A5236" : "#8B5A3C"; g.beginPath(); mgRR(g, -th - 8, -14, th + 12, 10, 4); mgRR(g, W - 4, -14, th + 12, 10, 4); g.fill();
+  /* デッドライン */
+  const warn = MG.danger > 0;
+  g.save(); g.setLineDash([10, 7]); g.lineWidth = 2; g.strokeStyle = warn ? `rgba(220,38,38,${.5 + .5 * Math.abs(Math.sin(MG.t * 10))})` : (dark ? "rgba(248,113,113,.4)" : "rgba(185,28,28,.35)");
+  g.beginPath(); g.moveTo(0, MG_DL * s); g.lineTo(W, MG_DL * s); g.stroke(); g.restore();
+  if(warn){ g.fillStyle = `rgba(220,38,38,${.06 + .06 * Math.sin(MG.t * 10)})`; g.fillRect(0, 0, W, MG_DL * s); }
+  /* 落とす位置のガイド */
+  if(!MG.over){
+    const r = mgR(MG.cur), x = Math.max(r, Math.min(MG_W - r, MG.aim));
+    if(!MG.crushMode){
+      g.save(); g.setLineDash([4, 6]); g.strokeStyle = dark ? "rgba(255,255,255,.35)" : "rgba(60,40,20,.35)"; g.lineWidth = 1.5;
+      g.beginPath(); g.moveTo(x * s, (MG_DROPY + r) * s); g.lineTo(x * s, H); g.stroke(); g.restore();
+      if(MG.cool <= 0){ g.globalAlpha = .95; mgBall(g, { lv:MG.cur, r, x, y:MG_DROPY, a:0, pop:0 }, s); g.globalAlpha = 1; }
+    }
+  }
+  for(const b of MG.bodies) mgBall(g, b, s);
+  for(const p of MG.parts){ g.globalAlpha = Math.min(1, p.t * 2); g.fillStyle = p.c; g.beginPath(); g.arc(p.x * s, p.y * s, p.r, 0, Math.PI * 2); g.fill(); }
+  g.globalAlpha = 1;
+  g.restore();
+  if(MG.flash > 0){ g.fillStyle = `rgba(255,236,170,${Math.min(.85, MG.flash)})`; g.fillRect(0, 0, L.w, L.h); }
+}
+
+/* ---------- 一時停止・終わり ---------- */
+function mgPause(on){
+  if(!MG || MG.over) return;
+  MG.paused = !!on;
+  const m = document.getElementById("mgM"); if(!m) return;
+  m.className = "mg-modal" + (on ? " show" : "");
+  m.innerHTML = on ? `<div class="mg-box"><b class="mg-mt">一時停止</b>
+    <button class="mg-btn mg-main" onclick="mgPause(false)">つづける</button>
+    <button class="mg-btn" onclick="mgStart()">はじめから</button>
+    <button class="mg-btn" onclick="mgQuit()">‹ ゲームをえらぶ</button></div>` : "";
+  try{ navBar(on ? "game" : null); }catch(e){}
+}
+function mgQuit(){ if(MG && !MG.over && MG.score > 0) mgSave(); mgUnmount(); go("games"); }
+function mgSave(){ const st = mgSt(); st.plays = (st.plays || 0) + 1; const nb = MG.score > (st.best || 0); if(nb) st.best = MG.score; st.top = Math.max(st.top || 0, MG.top); try{ saveProgress(true); }catch(e){} return nb; }
+function mgOver(){
+  if(MG.over) return;
+  MG.over = true; MG.crushMode = false;
+  const nb = mgSave(), h = MG_H[MG.top];
+  const m = document.getElementById("mgM");
+  m.className = "mg-modal show";
+  m.innerHTML = `<div class="mg-box"><b class="mg-mt">ゲームオーバー</b>
+    <span class="mg-res">${nb ? `<em>ハイスコア！</em>` : ""}<b>${MG.score}</b><i>点</i></span>
+    <span class="mg-top">${mgDot(MG.top, 40)}<span><small>最高の進化</small><b>${h.n}</b></span></span>
+    <button class="mg-btn mg-main" onclick="mgStart()">もう一度</button>
+    <button class="mg-btn" onclick="mgQuit()">‹ ゲームをえらぶ</button></div>`;
+  try{ navBar("game"); }catch(e){}
+  const b = document.getElementById("mgB"); if(b) b.textContent = mgSt().best;
+}
+
+(function(){
+  GAME_IC.merge = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="15.5" r="4.5"/><circle cx="16.5" cy="14" r="6"/><circle cx="11" cy="6.5" r="3"/></svg>`;
+  GAME_LIST[2] = { k:"merge", t:"生薬マージ", s:"同じ生薬を合体", on:"go('merge')", rec:()=> `最高 <b>${mgSt().best || 0}</b> 点` };
+  NAV_DEEP.merge = "game"; NAV_NOSAVE.push("merge");
+  const nt0 = navTab;
+  navTab = function(){ if(view.screen === "merge" && MG && !MG.over && !MG.paused) return null; return nt0.apply(this, arguments); };
+  const r0 = render;
+  render = function(){
+    r0.apply(this, arguments);
+    if(view.screen === "merge" && r1On()){ if(!MG || !document.getElementById("mg")) mgStart(); }
+    else if(document.getElementById("mg")) mgUnmount();
+  };
+  window.addEventListener("resize", ()=>{ if(MG) mgFit(); });
+})();
+
+/* ---------- v7.13 免疫バトル（ref=1） ---------- */
+const IM_DRUGS = [{"k":"cez","n":"セファゾリン","s":"β-ラクタム","cost":10,"c":"#2563EB","info":"セファゾリン：第1世代セフェム。PBPに結合して細胞壁の合成を止める。MSSA（黄色ブドウ球菌）の第一選択。MRSAには効かない"},{"k":"vcm","n":"バンコマイシン","s":"抗MRSA薬","cost":25,"c":"#059669","info":"バンコマイシン：グリコペプチド系。細胞壁の材料（D-Ala-D-Ala）に結合して合成を止める。MRSAに。腎障害・TDM・レッドマン症候群"},{"k":"osv","n":"オセルタミビル","s":"抗インフル薬","cost":20,"c":"#7C3AED","info":"オセルタミビル：ノイラミニダーゼを阻害し、増えたウイルスが細胞から離れられなくする（遊離阻害）。発症48時間以内に"},{"k":"gcsf","n":"G-CSF","s":"フィルグラスチム","cost":15,"c":"#DB2777","info":"G-CSF（フィルグラスチム）：好中球の産生・分化を促す。がん化学療法のあとの好中球減少に"}], IM_FIRST = {"neu":"好中球：細菌に最初に駆けつける食細胞。死ぬときにNETs（好中球細胞外トラップ）で病原体を捕まえる","mac":"マクロファージ：貪食して抗原を提示し、IL-1・TNF-α・IL-6などのサイトカインを出す","bcl":"B細胞→形質細胞：抗体を作る。IgGが付いた病原体はオプソニン化され、食細胞に食べられやすくなる","sa":"黄色ブドウ球菌：グラム陽性球菌。多くはペニシリナーゼを作る","mrsa":"MRSA：mecA遺伝子のPBP2'でβ-ラクタムが効かない。治療はバンコマイシンなど","flu":"インフルエンザウイルス：ヘマグルチニンで細胞に入り、ノイラミニダーゼで細胞から離れて広がる","boss":"ボス：巨大MRSA（バイオフィルム）。盾はバンコマイシンで壊せる"};
+const IM_W = 400, IM_WALL = 26, IM_BOSS_T = 100;
+let IM_H = 440;   /* 縦の長さは始めるときに画面の比に合わせる（360〜720） */
+const IM_CFG = { allyDt:2.1, allyMax:14, foe0:2, foe1:1, foeBoss:1.6, saN:3, fluMax:30 };   /* 出る間隔（秒）・上限 */
+const IM_U = {
+  neu:  { side:1, n:"好中球",       r:11, hp:30,  atk:9,  cd:.6,  spd:60, rng:0,   decay:1.2, c:"#EBDDFB", e:"#7C3AED" },
+  mac:  { side:1, n:"マクロファージ", r:17, hp:130, atk:6,  cd:.8,  spd:30, rng:0,   heal:4,    c:"#F3DDB3", e:"#A16207" },
+  bcl:  { side:1, n:"B細胞",        r:12, hp:35,  atk:5,  cd:1.3, spd:28, rng:150,            c:"#CFE3FD", e:"#1D4ED8" },
+  sa:   { side:2, n:"黄色ブドウ球菌", r:9,  hp:16,  atk:3,  cd:1,   spd:26, rng:0,              c:"#FACC15", e:"#854D0E" },
+  mrsa: { side:2, n:"MRSA",         r:13, hp:70,  atk:5,  cd:1,   spd:18, rng:0, shield:true,  c:"#FB923C", e:"#9A3412" },
+  flu:  { side:2, n:"インフルエンザ", r:8,  hp:9,   atk:2,  cd:.8,  spd:48, rng:0, split:7,      c:"#C084FC", e:"#6B21A8" },
+  boss: { side:2, n:"巨大MRSA",      r:34, hp:2200, atk:20, cd:1.2, spd:7,  rng:0, shield:true,  c:"#EA580C", e:"#7C2D12" }
+};
+let IM = null;
+function imSt(){ if(!ST.im || typeof ST.im !== "object") ST.im = { plays:0, clears:0, best:0 }; return ST.im; }
+function imRoot(){ let r = document.getElementById("im"); if(!r){ r = document.createElement("div"); r.id = "im"; document.body.appendChild(r); } return r; }
+function imUnmount(){ if(IM){ cancelAnimationFrame(IM.raf); IM.dead = true; try{ IM.ro && IM.ro.disconnect(); }catch(e){} } IM = null; const r = document.getElementById("im"); if(r) r.remove(); }
+
+function imStart(){
+  if(IM){ cancelAnimationFrame(IM.raf); IM.dead = true; try{ IM.ro && IM.ro.disconnect(); }catch(e){} }
+  IM = { t:0, wall:100, ents:[], shots:[], fx:[], rbc:[], allyT:.5, foeT:2, boss:null, bossOut:false, over:false, win:false, paused:false,
+         seen:{}, tell:[], tellT:0, acc:0, last:0, raf:0, id:0, flash:null };
+  for(let i = 0; i < 14; i++) IM.rbc.push({ x:Math.random() * IM_W, y:30 + Math.random() * (IM_H - 60), s:.6 + Math.random() * .6, v:12 + Math.random() * 14 });
+  imRoot().innerHTML = `<div class="im-scr">
+    <div class="im-head">
+      <div class="im-bars">
+        <span class="im-bl"><i>血管壁</i><span class="im-bar im-hp"><u id="imHP"></u></span><b id="imHPn">100</b></span>
+        <span class="im-bl"><i id="imPl">進み</i><span class="im-bar im-pg"><u id="imPG"></u></span><b id="imPGn">0%</b></span>
+      </div>
+      <span class="im-rx"><i>Rx pt</i><b id="imRX">0</b></span>
+    </div>
+    <div class="im-area" id="imA"><canvas id="imC"></canvas><div class="im-toast" id="imT"></div></div>
+    <div class="im-slots">${IM_DRUGS.map((d, i)=> `<button class="im-dr" id="imD${i}" style="--imc:${d.c}" onclick="imUse(${i})"><b>${d.n}</b><small>${d.s}</small><em>${d.cost}</em></button>`).join("")}</div>
+    <div class="im-ctl">
+      <button class="im-b im-test" onclick="imTest()" title="クイズ正解のかわり（テスト用）">テスト +10</button>
+      <button class="im-b" onclick="imPause(true)">一時停止</button>
+      <button class="im-b" onclick="imStart()">リスタート</button>
+    </div>
+    <div class="im-modal" id="imM"></div>
+  </div>`;
+  IM.font = (getComputedStyle(document.documentElement).getPropertyValue("--head") || "").trim() || "sans-serif";
+  { const a = document.getElementById("imA"); if(a && a.clientWidth) IM_H = Math.round(Math.max(360, Math.min(720, IM_W * a.clientHeight / a.clientWidth))); }
+  IM.rbc.forEach(c=>{ c.y = 30 + Math.random() * (IM_H - 60); });
+  imFit(); imHud();
+  const loop = t=>{
+    if(!IM || IM.dead) return;
+    if(!IM.last) IM.last = t;
+    const dt = Math.min(.05, (t - IM.last) / 1000); IM.last = t;
+    if(!IM.paused && !IM.over && !document.hidden){ IM.acc += dt; while(IM.acc >= 1/60){ imStep(1/60); IM.acc -= 1/60; } } else IM.acc = 0;
+    imDraw();
+    IM.raf = requestAnimationFrame(loop);
+  };
+  IM.raf = requestAnimationFrame(loop);
+  try{ navBar(null); }catch(e){}
+  try{ const a = document.getElementById("imA"); if(window.ResizeObserver && a){ IM.ro = new ResizeObserver(()=>{ if(IM) imFit(); }); IM.ro.observe(a); } }catch(e){}
+}
+function imFit(){
+  const cv = document.getElementById("imC"), a = document.getElementById("imA"); if(!cv || !a || !IM) return;
+  const w = a.clientWidth, h = a.clientHeight, dpr = Math.min(2, window.devicePixelRatio || 1);
+  cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); cv.style.width = w + "px"; cv.style.height = h + "px";
+  const s = Math.min(w / IM_W, h / IM_H);
+  IM.lay = { s, ox:(w - IM_W * s) / 2, oy:(h - IM_H * s) / 2, dpr, w, h };
+}
+function imHud(){
+  if(!IM) return;
+  const q = id=> document.getElementById(id);
+  const hp = Math.max(0, Math.ceil(IM.wall)), pg = Math.min(1, IM.t / IM_BOSS_T);
+  if(q("imHP")) q("imHP").style.width = hp + "%";
+  if(q("imHPn")) q("imHPn").textContent = hp;
+  if(q("imPG")) q("imPG").style.width = (IM.bossOut && IM.boss ? (IM.boss.hp / IM.boss.mhp * 100) : pg * 100).toFixed(1) + "%";
+  if(q("imPl")) q("imPl").textContent = IM.bossOut ? "ボス" : "進み";
+  if(q("imPGn")) q("imPGn").textContent = IM.bossOut ? (IM.boss ? Math.ceil(IM.boss.hp) : 0) : Math.floor(pg * 100) + "%";
+  const pt = rxPt(); if(q("imRX")) q("imRX").textContent = pt;
+  IM_DRUGS.forEach((d, i)=>{ const b = q("imD" + i); if(b) b.disabled = pt < d.cost || IM.over; });
+}
+
+/* ---------- 出す ---------- */
+function imSpawn(k, x, y){
+  const u = IM_U[k], e = { id:++IM.id, k, side:u.side, x, y, r:u.r, hp:u.hp, mhp:u.hp, cd:Math.random() * u.cd, shield:!!u.shield,
+    ops:0, stop:0, noSplit:0, splitT:u.split || 0, wob:Math.random() * 6, hit:0 };
+  IM.ents.push(e);
+  if(!IM.seen[k]){ IM.seen[k] = 1; imSay(IM_FIRST[k]); }
+  return e;
+}
+function imSay(msg){ if(!msg) return; IM.tell.push(msg); if(IM.tellT <= 0) imNextTell(); }
+function imNextTell(){ const t = document.getElementById("imT"); const m = IM.tell.shift(); if(!t) return; if(!m){ t.classList.remove("show"); IM.tellT = 0; return; } const i = m.indexOf("："); t.innerHTML = i > 0 ? `<b>${m.slice(0, i)}</b>${m.slice(i)}` : m; t.classList.add("show"); IM.tellT = 3.2; }
+function imAllySpawn(){
+  const n = IM.ents.filter(e=> e.side === 1).length; if(n >= IM_CFG.allyMax) return;
+  const r = Math.random(), k = r < .5 ? "neu" : r < .72 ? "mac" : "bcl";
+  imSpawn(k, IM_WALL + 14, 40 + Math.random() * (IM_H - 80));
+}
+function imFoeSpawn(){
+  const p = Math.min(1, IM.t / IM_BOSS_T), r = Math.random(), y = ()=> 40 + Math.random() * (IM_H - 80);
+  let k = "sa";
+  if(p > .2){ k = r < .55 ? "sa" : r < .8 ? "flu" : "mrsa"; }
+  if(k === "sa"){ const y0 = y(); for(let i = 0; i < IM_CFG.saN; i++) imSpawn("sa", IM_W + 10 + i * 14, Math.max(30, Math.min(IM_H - 30, y0 + (i - 1.5) * 16))); }
+  else imSpawn(k, IM_W + 10, y());
+}
+
+/* ---------- 戦う ---------- */
+function imBuff(a){ return a.side === 1 && IM.ents.some(m=> m.k === "mac" && m !== a && m.hp > 0 && Math.hypot(m.x - a.x, m.y - a.y) < 80) ? 1.3 : 1; }
+function imHit(e, amt, drug){
+  if(e.hp <= 0) return;
+  if(e.ops > IM.t) amt *= 2;
+  if(e.shield && !drug) amt *= .5;
+  e.hp -= amt; e.hit = .15;
+  if(e.hp <= 0) imKill(e);
+}
+function imKill(e){
+  e.hp = 0;
+  IM.fx.push({ k:"pop", x:e.x, y:e.y, r:e.r, c:IM_U[e.k].c, t:.4 });
+  if(e.k === "neu"){   /* NETs：周りの敵を1.5秒止める */
+    IM.fx.push({ k:"net", x:e.x, y:e.y, t:1.5 });
+    IM.ents.forEach(o=>{ if(o.side === 2 && o.hp > 0 && Math.hypot(o.x - e.x, o.y - e.y) < 60) o.stop = Math.max(o.stop, IM.t + 1.5); });
+  }
+  if(e === IM.boss){ imEnd(true); }
+}
+function imNearest(e, side, maxd){
+  let best = null, bd = maxd || 1e9;
+  for(const o of IM.ents){ if(o.side !== side || o.hp <= 0) continue; const d = Math.hypot(o.x - e.x, o.y - e.y) - o.r - e.r; if(d < bd){ bd = d; best = o; } }
+  return best ? { o:best, d:bd } : null;
+}
+function imStep(dt){
+  IM.t += dt;
+  IM.allyT -= dt; if(IM.allyT <= 0){ imAllySpawn(); IM.allyT = IM_CFG.allyDt; }
+  const p = Math.min(1, IM.t / IM_BOSS_T);
+  IM.foeT -= dt; if(IM.foeT <= 0){ imFoeSpawn(); IM.foeT = IM.bossOut ? IM_CFG.foeBoss : IM_CFG.foe0 - (IM_CFG.foe0 - IM_CFG.foe1) * p; }
+  if(!IM.bossOut && IM.t >= IM_BOSS_T){ IM.bossOut = true; IM.boss = imSpawn("boss", IM_W + 30, IM_H / 2); }
+  for(const e of IM.ents){
+    if(e.hp <= 0) continue;
+    const u = IM_U[e.k];
+    e.cd -= dt; e.hit = Math.max(0, e.hit - dt); e.wob += dt;
+    if(u.decay) e.hp -= u.decay * dt, e.hp <= 0 && imKill(e);
+    if(e.hp <= 0) continue;
+    if(e.stop > IM.t) continue;
+    if(e.side === 1){
+      const tg = imNearest(e, 2);
+      if(!tg){ if(e.x < 170) e.x += u.spd * .5 * dt; continue; }
+      const reach = u.rng || 3;
+      if(tg.d > reach){ const dx = tg.o.x - e.x, dy = tg.o.y - e.y, d = Math.hypot(dx, dy) || 1; e.x += dx / d * u.spd * dt; e.y += dy / d * u.spd * dt; }
+      else if(e.cd <= 0){
+        e.cd = u.cd;
+        const atk = u.atk * imBuff(e);
+        if(u.rng){ IM.shots.push({ x:e.x + e.r, y:e.y, tg:tg.o, atk }); }
+        else {
+          imHit(tg.o, atk, false);
+          if(u.heal){ e.hp = Math.min(e.mhp, e.hp + u.heal); IM.fx.push({ k:"chomp", x:tg.o.x, y:tg.o.y, t:.25 }); }
+          else IM.fx.push({ k:"spark", x:(e.x + tg.o.x) / 2, y:(e.y + tg.o.y) / 2, t:.2 });
+        }
+      }
+    } else {
+      if(u.split && e.noSplit <= IM.t){ e.splitT -= dt; if(e.splitT <= 0){ e.splitT = u.split; if(IM.ents.filter(o=> o.k === "flu" && o.hp > 0).length < IM_CFG.fluMax) imSpawn("flu", e.x + 6, e.y + (Math.random() - .5) * 20); } }
+      const tg = imNearest(e, 1, 40);
+      if(tg && tg.d <= 3){ if(e.cd <= 0){ e.cd = u.cd; imHit(tg.o, u.atk, false); } continue; }
+      if(e.x - e.r <= IM_WALL){ e.x = IM_WALL + e.r; if(e.cd <= 0){ e.cd = u.cd; IM.wall -= u.atk; IM.fx.push({ k:"wallhit", y:e.y, t:.3 }); if(IM.wall <= 0){ IM.wall = 0; imEnd(false); return; } } continue; }
+      if(tg){ const dx = tg.o.x - e.x, dy = tg.o.y - e.y, d = Math.hypot(dx, dy) || 1; e.x += dx / d * u.spd * dt; e.y += dy / d * u.spd * dt; }
+      else e.x -= u.spd * dt;
+    }
+  }
+  /* 重ならないように押し合う */
+  const E = IM.ents;
+  for(let i = 0; i < E.length; i++){ const a = E[i]; if(a.hp <= 0) continue;
+    for(let j = i + 1; j < E.length; j++){ const b = E[j]; if(b.hp <= 0) continue;
+      const dx = b.x - a.x, dy = b.y - a.y, rr = a.r + b.r, d2 = dx * dx + dy * dy; if(d2 >= rr * rr) continue;
+      const d = Math.sqrt(d2) || .01, pen = (rr - d) / 2, ma = a.r * a.r, mb = b.r * b.r, ka = mb / (ma + mb) * 2, kb = ma / (ma + mb) * 2;
+      a.x -= dx / d * pen * ka; a.y -= dy / d * pen * ka; b.x += dx / d * pen * kb; b.y += dy / d * pen * kb; } }
+  for(const e of E){ e.y = Math.max(22 + e.r, Math.min(IM_H - 22 - e.r, e.y)); if(e.side === 1) e.x = Math.max(IM_WALL + e.r, Math.min(IM_W - 10 - e.r, e.x)); }
+  /* 抗体 */
+  for(const s of IM.shots){
+    if(s.tg.hp <= 0){ s.done = true; continue; }
+    const dx = s.tg.x - s.x, dy = s.tg.y - s.y, d = Math.hypot(dx, dy);
+    if(d < s.tg.r + 3){ s.done = true; imHit(s.tg, s.atk, false); s.tg.ops = IM.t + 4; continue; }
+    s.x += dx / d * 260 * dt; s.y += dy / d * 260 * dt; s.a = Math.atan2(dy, dx);
+  }
+  IM.shots = IM.shots.filter(s=> !s.done);
+  IM.ents = IM.ents.filter(e=> e.hp > 0 && e.x < IM_W + 80);
+  for(const f of IM.fx) f.t -= dt; IM.fx = IM.fx.filter(f=> f.t > 0);
+  for(const c of IM.rbc){ c.x -= c.v * dt; if(c.x < -20) c.x = IM_W + 20; }
+  if(IM.flash){ IM.flash.t -= dt; if(IM.flash.t <= 0) IM.flash = null; }
+  if(IM.tellT > 0){ IM.tellT -= dt; if(IM.tellT <= 0) imNextTell(); }
+  if(((IM.t * 60) | 0) % 6 === 0) imHud();
+}
+
+/* ---------- 薬 ---------- */
+function imUse(i){
+  if(!IM || IM.over || IM.paused) return;
+  const d = IM_DRUGS[i]; if(!rxUse(d.cost)){ imHud(); return; }
+  const foes = IM.ents.filter(e=> e.side === 2 && e.hp > 0);
+  if(d.k === "cez"){ foes.filter(e=> e.k === "sa").forEach(e=> imHit(e, 18, true)); }
+  if(d.k === "vcm"){ foes.filter(e=> e.k === "mrsa" || e.k === "boss").forEach(e=>{ e.shield = false; imHit(e, e.k === "boss" ? 400 : 60, true); }); }
+  if(d.k === "osv"){ foes.filter(e=> e.k === "flu").forEach(e=>{ e.stop = Math.max(e.stop, IM.t + 5); e.noSplit = IM.t + 5; }); }
+  if(d.k === "gcsf"){ const front = Math.min(IM_W - 60, Math.max(120, ...IM.ents.filter(e=> e.side === 1).map(e=> e.x))); for(let n = 0; n < 5; n++) imSpawn("neu", front - Math.random() * 20, 50 + n * (IM_H - 100) / 4); }
+  IM.flash = { c:d.c, t:.6 };
+  IM.tell = []; imSay(d.info);
+  imHud();
+  try{ if(navigator.vibrate) navigator.vibrate(12); }catch(e){}
+}
+function imTest(){ rxAdd(10); imHud(); }
+
+/* ---------- 描く ---------- */
+function imEyes(g, r, angry){
+  const ex = r * .32, ey = -r * .12, er = Math.max(1.6, r * .2);
+  g.fillStyle = "#fff"; [-ex, ex].forEach(x=>{ g.beginPath(); g.arc(x, ey, er, 0, Math.PI * 2); g.fill(); });
+  g.fillStyle = "#1F1A24"; [-ex, ex].forEach(x=>{ g.beginPath(); g.arc(x + (angry ? -er * .25 : er * .2), ey + er * .1, er * .55, 0, Math.PI * 2); g.fill(); });
+  if(angry){ g.strokeStyle = "#1F1A24"; g.lineWidth = Math.max(1, r * .08); g.beginPath(); g.moveTo(-ex - er, ey - er * 1.3); g.lineTo(-ex + er * .6, ey - er * .7); g.moveTo(ex + er, ey - er * 1.3); g.lineTo(ex - er * .6, ey - er * .7); g.stroke(); }
+}
+function imUnit(g, e, s){
+  const u = IM_U[e.k], r = e.r * s, bob = Math.sin(e.wob * 6) * r * .06;
+  g.save(); g.translate(e.x * s, e.y * s + bob);
+  if(e.hit > 0) g.globalAlpha = .7;
+  if(e.k === "sa" || e.k === "mrsa" || e.k === "boss"){
+    const k = r * .55;
+    [[-k * .7, -k * .5], [k * .7, -k * .5], [-k * .7, k * .6], [k * .7, k * .6], [0, 0]].forEach(([x, y])=>{ g.beginPath(); g.arc(x, y, r * .55, 0, Math.PI * 2); g.fillStyle = u.c; g.fill(); g.strokeStyle = u.e; g.lineWidth = Math.max(1, r * .06); g.stroke(); });
+    imEyes(g, r, true);
+    if(e.shield){ g.strokeStyle = "rgba(14,165,233,.85)"; g.lineWidth = Math.max(2, r * .12); g.beginPath(); g.arc(0, 0, r * 1.25, 0, Math.PI * 2); g.stroke(); g.fillStyle = "rgba(125,211,252,.18)"; g.fill(); }
+  } else if(e.k === "flu"){
+    g.strokeStyle = u.e; g.lineWidth = Math.max(1, r * .14);
+    for(let i = 0; i < 10; i++){ const a = i * Math.PI / 5 + e.wob; g.beginPath(); g.moveTo(Math.cos(a) * r * .8, Math.sin(a) * r * .8); g.lineTo(Math.cos(a) * r * 1.3, Math.sin(a) * r * 1.3); g.stroke(); }
+    g.beginPath(); g.arc(0, 0, r, 0, Math.PI * 2); g.fillStyle = u.c; g.fill(); g.stroke();
+    imEyes(g, r, true);
+    if(e.stop > IM.t){ g.strokeStyle = "rgba(124,58,237,.8)"; g.setLineDash([3, 3]); g.lineWidth = 2; g.beginPath(); g.arc(0, 0, r * 1.6, 0, Math.PI * 2); g.stroke(); g.setLineDash([]); }
+  } else {
+    g.beginPath();
+    if(e.k === "mac"){ for(let i = 0; i <= 24; i++){ const a = i / 24 * Math.PI * 2, rr = r * (1 + Math.sin(a * 5 + e.wob * 3) * .07); i ? g.lineTo(Math.cos(a) * rr, Math.sin(a) * rr) : g.moveTo(Math.cos(a) * rr, Math.sin(a) * rr); } g.closePath(); }
+    else g.arc(0, 0, r, 0, Math.PI * 2);
+    g.fillStyle = u.c; g.fill(); g.strokeStyle = u.e; g.lineWidth = Math.max(1, r * .08); g.stroke();
+    if(e.k === "neu"){ g.fillStyle = "rgba(124,58,237,.35)"; [[-.35, .35], [0, .5], [.35, .35]].forEach(([x, y])=>{ g.beginPath(); g.arc(x * r, y * r, r * .2, 0, Math.PI * 2); g.fill(); }); }
+    if(e.k === "bcl"){ g.strokeStyle = u.e; g.lineWidth = Math.max(1.2, r * .1); g.beginPath(); g.moveTo(0, r * .75); g.lineTo(0, r * .35); g.lineTo(-r * .25, r * .1); g.moveTo(0, r * .35); g.lineTo(r * .25, r * .1); g.stroke(); }
+    imEyes(g, r, false);
+    g.fillStyle = u.e; g.beginPath(); g.arc(0, r * .2, r * .12, 0, Math.PI); g.fill();
+  }
+  if(e.ops > IM.t){ g.fillStyle = "#1D4ED8"; g.font = `800 ${Math.max(8, r * .5)}px ${IM.font}`; g.textAlign = "center"; g.fillText("Y", r * .9, -r * .8); }
+  g.globalAlpha = 1;
+  if(e.hp < e.mhp && e.k !== "boss"){ const w = r * 1.8; g.fillStyle = "rgba(0,0,0,.2)"; g.fillRect(-w / 2, -r - 7, w, 3); g.fillStyle = e.side === 1 ? "#16A34A" : "#DC2626"; g.fillRect(-w / 2, -r - 7, w * Math.max(0, e.hp / e.mhp), 3); }
+  g.restore();
+}
+function imDraw(){
+  const cv = document.getElementById("imC"); if(!cv || !IM || !IM.lay) return;
+  const g = cv.getContext("2d"), L = IM.lay, s = L.s, W = IM_W * s, H = IM_H * s;
+  g.setTransform(L.dpr, 0, 0, L.dpr, 0, 0); g.clearRect(0, 0, L.w, L.h);
+  g.save(); g.translate(L.ox, L.oy);
+  const bg = g.createLinearGradient(0, 0, W, 0); bg.addColorStop(0, "#FDE2E4"); bg.addColorStop(1, "#F9C5CC");
+  g.fillStyle = bg; g.fillRect(0, 0, W, H);
+  /* 血管の上下の壁 */
+  g.fillStyle = "#C2435A"; g.fillRect(0, 0, W, 18 * s); g.fillRect(0, H - 18 * s, W, 18 * s);
+  g.fillStyle = "rgba(255,255,255,.25)"; for(let x = 0; x < IM_W; x += 28){ g.beginPath(); g.ellipse((x + 14) * s, 9 * s, 10 * s, 4 * s, 0, 0, Math.PI * 2); g.ellipse((x + 14) * s, H - 9 * s, 10 * s, 4 * s, 0, 0, Math.PI * 2); g.fill(); }
+  /* 赤血球（飾り） */
+  for(const c of IM.rbc){ g.save(); g.translate(c.x * s, c.y * s); g.scale(c.s, c.s * .6); g.fillStyle = "rgba(220,38,38,.18)"; g.beginPath(); g.arc(0, 0, 12 * s, 0, Math.PI * 2); g.fill(); g.fillStyle = "rgba(220,38,38,.12)"; g.beginPath(); g.arc(0, 0, 5 * s, 0, Math.PI * 2); g.fill(); g.restore(); }
+  /* 左の血管壁（防衛ライン） */
+  const wk = Math.max(0, IM.wall) / 100;
+  g.fillStyle = `rgb(${150 + (1 - wk) * 60},${30 + wk * 40},${50 + wk * 30})`; g.fillRect(0, 0, IM_WALL * s, H);
+  g.fillStyle = "rgba(255,255,255,.3)"; for(let y = 26; y < IM_H - 20; y += 30){ g.beginPath(); g.ellipse(IM_WALL * s * .5, y * s, IM_WALL * s * .3, 11 * s, 0, 0, Math.PI * 2); g.fill(); }
+  for(const f of IM.fx) if(f.k === "wallhit"){ g.fillStyle = `rgba(255,255,255,${f.t * 2})`; g.fillRect(0, (f.y - 20) * s, IM_WALL * s, 40 * s); }
+  /* NETs */
+  for(const f of IM.fx) if(f.k === "net"){ g.strokeStyle = `rgba(124,58,237,${Math.min(.7, f.t)})`; g.lineWidth = 1.2; for(let i = 0; i < 8; i++){ const a = i * Math.PI / 4; g.beginPath(); g.moveTo(f.x * s, f.y * s); g.lineTo((f.x + Math.cos(a) * 60) * s, (f.y + Math.sin(a) * 60) * s); g.stroke(); } [25, 45].forEach(rr=>{ g.beginPath(); g.arc(f.x * s, f.y * s, rr * s, 0, Math.PI * 2); g.stroke(); }); }
+  /* マクロファージのサイトカイン */
+  for(const e of IM.ents) if(e.k === "mac"){ g.strokeStyle = "rgba(161,98,7,.18)"; g.setLineDash([4, 5]); g.lineWidth = 1.2; g.beginPath(); g.arc(e.x * s, e.y * s, 80 * s, 0, Math.PI * 2); g.stroke(); g.setLineDash([]); }
+  const order = IM.ents.slice().sort((a, b)=> a.y - b.y);
+  for(const e of order) imUnit(g, e, s);
+  /* 抗体ミサイル（Y） */
+  for(const sh of IM.shots){ g.save(); g.translate(sh.x * s, sh.y * s); g.rotate((sh.a || 0) + Math.PI / 2); g.strokeStyle = "#1D4ED8"; g.lineWidth = 2; g.beginPath(); g.moveTo(0, 6 * s); g.lineTo(0, 0); g.lineTo(-4 * s, -5 * s); g.moveTo(0, 0); g.lineTo(4 * s, -5 * s); g.stroke(); g.restore(); }
+  for(const f of IM.fx){
+    if(f.k === "pop"){ g.strokeStyle = f.c; g.globalAlpha = f.t * 2.5; g.lineWidth = 2; g.beginPath(); g.arc(f.x * s, f.y * s, f.r * s * (1.8 - f.t), 0, Math.PI * 2); g.stroke(); g.globalAlpha = 1; }
+    if(f.k === "spark"){ g.fillStyle = `rgba(255,255,255,${f.t * 5})`; g.beginPath(); g.arc(f.x * s, f.y * s, 5 * s, 0, Math.PI * 2); g.fill(); }
+    if(f.k === "chomp"){ g.strokeStyle = `rgba(161,98,7,${f.t * 4})`; g.lineWidth = 2; g.beginPath(); g.arc(f.x * s, f.y * s, 10 * s, .3, Math.PI * 2 - .3); g.stroke(); }
+  }
+  /* ボスの HP */
+  if(IM.boss && IM.boss.hp > 0){ const b = IM.boss, w = 70 * s; g.fillStyle = "rgba(0,0,0,.25)"; g.fillRect(b.x * s - w / 2, (b.y - b.r - 14) * s, w, 5); g.fillStyle = "#DC2626"; g.fillRect(b.x * s - w / 2, (b.y - b.r - 14) * s, w * b.hp / b.mhp, 5); }
+  if(IM.flash){ g.fillStyle = IM.flash.c; g.globalAlpha = IM.flash.t * .45; g.fillRect(0, 0, W, H); g.globalAlpha = 1; }
+  g.restore();
+}
+
+/* ---------- 一時停止・終わり ---------- */
+function imPause(on){
+  if(!IM || IM.over) return;
+  IM.paused = !!on;
+  const m = document.getElementById("imM"); if(!m) return;
+  m.className = "im-modal" + (on ? " show" : "");
+  m.innerHTML = on ? `<div class="im-box"><b class="im-mt">一時停止</b>
+    <button class="im-btn im-main" onclick="imPause(false)">つづける</button>
+    <button class="im-btn" onclick="imStart()">リスタート</button>
+    <button class="im-btn" onclick="imQuit()">‹ ゲームをえらぶ</button></div>` : "";
+  try{ navBar(on ? "game" : null); }catch(e){}
+}
+function imQuit(){ imUnmount(); go("games"); }
+function imEnd(win){
+  if(IM.over) return;
+  IM.over = true; IM.win = win;
+  const st = imSt(); st.plays = (st.plays || 0) + 1;
+  const sec = Math.round(IM.t);
+  let nb = false;
+  if(win){ st.clears = (st.clears || 0) + 1; nb = !st.best || sec < st.best; if(nb) st.best = sec; }
+  try{ saveProgress(true); }catch(e){}
+  imHud();
+  const m = document.getElementById("imM");
+  m.className = "im-modal show";
+  const mmss = x=> `${(x / 60) | 0}:${String(x % 60).padStart(2, "0")}`;
+  m.innerHTML = `<div class="im-box"><b class="im-mt ${win ? "im-win" : ""}">${win ? "クリア！" : "ゲームオーバー"}</b>
+    <span class="im-res">${win ? `${nb ? "<em>最短記録！</em>" : ""}<span>かかった時間 <b>${mmss(sec)}</b></span><span>血管壁の残り <b>${Math.ceil(IM.wall)}</b></span>`
+                              : `<span>血管壁が破られました</span><span>${IM.bossOut ? "ボスまで到達" : `進み <b>${Math.floor(Math.min(1, IM.t / IM_BOSS_T) * 100)}</b>%`}</span>`}</span>
+    <button class="im-btn im-main" onclick="imStart()">もう一度</button>
+    <button class="im-btn" onclick="imQuit()">‹ ゲームをえらぶ</button></div>`;
+  try{ navBar("game"); }catch(e){}
+}
+
+(function(){
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.16c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_LIST[3] = { k:"immune", t:"免疫バトル", s:"免疫細胞で守る", on:"go('immune')", rec:()=> `クリア <b>${imSt().clears || 0}</b>` };
+  NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
+  const nt0 = navTab;
+  navTab = function(){ if(view.screen === "immune" && IM && !IM.over && !IM.paused) return null; return nt0.apply(this, arguments); };
+  const r0 = render;
+  render = function(){
+    r0.apply(this, arguments);
+    if(view.screen === "immune" && r1On()){ if(!IM || !document.getElementById("im")) imStart(); }
+    else if(document.getElementById("im")) imUnmount();
+  };
+  window.addEventListener("resize", ()=>{ if(IM) imFit(); });
 })();
 
 /* ---------- v7.13 おすすめは今日できる問題から（同じ20問のループを直す、ref=1） ---------- */
