@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.19｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.20｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -3145,11 +3145,11 @@
   /* ---------- v7.18 講義 v2（ref=1）。講義の画面だけ見出しも BIZ UDPゴシック ---------- */
   html.r1 .lv2{--v2-card:#fff;--v2-tx:#191C27;--v2-sub:#5A6070;--v2-line:#D5D8E3;--v2-navy:#24306B;--v2-gray:#84919E;--v2-green:#00875A;
     --v2-red:#E63E00;--v2-purple:#990099;--v2-orange:#B35C00;--v2-obg:#FFF1DC;--v2-mark:#FFF100;--v2-sky:#BFE4FF;--v2-skyd:#005AFF;--v2-cur:#E8EBF7;--v2-subj:#C2410C;
-    max-width:560px;background:var(--paper);color:var(--v2-tx);font-family:var(--jp)}
+    width:100%;max-width:560px;min-width:0;box-sizing:border-box;overflow-x:hidden;background:var(--paper);color:var(--v2-tx);font-family:var(--jp)}
   html.r1[data-theme="dark"] .lv2{--v2-card:var(--surface);--v2-tx:var(--ink);--v2-sub:var(--muted);--v2-line:#3A4152;--v2-navy:#8FA2FF;--v2-gray:#8E99A6;--v2-green:#3DD68C;
     --v2-red:#FF7A59;--v2-purple:#E07AE0;--v2-orange:#FFAA55;--v2-obg:#3A2A14;--v2-mark:rgba(255,230,0,.38);--v2-sky:#1E3A5C;--v2-skyd:#6FB0FF;--v2-cur:#2A3260;--v2-subj:#FF9A66}
   html.r1 .lv2 :is(h2,button,b,strong){font-family:var(--jp)}
-  html.r1 .lv2 .v2-band{flex:none;display:flex;gap:4px;align-items:center;padding:calc(8px + env(safe-area-inset-top)) 12px 6px;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)))}
+  html.r1 .lv2 .v2-band{flex:none;display:flex;gap:4px;align-items:center;min-width:0;max-width:100%;overflow:hidden;box-sizing:border-box;padding:calc(8px + env(safe-area-inset-top)) 12px 6px;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)))}
   html.r1 .lv2 .v2-band span{flex:0 0 auto;color:var(--v2-sub);padding:2px 7px;border-radius:10px;border:1px solid var(--v2-line);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   html.r1 .lv2 .v2-band span.on{background:var(--v2-navy);border-color:var(--v2-navy);color:var(--v2-card);font-weight:700;flex:1 1 0;min-width:0;text-align:center}
   html.r1 .lv2 .v2-band .v2-lv{border-radius:6px;font-weight:700}
@@ -4323,7 +4323,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.19";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.20";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -4803,7 +4803,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.19（2026-11-12 更新）</span>
+      <br><span class="mono">アプリ版数：v7.20（2026-11-12 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -8641,6 +8641,9 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.20", date:"2026-11-12", items:[
+    { r:1, t:"新しい形の講義の直し", d:"章の名前が長いとき、講義の画面が横にずれていたのを直しました。" },
+  ]},
   { v:"v7.19", date:"2026-11-12", items:[
     { r:1, t:"新しい形の講義に音声", d:"「循環器系に作用する薬」の新しい形の講義（前編・後編・基礎編）が音声つきになりました。大事な一文はゆっくり、問いかけのあとには間が入ります。" },
   ]},
@@ -12951,7 +12954,7 @@ function imEnd(win){
 }
 
 (function(){
-  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.19c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.20c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
   GAME_LIST[3] = { k:"immune", t:"免疫バトル", s:"免疫細胞で守る", on:"go('immune')", rec:()=> `クリア <b>${imSt().clears || 0}</b>` };
   NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
   const nt0 = navTab;
