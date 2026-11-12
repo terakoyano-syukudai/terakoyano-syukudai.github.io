@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.23｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.24｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -3223,7 +3223,7 @@
   html.r1 .lv2 .v2-bx.sym{border-color:var(--v2-orange);background:var(--v2-obg)}
   html.r1 .lv2 .v2-drs{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
   html.r1 .lv2 .v2-dbx{border:2px solid var(--v2-navy);color:var(--v2-navy);font-weight:700;border-radius:8px;padding:3px 8px;font-size:max(var(--fmin,0px),calc(calc(13px * var(--lz))*var(--fs,1)));background:var(--v2-card)}
-  html.r1 .lv2 .v2-loop{position:relative;width:100%;max-width:calc(336px * max(var(--lz), 0.86));margin:0 auto}
+  html.r1 .lv2 .v2-loop{position:relative;width:100%;max-width:calc(336px * max(var(--lz), 0.74));margin:0 auto}
   html.r1 .lv2 .v2-lsvg{position:absolute;inset:0;width:100%;height:100%}
   html.r1 .lv2 .v2-loop .v2-bx{position:absolute;font-size:max(var(--fmin,0px),calc(calc(13px * var(--lz))*var(--fs,1)));padding:3px 2px;box-sizing:border-box}
   html.r1 .lv2 .v2-lb b{color:var(--v2-gray)}
@@ -3231,7 +3231,9 @@
   html.r1 .lv2 .v2-lb.hit b{color:var(--v2-red)}
   html.r1 .lv2 .v2-cause{border-width:3px}
   html.r1 .lv2 .v2-sym{font-size:max(var(--fmin,0px),calc(calc(14px * var(--lz))*var(--fs,1)));margin-top:4px}
-  html.r1 .lv2 .v2-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  html.r1 .lv2 .v2-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  html.r1 .lv2 .v2-cards.one{grid-template-columns:minmax(0,1fr);gap:6px}
+  html.r1 .lv2 .v2-cards.one .v2-card{flex-direction:row;align-items:baseline;gap:10px;flex-wrap:wrap}
   html.r1 .lv2 .v2-card{border-color:var(--v2-navy);text-align:left;display:flex;flex-direction:column}
   html.r1 .lv2 .v2-card b{color:var(--v2-navy)}
   html.r1 .lv2 .v2-card span{font-size:max(var(--fmin,0px),calc(calc(14px * var(--lz))*var(--fs,1)))}
@@ -4370,7 +4372,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.23";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.24";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -4850,7 +4852,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.23（2026-11-12 更新）</span>
+      <br><span class="mono">アプリ版数：v7.24（2026-11-13 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -8688,6 +8690,9 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.24", date:"2026-11-13", items:[
+    { r:1, t:"新しい形の講義を作り直し（試作3回目）", d:"「循環器系に作用する薬」を新しい決まりで作り直しました。最初に略語の確認、各章の最初に薬の仲間と代表薬・語尾があります。音声は準備中で、いまは端末の読み上げです。" },
+  ]},
   { v:"v7.23", date:"2026-11-12", items:[
     { r:1, t:"新しい形の講義に「まとめ」", d:"講義の画面の下の「まとめ」で、音声を聞かずに要点（問いと答え・章のまとめ・POINT・用語）だけを読めます。図には枠を付けました。" },
   ]},
@@ -13010,7 +13015,7 @@ function imEnd(win){
 }
 
 (function(){
-  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.23c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.24c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
   GAME_LIST[3] = { k:"immune", t:"免疫バトル", s:"免疫細胞で守る", on:"go('immune')", rec:()=> `クリア <b>${imSt().clears || 0}</b>` };
   NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
   const nt0 = navTab;
@@ -13439,7 +13444,7 @@ function preGo(){
 })();
 
 /* ---------- v7.18 講義 v2（新しい形の講義、ref=1） ---------- */
-const LV2_FILE = "./u/lecv2-c4f783457e.json";
+const LV2_FILE = "./u/lecv2-d48f41477e.json";
 let LV2 = null, lv2St = "idle", LA2 = null, LV2_RAF = 0;
 const LV2S = { on:false, seg:-1, tok:0, noau:false };
 function lv2Fetch(){
@@ -13671,7 +13676,8 @@ function lv2Fig(S){
     if(v.type === "cmp") return lv2Frame(lv2Cmp(S));
     if(v.type === "loop") return lv2Frame(lv2Loop(S));
     if(v.type === "flow") return `<div class="v2-fig${c === "図" ? " v2-cur" : ""}">${(v.items || []).map((x, i)=> (i ? `<div class="v2-ar">▼</div>` : "") + `<div class="v2-bx${lv2Cls(S, "b" + (i + 1))}">${lv2T(x, { S })}</div>`).join("")}</div>`;
-    if(v.type === "cards") return `<div class="v2-fig"><div class="v2-cards">${(v.items || []).map((x, i)=> `<div class="v2-bx v2-card${lv2Cls(S, "b" + (i + 1))}"><b>${lv2T(x.t, { S })}</b><span>${lv2T(x.d || "", { S })}</span></div>`).join("")}</div></div>`;
+    /* 2026-11-13：名前が長い（題8字・説明13字以上）ときは1列に（2列だと「交感神経抑|制薬」のように語の途中で切れるため） */
+    if(v.type === "cards") return `<div class="v2-fig"><div class="v2-cards${(v.items || []).some(x=> String(x.t || "").length > 7 || String(x.d || "").length > 12) ? " one" : ""}">${(v.items || []).map((x, i)=> `<div class="v2-bx v2-card${lv2Cls(S, "b" + (i + 1))}"><b>${lv2T(x.t, { S })}</b><span>${lv2T(x.d || "", { S })}</span></div>`).join("")}</div></div>`;
     /* そのほかの型（curve など）は今の講義の描き方を使う */
     return `<div class="v2-fig lec-vis${c === "図" ? " v2-cur" : ""}">${lecV(v, ()=> "", ()=> "")}</div>`;
   }catch(e){ console.error(e); return ""; }
@@ -13805,7 +13811,7 @@ function lv2Fit(){
   /* 2026-11-12：語の途中で折り返さない代わりに、表・図の箱から横にはみ出すときも文字を縮める */
   const bad = el=> el.scrollWidth > el.clientWidth + 1;
   const over = ()=> c.scrollHeight > c.clientHeight + 1 || bad(c) || [...c.querySelectorAll(".v2-fig,.v2-bx,.v2-cl,td,th")].some(bad);
-  for(let k = 0; k < 12 && over(); k++){ z -= 0.04; c.style.setProperty("--lz", z.toFixed(2)); }
+  for(let k = 0; k < 14 && over(); k++){ z -= 0.04; c.style.setProperty("--lz", z.toFixed(2)); }
   const p = $app.querySelector(".lv2 .v2-pt:not(.empty)");
   if(p){ let y = 1; p.style.setProperty("--pz", "1"); for(let k = 0; k < 8 && (bad(p) || p.scrollHeight > p.clientHeight + 1); k++){ y -= 0.05; p.style.setProperty("--pz", y.toFixed(2)); } }
 }
