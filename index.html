@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.17｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.18｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -2024,9 +2024,9 @@
   .urv-n{font-family:var(--mono);font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));font-weight:700;color:var(--ink-2)}
 
   /* ---------- v6.97 新しいデザインの土台（ref=1 だけ：html.r1） ---------- */
-  @font-face{font-family:"R1 Head";src:url(u/r1f-mp2-eef91310.woff2) format("woff2");font-weight:500 900;font-display:swap}
-  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic"),local("BIZUDPGothic-Regular"),url(u/r1f-bizud4-0ba8a0a8.woff2) format("woff2");font-weight:400 500;font-display:swap}
-  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic Bold"),local("BIZUDPGothic-Bold"),url(u/r1f-bizud7-fa96d9e7.woff2) format("woff2");font-weight:600 900;font-display:swap}
+  @font-face{font-family:"R1 Head";src:url(u/r1f-mp2-3ed0c756.woff2) format("woff2");font-weight:500 900;font-display:swap}
+  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic"),local("BIZUDPGothic-Regular"),url(u/r1f-bizud4-bf478655.woff2) format("woff2");font-weight:400 500;font-display:swap}
+  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic Bold"),local("BIZUDPGothic-Bold"),url(u/r1f-bizud7-2d70aeb9.woff2) format("woff2");font-weight:600 900;font-display:swap}
   html.r1{
     --jp:"R1 Body",system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
     --head:"R1 Head","R1 Body",system-ui,-apple-system,"Hiragino Sans",sans-serif;
@@ -3142,6 +3142,155 @@
   html.r1 .pc-go .kb{display:none;margin-left:10px;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));opacity:.7}
   html.r1.kbd .pc-go .kb{display:inline}
 
+  /* ---------- v7.18 講義 v2（ref=1）。講義の画面だけ見出しも BIZ UDPゴシック ---------- */
+  html.r1 .lv2{--v2-card:#fff;--v2-tx:#191C27;--v2-sub:#5A6070;--v2-line:#D5D8E3;--v2-navy:#24306B;--v2-gray:#84919E;--v2-green:#00875A;
+    --v2-red:#E63E00;--v2-purple:#990099;--v2-orange:#B35C00;--v2-obg:#FFF1DC;--v2-mark:#FFF100;--v2-sky:#BFE4FF;--v2-skyd:#005AFF;--v2-cur:#E8EBF7;--v2-subj:#C2410C;
+    max-width:560px;background:var(--paper);color:var(--v2-tx);font-family:var(--jp)}
+  html.r1[data-theme="dark"] .lv2{--v2-card:var(--surface);--v2-tx:var(--ink);--v2-sub:var(--muted);--v2-line:#3A4152;--v2-navy:#8FA2FF;--v2-gray:#8E99A6;--v2-green:#3DD68C;
+    --v2-red:#FF7A59;--v2-purple:#E07AE0;--v2-orange:#FFAA55;--v2-obg:#3A2A14;--v2-mark:rgba(255,230,0,.38);--v2-sky:#1E3A5C;--v2-skyd:#6FB0FF;--v2-cur:#2A3260;--v2-subj:#FF9A66}
+  html.r1 .lv2 :is(h2,button,b,strong){font-family:var(--jp)}
+  html.r1 .lv2 .v2-band{flex:none;display:flex;gap:4px;align-items:center;padding:calc(8px + env(safe-area-inset-top)) 12px 6px;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)))}
+  html.r1 .lv2 .v2-band span{flex:0 0 auto;color:var(--v2-sub);padding:2px 7px;border-radius:10px;border:1px solid var(--v2-line);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .lv2 .v2-band span.on{background:var(--v2-navy);border-color:var(--v2-navy);color:var(--v2-card);font-weight:700;flex:1 1 0;min-width:0;text-align:center}
+  html.r1 .lv2 .v2-band .v2-lv{border-radius:6px;font-weight:700}
+  html.r1 .lv2 .v2-lv.std{background:var(--v2-card);color:var(--v2-navy);border:2px solid var(--v2-navy)}
+  html.r1 .lv2 .v2-lv.kiso{background:var(--v2-sky);color:var(--v2-tx);border:2px solid var(--v2-skyd)}
+  html.r1 .lv2 .v2-aim{flex:none;margin:2px 14px 4px;padding:2px 8px;border-left:4px solid var(--v2-navy);font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));line-height:1.45}
+  html.r1 .lv2 .v2-aim > b{color:var(--v2-navy);margin-right:6px}
+  html.r1 .lv2 .v2-main{--lz:1;flex:1 1 auto;min-height:0;overflow:hidden;margin:4px 12px 0;background:var(--v2-card);border-radius:14px;padding:12px 12px 10px;
+    display:flex;flex-direction:column;font-size:max(var(--fmin,0px),calc(calc(16px * var(--lz))*var(--fs,1)));line-height:1.5}
+  html.r1 .lv2 .v2-h{font-size:max(var(--fmin,0px),calc(calc(20px * var(--lz))*var(--fs,1)));font-weight:700;line-height:1.35;margin:0 0 8px}
+  html.r1 .lv2 .v2-mk{background:linear-gradient(transparent 55%,var(--v2-mark) 55%)}
+  html.r1 .lv2 .v2-up{color:var(--v2-green);font-weight:700}
+  html.r1 .lv2 .v2-dn{color:var(--v2-red);font-weight:700}
+  html.r1 .lv2 .v2-rb{position:relative;display:inline}
+  html.r1 .lv2 .v2-rt{position:absolute;left:50%;bottom:100%;transform:translate(-50%,2px);font-size:max(var(--fmin,0px),calc(calc(9px * var(--lz))*var(--fs,1)));line-height:1;white-space:nowrap;color:var(--v2-sub);font-weight:400;pointer-events:none}
+  html.r1 .lv2 .v2-fig{flex:0 0 auto;margin:auto 0;display:flex;flex-direction:column;width:100%}
+  html.r1 .lv2 .v2-bx{border:2px solid var(--v2-gray);border-radius:8px;padding:5px 8px;text-align:center;background:var(--v2-card);line-height:1.4}
+  html.r1 .lv2 .v2-ar{text-align:center;color:var(--v2-gray);font-size:max(var(--fmin,0px),calc(calc(12px * var(--lz))*var(--fs,1)));line-height:1.1;margin:2px 0}
+  html.r1 .lv2 .v2-list{gap:6px}
+  html.r1 .lv2 .v2-li{text-align:left}
+  html.r1 .lv2 .v2-tb{width:100%;border-collapse:collapse;font-size:max(var(--fmin,0px),calc(calc(15px * var(--lz))*var(--fs,1)));line-height:1.35}
+  html.r1 .lv2 .v2-tb th{font-size:max(var(--fmin,0px),calc(calc(13px * var(--lz))*var(--fs,1)));color:var(--v2-sub);text-align:left;font-weight:700;padding:4px;border-bottom:2px solid var(--v2-gray)}
+  html.r1 .lv2 .v2-tb td{padding:6px 4px;border-bottom:1px solid var(--v2-line);vertical-align:top}
+  html.r1 .lv2 .v2-tb td:first-child{font-weight:700;color:var(--v2-navy)}
+  html.r1 .lv2 .v2-tb tr.v2-cur td{background:var(--v2-cur)}
+  html.r1 .lv2 .v2-tb tr.v2-cur td:first-child{box-shadow:inset 4px 0 0 var(--v2-navy)}
+  html.r1 .lv2 .v2-ok{color:var(--v2-green);font-weight:700}
+  html.r1 .lv2 .v2-ng{color:var(--v2-orange);font-weight:700}
+  html.r1 .lv2 .v2-x{color:var(--v2-red);font-weight:700}
+  html.r1 .lv2 .v2-cell .v2-out{display:flex;justify-content:space-between;align-items:flex-end;font-size:max(var(--fmin,0px),calc(calc(12px * var(--lz))*var(--fs,1)));color:var(--v2-sub)}
+  html.r1 .lv2 .v2-drug{border:2px solid var(--v2-navy);color:var(--v2-navy);font-weight:700;border-radius:8px;padding:4px 10px;font-size:max(var(--fmin,0px),calc(calc(15px * var(--lz))*var(--fs,1)))}
+  html.r1 .lv2 .v2-dr{display:flex;justify-content:flex-end}
+  html.r1 .lv2 .v2-act{color:var(--v2-red);font-weight:700;font-size:max(var(--fmin,0px),calc(calc(13px * var(--lz))*var(--fs,1)));text-align:right;margin:2px 22px 0 0}
+  html.r1 .lv2 .v2-act.go{color:var(--v2-green)}
+  html.r1 .lv2 .v2-mem{position:relative;height:40px;margin:2px 0 14px;background:color-mix(in srgb,var(--v2-gray) 22%,var(--v2-card));border-top:4px solid var(--v2-gray);border-bottom:4px solid var(--v2-gray)}
+  html.r1 .lv2 .v2-mem.thin{height:16px;margin:8px 0 0}
+  html.r1 .lv2 .v2-mem .v2-lbl{position:absolute;left:6px;top:7px;font-size:max(var(--fmin,0px),calc(calc(12px * var(--lz))*var(--fs,1)));color:var(--v2-sub);background:var(--v2-card);border-radius:6px;padding:0 6px;max-width:72%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .lv2 .v2-mem .v2-lbl b{color:var(--v2-tx);font-size:max(var(--fmin,0px),calc(calc(14px * var(--lz))*var(--fs,1)))}
+  html.r1 .lv2 .v2-mem .v2-part{position:absolute;right:32px;top:-10px;color:var(--v2-gray)}
+  html.r1 .lv2 .v2-in{font-size:max(var(--fmin,0px),calc(calc(12px * var(--lz))*var(--fs,1)));color:var(--v2-sub);margin-bottom:2px}
+  html.r1 .lv2 .v2-tg{border-style:dashed}
+  html.r1 .lv2 .v2-tg small{font-size:max(var(--fmin,0px),calc(calc(12px * var(--lz))*var(--fs,1)));color:var(--v2-sub);font-weight:400}
+  html.r1 .lv2 .v2-row{display:flex;align-items:center;gap:4px;margin-top:4px}
+  html.r1 .lv2 .v2-row .v2-bx{flex:1;font-size:max(var(--fmin,0px),calc(calc(14px * var(--lz))*var(--fs,1)));padding:4px}
+  html.r1 .lv2 .v2-row i{font-style:normal;color:var(--v2-gray);font-size:max(var(--fmin,0px),calc(calc(13px * var(--lz))*var(--fs,1)))}
+  html.r1 .lv2 .v2-res{margin-top:6px;display:flex;flex-direction:column;gap:5px}
+  html.r1 .lv2 .v2-res > div{display:flex;flex-direction:column;gap:5px}
+  html.r1 .lv2 .v2-aim3{border:2px solid var(--v2-purple);border-radius:8px;padding:4px 8px;font-size:max(var(--fmin,0px),calc(calc(15px * var(--lz))*var(--fs,1)));margin-top:6px}
+  html.r1 .lv2 .v2-res .v2-aim3{margin-top:0}
+  html.r1 .lv2 .v2-aim3 b{color:var(--v2-purple);margin-right:4px}
+  html.r1 .lv2 .v2-ae3{border:2px solid var(--v2-orange);background:var(--v2-obg);border-radius:8px;padding:4px 8px;font-size:max(var(--fmin,0px),calc(calc(15px * var(--lz))*var(--fs,1)))}
+  html.r1 .lv2 .v2-ae3 b{color:var(--v2-orange);margin-right:4px}
+  html.r1 .lv2 .v2-two{display:flex;gap:8px}
+  html.r1 .lv2 .v2-cl{flex:1;min-width:0;border:2px solid var(--v2-gray);border-radius:10px;padding:6px;display:flex;flex-direction:column}
+  html.r1 .lv2 .v2-cl.b{border-color:var(--v2-navy)}
+  html.r1 .lv2 .v2-cl.b.dis{border-color:var(--v2-tx);border-width:3px}
+  html.r1 .lv2 .v2-ct{font-size:max(var(--fmin,0px),calc(calc(13px * var(--lz))*var(--fs,1)));font-weight:700;text-align:center;margin-bottom:4px}
+  html.r1 .lv2 .v2-cl.b .v2-ct{color:var(--v2-navy)}
+  html.r1 .lv2 .v2-cl.b.dis .v2-ct{color:var(--v2-tx)}
+  html.r1 .lv2 .v2-cl .v2-bx{font-size:max(var(--fmin,0px),calc(calc(14px * var(--lz))*var(--fs,1)));padding:4px 3px}
+  html.r1 .lv2 .v2-bx.aim{border-color:var(--v2-purple)}
+  html.r1 .lv2 .v2-bx.aim::before{content:"◎";color:var(--v2-purple);font-weight:700}
+  html.r1 .lv2 .v2-bx.ae{border-color:var(--v2-orange);background:var(--v2-obg)}
+  html.r1 .lv2 .v2-bx.ae::before{content:"⚠";color:var(--v2-orange);font-weight:700}
+  html.r1 .lv2 .v2-bx.cause{border-width:3px}
+  html.r1 .lv2 .v2-bx.sym{border-color:var(--v2-orange);background:var(--v2-obg)}
+  html.r1 .lv2 .v2-drs{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  html.r1 .lv2 .v2-dbx{border:2px solid var(--v2-navy);color:var(--v2-navy);font-weight:700;border-radius:8px;padding:3px 8px;font-size:max(var(--fmin,0px),calc(calc(13px * var(--lz))*var(--fs,1)));background:var(--v2-card)}
+  html.r1 .lv2 .v2-loop{position:relative;width:100%;max-width:calc(336px * var(--lz));margin:0 auto}
+  html.r1 .lv2 .v2-lsvg{position:absolute;inset:0;width:100%;height:100%}
+  html.r1 .lv2 .v2-loop .v2-bx{position:absolute;font-size:max(var(--fmin,0px),calc(calc(13px * var(--lz))*var(--fs,1)));padding:3px 2px;box-sizing:border-box}
+  html.r1 .lv2 .v2-lb b{color:var(--v2-gray)}
+  html.r1 .lv2 .v2-lb.hit{border-color:var(--v2-red)}
+  html.r1 .lv2 .v2-lb.hit b{color:var(--v2-red)}
+  html.r1 .lv2 .v2-cause{border-width:3px}
+  html.r1 .lv2 .v2-sym{font-size:max(var(--fmin,0px),calc(calc(14px * var(--lz))*var(--fs,1)));margin-top:4px}
+  html.r1 .lv2 .v2-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  html.r1 .lv2 .v2-card{border-color:var(--v2-navy);text-align:left;display:flex;flex-direction:column}
+  html.r1 .lv2 .v2-card b{color:var(--v2-navy)}
+  html.r1 .lv2 .v2-card span{font-size:max(var(--fmin,0px),calc(calc(14px * var(--lz))*var(--fs,1)))}
+  html.r1 .lv2 .v2-cur{outline:3px solid var(--v2-navy);outline-offset:2px;border-radius:8px}
+  html.r1 .lv2 tr.v2-cur{outline:none}
+  html.r1 .lv2 .v2-dim{opacity:.38}
+  html.r1 .lv2 .v2-g,html.r1 .lv2 .v2-cl,html.r1 .lv2 .v2-bx,html.r1 .lv2 tr,html.r1 .lv2 .v2-ln,html.r1 .lv2 .v2-chp,html.r1 .lv2 .v2-i{transition:opacity .3s ease}
+  html.r1 .lv2 .v2-pt{flex:none;margin:6px 12px 0;display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:10px;background:var(--v2-card);border:2px solid var(--v2-line);
+    font-size:max(var(--fmin,0px),calc(15px*var(--fs,1)));font-weight:700;min-height:44px;line-height:1.35;box-sizing:border-box}
+  html.r1 .lv2 .v2-tag{flex:0 0 auto;font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));background:var(--v2-navy);color:var(--v2-card);border-radius:6px;padding:2px 6px;font-weight:700}
+  html.r1 .lv2 .v2-pt.ng{border-color:var(--v2-orange);background:var(--v2-obg)}
+  html.r1 .lv2 .v2-pt.ng .v2-tag{background:var(--v2-orange)}
+  html.r1 .lv2 .v2-pt.tat{border-color:var(--v2-skyd)}
+  html.r1 .lv2 .v2-pt.tat .v2-tag{background:var(--v2-skyd)}
+  html.r1 .lv2 .v2-pt.empty{visibility:hidden}
+  html.r1 .lv2 .v2-pt.v2-cur{outline:none;border-width:3px;border-color:var(--v2-navy)}
+  html.r1 .lv2 .v2-pt.ng.v2-cur{border-color:var(--v2-orange);box-shadow:0 0 0 2px var(--v2-orange)}
+  html.r1 .lv2 .v2-say{margin:6px 12px 0;align-items:center;gap:8px}
+  html.r1 .lv2 .v2-say .lec-ch{width:56px;height:62px;border-radius:12px}
+  html.r1 .lv2 .v2-say .lec-ch img{left:2px;top:2px;width:52px}
+  html.r1 .lv2 .v2-cap{flex:1 1 auto;min-width:0;background:var(--v2-card);border:1px solid var(--v2-line);border-radius:12px;padding:7px 10px;font-size:max(var(--fmin,0px),calc(15px*var(--fs,1)));font-weight:700;line-height:1.35;color:var(--v2-tx)}
+  html.r1 .lv2 .v2-ctl{padding:8px 14px 2px}
+  html.r1 .lv2 .v2-ctl .pl{width:60px;height:60px}
+  html.r1 .lv2 .v2-ctl .nv{width:48px;height:48px}
+  html.r1 .lv2 .v2-bt{padding-top:4px}
+  html.r1 .lv2 .v2-n{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--v2-sub);white-space:nowrap}
+  html.r1 .lv2 .v2-src{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--v2-sub);margin-top:6px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:none}
+  html.r1 .lv2 .v2-subj{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--v2-subj);font-weight:700}
+  html.r1 .lv2 .v2-big{align-self:flex-start;font-size:max(var(--fmin,0px),calc(calc(22px * var(--lz))*var(--fs,1)));font-weight:700;color:var(--v2-tx);background:var(--v2-sky);border-radius:8px;padding:2px 10px;margin:4px 0}
+  html.r1 .lv2 .v2-q{border:2px solid var(--v2-navy);border-radius:12px;padding:10px;margin:6px 0 12px}
+  html.r1 .lv2 .v2-l{font-size:max(var(--fmin,0px),calc(calc(13px * var(--lz))*var(--fs,1)));color:var(--v2-sub);font-weight:700;margin:6px 0 4px}
+  html.r1 .lv2 .v2-q .v2-l{color:var(--v2-navy);margin:0}
+  html.r1 .lv2 .v2-qt{font-size:max(var(--fmin,0px),calc(calc(18px * var(--lz))*var(--fs,1)));font-weight:700;line-height:1.4}
+  html.r1 .lv2 .v2-i{padding:6px 2px;border-bottom:1px solid var(--v2-line)}
+  html.r1 .lv2 .v2-i::before{content:"✓ ";color:var(--v2-green);font-weight:700}
+  html.r1 .lv2 .v2-chp{display:flex;gap:10px;align-items:center;border:2px solid var(--v2-line);border-radius:10px;padding:7px 10px;margin-bottom:7px}
+  html.r1 .lv2 .v2-no{width:28px;height:28px;border-radius:14px;background:var(--v2-navy);color:var(--v2-card);display:flex;align-items:center;justify-content:center;font-weight:700;flex:0 0 auto}
+  html.r1 .lv2 .v2-chp small{display:block;font-size:max(var(--fmin,0px),calc(calc(13px * var(--lz))*var(--fs,1)));color:var(--v2-sub)}
+  html.r1 .lv2 .v2-from{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--v2-sub);margin-bottom:4px}
+  html.r1 .lv2 .v2-from b{color:var(--v2-navy)}
+  html.r1 .lv2 .v2-ban{border:2px solid var(--v2-gray);border-radius:10px;padding:4px 12px}
+  html.r1 .lv2 .v2-ln{padding:6px 0;border-bottom:1px dashed var(--v2-line);font-size:max(var(--fmin,0px),calc(calc(15px * var(--lz))*var(--fs,1)))}
+  html.r1 .lv2 .v2-ln:last-child{border-bottom:0}
+  html.r1 .lv2 .v2-ln.v2-cur{outline:none;font-weight:700;box-shadow:inset 4px 0 0 var(--v2-navy);padding-left:8px}
+  html.r1 .lv2 .v2-sum{border:2px solid var(--v2-gray);border-radius:10px;padding:7px 10px;margin-top:8px;font-weight:700;display:flex;gap:8px;align-items:center;font-size:max(var(--fmin,0px),calc(calc(15px * var(--lz))*var(--fs,1)))}
+  html.r1 .lv2 .v2-sum .v2-tag{background:var(--v2-gray)}
+  html.r1 .lv2 .v2-ans{border:2px solid var(--v2-navy);border-radius:10px;padding:8px 10px;margin-bottom:8px}
+  html.r1 .lv2 .v2-ans .v2-l{color:var(--v2-navy);margin:0}
+  html.r1 .lv2 .v2-pl div{padding:4px 0;border-bottom:1px solid var(--v2-line);font-size:max(var(--fmin,0px),calc(calc(14px * var(--lz))*var(--fs,1)));line-height:1.35}
+  html.r1 .lv2 .v2-pl div::before{content:"★ ";color:var(--v2-navy)}
+  html.r1 .lv2 .v2-btn{display:block;width:100%;border-radius:12px;padding:12px;text-align:center;font-weight:700;margin-bottom:8px;font-size:max(var(--fmin,0px),calc(calc(16px * var(--lz))*var(--fs,1)));cursor:pointer;
+    border:2px solid var(--v2-navy);background:var(--v2-card);color:var(--v2-navy)}
+  html.r1 .lv2 .v2-btn.go{background:var(--act);border-color:var(--act);color:var(--act-ink)}
+  html.r1[data-theme="dark"] .lv2 .v2-btn.go{background:#24306B;border-color:#24306B;color:#fff}
+  html.r1 .lv2 .v2-lst .v2-l small{font-weight:400;margin-left:6px}
+  html.r1 .lv2 .v2-r{width:100%;border:1px solid var(--v2-line);background:var(--v2-card);color:var(--v2-tx);border-radius:10px;padding:7px 10px;margin-bottom:5px;
+    font-size:max(var(--fmin,0px),calc(calc(15px * var(--lz))*var(--fs,1)));display:flex;justify-content:space-between;align-items:center;text-align:left;cursor:pointer;box-sizing:border-box}
+  html.r1 .lv2 .v2-chips{display:flex;flex-wrap:wrap;gap:4px 6px}
+  html.r1 .lv2 .v2-chips span{font-size:max(var(--fmin,0px),calc(calc(13px * var(--lz))*var(--fs,1)));color:var(--v2-sub);border:1px dashed var(--v2-line);border-radius:8px;padding:2px 8px}
+  html.r1 .lv2 .v2-again{display:block;margin:6px auto 0;border:0;background:none;color:var(--v2-navy);font-size:max(var(--fmin,0px),calc(calc(14px * var(--lz))*var(--fs,1)));font-weight:700;cursor:pointer;padding:4px 8px}
+  html.r1 .lv2 .v2-r small{color:var(--v2-sub)}
+  @media (prefers-reduced-motion:reduce){ html.r1 .lv2 *{transition:none !important} }
+  html.r1.wide #app > .lv2{max-width:640px}
+
   /* ---------- v6.98 文字の大きさ（ref=1：標準／大）。ref=0 は --fs=1・--fmin=0px で元のまま ---------- */
   :root{--fs:1;--fmin:0px}
   html.r1{--fmin:12px}
@@ -3355,6 +3504,7 @@ function render(){
   if(s==="home")   $app.innerHTML = Home();
   if(s==="gtop")   $app.innerHTML = GTop();
   if(s==="lec")    $app.innerHTML = Lec();
+  if(s==="lec2")   $app.innerHTML = Lec2();
   if(s==="plan")   $app.innerHTML = Plan();
   if(s==="kgame")  $app.innerHTML = KGame();
   if(s==="games")  $app.innerHTML = GamesSel();
@@ -4173,7 +4323,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.17";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.18";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -4653,7 +4803,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.17（2026-11-09 更新）</span>
+      <br><span class="mono">アプリ版数：v7.18（2026-11-12 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -8491,6 +8641,9 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.18", date:"2026-11-12", items:[
+    { r:1, t:"新しい形の講義（試作）", d:"「循環器系に作用する薬」の講義を新しい形で再生できます（前編・後編と基礎編）。上の帯で今どの章か、めあて・POINT・注意が一目で分かり、話している所に枠が付きます。" },
+  ]},
   { v:"v7.17", date:"2026-11-09", items:[
     { r:1, t:"問題の段がそろいました", d:"日々の学習の全問題（約1万2千問）に標準・応用・難関の段が付きました。生化学・生薬・漢方も段に合わせて出ます。難関の問題が増えたので、応用を習得した単元はその先へ進めます。" },
   ]},
@@ -11594,7 +11747,7 @@ dueQuestions = function(){ const d = dueQ0.apply(this, arguments); return ST.ref
 })();
 
 /* ---------- v7.12 5段（ref=1）：単元ごとの段・基礎の一問一答 ---------- */
-const TIER_FILE = "./u/tier-38f978095e.json";
+const TIER_FILE = "./u/tier-705f9b60b6.json";
 const TIER_NM = ["入門", "基礎", "標準", "応用", "難関"];
 const TIER_UP = 0.75;
 let TIERD = null, tierSt = "idle", KQ = [], _kqById = {}, _tierIx = null;
@@ -12795,7 +12948,7 @@ function imEnd(win){
 }
 
 (function(){
-  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.17c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.18c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
   GAME_LIST[3] = { k:"immune", t:"免疫バトル", s:"免疫細胞で守る", on:"go('immune')", rec:()=> `クリア <b>${imSt().clears || 0}</b>` };
   NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
   const nt0 = navTab;
@@ -13054,7 +13207,7 @@ function sendTierLabel(){
 })();
 
 /* ---------- v7.14 講義の基礎編｜標準編・入門の前提カード（ref=1） ---------- */
-const LECK_FILE = "./u/leck-6ed7538093.json";
+const LECK_FILE = "./u/leck-9e96117a33.json";
 let LECK = null, leckSt = "idle";
 function leckFetch(){
   if(!LECK_FILE || LECK || leckSt === "loading") return;
@@ -13221,6 +13374,376 @@ function preGo(){
       return r;
     };
   }
+})();
+
+/* ---------- v7.18 講義 v2（新しい形の講義、ref=1） ---------- */
+const LV2_FILE = "./u/lecv2-d97c0caaca.json";
+let LV2 = null, lv2St = "idle", LA2 = null, LV2_RAF = 0;
+const LV2S = { on:false, seg:-1, tok:0, noau:false };
+function lv2Fetch(){
+  if(!LV2_FILE || LV2 || lv2St === "loading") return;
+  lv2St = "loading";
+  fetch(LV2_FILE).then(r=> r.ok ? r.json() : Promise.reject(r.status)).then(d=>{
+    LV2 = d || { L:{}, by:{}, num:{} }; lv2St = "ok";
+    Object.keys(LV2.by).forEach(k=>{ if(LECS[k]) LECS[k].min = LV2.by[k].min; });
+    if(["quiz", "lec", "lec2"].indexOf(view.screen) < 0){ view.keepScroll = true; render(); }
+  }).catch(()=>{ lv2St = "err"; });
+}
+function lv2For(k){ if(!r1On() || !LV2) return null; const b = LV2.by[k]; return b && b.ids.length ? b : null; }
+function lv2L(){ return LV2 && LV2.L[view.lv2]; }
+function lv2Au(){ const L = lv2L(); return (L && L.au && !LV2S.noau) ? L.au : null; }
+function openLec2(id){
+  const L = LV2 && LV2.L[id]; if(!L) return;
+  lv2Stop(); try{ lecStop(); }catch(e){}
+  const from = view.screen === "lec2" ? (view.lecFrom || "home") : view.screen;
+  LV2S.noau = false;
+  go("lec2", { lv2:id, li:0, lecFrom:from, lec:L.key });
+}
+function lv2Stop(){
+  LV2S.on = false; LV2S.seg = -1; LV2S.tok++;
+  try{ window.speechSynthesis && speechSynthesis.cancel(); }catch(e){}
+  try{ LA2 && LA2.pause(); }catch(e){}
+}
+/* 見終えた：最後の編の最後の1枚まで来たら、その単元の講義を見た扱い */
+function lv2Done(){
+  const L = lv2L(); if(!L || (L.parts && L.part < L.parts)) return;
+  ST.lecSeen = ST.lecSeen || {};
+  if(!ST.lecSeen[L.key]){ ST.lecSeen[L.key] = dailyKey(); saveProgress(true); }
+}
+function lv2AtLast(){ const L = lv2L(); if(L && (view.li || 0) === L.s.length - 1) lv2Done(); }
+/* ---- 音声ファイル ---- */
+function lv2Tick(){
+  const au = lv2Au(); if(!au || !LV2S.on || view.screen !== "lec2") return;
+  const t = LA2.currentTime + 0.05;
+  let i = 0; while(i + 1 < au.t.length && au.t[i + 1][0] <= t) i++;
+  let j = 0; const st = au.t[i][1]; while(j + 1 < st.length && st[j + 1] <= t) j++;
+  if(i !== (view.li || 0)){ view.li = i; LV2S.seg = j; lv2AtLast(); render(); return; }
+  if(j !== LV2S.seg){ LV2S.seg = j; lv2Paint(); }
+}
+function lv2Ended(){ LV2S.on = false; LV2S.seg = -1; lv2Done(); if(view.screen === "lec2") render(); }
+function lv2PlayAu(au){
+  if(!LA2){
+    LA2 = new Audio(); LA2.preload = "auto";
+    LA2.addEventListener("timeupdate", lv2Tick);
+    LA2.addEventListener("ended", lv2Ended);
+    LA2.addEventListener("error", ()=>{ if(view.screen === "lec2" && LA2.getAttribute("data-u")){ LV2S.noau = true; const was = LV2S.on; LV2S.on = false; if(was) lv2Toggle(); else render(); } });
+  }
+  if(LA2.getAttribute("data-u") !== au.u){ LA2.src = au.u; LA2.setAttribute("data-u", au.u); }
+  const i = view.li || 0, a = au.t[i][0], b = i + 1 < au.t.length ? au.t[i + 1][0] : au.d;
+  if(!(LA2.currentTime >= a && LA2.currentTime < b - 0.4)) LA2.currentTime = a;
+  LA2.playbackRate = ST.lecRate || 1;
+  LV2S.on = true; LV2S.seg = 0;
+  const p = LA2.play();
+  if(p && p.catch) p.catch(()=>{ LV2S.on = false; LV2S.seg = -1; render(); });
+}
+/* ---- 端末の読み上げ（音声ファイルが無いとき） ---- */
+function lv2Speak(){
+  if(!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const L = lv2L(), S = L && L.s[view.li || 0];
+  if(!S) return;
+  const tok = ++LV2S.tok, v = lecVoice(), rate = ST.lecRate || 1;
+  LV2S.on = true; LV2S.seg = 0;
+  let last = null;
+  S.g.forEach((seg, j)=>{
+    (lecSay(seg).match(/[^。！？\n]+[。！？]?/g) || []).map(x=> x.trim()).filter(Boolean).forEach((t, k)=>{
+      const u = new SpeechSynthesisUtterance(t);
+      u.lang = "ja-JP"; if(v) u.voice = v; u.rate = S.m[j] === "!" ? rate * 0.9 : rate;
+      if(k === 0) u.onstart = ()=>{ if(tok === LV2S.tok){ LV2S.seg = j; lv2Paint(); } };
+      speechSynthesis.speak(u); last = u;
+    });
+  });
+  const next = ()=>{
+    if(tok !== LV2S.tok || !LV2S.on) return;
+    setTimeout(()=>{
+      if(tok !== LV2S.tok || !LV2S.on || view.screen !== "lec2") return;
+      if((view.li || 0) < L.s.length - 1){ view.li = (view.li || 0) + 1; lv2AtLast(); render(); lv2Speak(); }
+      else { LV2S.on = false; LV2S.seg = -1; lv2Done(); render(); }
+    }, S.k === "ban" ? 1500 : 700);
+  };
+  if(last) last.onend = next; else next();
+}
+function lv2CanPlay(){ return !!lv2Au() || !!window.speechSynthesis; }
+function lv2Toggle(){
+  if(LV2S.on){ lv2Stop(); render(); return; }
+  const au = lv2Au();
+  if(au) lv2PlayAu(au); else if(window.speechSynthesis) lv2Speak();
+  render();
+}
+function lv2Go(d){
+  const L = lv2L(); if(!L) return;
+  view.li = Math.max(0, Math.min(L.s.length - 1, (view.li || 0) + d));
+  lv2AtLast();
+  const au = lv2Au();
+  if(LV2S.on && au){ LA2.currentTime = au.t[view.li][0]; LV2S.seg = 0; }
+  else if(LV2S.on) lv2Speak();
+  else LV2S.tok++;
+  render();
+}
+function lv2Close(){ lv2Stop(); go(view.lecFrom || "home"); }
+function lv2Quiz(){ lv2Done(); lv2Stop(); const L = lv2L(), k = String(L.key).replace(/#k$/, "").split("|"); openSetup(k[0], [k.slice(1).join("|")]); }
+function lv2Again(){ lv2Stop(); view.li = 0; render(); }
+/* ---- 文字：覚える語のマーカー・↑↓の色・ルビ（基礎編） ---- */
+let LV2_RB = null;
+function lv2T(t, o){
+  o = o || {};
+  const S = o.S;
+  let h = lecTx(t);
+  ((S && S.mk) || []).forEach(w=>{ const e = lecTx(w); if(e) h = h.split(e).join(`<span class="v2-mk">${e}</span>`); });
+  if(LV2_RB && S && S.rb){
+    S.rb.forEach(w=>{
+      if(LV2_RB.done[w]) return;
+      const i = h.indexOf(w);
+      if(i < 0 || /<[^>]*$/.test(h.slice(0, i))) return;
+      LV2_RB.done[w] = 1;
+      h = h.slice(0, i) + `<span class="v2-rb">${w}<span class="v2-rt" aria-hidden="true">${LV2.ruby[w] || ""}</span></span>` + h.slice(i + w.length);
+    });
+  }
+  if(!o.plain) h = h.replace(/↑/g, '<span class="v2-up">↑</span>').replace(/↓/g, '<span class="v2-dn">↓</span>');
+  return h;
+}
+/* ---- 今話している所（cur）と、ほかを薄く（dim） ---- */
+function lv2Cur(S){
+  if(!LV2S.on || LV2S.seg < 0) return "";
+  return S.m[LV2S.seg] || "";
+}
+function lv2Cls(S, id){
+  const c = lv2Cur(S);
+  if(!c || !/^b\d$/.test(c)) return "";
+  return c === id ? " v2-cur" : " v2-dim";
+}
+const LV2_PART = { ch:"チャネル", rc:"受容体", tr:"輸送体", en:"酵素", nr:"核内受容体" };
+function lv2PartSvg(p){
+  const g = 'currentColor';
+  if(p === "ch") return `<svg viewBox="0 0 44 68" width="34" height="52"><rect x="4" y="0" width="16" height="68" rx="4" fill="var(--v2-card)" stroke="${g}" stroke-width="2"/><rect x="24" y="0" width="16" height="68" rx="4" fill="var(--v2-card)" stroke="${g}" stroke-width="2"/></svg>`;
+  if(p === "rc") return `<svg viewBox="0 0 44 68" width="34" height="52"><path d="M6,0 v20 q16,14 32,0 v-20" fill="none" stroke="${g}" stroke-width="3"/><rect x="12" y="20" width="20" height="48" rx="5" fill="var(--v2-card)" stroke="${g}" stroke-width="2"/></svg>`;
+  if(p === "tr") return `<svg viewBox="0 0 44 68" width="34" height="52"><ellipse cx="22" cy="34" rx="18" ry="32" fill="var(--v2-card)" stroke="${g}" stroke-width="2"/><path d="M22,10 v48" stroke="${g}" stroke-width="2" stroke-dasharray="4 3"/></svg>`;
+  if(p === "en") return `<svg viewBox="0 0 44 68" width="34" height="52"><path d="M4,20 a18,18 0 1,0 36,0 l-10,8 l-8,-12 l-8,12 z" fill="var(--v2-card)" stroke="${g}" stroke-width="2"/></svg>`;
+  return `<svg viewBox="0 0 44 68" width="34" height="52"><rect x="6" y="14" width="32" height="40" rx="16" fill="var(--v2-card)" stroke="${g}" stroke-width="2"/></svg>`;
+}
+function lv2Tb(S){
+  const c = lv2Cur(S), all = c === "表", rows = S.tb.slice(1);
+  const cell = x=>{ const m = String(x).match(/^([○⚠✕])\s*(.*)$/); return m ? `<span class="${({"○":"v2-ok","⚠":"v2-ng","✕":"v2-x"})[m[1]]}">${m[1]} ${lv2T(m[2], { S })}</span>` : lv2T(x, { S }); };
+  return `<div class="v2-fig${all ? " v2-cur" : ""}"><table class="v2-tb"><thead><tr>${S.tb[0].map(x=> `<th>${lv2T(x, { S })}</th>`).join("")}</tr></thead><tbody>${rows.map((r, i)=> `<tr class="${lv2Cls(S, "b" + (i + 1)).trim()}">${r.map(x=> `<td>${cell(x)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+function lv2Cell(S){
+  const v = S.v, T = x=> lv2T(x, { S });
+  const stop = /遮断|阻害|拮抗|抑制/.test(v.act || "");
+  const at = v.at || ({ ch:"mem", rc:"mem", tr:"mem", nr:"in" })[v.part] || "mem";
+  const act = `<div class="v2-act${stop ? "" : " go"}">${stop ? "┴ ✕ " : "↓ "}${lecEsc(v.act)}</div>`;
+  const drug = `<span class="v2-drug">${T(v.drug)}</span>`;
+  let top;
+  if(at === "mem"){
+    top = `<div class="v2-out"><span>細胞の外</span>${drug}</div>${act}
+      <div class="v2-mem"><span class="v2-lbl"><b>${T(v.target)}</b>（${LV2_PART[v.part] || ""}）</span><span class="v2-part">${lv2PartSvg(v.part)}</span></div>
+      <div class="v2-in">細胞の中（${lecEsc(v.place)}）</div>`;
+  } else {
+    const tg = `<div class="v2-bx v2-tg"><b>${T(v.target)}</b> <small>（${LV2_PART[v.part] || ""}）</small></div>`;
+    const dr = `<div class="v2-dr">${drug}</div>${act}`;
+    top = at === "out"
+      ? `<div class="v2-out"><span>細胞の外（${lecEsc(v.place)}）</span></div>${dr}${tg}<div class="v2-mem thin"></div>`
+      : `<div class="v2-out"><span>細胞の外</span></div>${dr}<div class="v2-mem"><span class="v2-lbl">細胞膜を通って中へ</span></div><div class="v2-in">細胞の中（${lecEsc(v.place)}）</div>${tg}`;
+  }
+  return `<div class="v2-fig v2-cell"><div class="v2-g${lv2Cls(S, "b1")}">${top}</div>
+    <div class="v2-g v2-row${lv2Cls(S, "b2")}">${(v.inside || []).map((x, i)=> (i ? "<i>▶</i>" : "") + `<div class="v2-bx">${T(x)}</div>`).join("")}</div>
+    <div class="v2-res"><div class="v2-g${lv2Cls(S, "b3")}">${(v.aim || []).map(x=> `<div class="v2-aim3"><b>◎</b>${T(x)}</div>`).join("")}</div>
+    ${(v.ae || []).length ? `<div class="v2-g${lv2Cls(S, "b4")}">${v.ae.map(x=> `<div class="v2-ae3"><b>⚠</b>${T(x)}</div>`).join("")}</div>` : ""}</div></div>`;
+}
+function lv2Cmp(S){
+  const v = S.v, dis = v.who === "dis";
+  const col = (c, cls, id)=> `<div class="v2-cl ${cls}${dis && cls === "b" ? " dis" : ""}${lv2Cls(S, id)}"><div class="v2-ct">${lv2T(c.t, { S })}</div>${(c.s || []).map((x, i)=>{
+    const t = typeof x === "string" ? x : x.t, k = typeof x === "string" ? "" : (x.k || "");
+    return (i ? `<div class="v2-ar">▼</div>` : "") + `<div class="v2-bx ${k}">${lv2T(t, { S, plain:dis })}</div>`; }).join("")}</div>`;
+  let dr = "";
+  if(v.drugs) dr = `<div class="v2-drs">${v.drugs.map(d=> `<span class="v2-dbx">${lecEsc(d.t)} ┤ ${d.at}段目</span>`).join("")}</div>` + (v.aim ? `<div class="v2-aim3"><b>◎</b>${lv2T(v.aim, { S })}</div>` : "");
+  return `<div class="v2-fig"><div class="v2-two">${col(v.a || { t:"", s:[] }, "a", "b1")}${col(v.b || { t:"", s:[] }, "b", "b2")}</div>${dr}</div>`;
+}
+function lv2Loop(S){
+  const v = S.v, n = (v.items || []).length || 1, W = 336, H = v.cause ? 246 : 222, cx = W / 2, cy = v.cause ? 128 : 106, R = 70;
+  const pos = v.items.map((_, i)=>{ const a = -Math.PI / 2 + i * 2 * Math.PI / n; return [cx + R * 1.25 * Math.cos(a), cy + R * Math.sin(a)]; });
+  const sh = (a, b, f)=> a + (b - a) * f;
+  let svg = `<svg viewBox="0 0 ${W} ${H}" class="v2-lsvg"><defs><marker id="v2ah" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="var(--v2-gray)"/></marker></defs>`;
+  for(let i = 0; i < n; i++){
+    const [x1, y1] = pos[i], [x2, y2] = pos[(i + 1) % n];
+    const mx = (x1 + x2) / 2 + (cx - (x1 + x2) / 2) * -0.25, my = (y1 + y2) / 2 + (cy - (y1 + y2) / 2) * -0.25;
+    svg += `<path d="M${sh(x1, x2, .28)},${sh(y1, y2, .28)} Q${mx},${my} ${sh(x1, x2, .72)},${sh(y1, y2, .72)}" fill="none" stroke="var(--v2-gray)" stroke-width="2" marker-end="url(#v2ah)"/>`;
+  }
+  svg += `<text x="${cx}" y="${cy + 5}" text-anchor="middle" font-size="13" fill="var(--v2-sub)">悪循環 ↻</text>`;
+  if(v.cause) svg += `<line x1="${cx}" y1="27" x2="${cx}" y2="${pos[0][1] - 16}" stroke="var(--v2-gray)" stroke-width="2" marker-end="url(#v2ah)"/>`;
+  svg += `</svg>`;
+  const pct = (x, a)=> (x / a * 100).toFixed(2) + "%";
+  const cause = v.cause ? `<div class="v2-bx v2-cause" style="left:${pct(cx - 100, W)};top:0;width:${pct(200, W)}">原因：${lv2T(v.cause, { S, plain:true })}</div>` : "";
+  const boxes = v.items.map((x, i)=>{
+    const [px, py] = pos[i], hit = (v.drugs || []).some(d=> d.at === i + 1);
+    return `<div class="v2-bx v2-lb${hit ? " hit" : ""}${lv2Cls(S, "b" + (i + 1))}" style="left:${pct(px - 62, W)};top:${pct(py - 16, H)};width:${pct(124, W)}"><b>${"①②③④"[i]}</b> ${lv2T(x, { S, plain:true })}</div>`;
+  }).join("");
+  const dr = v.drugs ? `<div class="v2-drs">${v.drugs.map(d=> `<span class="v2-dbx">${lecEsc(d.t)} <span class="v2-x">✕${"①②③④"[d.at - 1] || ""}</span></span>`).join("")}</div>` : "";
+  return `<div class="v2-fig"><div class="v2-loop" style="aspect-ratio:${W}/${H}">${svg}${cause}${boxes}</div>${v.sym ? `<div class="v2-bx sym v2-sym">症状：${lv2T(v.sym, { S, plain:true })}</div>` : ""}${dr}${v.aim ? `<div class="v2-aim3"><b>◎</b>${lv2T(v.aim, { S })}</div>` : ""}</div>`;
+}
+function lv2Fig(S){
+  const c = lv2Cur(S), v = S.v;
+  if(S.tb) return lv2Tb(S);
+  if(S.f) return `<div class="v2-fig lec-fig${c === "図" ? " v2-cur" : ""}">${FigBox(S.f)}</div>`;
+  if(!v) return (S.b && S.b.length) ? `<div class="v2-fig v2-list">${S.b.map((x, i)=> `<div class="v2-bx v2-li${lv2Cls(S, "b" + (i + 1))}">${lv2T(x, { S })}</div>`).join("")}</div>` : "";
+  try{
+    if(v.type === "cell") return lv2Cell(S);
+    if(v.type === "cmp") return lv2Cmp(S);
+    if(v.type === "loop") return lv2Loop(S);
+    if(v.type === "flow") return `<div class="v2-fig${c === "図" ? " v2-cur" : ""}">${(v.items || []).map((x, i)=> (i ? `<div class="v2-ar">▼</div>` : "") + `<div class="v2-bx${lv2Cls(S, "b" + (i + 1))}">${lv2T(x, { S })}</div>`).join("")}</div>`;
+    if(v.type === "cards") return `<div class="v2-fig"><div class="v2-cards">${(v.items || []).map((x, i)=> `<div class="v2-bx v2-card${lv2Cls(S, "b" + (i + 1))}"><b>${lv2T(x.t, { S })}</b><span>${lv2T(x.d || "", { S })}</span></div>`).join("")}</div></div>`;
+    /* そのほかの型（curve など）は今の講義の描き方を使う */
+    return `<div class="v2-fig lec-vis${c === "図" ? " v2-cur" : ""}">${lecV(v, ()=> "", ()=> "")}</div>`;
+  }catch(e){ console.error(e); return ""; }
+}
+function lv2PtRow(S){
+  const c = lv2Cur(S);
+  if(S.pt) return `<div class="v2-pt${c === "!" ? " v2-cur" : ""}"><span class="v2-tag">★POINT</span><span>${lv2T(S.pt, { S })}</span></div>`;
+  if(S.ng) return `<div class="v2-pt ng${c === "注" ? " v2-cur" : ""}"><span class="v2-tag">⚠注意</span><span>${lv2T(S.ng, { S })}</span></div>`;
+  if(S.tat) return `<div class="v2-pt tat"><span class="v2-tag">たとえ</span><span>${lv2T(S.tat, { S })}</span></div>`;
+  return `<div class="v2-pt empty"></div>`;
+}
+function lv2Band(L, S){
+  const k = S.k, c = S.c || 0;
+  let h = `<div class="v2-band"><span class="v2-lv ${L.kiso ? "kiso\">基礎" : "std\">標準"}</span>`;
+  h += `<span class="${["cover", "link", "map"].indexOf(k) >= 0 ? "on" : ""}">はじめ</span>`;
+  (L.ch || []).forEach((x, i)=>{ const n = i + 1; h += c === n ? `<span class="on">${n} ${lecEsc(x.t)}</span>` : `<span>${n}</span>`; });
+  h += `<span class="${k === "end" || k === "next" ? "on" : ""}">おわり</span>`;
+  return h + `</div>`;
+}
+function lv2Title(n){ const x = LV2.num[n]; return x ? x.t : ""; }
+function lv2Body(L, S){
+  const k = S.k, T = x=> lv2T(x, { S });
+  const partL = L.parts > 1 ? (["", "前編", "後編"][L.part] || "") + " " + L.part + "/" + L.parts : "";
+  if(k === "cover") return `<div class="v2-subj">${lecEsc(L.subj || "")}　${partL}</div>${L.kiso ? `<span class="v2-big">基礎編</span>` : ""}<h2 class="v2-h">${T(L.t)}</h2>
+    <div class="v2-q"><div class="v2-l">今日の問い</div><div class="v2-qt">${T(L.q || "")}</div></div>
+    <div class="v2-know"><div class="v2-l">聞き終えると言えること</div>${(L.know || []).map((x, i)=> `<div class="v2-i${lv2Cls(S, "b" + (i + 1))}">${T(x)}</div>`).join("")}</div>`;
+  if(k === "link") return `${S.from ? `<div class="v2-from">前に習ったこと　<b>${lecEsc(S.from)} ${lecEsc(lv2Title(S.from))}</b></div>` : `<div class="v2-from"><b>この単元の前に</b></div>`}<h2 class="v2-h">${T(S.h)}</h2>${lv2Fig(S)}`;
+  if(k === "map") return `<h2 class="v2-h">${T(S.h)}</h2>${(L.ch || []).map((x, i)=> `<div class="v2-chp${lv2Cls(S, "b" + (i + 1))}"><span class="v2-no">${i + 1}</span><div>${T(x.t)}<small>${T(x.m)}</small></div></div>`).join("")}`;
+  if(k === "body") return `<h2 class="v2-h">${T(S.h)}</h2>${lv2Fig(S)}${S.ref && S.ref.length ? `<div class="v2-src">出典：${lecEsc(S.ref[0])}${S.ref.length > 1 ? " ほか" : ""}</div>` : ""}`;
+  if(k === "ban"){
+    const c = lv2Cur(S), n = /^b\d$/.test(c) ? Number(c.slice(1)) : 0;
+    return `<h2 class="v2-h">${T(S.h)}</h2><div class="v2-ban">${(S.b || []).map((x, i)=> `<div class="v2-ln${n ? (i + 1 === n ? " v2-cur" : (i + 1 > n ? " v2-dim" : "")) : ""}">${T(x)}</div>`).join("")}</div>
+      <div class="v2-sum"><span class="v2-tag">まとめ</span>${T(((L.ch || [])[(S.c || 1) - 1] || {}).sum || "")}</div>`;
+  }
+  if(k === "end"){
+    const pts = L.s.filter(x=> x.pt).map(x=> x.pt);
+    return `<h2 class="v2-h">${T(S.h)}</h2><div class="v2-ans"><div class="v2-l">問いの答え</div>${T(S.ans || "")}</div><div class="v2-pl">${pts.map(p=> `<div>${lecTx(p)}</div>`).join("")}</div>`;
+  }
+  if(k === "next") return lv2Next(L, S);
+  return `<h2 class="v2-h">${T(S.h)}</h2>${lv2Fig(S)}`;
+}
+function lv2Next(L, S){
+  const base = String(L.key).replace(/#k$/, ""), p = base.split("|"), sj = p[0], u = p.slice(1).join("|");
+  const nQ = QUESTIONS.filter(q=> q.s === sj && q.u === u).length;
+  const ids = (LV2.by[L.key] || { ids:[] }).ids, nx = ids[ids.indexOf(L.id) + 1];
+  let b2 = "";
+  if(nx) b2 = `<button class="v2-btn sub${lv2Cls(S, "b2")}" onclick="openLec2('${nx}')">後編を見る ›</button>`;
+  else if(L.kiso && LECS[base] && lecShown(base)) b2 = `<button class="v2-btn sub${lv2Cls(S, "b2")}" onclick="openLec('${esc(base)}')">標準編を見る ›</button>`;
+  const rel = (L.rel || []).map(n=> LV2.num[n]).filter(x=> x && LECS[x.k] && lecShown(x.k));
+  return `<h2 class="v2-h">${lv2T(S.h, { S })}</h2>
+    ${nQ ? `<button class="v2-btn go gdglow${lv2Cls(S, "b1")}" onclick="lv2Quiz()">この単元の問題を解く（${Math.min(20, nQ)}問）</button>` : ""}
+    ${b2}
+    <div class="v2-lst${lv2Cls(S, "b3")}"><div class="v2-l">章ごとに解く <small>準備中</small></div>${`<div class="v2-chips">${(L.ch || []).map((x, i)=> `<span>${i + 1} ${lecEsc(x.t)}</span>`).join("")}</div>`}
+    ${rel.length ? `<div class="v2-l">関係する講義</div>${rel.map(x=> `<button class="v2-r" onclick="openLec('${esc(x.k)}')"><span><small>${lecEsc(x.n)}</small> ${lecEsc(x.t)}</span><small>›</small></button>`).join("")}` : ""}
+    <button class="v2-again" onclick="lv2Again()">↺ 最初から見る</button></div>`;
+}
+function Lec2(){
+  const L = lv2L();
+  if(!L) return `<div class="pad"><p>講義が見つかりません。</p><button class="cta ghost big" onclick="lv2Close()">‹　閉じる</button></div>`;
+  const N = L.s.length, i = Math.min(view.li || 0, N - 1), S = L.s[i];
+  LV2_RB = L.kiso ? { done:{} } : null;
+  const sb = ST.lecSub !== false, rate = ST.lecRate || 1, can = lv2CanPlay(), au = lv2Au(), last = i === N - 1;
+  const ch = S.c ? (L.ch || [])[S.c - 1] : null;
+  const e = typeof EXAMS !== "undefined" ? EXAMS[String(L.key).split("|")[0]] : null;
+  const ctl = `<div class="r1lec-ctl v2-ctl">
+      <button class="sm" onclick="lecRate()" aria-label="速さ">速さ ${rate.toFixed(rate % 1 ? (String(rate).split(".")[1].length) : 1)}×</button>
+      <button class="nv" onclick="lv2Go(-1)" aria-label="前のスライド" ${i ? "" : "disabled"}>${R1_IC_L}</button>
+      <button class="pl" onclick="lv2Toggle()" aria-label="${LV2S.on ? "一時停止" : "再生"}" ${can ? "" : "disabled"}>${LV2S.on ? R1_IC_PAUSE : R1_IC_PLAY}</button>
+      <button class="nv" onclick="lv2Go(1)" aria-label="次のスライド" ${last ? "disabled" : ""}>${R1_IC_R}</button>
+      <button class="sm" onclick="lecSubT()" aria-pressed="${sb}">字幕</button>
+    </div>`;
+  const close = `<button class="r1lec-x" onclick="lv2Close()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>閉じる<span class="kb">Esc</span></button>`;
+  const say = `<div class="lec-say r1lec-say v2-say${sb ? "" : " nosub"}">${lecChara()}${sb ? `<div class="v2-cap">${lv2T(S.cap || "", { S, plain:true })}</div>` : ""}</div>`;
+  const pt = (S.k === "body" || S.k === "link") ? lv2PtRow(S) : "";
+  return `<div class="lec lv2${L.kiso ? " kiso" : ""}" style="--sc:${e ? e.color : "var(--act)"}">
+    ${lv2Band(L, S)}
+    ${ch ? `<div class="v2-aim"><b>めあて</b>${lv2T(ch.m)}</div>` : ""}
+    <div class="v2-main">${lv2Body(L, S)}</div>
+    ${pt}${say}${ctl}
+    <div class="r1lec-bt v2-bt">${close}<span class="v2-n">${L.ok ? "" : `<span class="lec-mi">未確認</span> `}${i + 1}／${N}</span><span class="lec-cr">${au ? "音声：" + lecEsc(LEC_CREDIT) : "音声：この端末の読み上げ"}</span></div>
+  </div>`;
+}
+/* 再生中の塗り分けだけを描き直す（スライドの中身の差し替え） */
+function lv2Paint(){
+  if(view.screen !== "lec2") return;
+  const y = $app.querySelector(".v2-main"); if(!y) return;
+  const L = lv2L(); if(!L) return;
+  const S = L.s[Math.min(view.li || 0, L.s.length - 1)];
+  LV2_RB = L.kiso ? { done:{} } : null;
+  y.innerHTML = lv2Body(L, S);
+  const p = $app.querySelector(".v2-pt");
+  if(p && (S.k === "body" || S.k === "link")){ const t = document.createElement("template"); t.innerHTML = lv2PtRow(S); p.replaceWith(t.content.firstChild); }
+  lv2Fit();
+}
+function lv2Fit(){
+  const c = $app.querySelector(".v2-main"); if(!c) return;
+  let z = 1; c.style.setProperty("--lz", "1");
+  for(let k = 0; k < 12 && c.scrollHeight > c.clientHeight + 1; k++){ z -= 0.04; c.style.setProperty("--lz", z.toFixed(2)); }
+}
+function lv2MouthOpen(){
+  if(!LV2S.on) return false;
+  const au = lv2Au();
+  if(au && LA2 && !LA2.paused){
+    const v = lecMouthIv(au), t = LA2.currentTime;
+    if(!v) return Math.floor(t * 7) % 2 === 0;
+    let lo = 0, hi = v.length / 2 - 1;
+    while(lo <= hi){ const mid = (lo + hi) >> 1; if(v[mid * 2 + 1] < t) lo = mid + 1; else if(v[mid * 2] > t) hi = mid - 1; else return true; }
+    return false;
+  }
+  if(!au && window.speechSynthesis && speechSynthesis.speaking) return Math.floor(performance.now() / 140) % 2 === 0;
+  return false;
+}
+function lv2MouthLoop(){
+  if(LV2_RAF) return;
+  const step = ()=>{
+    const el = $app.querySelector(".lv2 .lec-ch");
+    const o = lv2MouthOpen();
+    if(el) el.classList.toggle("mo", o);
+    if(LV2S.on && view.screen === "lec2") LV2_RAF = requestAnimationFrame(step);
+    else { LV2_RAF = 0; if(el) el.classList.remove("mo"); }
+  };
+  LV2_RAF = requestAnimationFrame(step);
+}
+(function(){
+  try{ NAV_NOSAVE.push("lec2"); }catch(e){}
+  /* その単元に新しい形の講義があれば、ref=1 では新しい形で開く */
+  const o0 = openLec;
+  openLec = function(k){ const b = lv2For(k); if(b){ view.lecEnd = false; return openLec2(b.ids[0]); } return o0.apply(this, arguments); };
+  const g0 = go;
+  go = function(screen){ if(view.screen === "lec2" && screen !== "lec2") lv2Stop(); return g0.apply(this, arguments); };
+  /* 速さを変えたら、音声ファイルにもすぐ反映（端末の読み上げは今の1枚を読み直す） */
+  const r0 = lecRate;
+  lecRate = function(){ const out = r0.apply(this, arguments); if(view.screen === "lec2"){ if(LA2) LA2.playbackRate = ST.lecRate || 1; if(LV2S.on && !lv2Au()) lv2Speak(); } return out; };
+  const rd0 = render;
+  render = function(){
+    if(r1On() && !LV2) lv2Fetch();
+    const out = rd0.apply(this, arguments);
+    if(view.screen === "lec2"){
+      lv2Fit(); requestAnimationFrame(lv2Fit);
+      $app.querySelectorAll(".lv2 .lec-ch img").forEach(im=>{ if(!im.complete) im.addEventListener("load", lv2Fit, { once:true }); });
+      if(LV2S.on) lv2MouthLoop();
+    }
+    return out;
+  };
+  window.addEventListener("resize", ()=>{ if(view.screen === "lec2") lv2Fit(); });
+  document.addEventListener("keydown", e=>{
+    if(view.screen !== "lec2" || e.target && /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
+    if(e.key === "ArrowRight"){ e.preventDefault(); lv2Go(1); }
+    else if(e.key === "ArrowLeft"){ e.preventDefault(); lv2Go(-1); }
+    else if(e.key === " "){ e.preventDefault(); lv2Toggle(); }
+    else if(e.key === "Escape"){ e.preventDefault(); lv2Close(); }
+  });
+  document.addEventListener("visibilitychange", ()=>{ if(document.hidden && LV2S.on && !lv2Au()){ lv2Stop(); render(); } });
 })();
 
 async function resetAll(){
