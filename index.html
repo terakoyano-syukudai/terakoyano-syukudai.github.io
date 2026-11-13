@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.25｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.26｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -3337,6 +3337,32 @@
   html.r1 .lv2sum .v2-q{margin:8px 0}
   html.r1 .lv2sum .v2-note{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--v2-sub);margin:14px 0 0}
   html.r1 .lv2sum .v2-bt{justify-content:flex-start;gap:8px}
+  /* 2026-11-13 夜：画面の配置の見直し（POINT は題の下・ボタンは下の1段・≡ の板） */
+  html.r1 .lv2 .v2-main .v2-pt{margin:0 0 8px;min-height:0}
+  html.r1 .lv2 .v2-say{margin:6px 12px 0;gap:8px;align-items:center}
+  html.r1 .lv2 .v2-say .lec-ch{width:40px;height:46px;border-radius:10px}
+  html.r1 .lv2 .v2-say .lec-ch img{left:1px;top:2px;width:38px}
+  html.r1 .lv2 .v2-say .v2-cap{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));padding:6px 10px;font-weight:700}
+  html.r1 .lv2 .v2-bar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:8px;padding:8px 10px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--v2-line);background:var(--v2-card)}
+  html.r1 .lv2 .v2-bar .v2-x{order:1}html.r1 .lv2 .v2-bar .v2-m{order:2}html.r1 .lv2 .v2-bar .nvp{order:3}html.r1 .lv2 .v2-bar .pl{order:4}html.r1 .lv2 .v2-bar .nvn{order:5}html.r1 .lv2 .v2-bar .v2-s{order:6}
+  html.r1.hand-l .lv2 .v2-bar .v2-s{order:0}html.r1.hand-l .lv2 .v2-bar .v2-m{order:7}html.r1.hand-l .lv2 .v2-bar .v2-x{order:8}
+  html.r1 .lv2 .v2-bar button{border:0;cursor:pointer;font:700 max(var(--fmin,0px),calc(13px*var(--fs,1))) var(--jp);color:var(--v2-tx);background:var(--v2-line);border-radius:12px;height:46px;min-width:46px;padding:0 8px;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
+  html.r1 .lv2 .v2-bar .v2-m{font-size:max(var(--fmin,0px),calc(20px*var(--fs,1)));min-width:44px}
+  html.r1 .lv2 .v2-bar .nv{width:50px;height:50px;padding:0}
+  html.r1 .lv2 .v2-bar .nv svg{width:22px;height:22px}
+  html.r1 .lv2 .v2-bar .nv:disabled{opacity:.35;cursor:default}
+  html.r1 .lv2 .v2-bar .pl{width:62px;height:62px;border-radius:50%;background:#24306B;color:#fff;padding:0;box-shadow:0 3px 0 rgba(0,0,0,.2)}
+  html.r1 .lv2 .v2-bar .pl svg{width:26px;height:26px}
+  html.r1 .lv2 .v2-bar .pl:disabled{opacity:.4}
+  html.r1 .lv2 .v2-sheetbg{position:fixed;inset:0;background:rgba(0,0,0,.28);z-index:60}
+  html.r1 .lv2 .v2-sheet{position:fixed;left:0;right:0;bottom:0;margin:0 auto;max-width:560px;z-index:61;background:var(--v2-card);border-radius:18px 18px 0 0;box-shadow:0 -6px 20px rgba(0,0,0,.18);padding:10px 16px calc(14px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));max-height:70vh;overflow-y:auto;box-sizing:border-box}
+  html.r1 .lv2 .v2-grip{display:block;width:40px;height:4px;border-radius:2px;background:var(--v2-line);align-self:center;margin-bottom:4px}
+  html.r1 .lv2 .v2-mrow{display:flex;gap:8px}
+  html.r1 .lv2 .v2-mclose{flex:none}
+  html.r1 .lv2 .v2-mrow button,html.r1 .lv2 .v2-mclose{flex:1 1 auto;height:48px;border:0;border-radius:12px;background:var(--v2-line);color:var(--v2-tx);font:700 max(var(--fmin,0px),calc(15px*var(--fs,1))) var(--jp);cursor:pointer}
+  html.r1 .lv2 .v2-sheet .v2-l{margin:6px 0 0}
+  html.r1 .lv2 .v2-mref{font-size:max(var(--fmin,0px),calc(12.5px*var(--fs,1)));color:var(--v2-sub);line-height:1.4}
+  html.r1 .lv2 .v2-foot{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--v2-sub);text-align:center;margin-top:2px}
   @media (prefers-reduced-motion:reduce){ html.r1 .lv2 *{transition:none !important;animation:none !important} }
   html.r1.wide #app > .lv2{max-width:640px}
 
@@ -4372,7 +4398,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.25";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.26";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -4852,7 +4878,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.25（2026-11-13 更新）</span>
+      <br><span class="mono">アプリ版数：v7.26（2026-11-13 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -8690,6 +8716,9 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.26", date:"2026-11-13", items:[
+    { r:1, t:"新しい形の講義の画面を見やすく", d:"POINT をスライドの題のすぐ下に、さわるボタンは画面の一番下の1段（閉じる・≡・‹・▶・›・まとめ）にまとめました。速さ・字幕・前提・出典は ≡ の中です。" },
+  ]},
   { v:"v7.25", date:"2026-11-13", items:[
     { r:1, t:"新しい形の講義の前編に音声", d:"「循環器系に作用する薬」の前編も音声つきになりました（前編・後編・基礎編すべて）。" },
   ]},
@@ -13018,7 +13047,7 @@ function imEnd(win){
 }
 
 (function(){
-  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.25c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.26c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
   GAME_LIST[3] = { k:"immune", t:"免疫バトル", s:"免疫細胞で守る", on:"go('immune')", rec:()=> `クリア <b>${imSt().clears || 0}</b>` };
   NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
   const nt0 = navTab;
@@ -13467,7 +13496,7 @@ function openLec2(id){
   lv2Stop(); try{ lecStop(); }catch(e){}
   const from = view.screen === "lec2" ? (view.lecFrom || "home") : view.screen;
   LV2S.noau = false;
-  go("lec2", { lv2:id, li:0, lecFrom:from, lec:L.key, lv2sum:false, v2fr:0 });
+  go("lec2", { lv2:id, li:0, lecFrom:from, lec:L.key, lv2sum:false, v2fr:0, lv2menu:false });
 }
 function lv2Stop(){
   LV2S.on = false; LV2S.seg = -1; LV2S.tok++;
@@ -13542,6 +13571,8 @@ function lv2Toggle(){
 }
 function lv2Go(d){
   const L = lv2L(); if(!L) return;
+  const S0 = L.s[view.li || 0], nf = (((S0 || {}).v || {}).frames || []).length;
+  if(!LV2S.on && nf > 1){ const k = view.v2fr || 0; if(d > 0 && k < nf - 1){ view.v2fr = k + 1; lv2Paint(); return; } if(d < 0 && k > 0){ view.v2fr = k - 1; lv2Paint(); return; } }
   view.v2fr = 0;
   view.li = Math.max(0, Math.min(L.s.length - 1, (view.li || 0) + d));
   lv2AtLast();
@@ -13597,7 +13628,7 @@ function lv2Tb(S){
   const cell = x=>{ const m = String(x).match(/^([○⚠✕])\s*(.*)$/); return m ? `<span class="${({"○":"v2-ok","⚠":"v2-ng","✕":"v2-x"})[m[1]]}">${m[1]} ${lv2T(m[2], { S })}</span>` : lv2T(x, { S }); };
   /* 2026-11-12 夜：「代表薬と語尾」の表は語尾の列を紫で（-pril（プリル）） */
   const iw = S.tb[0].findIndex(x=> /語尾/.test(x));
-  return `<div class="v2-fig${all ? " v2-cur" : ""}"><table class="v2-tb${iw >= 0 ? " v2-drugs" : ""}"><thead><tr>${S.tb[0].map(x=> `<th>${lv2T(x, { S })}</th>`).join("")}</tr></thead><tbody>${rows.map((r, i)=> `<tr class="${lv2Cls(S, "b" + (i + 1)).trim()}">${r.map((x, k)=> `<td${k === iw ? ' class="v2-stem"' : ""}>${k === iw ? lecEsc(x).replace(/（/, "<br><small>（").replace(/）$/, "）</small>") : cell(x)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  return `<div class="v2-fig${all ? " v2-cur" : ""}"><table class="v2-tb${iw >= 0 ? " v2-drugs" : ""}"><thead><tr>${S.tb[0].map(x=> `<th>${lv2T(x, { S })}</th>`).join("")}</tr></thead><tbody>${rows.map((r, i)=> `<tr class="${lv2Cls(S, "b" + (i + 1)).trim()}">${r.map((x, k)=> `<td${k === iw ? ' class="v2-stem"' : ""}>${k === iw ? lecEsc(String(x).replace(/（.*$/, "")) : cell(x)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 }
 function lv2Cell(S){
   const v = S.v, T = x=> lv2T(x, { S });
@@ -13665,7 +13696,7 @@ function lv2Fr(d){ const L = lv2L(), S = L && L.s[view.li || 0], n = (((S || {})
 function lv2Steps(S){
   const fr = S.v.frames || [], k = lv2FrameIdx(S), f = fr[k] || {};
   const S2 = Object.assign({}, S, { v: f.v, tb: null, f: null, m: [] });
-  const nav = !LV2S.on && fr.length > 1 ? `<span class="v2-frnav"><button onclick="lv2Fr(-1)" ${k ? "" : "disabled"} aria-label="前のコマ">‹</button><button onclick="lv2Fr(1)" ${k < fr.length - 1 ? "" : "disabled"} aria-label="次のコマ">›</button></span>` : "";
+  const nav = "";   /* 2026-11-13：コマは下の ‹ › で送る */
   return `<div class="v2-fig v2-frame v2-steps"><span class="v2-flb">図 ${k + 1}／${fr.length}</span>${nav}<div class="v2-frc">${lv2T(f.c || "", { S })}</div><div class="v2-frv" data-k="${k}">${f.v ? lv2Fig(S2).replace(/^<div class="v2-fig( v2-frame)?/, '<div class="v2-fig-in').replace('<span class="v2-flb">図</span>', '') : ""}</div><div class="v2-dots">${fr.map((_, i)=> `<i class="${i === k ? "on" : ""}"></i>`).join("")}</div></div>`;
 }
 function lv2Fig(S){
@@ -13692,7 +13723,7 @@ function lv2PtRow(S){
   if(S.pt) return `<div class="v2-pt${c === "!" ? " v2-cur" : ""}"><span class="v2-tag">★POINT</span><span>${lv2T(S.pt, { S })}</span></div>`;
   if(S.ng) return `<div class="v2-pt ng${c === "注" ? " v2-cur" : ""}"><span class="v2-tag">⚠注意</span><span>${lv2T(S.ng, { S })}</span></div>`;
   if(S.tat) return `<div class="v2-pt tat"><span class="v2-tag">たとえ</span><span>${lv2T(S.tat, { S })}</span></div>`;
-  return `<div class="v2-pt empty"></div>`;
+  return "";
 }
 function lv2Band(L, S){
   const k = S.k, c = S.c || 0;
@@ -13709,11 +13740,10 @@ function lv2Body(L, S){
   if(k === "cover") return `<div class="v2-subj">${lecEsc(L.subj || "")}　${partL}</div>${L.kiso ? `<span class="v2-big">基礎編</span>` : ""}<h2 class="v2-h">${T(L.t)}</h2>
     <div class="v2-q"><div class="v2-l">今日の問い</div><div class="v2-qt">${T(L.q || "")}</div></div>
     <div class="v2-know"><div class="v2-l">聞き終えると言えること</div>${(L.know || []).map((x, i)=> `<div class="v2-i${lv2Cls(S, "b" + (i + 1))}">${T(x)}</div>`).join("")}</div>`;
-  if(k === "link" && (L.pre || []).length) return lv2Link(L, S, T);
-  if(k === "link") return `${S.from ? `<div class="v2-from">前に習ったこと　<b>${lecEsc(S.from)} ${lecEsc(lv2Title(S.from))}</b></div>` : `<div class="v2-from"><b>この単元の前に</b></div>`}<h2 class="v2-h">${T(S.h)}</h2>${lv2Fig(S)}`;
+  if(k === "link") return `${S.from ? `<div class="v2-from">前に習ったこと　<b>${lecEsc(S.from)} ${lecEsc(lv2Title(S.from))}</b></div>` : `<div class="v2-from"><b>この単元の前に</b></div>`}<h2 class="v2-h">${T(S.h)}</h2>${lv2PtRow(S)}${lv2Fig(S)}`;
   if(k === "terms") return `<h2 class="v2-h">${T(S.h)}</h2><div class="v2-fig"><table class="v2-tb v2-terms"><thead><tr><th>略語</th><th>正式名称</th></tr></thead><tbody>${(S.terms || []).map((x, i)=> `<tr class="${lv2Cls(S, "b" + (i + 1)).trim()}"><td>${lecEsc(x.a)}</td><td>${lecEsc(x.f)}</td></tr>`).join("")}</tbody></table></div>`;
   if(k === "map") return `<h2 class="v2-h">${T(S.h)}</h2>${(L.ch || []).map((x, i)=> `<div class="v2-chp${lv2Cls(S, "b" + (i + 1))}"><span class="v2-no">${i + 1}</span><div>${T(x.t)}<small>${T(x.m)}</small></div></div>`).join("")}`;
-  if(k === "body") return `<h2 class="v2-h">${T(S.h)}</h2>${lv2Fig(S)}${S.ref && S.ref.length ? `<div class="v2-src">出典：${lecEsc(S.ref[0])}${S.ref.length > 1 ? " ほか" : ""}</div>` : ""}`;
+  if(k === "body") return `<h2 class="v2-h">${T(S.h)}</h2>${lv2PtRow(S)}${lv2Fig(S)}`;
   if(k === "ban"){
     const c = lv2Cur(S), n = /^b\d$/.test(c) ? Number(c.slice(1)) : 0;
     return `<h2 class="v2-h">${T(S.h)}</h2><div class="v2-ban">${(S.b || []).map((x, i)=> `<div class="v2-ln${n ? (i + 1 === n ? " v2-cur" : (i + 1 > n ? " v2-dim" : "")) : ""}">${T(x)}</div>`).join("")}</div>
@@ -13769,31 +13799,48 @@ function lv2Next(L, S){
     ${rel.length ? `<div class="v2-l">関係する講義</div>${rel.map(x=> `<button class="v2-r" onclick="openLec('${esc(x.k)}')"><span><small>${lecEsc(x.n)}</small> ${lecEsc(x.t)}</span><small>›</small></button>`).join("")}` : ""}
     <button class="v2-again" onclick="lv2Again()">↺ 最初から見る</button></div>`;
 }
+function lv2Menu(on){ view.lv2menu = !!on; render(); }
+function lv2MenuHtml(L, S){
+  const rate = ST.lecRate || 1, sb = ST.lecSub !== false, au = lv2Au();
+  const pre = (L.pre || []).map(x=>{ const r = x.from && LV2.num[x.from]; const ok = r && LECS[r.k] && lecShown(r.k);
+    return ok ? `<button class="v2-pre" onclick="view.lv2menu=false;openLec('${esc(r.k)}')">${lecEsc(x.t)}<small>${lecEsc(x.from)} ›</small></button>` : `<span class="v2-pre off">${lecEsc(x.t)}</span>`; }).join("");
+  const ref = (S.ref || []).map(x=> `<div class="v2-mref">${lecEsc(x)}</div>`).join("");
+  return `<div class="v2-sheetbg" onclick="lv2Menu(0)"></div><div class="v2-sheet" role="dialog" aria-label="講義の設定">
+    <i class="v2-grip"></i>
+    <div class="v2-mrow"><button onclick="lecRate()">速さ　${rate.toFixed(rate % 1 ? (String(rate).split(".")[1].length) : 1)}×</button><button onclick="lecSubT()" aria-pressed="${sb}">字幕　${sb ? "あり" : "なし"}</button></div>
+    ${pre ? `<div class="v2-l">前提にしていること</div><div class="v2-pres">${pre}</div>` : ""}
+    ${ref ? `<div class="v2-l">このスライドの出典</div>${ref}` : ""}
+    <button class="v2-mclose" onclick="lv2Menu(0)">もどる</button>
+    <div class="v2-foot">${L.ok ? "" : "未確認・"}${i18nN(view.li, L)}・${au ? "音声：" + lecEsc(LEC_CREDIT) : "音声：この端末の読み上げ"}</div>
+  </div>`;
+}
+function i18nN(li, L){ return ((li || 0) + 1) + "／" + L.s.length + "枚"; }
 function Lec2(){
   const L = lv2L();
   if(!L) return `<div class="pad"><p>講義が見つかりません。</p><button class="cta ghost big" onclick="lv2Close()">‹　閉じる</button></div>`;
   if(view.lv2sum) return Lec2Sum(L);
   const N = L.s.length, i = Math.min(view.li || 0, N - 1), S = L.s[i];
   LV2_RB = L.kiso ? { done:{} } : null;
-  const sb = ST.lecSub !== false, rate = ST.lecRate || 1, can = lv2CanPlay(), au = lv2Au(), last = i === N - 1;
+  const sb = ST.lecSub !== false, can = lv2CanPlay();
+  const nf = ((S.v || {}).frames || []).length, atEnd = i === N - 1 && (!nf || LV2S.on || (view.v2fr || 0) >= nf - 1);
   const ch = S.c ? (L.ch || [])[S.c - 1] : null;
+  /* めあては章の最初の1枚だけ（同じ文が続かないように） */
+  const first = !!(ch && L.s.findIndex(x=> x.c === S.c) === i);
   const e = typeof EXAMS !== "undefined" ? EXAMS[String(L.key).split("|")[0]] : null;
-  const ctl = `<div class="r1lec-ctl v2-ctl">
-      <button class="sm" onclick="lecRate()" aria-label="速さ">速さ ${rate.toFixed(rate % 1 ? (String(rate).split(".")[1].length) : 1)}×</button>
-      <button class="nv" onclick="lv2Go(-1)" aria-label="前のスライド" ${i ? "" : "disabled"}>${R1_IC_L}</button>
+  const say = sb ? `<div class="lec-say r1lec-say v2-say">${lecChara()}<div class="v2-cap">${lv2T(S.cap || "", { S, plain:true })}</div></div>` : "";
+  const bar = `<div class="v2-bar">
+      <button class="v2-x" onclick="lv2Close()">閉じる</button>
+      <button class="v2-m" onclick="lv2Menu(1)" aria-label="速さ・字幕など">≡</button>
+      <button class="nv nvp" onclick="lv2Go(-1)" aria-label="前" ${i || (view.v2fr || 0) ? "" : "disabled"}>${R1_IC_L}</button>
       <button class="pl" onclick="lv2Toggle()" aria-label="${LV2S.on ? "一時停止" : "再生"}" ${can ? "" : "disabled"}>${LV2S.on ? R1_IC_PAUSE : R1_IC_PLAY}</button>
-      <button class="nv" onclick="lv2Go(1)" aria-label="次のスライド" ${last ? "disabled" : ""}>${R1_IC_R}</button>
-      <button class="sm" onclick="lecSubT()" aria-pressed="${sb}">字幕</button>
+      <button class="nv nvn" onclick="lv2Go(1)" aria-label="次" ${atEnd ? "disabled" : ""}>${R1_IC_R}</button>
+      <button class="v2-s" onclick="lv2SumOpen()">まとめ</button>
     </div>`;
-  const close = `<button class="r1lec-x" onclick="lv2Close()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>閉じる<span class="kb">Esc</span></button>`;
-  const say = `<div class="lec-say r1lec-say v2-say${sb ? "" : " nosub"}">${lecChara()}${sb ? `<div class="v2-cap">${lv2T(S.cap || "", { S, plain:true })}</div>` : ""}</div>`;
-  const pt = (S.k === "body" || S.k === "link") ? lv2PtRow(S) : "";
   return `<div class="lec lv2${L.kiso ? " kiso" : ""}" style="--sc:${e ? e.color : "var(--act)"}">
     ${lv2Band(L, S)}
-    ${ch ? `<div class="v2-aim"><b>めあて</b>${lv2T(ch.m)}</div>` : ""}
+    ${first ? `<div class="v2-aim"><b>めあて</b>${lv2T(ch.m)}</div>` : ""}
     <div class="v2-main">${lv2Body(L, S)}</div>
-    ${pt}${say}${ctl}
-    <div class="r1lec-bt v2-bt">${close}<button class="r1lec-x v2-sumb" onclick="lv2SumOpen()">まとめ</button><span class="v2-n">${L.ok ? "" : `<span class="lec-mi">未確認</span> `}${i + 1}／${N}</span><span class="lec-cr">${au ? "音声：" + lecEsc(LEC_CREDIT) : "音声：この端末の読み上げ"}</span></div>
+    ${say}${bar}${view.lv2menu ? lv2MenuHtml(L, S) : ""}
   </div>`;
 }
 /* 再生中の塗り分けだけを描き直す（スライドの中身の差し替え） */
@@ -13804,8 +13851,6 @@ function lv2Paint(){
   const S = L.s[Math.min(view.li || 0, L.s.length - 1)];
   LV2_RB = L.kiso ? { done:{} } : null;
   y.innerHTML = lv2Body(L, S);
-  const p = $app.querySelector(".v2-pt");
-  if(p && (S.k === "body" || S.k === "link")){ const t = document.createElement("template"); t.innerHTML = lv2PtRow(S); p.replaceWith(t.content.firstChild); }
   lv2Fit();
 }
 function lv2Fit(){
@@ -13869,7 +13914,7 @@ function lv2MouthLoop(){
     if(e.key === "ArrowRight"){ e.preventDefault(); lv2Go(1); }
     else if(e.key === "ArrowLeft"){ e.preventDefault(); lv2Go(-1); }
     else if(e.key === " "){ e.preventDefault(); lv2Toggle(); }
-    else if(e.key === "Escape"){ e.preventDefault(); lv2Close(); }
+    else if(e.key === "Escape"){ e.preventDefault(); if(view.lv2menu) lv2Menu(0); else lv2Close(); }
   });
   document.addEventListener("visibilitychange", ()=>{ if(document.hidden && LV2S.on && !lv2Au()){ lv2Stop(); render(); } });
 })();
