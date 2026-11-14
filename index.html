@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.29｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.30｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -4410,7 +4410,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.29";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.30";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -4890,7 +4890,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.29（2026-11-14 更新）</span>
+      <br><span class="mono">アプリ版数：v7.30（2026-11-14 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -8728,6 +8728,7 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.30", date:"2026-11-14", items:[{ r:1, t:"新しい形の講義：機序の図をすべて動く図に", d:"循環器の薬の機序の図（ACE阻害薬・ARB・硝酸薬・ジゴキシン・抗不整脈薬・肺高血圧の薬など）を、ふだん→薬が作用→結果の順に動く図にしました。図の番号の表示はやめました。" }] },
   { v:"v7.29", date:"2026-11-14", items:[{ r:1, t:"新しい形の講義：薬の機序を図を動かして見せる", d:"薬が受容体やチャネルをふさぐ様子を、図の一部を動かして見せるようにしました（循環器の薬の前編・後編・基礎編）。後編に肺高血圧のPDE5阻害薬、基礎編に「薬の仲間」の枚を足し、Ⅰc群の注意の言い方を直しました。" }] },
   { v:"v7.28", date:"2026-11-14", items:[{ r:1, t:"新しい形の講義：後編と基礎編を作り直し", d:"循環器の薬の後編と基礎編を作り直しました。体の変化をコマ送りの図で見せる枚が入り、薬の語尾・ショックの薬の選び方も確かめ直しました。" }] },
   { v:"v7.27", date:"2026-11-14", items:[{ r:1, t:"講義の「閉じる」を直しました", d:"≡ から前提の講義を見て戻ったあと、閉じるが効かなくなっていたのを直しました。戻ったときは見ていたスライドから続きます。" }] },
@@ -13062,7 +13063,7 @@ function imEnd(win){
 }
 
 (function(){
-  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.29c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.30c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
   GAME_LIST[3] = { k:"immune", t:"免疫バトル", s:"免疫細胞で守る", on:"go('immune')", rec:()=> `クリア <b>${imSt().clears || 0}</b>` };
   NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
   const nt0 = navTab;
@@ -13491,7 +13492,7 @@ function preGo(){
 })();
 
 /* ---------- v7.18 講義 v2（新しい形の講義、ref=1） ---------- */
-const LV2_FILE = "./u/lecv2-0931296c07.json";
+const LV2_FILE = "./u/lecv2-62fd376642.json";
 let LV2 = null, lv2St = "idle", LA2 = null, LV2_RAF = 0;
 const LV2S = { on:false, seg:-1, tok:0, noau:false };
 function lv2Fetch(){
@@ -13654,7 +13655,7 @@ function lv2Cell(S){
      _new（lv2Steps が前のコマと比べて付ける）の所だけ動かす */
   const nw = k=> (v._new && v._new[k]) ? " v2-new" : "";
   const act = `<div class="v2-act${stop ? "" : " go"}${nw("act")}">${stop ? "┴ ✕ " : "↓ "}${lecEsc(v.act)}</div>`;
-  const lig = v.lig ? `<span class="v2-lig${v.drug && stop ? " off" : ""}${nw("lig")}">${T(v.lig)}</span>` : "";
+  const lig = v.lig ? `<span class="v2-lig${v.drug && stop && v.part !== "en" ? " off" : ""}${nw("lig")}">${T(v.lig)}</span>` : "";
   const drug = (v.lig ? `<span class="v2-ods">${lig}` : "") + (v.drug ? `<span class="v2-drug${nw("drug")}">${T(v.drug)}</span>` : "") + (v.lig ? `</span>` : "");
   let top;
   if(at === "mem"){
@@ -13722,7 +13723,7 @@ function lv2Steps(S){
   if(anim){ const nw = {}; ["lig", "drug", "act", "inside", "aim", "ae"].forEach(x=>{ if(JSON.stringify(pv[x] || "") !== JSON.stringify(f.v[x] || "")) nw[x] = true; }); fv = Object.assign({}, f.v, { _new:nw }); }
   const S2 = Object.assign({}, S, { v: fv, tb: null, f: null, m: [] });
   const nav = "";   /* 2026-11-13：コマは下の ‹ › で送る */
-  return `<div class="v2-fig v2-frame v2-steps"><span class="v2-flb">図 ${k + 1}／${fr.length}</span>${nav}<div class="v2-frc">${lv2T(f.c || "", { S })}</div><div class="v2-frv${anim ? " v2-anim" : ""}" data-k="${k}">${f.v ? lv2Fig(S2).replace(/^<div class="v2-fig( v2-frame)?/, '<div class="v2-fig-in').replace('<span class="v2-flb">図</span>', '') : ""}</div><div class="v2-dots">${fr.map((_, i)=> `<i class="${i === k ? "on" : ""}"></i>`).join("")}</div></div>`;
+  return `<div class="v2-fig v2-frame v2-steps"><span class="v2-flb">図</span>${nav}<div class="v2-frc">${lv2T(f.c || "", { S })}</div><div class="v2-frv${anim ? " v2-anim" : ""}" data-k="${k}">${f.v ? lv2Fig(S2).replace(/^<div class="v2-fig( v2-frame)?/, '<div class="v2-fig-in').replace('<span class="v2-flb">図</span>', '') : ""}</div></div>`;
 }
 function lv2Fig(S){
   const c = lv2Cur(S), v = S.v;
