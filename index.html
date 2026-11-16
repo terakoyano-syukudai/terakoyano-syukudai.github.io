@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.36｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.37｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -3622,6 +3622,67 @@
     html.r1:not(.wide) .r1hp .r1cal-lg{margin-top:6px}
   }
 
+  /* ---------- 2026-11-16 保存できないときの知らせ（ref=1） ---------- */
+  html.r1 #svwarn{position:fixed;left:50%;transform:translateX(-50%);top:calc(env(safe-area-inset-top,0px) + 6px);z-index:9000;
+    max-width:calc(100vw - 24px);padding:8px 14px;border:0;border-radius:999px;background:#B3261E;color:#fff;
+    font:700 max(var(--fmin,0px),calc(13px*var(--fs,1)))/1.3 inherit;font-family:inherit;white-space:nowrap;box-shadow:0 2px 10px rgba(0,0,0,.25);cursor:pointer}
+
+  /* ---------- 2026-11-16 学習計画の逆算（ref=1） ---------- */
+  html.r1 .r1h-row > .p2-band{flex:1 1 auto;min-width:0;text-align:left;gap:10px;padding:0 12px}
+  html.r1 .r1h-row > .p2-rnd{flex:none;width:52px;padding:0;justify-content:center}
+  html.r1 .p2b-m{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:5px}
+  html.r1 .p2b-l{display:flex;align-items:baseline;gap:8px;white-space:nowrap;overflow:hidden;font:400 max(var(--fmin,0px),calc(13px*var(--fs,1))) var(--jp);color:var(--ink-2)}
+  html.r1 .p2b-l > b{font:800 max(var(--fmin,0px),calc(15px*var(--fs,1))) var(--head);color:var(--ink)}
+  html.r1 .p2b-l b{color:var(--ink)}
+  html.r1 .p2b-s{font-weight:700;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)))}
+  html.r1 .p2b-s.ng,html.r1 .p2-b.ng b,html.r1 .p2-b.ng span{color:#9A3412}
+  html.r1[data-theme="dark"] .p2b-s.ng,html.r1[data-theme="dark"] .p2-b.ng b,html.r1[data-theme="dark"] .p2-b.ng span{color:#FDBA74}
+  html.r1 .p2b-s.ok{color:var(--muted)}
+  html.r1 .p2-band .bar,html.r1 .p2-bar{display:block;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+  html.r1 .p2-band .bar > i,html.r1 .p2-bar > i{display:block;height:100%;background:var(--act)}
+  html.r1 .p2-band .chev{flex:none;color:var(--muted)}
+  html.r1 .p2{display:flex;flex-direction:column;gap:10px;padding:14px 16px 12px;min-height:var(--appH,100dvh);box-sizing:border-box;max-width:560px;margin:0 auto}
+  html.r1 .p2 > .backbar{margin-top:auto}
+  html.r1 .p2-h{margin:0;font:800 max(var(--fmin,0px),calc(22px*var(--fs,1))) var(--head)}
+  html.r1 .p2-sec{font:700 max(var(--fmin,0px),calc(13px*var(--fs,1))) var(--head);color:var(--muted);padding:4px 2px 0}
+  html.r1 .p2-card{background:var(--surface);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:12px}
+  html.r1 .p2-r1,html.r1 .p2-r2{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));color:var(--ink-2)}
+  html.r1 .p2-r1 b{font:800 max(var(--fmin,0px),calc(17px*var(--fs,1))) var(--head);color:var(--ink)}
+  html.r1 .p2-r2 b{color:var(--ink)}
+  html.r1 .p2-bar{height:10px;border-radius:5px}
+  html.r1 .p2-bx{display:flex;gap:8px}
+  html.r1 .p2-b{flex:1;min-width:0;background:var(--paper);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--ink-2)}
+  html.r1 .p2-b b{font:800 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head);color:var(--ink)}
+  html.r1 .p2-b b small{font-size:.6em;font-weight:700}
+  html.r1 .p2-b.ng{background:#FFF1E6}
+  html.r1[data-theme="dark"] .p2-b.ng{background:#3A2010}
+  html.r1 .p2-note,html.r1 .p2-wait{margin:0;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .p2-wait{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));padding:8px 0}
+  html.r1 .p2-rows{gap:0;padding:4px 16px}
+  html.r1 .p2-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:10px 0;border-top:1px solid var(--line)}
+  html.r1 .p2-row:first-child{border-top:0}
+  html.r1 .p2-l{flex:1 1 auto;font:700 max(var(--fmin,0px),calc(15px*var(--fs,1))) var(--head)}
+  html.r1 .p2-in{height:44px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);padding:0 10px;font:inherit;font-size:max(var(--fmin,0px),calc(15px*var(--fs,1)));box-sizing:border-box;max-width:100%}
+  html.r1 .p2-np{flex:1 0 100%;text-align:right;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .p2-hd{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  html.r1 .p2-ed{height:44px;border:0;border-radius:12px;background:var(--surface);color:var(--act);padding:0 14px;font:700 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .p2-tabs{align-self:stretch;display:flex}
+  html.r1 .p2-tabs > button{flex:1}
+  html.r1 .p2-wk{display:flex;align-items:baseline;gap:8px;padding:6px 2px 0}
+  html.r1 .p2-wk b{font:800 max(var(--fmin,0px),calc(15px*var(--fs,1))) var(--head)}
+  html.r1 .p2-wk.now b{color:var(--act)}
+  html.r1 .p2-wk span{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .p2-u{width:100%;border:0;border-radius:14px;background:var(--surface);color:var(--ink);display:flex;align-items:center;gap:10px;padding:10px 14px;text-align:left;min-height:56px;box-sizing:border-box;font:inherit;cursor:pointer}
+  html.r1 .p2-u > i{width:8px;align-self:stretch;border-radius:4px;flex:none}
+  html.r1 .p2-um{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:6px}
+  html.r1 .p2-un{font:700 max(var(--fmin,0px),calc(15px*var(--fs,1))) var(--head);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  html.r1 .p2-ub{display:flex;align-items:center;gap:8px}
+  html.r1 .p2-ub .bar{flex:1;display:block;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+  html.r1 .p2-ub .bar > i{display:block;height:100%}
+  html.r1 .p2-uc{flex:none;min-width:58px;text-align:right;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--ink-2)}
+  html.r1 .p2-u .chev{flex:none;color:var(--muted)}
+  html.r1 .p2-more{width:100%;min-height:48px;border:0;border-radius:14px;background:var(--surface);color:var(--ink-2);padding:0 14px;display:flex;align-items:center;justify-content:space-between;font:inherit;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));cursor:pointer}
+
   /* ---------- v6.98 文字の大きさ（ref=1：標準／大）。ref=0 は --fs=1・--fmin=0px で元のまま ---------- */
   :root{--fs:1;--fmin:0px}
   html.r1{--fmin:12px}
@@ -4655,7 +4716,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.36";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.37";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -5135,7 +5196,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.36（2026-11-16 更新）</span>
+      <br><span class="mono">アプリ版数：v7.37（2026-11-16 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -8973,6 +9034,10 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.37", date:"2026-11-16", items:[
+    { r:1, t:"記録を守る直し", d:"試作版：「記録をすべて消す」で設定まで消えないように。画面を閉じるときに解いたぶんを保存。保存できないときは画面の上に知らせ。初回の30問は途中でやめても続きから正しく段が決まる。更新のあと電波なしで開いても、段・大学の問題・講義が読める。" },
+    { r:1, t:"学習計画の逆算", d:"試作版：学習計画を作り直し。国試・CBT・自分で決めた日までに「標準までの問題の95％を単元ごとに習得」するための今日の分を、ホームの一番下の帯に出す。学習計画の画面には、週ごとにやる単元の表（今週の最初の単元が光る）。1日の目標と連続記録は今までどおり。" },
+  ]},
   { v:"v7.36", date:"2026-11-16", items:[
     { r:1, t:"薬草ドームの知らせ", d:"タイマーの画面を開いているときに花が咲く・休憩が終わると、画面が5秒点滅します。押すと止まります。" },
   ]},
@@ -13497,7 +13562,7 @@ function imEnd(win){
 }
 
 (function(){
-  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.36c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.37c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
   /* 2026-11-15：免疫バトルはやめて処方戦記の「感染」の章にまとめる（利用者の決定）。一覧には出さない（画面とコードは残す） */
   NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
   const nt0 = navTab;
@@ -14958,6 +15023,230 @@ function r1hpSheet(k){
     return g0.call(this, screen, patch || {});
   };
   try{ document.addEventListener("keydown", e=>{ if(e.key === "Escape" && r1On() && view.screen === "home" && view.r1hp) r1hp(null); }); }catch(e){}
+})();
+
+/* ---------- 2026-11-16 記録を守る直し（ref=1）：全消去・初回の30問・隠れたら保存・保存できないときの知らせ ---------- */
+const DS_KEEP = ["ref", "uid", "theme", "hand", "fs", "wide", "seenVer", "consentAsked", "consent", "profile", "prof2Asked", "lecRate", "lecSub", "aud", "tierPlaced"];
+const TPL_MIN = 2;      /* 初回の30問：その科目を2問以上答えたときだけ段を決める */
+let SV_FAIL = false, DS_BOOT = false, DS_MARK = false;
+function svWarn(){
+  let el = document.getElementById("svwarn");
+  if(!SV_FAIL || !r1On()){ if(el) el.remove(); return; }
+  if(el) return;
+  el = document.createElement("button"); el.id = "svwarn"; el.setAttribute("role", "alert");
+  el.textContent = "記録を保存できません ›";
+  el.onclick = function(){ if(view.screen !== "quiz") go("sync"); };
+  document.body.appendChild(el);
+}
+(function(){
+  /* B6 保存できたかを見る（書けないと Store.set は false を返す） */
+  const set0 = Store.set;
+  Store.set = async function(){
+    const ok = await set0.apply(this, arguments);
+    const fail = ok === false;
+    if(fail !== SV_FAIL){ SV_FAIL = fail; try{ svWarn(); }catch(e){} }
+    return ok;
+  };
+  /* B5 画面が隠れたら保存（アプリを上にはじいて消すと pagehide が来ないことがある） */
+  document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState === "hidden" && r1On()){ try{ saveProgress(true); }catch(e){} } });
+  /* B1 全消去：解答の記録だけ消し、端末の設定は残す */
+  const ra0 = resetAll;
+  resetAll = async function(){
+    if(!r1On()) return ra0.apply(this, arguments);
+    if(!confirm("解答の記録をすべて消します。元に戻せません。")) return;
+    const keep = {}; DS_KEEP.forEach(k=>{ if(ST[k] !== undefined) keep[k] = ST[k]; });
+    try{ clearTimeout(SY.timer); }catch(e){}
+    ST = Object.assign({ stats:{}, history:[], srs:{}, srsInit:1, srsV:2, flagged:{}, flagQueue:[], syncCode: genSyncCode(), daily:null }, keep);
+    await Store.clear();
+    await saveProgress(true);
+    try{ SY.snap = syncSnapNow(); }catch(e){}
+    go("home");
+  };
+  /* B4 初回の30問 */
+  try{ if(RESUME_KEYS.indexOf("tplace") < 0) RESUME_KEYS.push("tplace"); }catch(e){}
+  const pa0 = tierPlaceApply;
+  tierPlaceApply = function(){
+    const log0 = view.log, byId = {}, n = {};
+    (view.set || []).forEach(q=> byId[q.id] = q);
+    (log0 || []).filter(Boolean).forEach(x=>{ const q = byId[x.id]; if(q) n[q.s] = (n[q.s] || 0) + 1; });
+    view.log = (log0 || []).map(x=> (x && byId[x.id] && n[byId[x.id].s] >= TPL_MIN) ? x : null);
+    try{ return pa0.apply(this, arguments); } finally { view.log = log0; }
+  };
+  const rd0 = render;
+  render = function(){
+    if(!DS_MARK){
+      DS_MARK = true;
+      /* B2・B3 Service Worker への印：ref=1 の端末だけ「データを先に保存してから切りかえる・古いデータを消す」を行う */
+      try{ if(window.caches) caches.open("terakoya").then(c=> r1On() ? c.put("./__ref1", new Response("1")) : c.delete("./__ref1")).catch(()=>{}); }catch(e){}
+    }
+    if(!DS_BOOT && r1On()){
+      DS_BOOT = true;
+      try{
+        const p = ST.tierPlaced;
+        if(p && p.done === 0 && !(ST.resume && ST.resume.tplace) && (ST.tpTry || 0) < 2){ ST.tpTry = (ST.tpTry || 0) + 1; delete ST.tierPlaced; ST.tierPlaceWant = 1; }
+      }catch(e){}
+    }
+    const out = rd0.apply(this, arguments);
+    try{ svWarn(); }catch(e){}
+    return out;
+  };
+})();
+
+/* ---------- 2026-11-16 学習計画の逆算（案A、ref=1）：標準までの95％を単元ごとに・国試／CBT／自分で決めた日 ---------- */
+const P2_KINDS = [["kokushi", "国試"], ["cbt", "CBT"], ["free", "自分で決めた日"]];
+const P2_RATE = 0.95, P2_GAP = 4, P2_FEW = 50;
+let P2C = null;
+function p2T(){ const p = ST.plan2; return (p && p.t) || {}; }
+function p2Name(k){ return (P2_KINDS.find(x=> x[0] === k) || [])[1] || ""; }
+function p2MD(d){ const p = String(d).split("-"); return p[0] + "/" + Number(p[1]) + "/" + Number(p[2]); }
+/* 範囲（all か科目）の単元ごとの数を足し合わせる */
+function p2Stat(scope){
+  const ix = tierIx(), s = ST.srs || {};
+  const o = { goal:0, ok:0, need:0, fresh:0, units:0, done:0 };
+  Object.keys(ix).forEach(k=>{
+    const sj = k.split("|")[0];
+    if(!EXAMS[sj] || (scope && scope !== "all" && sj !== scope)) return;
+    const T = ix[k].filter(q=> qLv(q) <= 2); if(!T.length) return;
+    const g = Math.ceil(T.length * P2_RATE); let m = 0, sn = 0;
+    T.forEach(q=>{ const r = s[q.id]; if(r){ sn++; if(r[0] >= 3) m++; } });
+    o.units++; o.goal += g; o.ok += Math.min(m, g); o.need += Math.max(0, g - m); o.fresh += Math.max(0, g - sn); if(m >= g) o.done++;
+  });
+  return o;
+}
+function p2Calc(k){
+  const t = p2T()[k]; if(!t || !t.d) return null;
+  const st = p2Stat(k === "free" ? (t.s || "all") : "all");
+  const days = jNoOfKey(t.d) - jDayNo();
+  const work = days > 120 ? days - 30 : days, intro = Math.max(1, work - P2_GAP);
+  const np = st.fresh ? Math.ceil(st.fresh / intro) : 0;
+  let late = 0, back = 0; const b = t.b;
+  if(b && b.np > 0){
+    const el = Math.max(0, jDayNo() - jNoOfKey(b.d0)), q = b.np * el - (b.fresh - st.fresh);
+    late = q > 0 ? Math.ceil(q / b.np) : -Math.floor(-q / b.np);
+    back = Math.max(0, np - b.np);
+  }
+  return Object.assign(st, { k, d:t.d, days, np, late, back, over: days <= P2_GAP && st.need > 0 });
+}
+function p2All(){
+  const key = (ST.history || []).length + ":" + jDayNo() + ":" + JSON.stringify(p2T());
+  if(P2C && P2C.key === key) return P2C;
+  const L = P2_KINDS.map(x=> p2Calc(x[0])).filter(r=> r && r.days >= 0).sort((a, b)=> a.days - b.days);
+  const h = ST.history || [], today = jDayNo(), cnt = {};
+  for(let i = h.length - 1; i >= 0 && jDayNo(h[i].ts) === today; i--) cnt[h[i].id] = (cnt[h[i].id] || 0) + 1;
+  let first = 0; Object.keys(cnt).forEach(id=>{ const t = ST.stats[id]; if(t && ((t.c || 0) + (t.w || 0)) === cnt[id]) first++; });
+  const np = L.reduce((m, r)=> Math.max(m, r.np), 0), due = dueQuestions().length, done = dayCount(dailyKey());
+  const newLeft = Math.max(0, np - first), rec = h.slice(-P2_FEW * 2).length;
+  return (P2C = { key, L, main: L[0] || null, np, due, done, newLeft, n: done + due + newLeft, few: rec < P2_FEW });
+}
+function p2Late(r){ return r.over ? ["期限が近い", "ng"] : r.late > 0 ? [r.late + "日おくれ", "ng"] : r.late < 0 ? [(-r.late) + "日先", "ok"] : ["予定どおり", "ok"]; }
+function p2Set(k, f, v){
+  ST.plan2 = ST.plan2 || { v:1, t:{} }; ST.plan2.t = ST.plan2.t || {};
+  const t = ST.plan2.t[k] = ST.plan2.t[k] || {};
+  if(f === "d") t.d = /^\d{4}-\d{2}-\d{2}$/.test(v || "") ? v : "";
+  else if(f === "s") t.s = EXAMS[v] ? v : "all";
+  delete t.b; P2C = null;
+  if(t.d){ const r = p2Calc(k); if(r) t.b = { d0: dailyKey(), np: r.np, fresh: r.fresh }; ST.plan = null; }
+  else if(k !== "free" || !t.s || t.s === "all") delete ST.plan2.t[k];
+  P2C = null; saveProgress(true); view.keepScroll = true; render();
+}
+/* ---- 案C：週ごとの単元の予定表（2026-11-16）。状態には書かず、今の進みと目標の日から毎回その場で割りふる ---- */
+function p2UnitRows(scope){
+  const ix = tierIx(), s = ST.srs || {}, out = [];
+  gdUnits().forEach(o=>{
+    if(scope && scope !== "all" && o.s !== scope) return;
+    const T = (ix[o.k] || []).filter(q=> qLv(q) <= 2); if(!T.length) return;
+    const g = Math.ceil(T.length * P2_RATE); let m = 0;
+    T.forEach(q=>{ const r = s[q.id]; if(r && r[0] >= 3) m++; });
+    out.push({ k:o.k, s:o.s, u:o.u, g, m: Math.min(m, g), need: Math.max(0, g - m) });
+  });
+  return out;
+}
+/* 済んでいない単元を履修順に、目標の日までの週へ、残りの問題数がならぶように割りふる。週は月曜はじまり */
+function p2Weeks(r){
+  const t = p2T()[r.k] || {}, rows = p2UnitRows(r.k === "free" ? (t.s || "all") : "all").filter(x=> x.need > 0);
+  const today = jDayNo(), w0 = today - ((jPartsNo(today).w + 6) % 7);
+  const last = jNoOfKey(r.d) - P2_GAP - (r.days > 120 ? 30 : 0);
+  const W = Math.max(0, Math.floor((last - w0) / 7));
+  const total = rows.reduce((a, x)=> a + x.need, 0), cap = total / (W + 1) || 1;
+  const weeks = []; let cum = 0;
+  rows.forEach(x=>{ const i = Math.min(W, Math.floor((cum + x.need / 2) / cap)); cum += x.need; (weeks[i] = weeks[i] || { i, from: w0 + i * 7, us: [] }).us.push(x); });
+  return weeks.filter(Boolean);
+}
+function p2WkName(w){ const a = jPartsNo(w.from), b = jPartsNo(w.from + 6); return (w.i === 0 ? "今週" : w.i === 1 ? "来週" : a.m + "/" + a.d + "〜") + "|" + (w.i <= 1 ? a.m + "/" + a.d + "〜" + (a.m === b.m ? "" : b.m + "/") + b.d + "・" : "") + (w.i === 0 ? "あと" : "") + w.us.length + "単元"; }
+function p2Unit(x, now){
+  const pct = Math.round(x.m / x.g * 100), col = r1SubjColor(x.s);
+  return `<button class="p2-u${now ? " p2-now" : ""}" onclick="openSetup('${x.s}',['${x.u}'])" aria-label="${esc(x.u)} ${x.m}／${x.g}"><i style="background:${col}"></i><span class="p2-um"><span class="p2-un">${esc(x.u)}</span><span class="p2-ub"><span class="bar"><i style="width:${pct}%;background:${col}"></i></span><span class="p2-uc">${x.m}／${x.g}</span></span></span><span class="chev">›</span></button>`;
+}
+function p2Pick(k){ view.p2k = k; view.p2more = false; view.keepScroll = true; render(); }
+function p2More(){ view.p2more = !view.p2more; view.keepScroll = true; render(); }
+function p2Edit(){ view.p2set = !view.p2set; view.keepScroll = true; render(); }
+function p2Plan(){
+  if(!tierOn()) return `<div class="p2"><h1 class="p2-h">学習計画</h1><div class="p2-card"><p class="p2-wait">読み込み中…</p></div></div>`;
+  const A = p2All(), T = p2T();
+  const m = A.L.find(x=> x.k === view.p2k) || A.main;
+  const subj = [["all", "全科目"]].concat(Object.keys(EXAMS).map(s=> [s, EXAMS[s].name]));
+  const row = k=>{
+    const t = T[k] || {};
+    const sc = k === "free" ? `<select class="p2-in" aria-label="範囲" onchange="p2Set('free','s',this.value)">${subj.map(a=> `<option value="${a[0]}"${(t.s || "all") === a[0] ? " selected" : ""}>${esc(a[1])}</option>`).join("")}</select>` : "";
+    return `<div class="p2-row"><label class="p2-l" for="p2d-${k}">${p2Name(k)}</label>${sc}<input class="p2-in" id="p2d-${k}" type="date" value="${t.d || ""}" min="${dailyKey()}" onchange="p2Set('${k}','d',this.value)"></div>`;
+  };
+  const rows = `<div class="p2-card p2-rows">${P2_KINDS.map(x=> row(x[0])).join("")}</div>`;
+  if(!m) return `<div class="p2"><h1 class="p2-h">学習計画</h1><div class="p2-card p2-top"><p class="p2-wait">日を入れると今日の分が出ます</p></div><div class="p2-sec">目標の日</div>${rows}</div>`;
+  const lt = p2Late(m), pct = m.goal ? Math.round(m.ok / m.goal * 100) : 0;
+  const tabs = A.L.length > 1 ? `<div class="r1seg p2-tabs" role="tablist">${A.L.map(x=> `<button role="tab" aria-pressed="${x === m}" onclick="p2Pick('${x.k}')">${x.k === "free" ? "自分の日" : p2Name(x.k)}</button>`).join("")}</div>` : "";
+  const top = `<div class="p2-card p2-top">
+      <div class="p2-r1"><b>${p2Name(m.k)} ${p2MD(m.d)}</b><span>あと ${m.days.toLocaleString()}日</span></div>
+      <div class="p2-r2"><span>標準まで 95％</span><b>${m.ok.toLocaleString()}／${m.goal.toLocaleString()}問</b></div>
+      <div class="p2-bar" role="img" aria-label="進み ${pct}%"><i style="width:${pct}%"></i></div>
+      <div class="p2-bx">
+        <div class="p2-b"><span>今日の分</span><b>${A.done}／${A.n}<small>問</small></b><span>復習 ${A.due}・新しい ${A.newLeft}</span></div>
+        <div class="p2-b ${lt[1]}"><span>進みぐあい</span><b>${lt[0]}</b><span>${m.late > 0 && m.back ? `1日 +${m.back}問で戻る` : `済み ${m.done}／${m.units}単元`}</span></div>
+      </div>
+      ${A.few ? `<p class="p2-note">見込み（記録が少ないあいだ）</p>` : ""}
+    </div>`;
+  const W = p2Weeks(m);
+  let list = "", glow = false;
+  if(!W.length) list = `<div class="p2-card"><p class="p2-wait">この範囲はすべて済みました</p></div>`;
+  else{
+    const head = w=>{ const n = p2WkName(w).split("|"); return `<div class="p2-wk${w.i === 0 ? " now" : ""}"><b>${n[0]}</b><span>${n[1]}</span></div>`; };
+    const near = W.filter(w=> w.i <= 1), far = W.filter(w=> w.i > 1);
+    if(!near.length || near[0].i !== 0) list += `<div class="p2-wk now"><b>今週</b><span>この週の単元は済み</span></div>`;
+    near.forEach(w=>{ list += head(w) + w.us.map(x=>{ const now = !glow; glow = true; return p2Unit(x, now); }).join(""); });
+    if(far.length){
+      const n = far.reduce((a, w)=> a + w.us.length, 0);
+      list += `<button class="p2-more" aria-expanded="${!!view.p2more}" onclick="p2More()"><span>その先の週（${n}単元）</span><span>${view.p2more ? "▴" : "▾"}</span></button>`;
+      if(view.p2more) far.forEach(w=>{ list += head(w) + w.us.map(x=>{ const now = !glow; glow = true; return p2Unit(x, now); }).join(""); });
+    }
+  }
+  return `<div class="p2"><div class="p2-hd"><h1 class="p2-h">学習計画</h1><button class="p2-ed" aria-expanded="${!!view.p2set}" onclick="p2Edit()">${view.p2set ? "とじる" : "目標を変える"}</button></div>
+    ${view.p2set ? rows : ""}${tabs}${top}${list}</div>`;
+}
+(function(){
+  try{ if(SYNC_LWW.indexOf("plan2") < 0) SYNC_LWW.push("plan2"); }catch(e){}
+  const gp0 = r1GlowPick;
+  r1GlowPick = function(){
+    if(r1On() && view.screen === "plan"){ const u = $app.querySelector(".p2-u.p2-now"); if(u && r1Vis(u)) return u; if($app.querySelector(".p2-top .p2-bx")) return null; }
+    return gp0.apply(this, arguments);
+  };
+  const pl0 = Plan;
+  Plan = function(){ return r1On() ? p2Plan() : pl0.apply(this, arguments); };
+  /* ホームの一番下の行：計画があるときだけ「学習計画」を帯に、ランダムを四角いボタンに（計画が無い人は今のまま） */
+  const RE = /<div class="r1h-row">\s*<button class="r1h-sm" onclick="go\('plan'\)">(<svg[\s\S]*?<\/svg>)学習計画<\/button>\s*<button class="r1h-sm" onclick="openSetup\('all',null\)">(<svg[\s\S]*?<\/svg>)ランダム<\/button>\s*<\/div>/;
+  const h0 = r1Home;
+  r1Home = function(){
+    const h = h0.apply(this, arguments);
+    try{
+      if(!tierOn()) return h;
+      const A = p2All(); if(!A.main) return h;
+      const x = RE.exec(h); if(!x){ console.warn("p2: ホームの行が見つからない"); return h; }
+      const lt = p2Late(A.main), pct = A.n ? Math.min(100, Math.round(A.done / A.n * 100)) : 100;
+      const row = `<div class="r1h-row">
+      <button class="r1h-sm p2-band" onclick="go('plan')" aria-label="学習計画 今日の分 ${A.done}／${A.n} ${lt[0]}">${x[1]}<span class="p2b-m"><span class="p2b-l"><b>計画</b><span>今日 <b>${A.done}／${A.n}</b></span><span class="p2b-s ${lt[1]}">${lt[0]}</span></span><span class="bar"><i style="width:${pct}%"></i></span></span><span class="chev">›</span></button>
+      <button class="r1h-sm p2-rnd" onclick="openSetup('all',null)" aria-label="ランダム">${x[2]}</button>
+    </div>`;
+      return h.replace(RE, ()=> row);
+    }catch(e){ return h; }
+  };
 })();
 
 async function resetAll(){

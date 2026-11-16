@@ -187,14 +187,76 @@ function doCheckUpdate() {
             if (!res || !res.ok) return;
             return res.clone().text().then(function (html) {
               if (html.indexOf('APP_VER = "' + v + '"') < 0) { meta.checkedAt = 0; return; }
-              return cache.put('./index.html', res.clone())
-                .then(function () { return cache.put('./', res.clone()); })
-                .then(function () { meta.version = v; });
+              // 2026-11-16：新しい本体が指すデータ（u/名前-指紋.json など）を先に保存し、そろったときだけ本体を切りかえる。
+              // こうしないと、切りかえたあと最初に開くのが電波なしのとき、新しい名前のデータが読めない。
+              // まず試作版（ref=1）の端末だけ：ページが置く印 ./__ref1 があるときだけ行う。印が無い端末は今までどおり。
+              return cache.match('./__ref1').then(function (mk) {
+                var on = !!mk;
+                return (on ? precacheU(cache, html) : Promise.resolve(true)).then(function (okU) {
+                  if (!okU) { meta.checkedAt = 0; return; }
+                  return cache.put('./index.html', res.clone())
+                    .then(function () { return cache.put('./', res.clone()); })
+                    .then(function () { meta.version = v; return on ? sweepU(cache, html).then(function () { return sweepIndex(cache); }) : null; });
+                });
+              });
             });
           })
           .catch(function () {})
           .then(function () { return writeMeta(cache, meta); });
       });
     });
+  }).catch(function () {});
+}
+
+/* ---------- 2026-11-16 本体が指すデータ（u/）の先取りと、古いデータの片づけ ----------
+ * u/ のファイルは「種類-指紋.拡張子」（例 u/tier-705f9b60b6.json）。中身が変わると名前が変わる。
+ * ・先取り：この端末がすでに持っている種類（tier・univ など）だけを、新しい名前で取っておく。
+ *   持っていない種類は取らない（その機能を使っていない端末の通信量を増やさないため）。
+ * ・片づけ：新しい本体が指さなくなった u/ のファイルを消す（消さないと名前が変わるたびに増え続ける）。 */
+function uNames(html) {
+  var re = /["'(](?:\.\/)?u\/([A-Za-z0-9_.\-]+\.(?:json|woff2))/g, m, o = {};
+  while ((m = re.exec(html))) o[m[1]] = 1;
+  return Object.keys(o);
+}
+function uKind(name) { return name.replace(/-[0-9a-f]{6,}(\.[a-z0-9]+)$/, '$1'); }
+function uCached(cache) {
+  return cache.keys().then(function (ks) {
+    var out = [];
+    ks.forEach(function (r) { var m = /\/u\/([^\/?]+)$/.exec(new URL(r.url).pathname); if (m) out.push({ req: r, name: decodeURIComponent(m[1]) }); });
+    return out;
+  });
+}
+function precacheU(cache, html) {
+  var names = uNames(html);
+  if (!names.length) return Promise.resolve(true);
+  return uCached(cache).then(function (have) {
+    var haveName = {}, haveKind = {};
+    have.forEach(function (h) { haveName[h.name] = 1; haveKind[uKind(h.name)] = 1; });
+    var need = names.filter(function (n) { return !haveName[n] && haveKind[uKind(n)]; });
+    return Promise.all(need.map(function (n) {
+      return fetch('./u/' + n, { cache: 'no-store' }).then(function (r) {
+        if (!r || !r.ok) throw new Error('u');
+        return cache.put('./u/' + n, r);
+      });
+    })).then(function () { return true; }, function () { return false; });
+  }).catch(function () { return true; });
+}
+function sweepU(cache, html) {
+  var keep = {}; uNames(html).forEach(function (n) { keep[n] = 1; });
+  if (!Object.keys(keep).length) return Promise.resolve();
+  return uCached(cache).then(function (have) {
+    return Promise.all(have.filter(function (h) { return !keep[h.name]; }).map(function (h) { return cache.delete(h.req); }));
+  }).catch(function () {});
+}
+
+/* 2026-11-16：?ref=1 などが付いた名前で保存された古い本体を消す。
+ * インストールのときの保存（addAll）が電波の都合で失敗すると、本体は「index.html?ref=1」の名前で保存される。
+ * 更新は ./index.html と ./ しか書きかえないので、その古い写しが残っていると、いつまでも古い版が開く。 */
+function sweepIndex(cache) {
+  return cache.keys().then(function (ks) {
+    return Promise.all(ks.filter(function (r) {
+      var u = new URL(r.url);
+      return u.search && /(\/|\/index\.html)$/.test(u.pathname) && u.pathname.indexOf('/u/') < 0;
+    }).map(function (r) { return cache.delete(r); }));
   }).catch(function () {});
 }
