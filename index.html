@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.37｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.38｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -3682,6 +3682,51 @@
   html.r1 .p2-uc{flex:none;min-width:58px;text-align:right;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--ink-2)}
   html.r1 .p2-u .chev{flex:none;color:var(--muted)}
   html.r1 .p2-more{width:100%;min-height:48px;border:0;border-radius:14px;background:var(--surface);color:var(--ink-2);padding:0 14px;display:flex;align-items:center;justify-content:space-between;font:inherit;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));cursor:pointer}
+  html.r1 .r1h.p2home > .r1h-hero{flex:none;min-height:0;gap:14px}
+  html.r1 .r1h.p2home .r1h-sm svg{width:22px;height:22px;flex:none}
+  html.r1 .p2h{flex:1 1 auto;min-height:0;border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;background:var(--act);color:var(--act-ink)}
+  html.r1 .p2h-hd{display:flex;align-items:center;gap:8px}
+  html.r1 .p2h-hd h2{margin:0;font:800 max(var(--fmin,0px),calc(18px*var(--fs,1))) var(--head)}
+  html.r1 .p2h-chip{font-weight:700;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));border-radius:999px;padding:4px 10px;background:color-mix(in srgb,currentColor 18%,transparent)}
+  html.r1 .p2h-chip.p2ng{background:#FDBA74;color:#431407}
+  html.r1 .p2h-hd{white-space:nowrap;overflow:hidden}
+  html.r1 .p2h-hd h2,html.r1 .p2h-chip{flex:none}
+  html.r1 .r1h.p2tight{gap:6px}
+  html.r1 .r1h.p2tight > .r1h-hero{padding:10px 14px;gap:8px}
+  html.r1 .r1h.p2tight .r1h-ring,html.r1 .r1h.p2tight .r1h-ring svg{width:72px;height:72px}
+  html.r1 .r1h.p2tight .r1h-ringv b{font-size:max(var(--fmin,0px),calc(22px*var(--fs,1)))}
+  html.r1 .r1h.p2tight .p2h{padding:10px 14px;gap:8px}
+  html.r1 .r1h.p2tight .p2h-go{height:46px}
+  html.r1 .r1h.p2tight .p2h-n b{font-size:max(var(--fmin,0px),calc(26px*var(--fs,1)))}
+  html.r1 .r1h.p2tight > .r1h-card{padding-top:8px;padding-bottom:8px}
+  html.r1 .r1h.p2tight > .r1h-card .r1h-chips{display:none}
+  html.r1 .r1h.p2tight > .r1h-row .r1h-sm{height:46px}
+  html.r1 .r1h.p2tight2 .r1h-ring,html.r1 .r1h.p2tight2 .r1h-ring svg{width:60px;height:60px}
+  html.r1 .r1h.p2tight2 .r1h-ringv b{font-size:max(var(--fmin,0px),calc(18px*var(--fs,1)))}
+  html.r1 .r1h.p2tight2 .r1h-ringv span{display:none}
+  html.r1 .r1h.p2tight2 .r1h-zero,html.r1 .r1h.p2tight2 .r1h-days{display:none}
+  html.r1 .r1h.p2tight2 .p2h-bar:not(.s){height:6px}
+  html.r1 .p2h-dl{margin-left:auto;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));opacity:.85;white-space:nowrap}
+  html.r1 .p2h-n{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)))}
+  html.r1 .p2h-n b{font:800 max(var(--fmin,0px),calc(30px*var(--fs,1)))/1 var(--head)}
+  html.r1 .p2h-n b small{font-size:.53em}
+  html.r1 .p2h-bar{display:block;flex:none;height:10px;border-radius:5px;background:color-mix(in srgb,currentColor 22%,transparent);overflow:hidden}
+  html.r1 .p2h-bar > i{display:block;height:100%;background:currentColor}
+  html.r1 .p2h-bar.s{height:5px;border-radius:3px}
+  html.r1 .p2h-ws{flex:1 1 0;min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:4px;border-top:1px solid color-mix(in srgb,currentColor 18%,transparent);padding-top:6px}
+  html.r1 .p2h-wk{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex:none;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)))}
+  html.r1 .p2h-wk b{font:700 max(var(--fmin,0px),calc(13px*var(--fs,1))) var(--head)}
+  html.r1 .p2h-wk span{opacity:.85}
+  html.r1 .p2h-u{display:flex;align-items:center;gap:10px;min-height:34px;flex:none}
+  html.r1 .p2h-u > i{width:6px;height:28px;border-radius:3px;flex:none;outline:1px solid color-mix(in srgb,currentColor 35%,transparent)}
+  html.r1 .p2h-um{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:5px}
+  html.r1 .p2h-ul{display:flex;justify-content:space-between;gap:8px;font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)))}
+  html.r1 .p2h-un{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .p2h-uc{flex:none;opacity:.85}
+  html.r1 .p2h-one{display:none;flex:none;font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .p2h-go{flex:none;margin-top:auto;width:100%;height:50px;border:0;border-radius:14px;background:#fff;color:#24306B;font:800 max(var(--fmin,0px),calc(17px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .p2h-go:disabled{opacity:.6;cursor:default}
+  html.r1 .p2-u{cursor:default}
 
   /* ---------- v6.98 文字の大きさ（ref=1：標準／大）。ref=0 は --fs=1・--fmin=0px で元のまま ---------- */
   :root{--fs:1;--fmin:0px}
@@ -4716,7 +4761,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.37";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.38";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -5196,7 +5241,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.37（2026-11-16 更新）</span>
+      <br><span class="mono">アプリ版数：v7.38（2026-11-17 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -9034,6 +9079,9 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.38", date:"2026-11-17", items:[
+    { r:1, t:"ホームで計画を解く", d:"試作版：学習計画に日を入れると、ホームに「今日の計画」のカード（今日の分・進みぐあい・今週の単元）が出て、そこから解ける。今日の復習と科目別のカードはこのカードと下のボタンにまとまる。学習計画の画面は日を入れる・週の表を見るだけに。" },
+  ]},
   { v:"v7.37", date:"2026-11-16", items:[
     { r:1, t:"記録を守る直し", d:"試作版：「記録をすべて消す」で設定まで消えないように。画面を閉じるときに解いたぶんを保存。保存できないときは画面の上に知らせ。初回の30問は途中でやめても続きから正しく段が決まる。更新のあと電波なしで開いても、段・大学の問題・講義が読める。" },
     { r:1, t:"学習計画の逆算", d:"試作版：学習計画を作り直し。国試・CBT・自分で決めた日までに「標準までの問題の95％を単元ごとに習得」するための今日の分を、ホームの一番下の帯に出す。学習計画の画面には、週ごとにやる単元の表（今週の最初の単元が光る）。1日の目標と連続記録は今までどおり。" },
@@ -13562,7 +13610,7 @@ function imEnd(win){
 }
 
 (function(){
-  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.37c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.38c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
   /* 2026-11-15：免疫バトルはやめて処方戦記の「感染」の章にまとめる（利用者の決定）。一覧には出さない（画面とコードは残す） */
   NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
   const nt0 = navTab;
@@ -15173,9 +15221,69 @@ function p2Weeks(r){
   return weeks.filter(Boolean);
 }
 function p2WkName(w){ const a = jPartsNo(w.from), b = jPartsNo(w.from + 6); return (w.i === 0 ? "今週" : w.i === 1 ? "来週" : a.m + "/" + a.d + "〜") + "|" + (w.i <= 1 ? a.m + "/" + a.d + "〜" + (a.m === b.m ? "" : b.m + "/") + b.d + "・" : "") + (w.i === 0 ? "あと" : "") + w.us.length + "単元"; }
-function p2Unit(x, now){
+function p2Unit(x){
   const pct = Math.round(x.m / x.g * 100), col = r1SubjColor(x.s);
-  return `<button class="p2-u${now ? " p2-now" : ""}" onclick="openSetup('${x.s}',['${x.u}'])" aria-label="${esc(x.u)} ${x.m}／${x.g}"><i style="background:${col}"></i><span class="p2-um"><span class="p2-un">${esc(x.u)}</span><span class="p2-ub"><span class="bar"><i style="width:${pct}%;background:${col}"></i></span><span class="p2-uc">${x.m}／${x.g}</span></span></span><span class="chev">›</span></button>`;
+  return `<div class="p2-u"><i style="background:${col}"></i><span class="p2-um"><span class="p2-un">${esc(x.u)}</span><span class="p2-ub"><span class="bar"><i style="width:${pct}%;background:${col}"></i></span><span class="p2-uc">${x.m}／${x.g}</span></span></span></div>`;
+}
+/* ---- ホームで解く（案A のホーム。2026-11-16 利用者：解く入口はホームの1か所） ---- */
+const P2_SET = 20;
+function p2NewQs(n){
+  const m = p2All().main, out = []; if(!m || n <= 0) return out;
+  const ix = tierIx(), s = ST.srs || {};
+  for(const w of p2Weeks(m)) for(const x of w.us){
+    const T = (ix[x.k] || []).filter(q=> qLv(q) <= 2 && !s[q.id]).sort((a, b)=> qLv(a) - qLv(b) || qStar(b) - qStar(a));
+    for(const q of T){ out.push(q); if(out.length >= n) return out; }
+  }
+  return out;
+}
+/* 1回ぶん：今日の復習から20問まで。空きがあれば今日の新しい問題。今日の分が済んでいれば先の新しい問題を20問 */
+function p2TodaySet(){
+  const A = p2All(), due = dueQuestions().slice(0, P2_SET), room = P2_SET - due.length;
+  const want = A.newLeft > 0 ? Math.min(room, A.newLeft) : (due.length ? 0 : room);
+  return due.concat(p2NewQs(want));
+}
+function p2Start(){
+  const set = p2TodaySet(); if(!set.length) return;
+  go("quiz", { subject:"all", units:null, set, i:0, log:[], picked:null, sel:[], review:true, p2:true });
+}
+function p2HomeCard(A){
+  const m = A.main, lt = p2Late(m), pct = A.n ? Math.min(100, Math.round(A.done / A.n * 100)) : 100;
+  const W = p2Weeks(m).slice(0, 2);
+  let wk = "";
+  W.forEach(w=>{
+    const nm = p2WkName(w).split("|");
+    wk += `<div class="p2h-wk"><b>${nm[0]}の単元</b><span>${nm[1]}</span></div>` + w.us.slice(0, 4).map(x=>{
+      const p = Math.round(x.m / x.g * 100);
+      return `<div class="p2h-u"><i style="background:${r1SubjColor(x.s)}"></i><span class="p2h-um"><span class="p2h-ul"><span class="p2h-un">${esc(x.u)}</span><span class="p2h-uc">${x.m}／${x.g}</span></span><span class="p2h-bar s"><i style="width:${p}%"></i></span></span></div>`; }).join("");
+  });
+  const w0 = W[0], one = w0 ? `<div class="p2h-one">${p2WkName(w0).split("|")[0]}：${esc(w0.us[0].u)}${w0.us.length > 1 ? ` ほか${w0.us.length - 1}` : ""}</div>` : "";   /* 低い画面：1行だけ */
+  wk = `<div class="p2h-ws">${wk || `<div class="p2h-wk"><b>単元はすべて済み</b></div>`}${one}</div>`;
+  const n = p2TodaySet().length, left = A.due + A.newLeft;
+  const lab = !n ? "今日の分は済み" : `${left ? (A.done ? "つづける" : "はじめる") : "先へ進む"}　${n}問`;
+  return `<section class="p2h" aria-label="今日の計画">
+    <div class="p2h-hd"><h2>今日の計画</h2><span class="p2h-chip p2${lt[1]}">${lt[0]}</span><span class="p2h-dl">${m.k === "free" ? "あと" : p2Name(m.k) + "まで"}${m.days.toLocaleString()}日</span></div>
+    <div class="p2h-n"><b>${A.done}<small>／${A.n}問</small></b><span>復習 ${A.due}・新しい ${A.newLeft}${A.few ? "（見込み）" : ""}</span></div>
+    <span class="p2h-bar"><i style="width:${pct}%"></i></span>
+    ${wk}
+    <button class="p2h-go" onclick="p2Start()"${n ? "" : " disabled"}>${lab}</button>
+  </section>`;
+}
+function p2HomeFit(){
+  const root = $app.querySelector(".r1h.p2home"), ws = root && root.querySelector(".p2h-ws"); if(!ws) return;
+  const hd = root.querySelector(".p2h-hd"), dl = root.querySelector(".p2h-dl"), one = ws.querySelector(".p2h-one"), kids = [...ws.children].filter(x=> x !== one);
+  root.classList.remove("p2tight", "p2tight2"); ws.style.display = ""; if(dl) dl.style.display = ""; kids.forEach(r=> r.style.display = "");
+  if(dl && hd.scrollWidth > hd.clientWidth + 1) dl.style.display = "none";           /* せまい画面：目標の日までは計画の画面で */
+  const H = ws.clientHeight, top = ws.getBoundingClientRect().top;
+  kids.forEach(r=>{ if(r.getBoundingClientRect().bottom - top > H + 1) r.style.display = "none"; });
+  kids.forEach((r, i)=>{ if(r.classList.contains("p2h-wk") && r.style.display !== "none" && kids.length > 1){ const nx = kids[i + 1]; if(!nx || nx.style.display === "none" || !nx.classList.contains("p2h-u")) r.style.display = "none"; } });
+  if(one) one.style.display = "none";
+  if(!kids.some(r=> r.style.display !== "none")){
+    if(one){ one.style.display = "block"; if(one.getBoundingClientRect().bottom - top > H + 1) one.style.display = "none"; }
+    if(!one || one.style.display === "none") ws.style.display = "none";
+  }
+  const nav = document.getElementById("navtab"), lim = nav && nav.style.display !== "none" && nav.getClientRects().length ? nav.getBoundingClientRect().top : window.innerHeight;
+  const over = ()=> root.lastElementChild.getBoundingClientRect().bottom > lim + 1 || root.scrollHeight > root.clientHeight + 1;
+  if(!wideOn() && over()){ ws.style.display = "none"; root.classList.add("p2tight"); if(over()) root.classList.add("p2tight2"); }   /* 低い画面：単元は出さず、余白と円を詰める */
 }
 function p2Pick(k){ view.p2k = k; view.p2more = false; view.keepScroll = true; render(); }
 function p2More(){ view.p2more = !view.p2more; view.keepScroll = true; render(); }
@@ -15211,11 +15319,11 @@ function p2Plan(){
     const head = w=>{ const n = p2WkName(w).split("|"); return `<div class="p2-wk${w.i === 0 ? " now" : ""}"><b>${n[0]}</b><span>${n[1]}</span></div>`; };
     const near = W.filter(w=> w.i <= 1), far = W.filter(w=> w.i > 1);
     if(!near.length || near[0].i !== 0) list += `<div class="p2-wk now"><b>今週</b><span>この週の単元は済み</span></div>`;
-    near.forEach(w=>{ list += head(w) + w.us.map(x=>{ const now = !glow; glow = true; return p2Unit(x, now); }).join(""); });
+    near.forEach(w=>{ list += head(w) + w.us.map(x=> p2Unit(x)).join(""); });
     if(far.length){
       const n = far.reduce((a, w)=> a + w.us.length, 0);
       list += `<button class="p2-more" aria-expanded="${!!view.p2more}" onclick="p2More()"><span>その先の週（${n}単元）</span><span>${view.p2more ? "▴" : "▾"}</span></button>`;
-      if(view.p2more) far.forEach(w=>{ list += head(w) + w.us.map(x=>{ const now = !glow; glow = true; return p2Unit(x, now); }).join(""); });
+      if(view.p2more) far.forEach(w=>{ list += head(w) + w.us.map(x=> p2Unit(x)).join(""); });
     }
   }
   return `<div class="p2"><div class="p2-hd"><h1 class="p2-h">学習計画</h1><button class="p2-ed" aria-expanded="${!!view.p2set}" onclick="p2Edit()">${view.p2set ? "とじる" : "目標を変える"}</button></div>
@@ -15225,27 +15333,37 @@ function p2Plan(){
   try{ if(SYNC_LWW.indexOf("plan2") < 0) SYNC_LWW.push("plan2"); }catch(e){}
   const gp0 = r1GlowPick;
   r1GlowPick = function(){
-    if(r1On() && view.screen === "plan"){ const u = $app.querySelector(".p2-u.p2-now"); if(u && r1Vis(u)) return u; if($app.querySelector(".p2-top .p2-bx")) return null; }
+    if(r1On() && view.screen === "plan" && $app.querySelector(".p2-top .p2-bx")){ const b = $app.querySelector(".navbk-b"); return b && r1Vis(b) ? b : null; }   /* 解くのはホーム：もどるを光らせる */
+    if(r1On() && view.screen === "home"){ const b = $app.querySelector(".p2h-go"); if(b && r1Vis(b)) return b; }
     return gp0.apply(this, arguments);
   };
+  const rd0 = render;
+  render = function(){ const out = rd0.apply(this, arguments); if(view.screen === "home"){ try{ p2HomeFit(); requestAnimationFrame(()=>{ try{ p2HomeFit(); }catch(e){} }); }catch(e){} } return out; };
+  window.addEventListener("resize", ()=>{ if(view.screen === "home"){ try{ p2HomeFit(); }catch(e){} } });
   const pl0 = Plan;
   Plan = function(){ return r1On() ? p2Plan() : pl0.apply(this, arguments); };
-  /* ホームの一番下の行：計画があるときだけ「学習計画」を帯に、ランダムを四角いボタンに（計画が無い人は今のまま） */
-  const RE = /<div class="r1h-row">\s*<button class="r1h-sm" onclick="go\('plan'\)">(<svg[\s\S]*?<\/svg>)学習計画<\/button>\s*<button class="r1h-sm" onclick="openSetup\('all',null\)">(<svg[\s\S]*?<\/svg>)ランダム<\/button>\s*<\/div>/;
+  /* ホーム（案A）：日を入れた人だけ。上のまとめを縮め、今日の復習と科目別のカードの代わりに「今日の計画」のカード。日が無い人は今までどおり */
   const h0 = r1Home;
   r1Home = function(){
     const h = h0.apply(this, arguments);
     try{
       if(!tierOn()) return h;
       const A = p2All(); if(!A.main) return h;
-      const x = RE.exec(h); if(!x){ console.warn("p2: ホームの行が見つからない"); return h; }
-      const lt = p2Late(A.main), pct = A.n ? Math.min(100, Math.round(A.done / A.n * 100)) : 100;
-      const row = `<div class="r1h-row">
-      <button class="r1h-sm p2-band" onclick="go('plan')" aria-label="学習計画 今日の分 ${A.done}／${A.n} ${lt[0]}">${x[1]}<span class="p2b-m"><span class="p2b-l"><b>計画</b><span>今日 <b>${A.done}／${A.n}</b></span><span class="p2b-s ${lt[1]}">${lt[0]}</span></span><span class="bar"><i style="width:${pct}%"></i></span></span><span class="chev">›</span></button>
-      <button class="r1h-sm p2-rnd" onclick="openSetup('all',null)" aria-label="ランダム">${x[2]}</button>
-    </div>`;
-      return h.replace(RE, ()=> row);
-    }catch(e){ return h; }
+      const t = document.createElement("template"); t.innerHTML = h;
+      const root = t.content.querySelector(".r1h"); if(!root) return h;
+      const cards = [...root.querySelectorAll(":scope > .r1h-card")];
+      const daily = cards.find(c=> /^今日の10問/.test(c.getAttribute("aria-label") || ""));
+      const rev = cards.find(c=> /今日の復習/.test(c.textContent)), subj = cards.find(c=> c.getAttribute("onclick") === "go('subjects')");
+      const row = root.querySelector(":scope > .r1h-row"), hero = root.querySelector(":scope > .r1h-hero");
+      if(!rev || !subj || !row || !hero){ console.warn("p2: ホームの形が違う"); return h; }
+      const sv = [...row.querySelectorAll("svg")].map(x=> x.outerHTML);
+      root.classList.add("p2home");
+      rev.remove(); subj.remove();
+      hero.insertAdjacentHTML("afterend", p2HomeCard(A));
+      if(daily){ daily.classList.remove("dk"); daily.classList.add("lt"); }
+      row.innerHTML = `<button class="r1h-sm" onclick="go('subjects',{})">${NAV_IC.daily}科目別</button><button class="r1h-sm" onclick="go('plan')">${sv[0] || ""}計画</button><button class="r1h-sm p2-rnd" onclick="openSetup('all',null)" aria-label="ランダム">${sv[1] || ""}</button>`;
+      return t.innerHTML;
+    }catch(e){ console.error(e); return h; }
   };
 })();
 
