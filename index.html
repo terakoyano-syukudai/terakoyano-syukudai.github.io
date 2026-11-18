@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.42｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.43｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -2024,9 +2024,9 @@
   .urv-n{font-family:var(--mono);font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));font-weight:700;color:var(--ink-2)}
 
   /* ---------- v6.97 新しいデザインの土台（ref=1 だけ：html.r1） ---------- */
-  @font-face{font-family:"R1 Head";src:url(u/r1f-mp2-c906d0d5.woff2) format("woff2");font-weight:500 900;font-display:swap}
-  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic"),local("BIZUDPGothic-Regular"),url(u/r1f-bizud4-46ac5db5.woff2) format("woff2");font-weight:400 500;font-display:swap}
-  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic Bold"),local("BIZUDPGothic-Bold"),url(u/r1f-bizud7-756e2045.woff2) format("woff2");font-weight:600 900;font-display:swap}
+  @font-face{font-family:"R1 Head";src:url(u/r1f-mp2-cc11de39.woff2) format("woff2");font-weight:500 900;font-display:swap}
+  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic"),local("BIZUDPGothic-Regular"),url(u/r1f-bizud4-9ecdb39d.woff2) format("woff2");font-weight:400 500;font-display:swap}
+  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic Bold"),local("BIZUDPGothic-Bold"),url(u/r1f-bizud7-89d44973.woff2) format("woff2");font-weight:600 900;font-display:swap}
   html.r1{
     --jp:"R1 Body",system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
     --head:"R1 Head","R1 Body",system-ui,-apple-system,"Hiragino Sans",sans-serif;
@@ -3469,7 +3469,7 @@
   html.r1 .r2-tmsg{display:inline-block;margin-top:2px;font-weight:700;color:#7a4d00}
   /* 2026-11-18 夕：画面が下にはみ出す直し。戦場・拠点の絵が画面の高さに合わせて縮む */
   html.r1 .r2-v-battle .r2-bf{flex:1 1 0;min-height:104px;max-height:260px}
-  html.r1 .r2-en .r2-px{min-height:20px;max-height:calc(100% - 62px);object-fit:contain}
+  html.r1 .r2-en .r2-px{flex:1 1 0;height:0;min-height:14px;max-height:90px;width:100%;object-fit:contain}
   html.r1 .r2-bview{flex:1 1 0;min-height:80px}
   html.r1 .r2-bview .r2-px{max-height:100%;object-fit:contain}
   /* それでも入らない高さでは、手札だけを中でスクロールさせ、ターン終了は常に画面の下に出す */
@@ -3504,6 +3504,37 @@
     html.r1 .r2-hc{padding-bottom:4px}
     html.r1 .r2-fac{min-height:66px}html.r1 .r2-fac small{display:none}
   }
+  /* 2026-11-18 夜：効きの印・メニュー・台本の案内 */
+  html.r1 .k-a{background:#1f8a4c;color:#fff}html.r1 .k-b{background:#3f6fd8;color:#fff}html.r1 .k-c{background:#8a7f6a;color:#fff}
+  html.r1 .k-n{background:#5a5f70;color:#fff}html.r1 .k-x{background:#b3261e;color:#fff}html.r1 .k-k{background:#5c0a0a;color:#fff}
+  html.r1 .k-q{background:#e9e4d6;color:#6a5f4d;border:1px dashed #8a7f6a}
+  html.r1 .r2-eff{position:absolute;top:0;right:2px;z-index:2;display:inline-flex;align-items:center;gap:2px;min-width:30px;justify-content:center;font-size:max(var(--fmin,0px),calc(15px*var(--fs,1)));font-weight:700;line-height:1;padding:4px 7px;border-radius:12px;box-shadow:0 2px 0 #000}
+  html.r1 .r2-eff.k-q{background:#3a4363;color:#fff;border:1px dashed #c9d1e8}
+  html.r1 .r2-hk{display:flex;gap:3px;padding:3px 7px 0}
+  html.r1 .r2-hk i{font-style:normal;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));font-weight:700;min-width:20px;height:18px;line-height:18px;text-align:center;border-radius:9px;padding:0 4px}
+  html.r1 .r2-menu{flex:none;width:36px;height:32px;margin-left:6px;border-radius:8px;border:2px solid currentColor;background:transparent;color:inherit;font-size:max(var(--fmin,0px),calc(20px*var(--fs,1)));line-height:1;display:inline-flex;align-items:center;justify-content:center;padding:0}
+  html.r1 .r2-mhead span{display:flex;align-items:center}
+  html.r1 .r2-mnu{display:flex;flex-direction:column;gap:8px}
+  html.r1 .r2-mnu .r2-b{min-height:50px;flex-direction:column;gap:1px}
+  html.r1 .r2-mnu .r2-b small{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));font-weight:400;opacity:.85}
+  html.r1 .r2-help{font-size:max(var(--fmin,0px),calc(15px*var(--fs,1)));line-height:1.7}
+  html.r1 .r2-bmsg .ok{color:#2f9e62}
+  html.r1 .r2-tlay{position:absolute;inset:0;z-index:30;pointer-events:none}
+  html.r1 .r2-thole{position:absolute;border-radius:14px;box-shadow:0 0 0 9999px rgba(6,8,16,.72);outline:3px solid #f2b33d;animation:r2hole 1.4s ease-in-out infinite}
+  @keyframes r2hole{0%,100%{outline-offset:0}50%{outline-offset:5px}}
+  html.r1 .r2-tfing{position:absolute;font-size:max(var(--fmin,0px),calc(28px*var(--fs,1)));line-height:1;animation:r2fing .9s ease-in-out infinite;filter:drop-shadow(0 2px 0 #000)}
+  @keyframes r2fing{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  html.r1 .r2-tbub{position:absolute;left:10px;right:10px;display:flex;gap:8px;align-items:flex-start;background:#f6efdc;color:#1a1d29;border-radius:14px;padding:10px 12px;box-shadow:0 4px 0 #000;pointer-events:auto}
+  html.r1 .r2-tbub > div{flex:1;display:flex;flex-direction:column;gap:6px}
+  html.r1 .r2-tbub p{margin:0;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));line-height:1.55}
+  html.r1 .r2-tbub .r2-b{align-self:flex-end;min-height:40px;padding:0 18px}
+  html.r1 .r2-tbub small{align-self:flex-end;font-size:max(var(--fmin,0px),calc(11px*var(--fs,1)));color:#6a5f4d}
+  html.r1 .r2-tbub .r2-px{flex:none;background:#d9e6dc;border-radius:6px}
+  /* 2026-11-18 深夜：画面の案内（まわりを押せなくする・ボタン2つ） */
+  html.r1 .r2-tlay.blk{pointer-events:auto}
+  html.r1 .r2-tbts{display:flex;gap:8px;justify-content:flex-end}
+  html.r1 .r2-tbts:empty{display:none}
+  html.r1 .r2-tbts .r2-b{min-height:40px;padding:0 16px}
   html.r1 .gsel-rx .gsel-ic{background:var(--act-soft);color:var(--act)}
 
   /* ---------- v7.14 問題を解く画面をそろえる・8割のシート（全員） ---------- */
@@ -5106,7 +5137,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.42";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.43";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -5586,7 +5617,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.42（2026-11-18 更新）</span>
+      <br><span class="mono">アプリ版数：v7.43（2026-11-18 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -9424,6 +9455,10 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.43", date:"2026-11-18", items:[
+    { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：094 腎・泌尿生殖器系に作用する薬" },
+    { r:1, t:"処方戦記：遊び方の案内と倒しやすさ", d:"はじめての戦いと、拠点・陣立て・入荷所・地図などの画面を、はじめて開いたときに1つずつ案内するようにしました。正常範囲に入れば敵を退けられ、一度使った薬の効き目は印で分かります。戦いの途中でもメニューから中断・退くができます。" },
+  ]},
   { v:"v7.42", date:"2026-11-18", items:[
     { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：094 腎・泌尿生殖器系に作用する薬" },
     { r:1, t:"処方戦記：画面のはみ出しと押す所の案内", d:"背の低い画面でも、ボタンが画面の下に隠れないようにしました。はじめての戦いでは、次に押す所が光ります。" },
@@ -13975,7 +14010,7 @@ function imEnd(win){
 }
 
 (function(){
-  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.42c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.43c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
   /* 2026-11-15：免疫バトルはやめて処方戦記の「感染」の章にまとめる（利用者の決定）。一覧には出さない（画面とコードは残す） */
   NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
   const nt0 = navTab;
@@ -14055,7 +14090,7 @@ function r2St(){
   if(ST.rxg !== undefined) delete ST.rxg;      /* 前の処方戦記の保存は消す（仕様書 0） */
   if(!r2Has()) ST.rx2 = { v:1 };
   const s = ST.rx2;
-  ["own", "clr", "rec", "story", "intro", "gacha"].forEach(k=>{ if(!s[k] || typeof s[k] !== "object") s[k] = {}; });
+  ["own", "clr", "rec", "story", "intro", "gacha", "know"].forEach(k=>{ if(!s[k] || typeof s[k] !== "object") s[k] = {}; });
   if(!s.cfg || typeof s.cfg !== "object") s.cfg = {};
   const c = s.cfg;
   if(c.mute === undefined) c.mute = true;      /* はじめは消音（仕様書 7） */
@@ -14258,6 +14293,17 @@ function r2Val(e, run){
   return `${v.value} ${t}${v.unit}`;
 }
 function r2EnName(e, run){ return e.dm ? R2.D[run.st].name : R2.V[e.v].name; }
+/* 2026-11-18 夜：正常範囲の幅。正常値（例 心拍60〜100）は幅があるので、幅の中に収まる出しすぎは「退けた」扱い。
+   幅は（上限−下限）÷1目盛り、ただし遊びの都合で10まで。幅を超えた分だけが反対の家臣になる */
+function r2Band(V){ return V && V.opposite && V.lo != null && V.hi != null ? Math.min(10, Math.round((V.hi - V.lo) / (V.scale || 1))) : 0; }
+/* 覚えた組み合わせ（効きの印を出すため）。病気ごと・背景ごとに、その札の印を1度使ったら記録 */
+function r2KnowKey(cid, e, run, r){ return r && r.bg ? "bg:" + run.bg + "|" + cid : r2DzOf(e, run).name + "|" + cid; }
+function r2Known(cid, e, run){
+  const k = r2St().know || {}, b = k["bg:" + run.bg + "|" + cid];
+  if(b) return b;
+  return k[r2DzOf(e, run).name + "|" + cid] || null;
+}
+function r2Learn(run, cid, e, r){ if(!e || !r) return; const s = r2St(); if(!s.know) s.know = {}; s.know[r2KnowKey(cid, e, run, r)] = r.mk; }
 /* 力を当てる。体力を超えた分は「反対の家臣」になる（仕様書 3-3） */
 function r2Hurt(run, B, e, amt){
   amt = Math.max(0, Math.round(amt));
@@ -14266,10 +14312,11 @@ function r2Hurt(run, B, e, amt){
   const out = { e, amt };
   if(e.hp <= 0){
     const over = -e.hp; e.hp = 0;
-    const V = e.v && R2.V[e.v];
-    if(V && V.opposite && !e.noOpp && over >= 1){
+    const V = e.v && R2.V[e.v], band = r2Band(V);
+    if(V && V.opposite && over >= 1 && over <= band) out.inr = true;
+    if(V && V.opposite && !e.noOpp && over > band){
       /* 反対の家臣からは、さらに反対は出さない（行ったり来たりで終わらなくなるため。Claude の判断） */
-      const ne = { u:++B.n, v:V.opposite, dm:false, hp:over, max:Math.max(over, 10), cd0:e.cd0, cd:e.cd0, intent:"攻撃", dmg:e.dmg, noOpp:true };
+      const ne = { u:++B.n, v:V.opposite, dm:false, hp:over - band, max:Math.max(over - band, 10), cd0:e.cd0, cd:e.cd0, intent:"攻撃", dmg:e.dmg, noOpp:true };
       B.en.splice(B.en.indexOf(e) + 1, 0, ne);
       out.opp = ne;
     }
@@ -14319,6 +14366,10 @@ function r2Play(run, B, hi, tu){
   B.ap -= b.cost; B.hand.splice(hi, 1);
   const plan = r2Plan(run, B, cid, tu || null, 1);
   const res = { c:cid, kind:plan.kind, rel:plan.rel, hits:[] };
+  /* 覚える：当てた相手（狙った敵・効いた敵・悪化/禁忌の相手）。効かなかったときは狙った敵か、いる敵みんな */
+  if(plan.kind === "hit") plan.hits.forEach(h=> r2Learn(run, cid, h.e, h.rel));
+  else if(plan.e) r2Learn(run, cid, plan.e, plan.rel);
+  else r2Alive(B).forEach(e=> r2Learn(run, cid, e, r2Rel(cid, e, run)));
   if(plan.kind === "禁忌"){
     run.hp -= 20; run.kin++; B.disc.push(cid);
     r2Note(run, B, cid, "禁忌", plan.rel.why, plan.rel.where);
@@ -14765,6 +14816,7 @@ function r2Draw(){
   root.innerHTML = `<div class="r2-scr r2-v-${RX2V.v}">${V()}${RX2V.sheet ? r2Sheet() : ""}${RX2V.modal ? r2Modal() : ""}</div>`;
   RX2V.fx = null;
   r2TypeStart();
+  r2TutPaint();
   if(s.cfg && !s.cfg.mute) r2BgmFor();
 }
 function r2Modal(){
@@ -15126,7 +15178,7 @@ function r2Map(){
   }));
   const lg = s.cfg.legend ? `<div class="r2-legend">${["戦", "強敵", "休む", "薬局"].map(t=> `<span><i style="background:${R2_NCOL[t]}">${r2Ic(R2I.node[t], 12, "#fff", 2.6)}</i>${t}</span>`).join("")}<span><i style="background:${R2_NCOL["大名"]}">${r2Ic(R2I.node["大名"], 12, "#fff", 2.6)}</i>大名</span></div>` : "";
   if(run.drop && !RX2V.modal){ const dc = run.drop; run.drop = null; RX2V.modal = { html:`<b class="r2-mt">強敵を退けた</b><div class="r2-grid1">${r2Card(dc.c, { sub:dc.g.new ? "仲間になった・図鑑に入った" : "札に足した" })}</div><p class="r2-story">${r2E(R2.B[dc.c].name)}の札をデッキに足しました。</p>` }; r2Save(); }
-  return `<div class="r2-mhead"><b>${c.name}　${r2E(d.name)}</b><span>あと${r2Left(run)}マス</span></div>${lg}
+  return `<div class="r2-mhead"><b>${c.name}　${r2E(d.name)}</b><span>あと${r2Left(run)}マス<button class="r2-menu" onclick="r2MenuOpen()" aria-label="メニュー">≡</button></span></div>${lg}
     <div class="r2-mapw"><svg class="r2-mapl" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${lines.join("")}</svg>${nodes.join("")}</div>
     <div class="r2-mfoot"><div class="r2-mrow1">${r2MinHtml(run)}${r2Hp(run)}</div>
       <div class="r2-mrow2"><button class="r2-b r2-b-blue" onclick="r2DeckView()">デッキ ${run.deck.length}枚</button>${[0, 1, 2].map(()=> `<span class="r2-tool">あき</span>`).join("")}<button class="r2-b r2-b-g r2-flee" onclick="r2FleeAsk()">退く</button></div></div>`;
@@ -15139,6 +15191,7 @@ function r2Step(r, i){
   if(res.t === "薬局"){ r2Save(); return r2Go("shop", { shopSel:-1, shopRep:false }); }
   if(res.t === "大名"){ const d = R2.D[run.st]; s.story["line_" + run.st] = 1;
     RX2V.modal = { html:`<div class="r2-dline">${r2Img(r2DaimyoSp(run.st), 5, d.name)}<b class="r2-mt">${r2E(d.name)}</b><p class="r2-story">「${r2E(d.line)}」</p></div>`, okt:"戦う" }; }
+  if(res.t === "戦" && run.st === "0-1" && !s.intro.tut2) r2TutSetup(run);
   r2Save(); RX2V.pick = -1; RX2V.aim = null; RX2V.v = "battle"; r2Draw();
 }
 function r2DeckView(){ const run = r2St().run; RX2V.modal = { html:`<b class="r2-mt">デッキ ${run.deck.length}枚</b><div class="r2-grid4">${run.deck.map(c=> r2Card(c, {})).join("")}</div>` }; r2Draw(); }
@@ -15183,7 +15236,8 @@ function r2Battle(){
   const picked = RX2V.pick >= 0 && B.hand[RX2V.pick];
   /* 2026-11-18 夕：押す所を光らせる。はじめての戦い（0-1、最初のターン終了まで）は札・敵・ターン終了の順に案内。札を出せないときはいつもターン終了を光らせる */
   const canPlay = B.hand.some(cid=> R2.B[cid].cost <= B.ap);
-  const tutOn = run.st === "0-1" && !s.intro.tut;
+  const tutOn = false;   /* 2026-11-18 夜：台本の案内（R2_TUT）に置きかえた */
+  r2TipCheck(run, B);
   /* 案内中に光らせるのは、いまの敵に効く札（◎○△、背景の禁忌でない）だけ。✕や禁忌の札は光らせない */
   const tutOk = cid=>{ const bg0 = r2BgRel(cid, run); if(bg0 && bg0.level === "禁忌") return false;
     return r2Alive(B).some(e=>{ const r = r2Rel(cid, e, run); return r && ["◎", "○", "△"].includes(r.mk); }); };
@@ -15194,8 +15248,13 @@ function r2Battle(){
     const ring = picked ? (RX2V.aim === e.u ? "aim" : "can") : "";
     const call = e.intent === "呼ぶ";
     const f = fx[e.u];
+    let eff = "";
+    if(picked){ const kn = r2Known(picked, e, run);
+      if(!kn) eff = `<span class="r2-eff k-q">？</span>`;
+      else { const pl = r2Plan(run, B, picked, e.u, 1), amt = pl.kind === "hit" ? Math.round(pl.hits[0].amt) : 0;
+        eff = `<span class="r2-eff ${R2_MKC[kn] || "k-q"}">${kn === "禁忌" ? "禁" : kn}${amt ? ` −${amt}` : ""}</span>`; } }
     return `<button class="r2-en ${ring} ${e.dm ? "dm" : ""} ${f ? "hit" : ""}" onclick="r2AimAt(${e.u})" aria-label="${r2E(name)}${picked ? "を狙う" : ""}">
-      <span class="r2-int ${call ? "call" : ""}">${r2Ic(call ? R2I.call : R2I.sword, 16, call ? "#7fb2ff" : "#ff6b6b", 2.6)}<b>${e.cd}</b></span>
+      ${eff}<span class="r2-int ${call ? "call" : ""}">${r2Ic(call ? R2I.call : R2I.sword, 16, call ? "#7fb2ff" : "#ff6b6b", 2.6)}<b>${e.cd}</b></span>
       ${sp}<b class="r2-enn">${r2Parts(parts)}</b>
       <span class="r2-enb"><i style="width:${Math.max(0, e.hp / e.max * 100).toFixed(1)}%"></i><b>${r2E(r2Val(e, run))}</b></span>
       ${f ? `<span class="r2-dmg">−${f}</span>` : ""}</button>`;
@@ -15208,7 +15267,7 @@ function r2Battle(){
     const glow = tutOn && canPlay && B.ap >= b.cost && (picked ? up : tutOk(cid));
     return `<button class="r2-hc ${up ? "up" : ""} ${B.ap < b.cost ? "lack" : ""} ${glow ? "r2-tgt" : ""}" onclick="r2Tap(${i})" data-hold="${cid}" data-hi="${i}" aria-label="${r2E(b.name)}">
       <span class="r2-mcb" style="background:${h.col}"></span><span class="r2-hct"><i class="r2-cost">${b.cost}</i>${r2Kind(b)}</span>
-      <b class="r2-hcn">${r2BName(cid)}</b><span class="r2-tags">${r2Tags(b)}</span>${bg ? `<span class="r2-warn ${bg.level === "禁忌" ? "kin" : ""}">⚠ ${r2E(bg.bg)}</span>` : ""}</button>`;
+      <b class="r2-hcn">${r2BName(cid)}</b><span class="r2-hk">${r2Alive(B).map(e=>{ const kn = r2Known(cid, e, run); return `<i class="${kn ? R2_MKC[kn] : "k-q"}">${kn ? (kn === "禁忌" ? "禁" : kn) : "？"}</i>`; }).join("")}</span><span class="r2-tags">${r2Tags(b)}</span>${bg ? `<span class="r2-warn ${bg.level === "禁忌" ? "kin" : ""}">⚠ ${r2E(bg.bg)}</span>` : ""}</button>`;
   }).join("");
   const tgt = picked && RX2V.aim && r2Alive(B).find(e=> e.u === RX2V.aim);
   const tut = tutOn;
@@ -15217,7 +15276,7 @@ function r2Battle(){
     : picked ? "光っている札を、もう一度タップで処方します。先に敵をタップすると、その敵を狙えます。"
     : !B.log.length ? "赤い数字が0になると、病魔が攻めてきます。光っている札をタップして持ち上げましょう。" : "光っている札から、もう1枚出せます。";
   const msg = B.msg || (tut ? tmsg : picked ? "敵をタップで狙う。狙わないで出すと、効く家臣みんなに分けて効きます。" : "札をタップして選びましょう。長押しでくわしい説明。");
-  return `<div class="r2-bh"><b>${r2E(d.name)}</b><span class="r2-dots">${dots}</span><b>ターン ${B.turn}</b></div>
+  return `<div class="r2-bh"><b>${r2E(d.name)}</b><span class="r2-dots">${dots}</span><b>ターン ${B.turn}</b><button class="r2-menu" onclick="r2MenuOpen()" aria-label="メニュー">≡</button></div>
     <div class="r2-bf" style="--cc:${c.col}"><div class="r2-bfg"></div><div class="r2-ens">${en}</div></div>
     <div class="r2-mp"><span class="r2-mpa">${r2Img(r2Px("tami" + (run.bg === "高齢者" ? "o" : ""), R2_TAMI, { K:"#1a1d29", h:run.bg === "高齢者" ? "#c9c9c9" : "#2b2b2b", S:"#f0c9a0", c:"#7a8db8", W:"#ffffff" }), 3, "民")}</span>
       <span class="r2-mpb"><span class="r2-mpt">${r2MinHtml(run)}</span>${r2Hp(run)}</span></div>
@@ -15231,19 +15290,27 @@ function r2Battle(){
 }
 const R2_TAMI = ["...KKKKKK...", "..KhhhhhhK..", ".KhhhhhhhhK.", ".KhSSSSSShK.", ".KSSKSSKSSK.", ".KSSSSSSSSK.", "..KSSSSSSK..", "...KccccK...", "..KccWWccK..", ".KcccWWcccK.", ".KccccccccK.", "..KKKKKKKK.."];
 function r2Tap(i){
-  const B = r2St().run.b; if(!B || B.over) return;
+  const run = r2St().run, B = run.b; if(!B || B.over) return;
+  const T = r2TutStep(run);
+  if(T){
+    if(T.k === "card" && i === T.i && RX2V.pick !== i){ RX2V.pick = i; RX2V.aim = null; r2Se("tap"); B.msg = ""; run.tut++; r2Save(); return r2Draw(); }
+    if(T.k === "play" && i === T.i && RX2V.pick === i){ run.tut++; return r2DoPlay(); }
+    return r2Se("bad");
+  }
   if(RX2V.pick === i) return r2DoPlay();
   RX2V.pick = i; RX2V.aim = null; r2Se("tap"); B.msg = ""; r2Draw();
 }
 function r2AimAt(u){
   if(RX2V.pick < 0){ return; }
+  const run = r2St().run, T = r2TutStep(run);
+  if(T){ if(T.k !== "aim" || RX2V.aim === u) return r2Se("bad"); run.tut++; r2Save(); }
   RX2V.aim = RX2V.aim === u ? null : u; r2Se("tap"); r2Draw();
 }
-function r2Re(){ const run = r2St().run; if(r2Redraw(run, run.b)){ RX2V.pick = -1; RX2V.aim = null; run.b.msg = "手札を引き直した。"; r2Se("tap"); r2Save(); r2Draw(); } }
+function r2Re(){ const run = r2St().run; if(r2TutStep(run)) return r2Se("bad"); if(r2Redraw(run, run.b)){ RX2V.pick = -1; RX2V.aim = null; run.b.msg = "手札を引き直した。"; r2Se("tap"); r2Save(); r2Draw(); } }
 function r2HitMsg(hits, run){
   const fx = RX2V.fx || (RX2V.fx = {});
   return hits.filter(h=> h.amt > 0).map(h=>{ fx[h.e.u] = (fx[h.e.u] || 0) + h.amt;
-    return `${r2E(r2EnName(h.e, run))} −${h.amt}${h.opp ? `<br><b class="ng">効かせすぎ！ 反対の家臣「${r2E(R2.V[h.opp.v].name)}」が現れた</b>（${r2E(r2Remedy(run.st, Object.keys(r2St().own)).map(c=> R2.B[c].name).join("・") || "反対に効く札")}で戻す）` : ""}`; }).join("　");
+    return `${r2E(r2EnName(h.e, run))} −${h.amt}${h.inr ? ` <b class="ok">正常範囲に戻した</b>` : ""}${h.opp ? `<br><b class="ng">効かせすぎ！ 反対の家臣「${r2E(R2.V[h.opp.v].name)}」が現れた</b>（${r2E(r2Remedy(run.st, Object.keys(r2St().own)).map(c=> R2.B[c].name).join("・") || "反対に効く札")}で戻す）` : ""}`; }).join("　");
 }
 function r2DoPlay(){
   const s = r2St(), run = s.run, B = run && run.b; if(!B || RX2V.pick < 0) return;
@@ -15263,15 +15330,18 @@ function r2DoPlay(){
     else if(r.later) B.msg = `${mk}${nm}は${r.later === 1 ? "次のターン" : "2ターン後"}に効く${cau}`;
     else { B.msg = `${mk}${nm}：${r2HitMsg(r.hits, run)}${cau}`; r2Se(r.rel && r.rel.mk === "◎" ? "big" : "hit"); }
   }
+  if(run.tut !== undefined && B.over){ delete run.tut; s.intro.tut2 = 1; }
   r2Save();
   if(B.over) return r2After();
   r2Draw();
 }
 function r2End(){
   const run = r2St().run, B = run && run.b; if(!B || B.over) return;
-  if(run.st === "0-1" && B.log.length){ const s0 = r2St(); if(!s0.intro.tut){ s0.intro.tut = 1; r2Save(); } }
+  const T = r2TutStep(run);
+  if(T && T.k !== "end") return r2Se("bad");
   RX2V.pick = -1; RX2V.aim = null;
   const ev = r2EndTurn(run, B);
+  if(T){ run.tut++; if(!B.over){ B.disc.push(...B.hand.splice(0)); B.hand = R2_TUTH[1].slice(); } }
   const m = [];
   if(ev.tick.length) m.push(`場の札が効いた：${r2HitMsg(ev.tick, run)}`);
   (ev.fade || []).forEach(h=> m.push(`${r2E(r2EnName(h.e, run))}は少しおさまった（−${h.amt}）`));
@@ -15371,6 +15441,173 @@ function r2Lose(){
     else if(document.getElementById("rx2")) r2Unmount();
   };
 })();
+
+/* ===== 2026-11-18 夜：台本の案内・メニュー・遊び方・初登場の説明 ===== */
+const R2_MKC = { "◎":"k-a", "○":"k-b", "△":"k-c", "－":"k-n", "✕":"k-x", "禁忌":"k-k" };
+/* 台本の手札（1ターン目・2ターン目）。アトロピン＝札0（1ターン目）・札1（2ターン目） */
+const R2_TUTH = [["atr", "adr", "prp", "adr", "atr"], ["adr", "atr", "prp", "atr", "adr"]];
+/* 1つの案内で1つのことだけ。k：next＝読んで次へ、card＝その札を持ち上げる、aim＝敵をタップ、play＝もう一度タップ、end＝ターン終了 */
+const R2_TUT = [
+  { k:"next", sel:".r2-en", t:"これが病魔の家臣「脈の遅れ」。下の赤いバーは、心拍が正常（60〜100）からどれだけずれているか。0にすれば退けられます。" },
+  { k:"next", sel:".r2-int", t:"赤い数字は、攻めてくるまでのターン数。0になると民が攻撃されます。" },
+  { k:"next", sel:".r2-mp", t:"守るのは民。体力が0になると負け。⚠の印は民の背景（高齢者・妊婦など）で、薬によっては注意や禁忌になります。" },
+  { k:"next", sel:".r2-ap", t:"処方力。1ターンに3。札の左上の数字が、その札に要る処方力です。" },
+  { k:"card", i:0, sel:'.r2-hc[data-hi="0"]', t:"徐脈の第一選択はアトロピン。光っている札をタップして持ち上げましょう。" },
+  { k:"aim", sel:".r2-en", t:"札を持ち上げると、敵の上に効き目の印が出ます。初めての組み合わせは「？」。敵をタップして狙いを決めましょう。" },
+  { k:"play", i:0, sel:'.r2-hc[data-hi="0"]', t:"もう一度、札をタップで処方します。" },
+  { k:"next", sel:".r2-bmsg", t:"◎＝よく効く（第一選択）。一度使った組み合わせは覚えて、次から札と敵に印が出ます。⚠注意のときは力が3割減ります。" },
+  { k:"end", sel:".r2-end", t:"このターンはここまで。処方力は残してもかまいません。「ターン終了」で病魔が動き、新しい手札が来ます。" },
+  { k:"next", sel:".r2-en", t:"正常範囲には幅があるので、少しくらい効かせすぎても大丈夫。大きく効かせすぎると、反対の病魔（脈の速まり）が現れます。" },
+  { k:"card", i:1, sel:'.r2-hc[data-hi="1"]', t:"アトロピンの札を持ち上げましょう。" },
+  { k:"play", i:1, sel:'.r2-hc[data-hi="1"]', t:"敵が1体なら、狙わずにもう一度タップでもかまいません。狙わないと、効く敵みんなに分けて効きます。" }
+];
+function r2TutStep(run){ return run && run.b && !run.b.over && run.tut !== undefined && run.tut < R2_TUT.length ? R2_TUT[run.tut] : null; }
+function r2TutSetup(run){
+  const B = run.b; if(!B) return;
+  B.en = []; B.n = 0;
+  const e = r2Vas(run, B, "v_brady", 10, "戦");
+  /* 体力は、2回のアトロピン（狙う100%と狙わない120%）でちょうど少し出しすぎになる量。背景の注意（−30%）も入れて計算する */
+  const p = r2Pow("atr", r2Rel("atr", e, run));
+  e.hp = e.max = Math.max(8, Math.round(p) + Math.round(p * 1.2) - 3);
+  e.cd0 = 3; e.cd = 3; e.dmg = 8;
+  B.en.push(e);
+  B.hand = R2_TUTH[0].slice();
+  run.tut = 0;
+}
+function r2TutNext(){ const run = r2St().run; if(!run || run.tut === undefined) return; r2Se("tap"); run.tut++; r2Save(); r2Draw(); }
+/* 光の穴（まわりを暗く）と吹き出し。描いたあとで、案内する物の位置に合わせる */
+function r2TutPaint(){
+  const run = r2St().run, T = RX2V.v === "battle" && !RX2V.modal && r2TutStep(run);
+  const scr = document.querySelector("#rx2 .r2-scr"); if(!scr) return;
+  const old = scr.querySelector(".r2-tlay"); if(old) old.remove();
+  if(!T) return r2TourPaint(scr);
+  const el = scr.querySelector(T.sel); if(!el) return;
+  if(el.closest(".r2-handw")) el.scrollIntoView({ block:"nearest" });
+  r2SpotPaint(scr, el, T.k === "next" ? "" : "fing", r2E(T.t), T.k === "next" ? `<button class="r2-b r2-b-main" onclick="r2TutNext()">次へ</button>` : "", `${run.tut + 1} / ${R2_TUT.length}`, false);
+}
+/* 光の穴と吹き出し（戦闘の台本と、ほかの画面の案内で共通）。block＝まわりを押せなくする */
+function r2SpotPaint(scr, el, fing, text, btns, cnt, block){
+  const a = scr.getBoundingClientRect(), r = el.getBoundingClientRect(), pad = 6;
+  const x = Math.max(2, r.left - a.left - pad), y = Math.max(2, r.top - a.top - pad), w = Math.min(r.width + pad * 2, a.width - x - 2), h = Math.min(r.height + pad * 2, a.height - y - 2);
+  const below = y + h / 2 < a.height / 2;
+  const lay = document.createElement("div"); lay.className = "r2-tlay" + (block ? " blk" : "");
+  lay.innerHTML = `<div class="r2-thole" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px"></div>
+    ${fing ? `<div class="r2-tfing" style="left:${x + w / 2 - 14}px;top:${below ? y + h - 6 : y - 34}px">${below ? "👆" : "👇"}</div>` : ""}
+    <div class="r2-tbub ${below ? "dn" : "up"}" style="${below ? `top:${Math.min(y + h + (fing ? 30 : 12), a.height - 160)}px` : `bottom:${Math.min(a.height - y + (fing ? 44 : 12), a.height - 160)}px`}">${r2Hakka(3)}<div><p>${text}</p>
+      <span class="r2-tbts">${btns}</span><small>${cnt}</small></div></div>`;
+  scr.appendChild(lay);
+}
+/* ≡ メニュー */
+function r2MenuOpen(){
+  const s = r2St();
+  RX2V.modal = { html:`<b class="r2-mt">メニュー</b><div class="r2-mnu">
+    <button class="r2-b r2-b-blue" onclick="r2HelpOpen(0)">遊び方</button>
+    <button class="r2-b" onclick="r2Mute();r2MenuOpen()">音：${s.cfg.mute ? "なし" : "あり"}</button>
+    <button class="r2-b" onclick="RX2V.modal=null;r2Save();r2Go('base')">中断して拠点へ<small>拠点の「出陣」から続きを遊べます</small></button>
+    <button class="r2-b r2-b-g" onclick="r2FleeAsk()">退く<small>このダンジョンをやめる（経験値は3割）</small></button></div>`, okt:"もどる" };
+  r2Draw();
+}
+const R2_HELP = [
+  ["画面の見方", "上：病魔の家臣。赤い数字＝攻めてくるまでのターン。バー＝正常値までのずれ（0で退ける）。<br>中：民の体力（0で負け）と、場（定期の札が置かれる3つの枠）。<br>下：手札・処方力・ターン終了。"],
+  ["札の見方", "左上の数字＝要る処方力。定期／頓用。<br>⚡すぐ効く　▷次のターン　▷▷2ターン後<br>◷3＝場で3ターン効き続ける　肝・腎・両＝おもな排泄<br>★＝技あり　⚠＝民の背景で注意・禁忌"],
+  ["出し方", "札をタップで持ち上げ、もう一度タップで処方。<br>持ち上げたあと敵をタップすると、その敵だけを狙えます（100%）。<br>狙わないと、効く敵みんなに分けて効きます（合わせて120%）。"],
+  ["効き目の印", "◎よく効く（第一選択）　○効く　△少し効く　－効かない<br>✕悪化（効果なし・民 −10）　禁＝禁忌（効果なし・民 −20）<br>一度使った組み合わせは、札と敵に印が出ます。初めては「？」。<br>⚠注意のときは力が3割減ります。"],
+  ["正常範囲と効かせすぎ", "正常値には幅があります（心拍なら60〜100）。少し効かせすぎても、範囲の中なら退けられます。<br>大きく効かせすぎると「反対の家臣」（脈の遅れ→脈の速まり など）が現れます。反対の家臣は毎ターン少しずつおさまります。"],
+  ["定期と頓用", "定期：場に置かれ、効き始めから毎ターン 60% の力で効く。場は3枠。あふれると古い札は、持続ターンのあいだだけ残ります。<br>頓用：1回だけ 100% の力で効く。"]
+];
+function r2HelpOpen(i){
+  i = Math.max(0, Math.min(R2_HELP.length - 1, i));
+  const h = R2_HELP[i];
+  RX2V.modal = { html:`<b class="r2-mt">遊び方 ${i + 1}/${R2_HELP.length}　${h[0]}</b><p class="r2-story r2-help">${h[1]}</p>
+    <div class="r2-mrow">${i > 0 ? `<button class="r2-b" onclick="r2HelpOpen(${i - 1})">‹ 前へ</button>` : ""}${i < R2_HELP.length - 1 ? `<button class="r2-b r2-b-blue r2-b-grow" onclick="r2HelpOpen(${i + 1})">次へ ›</button>` : ""}</div>`, okt:"とじる" };
+  r2Draw();
+}
+/* 初めて出たときだけ、短い説明（台本の案内が終わってから） */
+const R2_TIPS = {
+  teiki:["定期の札", "定期の札は「場」に置かれ、効き始めから毎ターン 60% の力で効き続けます。場は3枠。頓用は1回だけ 100%。"],
+  late:["効き始め", "▷は次のターン、▷▷は2ターン後に効き始めます。攻撃の数字と見比べて、早めに出しましょう。"],
+  warn:["民の背景", "⚠の札は、この民の背景（高齢者・妊婦など）で注意（力が3割減る）か禁忌（効果なし・民 −20）です。長押しで理由が読めます。"],
+  opp:["反対の家臣", "効かせすぎて、反対の家臣が現れました。反対の向きに効く札で戻せます。放っておいても毎ターン少しずつおさまります。"],
+  strong:["強敵", "強敵は体力が多く、攻撃も強めです。倒すと札が1枚手に入ります。"],
+  dm:["大名", "大名を退けるとダンジョン突破。大名は家臣を「呼ぶ」こともあります（青い数字）。大名には効く札がまとめて効きます。"],
+  multi:["敵が2体", "敵が2体以上のときは、札を持ち上げてから敵をタップで狙いましょう。狙わないと力が分かれます。"]
+};
+function r2TipCheck(run, B){
+  const s = r2St();
+  if(!(s.intro.tut2 || Object.keys(s.clr || {}).length) || run.tut !== undefined || RX2V.modal || B.over || B.tip === B.turn) return;
+  const al = r2Alive(B), has = k=> !s.intro["tip_" + k];
+  let k = null;
+  if(has("dm") && B.kind === "大名") k = "dm";
+  else if(has("strong") && B.kind === "強敵") k = "strong";
+  else if(has("opp") && al.some(e=> e.noOpp)) k = "opp";
+  else if(has("multi") && al.length > 1) k = "multi";
+  else if(has("teiki") && B.hand.some(c=> R2.B[c].kind === "定期")) k = "teiki";
+  else if(has("warn") && B.hand.some(c=> r2BgRel(c, run))) k = "warn";
+  else if(has("late") && B.hand.some(c=> R2.B[c].onset !== "即")) k = "late";
+  if(!k) return;
+  s.intro["tip_" + k] = 1; B.tip = B.turn; r2Save();   /* 1ターンに1つまで */
+  RX2V.modal = { html:`<b class="r2-mt">${R2_TIPS[k][0]}</b><p class="r2-story">${R2_TIPS[k][1]}</p><p class="r2-cap2">くわしくは右上の ≡ →「遊び方」</p>`, okt:"わかった" };
+}
+
+/* ===== 2026-11-18 深夜：戦い以外の画面の案内（はじめて開いたときだけ。まわりを暗くして1つずつ。「とばす」で全部とばせる） ===== */
+const R2_TOURS = {
+  base:[
+    { sel:".r2-bhead .r2-chip", t:"左は処方箋、右は印。処方箋は、てらこやの宿題で初めて正解した問題10問ごとに1枚。入荷所で武将を呼ぶのに使います。" },
+    { sel:".r2-facs", t:"典薬寮の施設です。陣立て＝出陣の札を決める、入荷所＝武将を呼ぶ、図鑑＝武将と覚えたこと、国の地図＝行き先を選ぶ。" },
+    { sel:".r2-b-go", t:"準備ができたら「出陣」。いちばん新しいダンジョンへ向かいます。" }
+  ],
+  form:[
+    { sel:".r2-deck", t:"出陣に持っていく札（8枚まで。5枚以上で出陣できます）。札をタップすると外せます。" },
+    { sel:".r2-flist", t:"仲間の武将。タップで出陣の札に入れます（同じ武将は3枚まで）。家ごとに並び、上のボタンで定期・頓用・国でしぼれます。" },
+    { sel:".r2-foot .r2-b-blue", t:"「おまかせ」は、次のダンジョンの病魔によく効く札を選んで並べます。" }
+  ],
+  gacha:[
+    { sel:".r2-ban", t:"今週の目玉の武将。週ごとに替わります。" },
+    { sel:".r2-pity", t:"呼ぶたびに、目玉が確定するまでの回数が減ります。150回で必ず目玉。" },
+    { sel:".r2-foot .r2-b-blue", t:"処方箋1枚で1回呼べます。同じ武将が重なると心得（強くなる）、心得がいっぱいなら印になります。" }
+  ],
+  book:[
+    { sel:".r2-tabs", t:"武将・病魔・覚えたことを見られます。「覚えたこと」は、大名を退けたダンジョンの要点です。" }
+  ],
+  country:[
+    { sel:".r2-cty", t:"国ごとの行き先。国は順にひらき、新しい国が上に増えます。★は各ダンジョンのクエストの達成数です。" }
+  ],
+  dungeon:[
+    { sel:".r2-dg.on", t:"ダンジョン。番号順に現れ、いちばん新しいものが上。選ぶと★のクエスト3つが見えます。" },
+    { sel:".r2-foot .r2-b-blue", t:"出陣の前に、陣立てで札を入れ替えられます。" },
+    { sel:".r2-foot .r2-b-red", t:"「出陣」でダンジョンへ。" }
+  ],
+  map:[
+    { sel:".r2-node.can", t:"光っているマスに進めます（点線の矢印の先）。マスは戦・強敵・休む・薬局・大名。いちばん上の大名を退ければ突破です。" },
+    { sel:".r2-mfoot", t:"民の体力は戦いのあとも続きます。休むマスで回復。デッキの中身もここで見られます。" },
+    { sel:".r2-mhead .r2-menu", t:"≡ から、遊び方・中断して拠点へ・退く が選べます。" }
+  ],
+  pick:[
+    { sel:".r2-big3", t:"戦いに勝つと、3枚から1枚をこの出陣のデッキに足せます。「よく効く」は、このダンジョンの病魔に◎か○の札です。" }
+  ],
+  shop:[
+    { sel:".r2-list", t:"薬局では、デッキの札を1枚外すか、仲間の武将と入れ替えられます（この出陣のあいだだけ）。" }
+  ]
+};
+function r2TourOn(){
+  const s = r2St(), v = RX2V.v, L = R2_TOURS[v];
+  if(!L || s.intro["tour_" + v] || RX2V.modal || RX2V.sheet) return null;
+  return L;
+}
+function r2TourPaint(scr){
+  const L = r2TourOn(); if(!L) return;
+  let i = RX2V.tourV === RX2V.v ? RX2V.tourI || 0 : 0;
+  RX2V.tourV = RX2V.v;
+  /* 画面に無い物の案内は飛ばす */
+  let el = null;
+  for(; i < L.length; i++){ el = scr.querySelector(L[i].sel); if(el) break; }
+  RX2V.tourI = i;
+  if(!el){ r2TourEnd(); return; }
+  el.scrollIntoView({ block:"nearest" });
+  r2SpotPaint(scr, el, "", r2E(L[i].t), `<button class="r2-b" onclick="r2TourEnd(true)">とばす</button><button class="r2-b r2-b-main" onclick="r2TourNext()">${i < L.length - 1 ? "次へ" : "わかった"}</button>`, `${i + 1} / ${L.length}`, true);
+}
+function r2TourNext(){ r2Se("tap"); RX2V.tourI = (RX2V.tourI || 0) + 1; const L = R2_TOURS[RX2V.v]; if(!L || RX2V.tourI >= L.length) return r2TourEnd(true); r2Draw(); }
+function r2TourEnd(draw){ const s = r2St(); s.intro["tour_" + RX2V.v] = 1; RX2V.tourI = 0; r2Save(); if(draw){ r2Draw(); } else { const o = document.querySelector("#rx2 .r2-tlay"); if(o) o.remove(); } }
 
 /* ---------- v7.13 おすすめは今日できる問題から（同じ20問のループを直す、ref=1） ---------- */
 function r1Act(q){
