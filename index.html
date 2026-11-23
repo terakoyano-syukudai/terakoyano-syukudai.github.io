@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.45｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.46｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -2024,9 +2024,9 @@
   .urv-n{font-family:var(--mono);font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));font-weight:700;color:var(--ink-2)}
 
   /* ---------- v6.97 新しいデザインの土台（ref=1 だけ：html.r1） ---------- */
-  @font-face{font-family:"R1 Head";src:url(u/r1f-mp2-dba01b87.woff2) format("woff2");font-weight:500 900;font-display:swap}
-  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic"),local("BIZUDPGothic-Regular"),url(u/r1f-bizud4-57e7c1ec.woff2) format("woff2");font-weight:400 500;font-display:swap}
-  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic Bold"),local("BIZUDPGothic-Bold"),url(u/r1f-bizud7-bee17a4e.woff2) format("woff2");font-weight:600 900;font-display:swap}
+  @font-face{font-family:"R1 Head";src:url(u/r1f-mp2-d4fa2d1d.woff2) format("woff2");font-weight:500 900;font-display:swap}
+  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic"),local("BIZUDPGothic-Regular"),url(u/r1f-bizud4-36ed5601.woff2) format("woff2");font-weight:400 500;font-display:swap}
+  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic Bold"),local("BIZUDPGothic-Bold"),url(u/r1f-bizud7-e7e8281a.woff2) format("woff2");font-weight:600 900;font-display:swap}
   html.r1{
     --jp:"R1 Body",system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
     --head:"R1 Head","R1 Body",system-ui,-apple-system,"Hiragino Sans",sans-serif;
@@ -4399,6 +4399,389 @@
   html.r1.land .qscreen.qdone .qs-body{grid-column:2;grid-row:1 / 3;overflow-y:auto;min-height:0}
   html.r1.land .qscreen.qdone .qs-sheet > .r1q-bot{grid-column:1;grid-row:2;position:static !important;padding:6px 0 0}
 
+  /* ---------- 2026-11-23 方向D「帳面」（ref=1） ---------- */
+  @font-face{font-family:"D Noto";src:url(u/r1f-noto6-5a53bd02.woff2) format("woff2");font-weight:100 699;font-display:swap}
+  @font-face{font-family:"D Noto";src:url(u/r1f-noto9-115e2ada.woff2) format("woff2");font-weight:700 1000;font-display:swap}
+  html.r1{
+    --jp:"D Noto",system-ui,-apple-system,"Hiragino Sans",sans-serif;
+    --head:"D Noto",system-ui,-apple-system,"Hiragino Sans",sans-serif;
+    --paper:#F4F1EA; --surface:#FFFDF8; --ink:#23262B; --ink-2:#3C3F45; --muted:#6A665E; --line:#E1DBCF;
+    --act:#1F4E79; --act-ink:#FFFFFF; --act-soft:#E3ECF5; --act-bd:#B7CCE0; --bd:#857E71; --off:#DCD5C8;
+    --stamp:#1F4E79; --stamp-ink:#FFFFFF; --glow:#1F4E79;
+    --ok:#2F6B4F; --ok-soft:#E4EFE7; --ng:#4A4A4A; --ng-soft:#ECE8E0; --danger:#B3261E;
+    --kaibou:#B4492B; --seika:#6B4C9A; --micro:#1F7A80; --patho:#A8365E; --yakuri:#B8621A; --doutai:#8A6A12;
+    --kankyo:#7A5230; --shoyaku:#4F7A2A; --yuki:#87407F; --phys:#56616E; --anal:#2E7D57; --seizai:#6B7019; --houki:#4B4F9E;
+    --kaibou-soft:color-mix(in srgb,#B4492B 12%,#FFFDF8); --seika-soft:color-mix(in srgb,#6B4C9A 12%,#FFFDF8);
+    --micro-soft:color-mix(in srgb,#1F7A80 12%,#FFFDF8); --patho-soft:color-mix(in srgb,#A8365E 12%,#FFFDF8);
+    --yakuri-soft:color-mix(in srgb,#B8621A 12%,#FFFDF8); --doutai-soft:color-mix(in srgb,#8A6A12 12%,#FFFDF8);
+    --kankyo-soft:color-mix(in srgb,#7A5230 12%,#FFFDF8); --shoyaku-soft:color-mix(in srgb,#4F7A2A 12%,#FFFDF8);
+    --accent:var(--act); --accent-soft:var(--act-soft);
+  }
+  html.r1[data-theme="dark"]{
+    --paper:#17181B; --surface:#202125; --ink:#EDE9E0; --ink-2:#D6D1C6; --muted:#A9A49A; --line:#34353B;
+    --act:#9CC4E6; --act-ink:#17181B; --act-soft:#1F2B36; --act-bd:#36506A; --bd:#77736B; --off:#3A3B41;
+    --stamp:#9CC4E6; --stamp-ink:#17181B; --glow:#9CC4E6;
+    --ok:#8CC7A5; --ok-soft:#1E2E25; --ng:#C9C4BA; --ng-soft:#2A2A2E; --danger:#F2B8B5;
+    --seika:#7E5DB0; --patho:#B8436C; --kankyo:#946640; --yuki:#A04F96; --phys:#69758A; --houki:#5F64BC;
+    --kaibou-soft:color-mix(in srgb,#B4492B 22%,#202125); --seika-soft:color-mix(in srgb,#7E5DB0 22%,#202125);
+    --micro-soft:color-mix(in srgb,#1F7A80 22%,#202125); --patho-soft:color-mix(in srgb,#B8436C 22%,#202125);
+    --yakuri-soft:color-mix(in srgb,#B8621A 22%,#202125); --doutai-soft:color-mix(in srgb,#8A6A12 22%,#202125);
+    --kankyo-soft:color-mix(in srgb,#946640 22%,#202125); --shoyaku-soft:color-mix(in srgb,#4F7A2A 22%,#202125);
+  }
+  html.r1:not([data-theme="dark"]){--paper:#F4F1EA;--surface:#FFFDF8;--ink:#23262B;--line:#E1DBCF}
+  html.r1 body{font-family:var(--jp);font-weight:600;background:var(--paper);color:var(--ink)}
+  html.r1 :is(b,strong,h1,h2,h3){font-weight:900}
+  /* 講義のスライドの中は今のまま（文字・色）：前の値をこの中だけで使う */
+  html.r1 :is(.lv2,.lv2sum){
+    --jp:"R1 Body",system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif; --head:var(--jp);
+    --paper:#ECEEF4; --surface:#FBFBFD; --ink:#22263A; --ink-2:#3E4456; --muted:#5A6074; --line:#DCE0EA;
+    --act:#24306B; --act-ink:#FFFFFF; --act-soft:#EEF2FF; --ok:#15803D; --ok-soft:#ECFDF3; --ng:#B91C1C; --ng-soft:#FEF2F2;
+    --micro:#0E7490; --patho:#BE185D; --kankyo:#4D7C0F; --yakuri:#C2410C; --kaibou:#475569; --doutai:#1D4ED8; --seika:#A16207; --shoyaku:#7C2D12;
+    font-weight:400}
+  html.r1[data-theme="dark"] :is(.lv2,.lv2sum){
+    --paper:#10131C; --surface:#1B2030; --ink:#ECEEF5; --ink-2:#C7CCD9; --muted:#A3A9BC; --line:#2C3346;
+    --act:#8EA2FF; --act-ink:#10131C; --act-soft:#1E2A4D; --ok:#4ADE80; --ok-soft:#14301F; --ng:#F87171; --ng-soft:#3A1717}
+  /* 下のタブ（記号に字を添える・今のタブは藍） */
+  html.r1 #navtab{background:var(--paper);border-top:1px solid var(--line)}
+  html.r1 #navtab button{font-family:var(--head);font-weight:600;color:var(--muted)}
+  html.r1 #navtab button.on{color:var(--act);font-weight:900}
+  html.r1 #navtab button.on svg,html.r1[data-theme="dark"] #navtab button.on svg{color:var(--act-ink);background:var(--act);border-radius:8px}
+
+  /* ---------- 共通の部品（dd-） ---------- */
+  html.r1 .dd{display:flex;flex-direction:column;height:var(--appH,100dvh);width:100%;max-width:560px;margin:0 auto;box-sizing:border-box;color:var(--ink);font-family:var(--jp)}
+  html.r1 .dd *{box-sizing:border-box}
+  html.r1 .dd > *{flex:none}
+  html.r1 .dd-fill{flex:1 1 auto;min-height:0}
+  html.r1 .dd-sc{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  html.r1 .dd-bar{display:flex;align-items:center;min-height:56px;padding:0 8px}
+  html.r1 .dd-back{display:inline-flex;align-items:center;gap:4px;height:48px;padding:0 8px;border:0;background:none;font:900 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--head);color:var(--act);cursor:pointer}
+  html.r1 .dd-ttl{padding:0 20px;display:flex;align-items:baseline;gap:12px}
+  html.r1 .dd-ttl b{font:900 max(var(--fmin,0px),calc(20px*var(--fs,1)))/1.4 var(--head)}
+  html.r1 .dd-ttl small{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .dd-ttl .sp{flex:1}
+  html.r1 .dd-lk{display:inline-flex;align-items:center;min-height:48px;border:0;background:none;padding:0 4px;font:900 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head);color:var(--act);cursor:pointer}
+  html.r1 .dd-sec{font:900 max(var(--fmin,0px),calc(12px*var(--fs,1))) var(--head);color:var(--muted);letter-spacing:.05em;padding:20px 20px 4px;display:flex;align-items:center;gap:8px}
+  html.r1 .dd-note{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted);padding:8px 20px 0;line-height:1.7}
+  html.r1 .dd-big{font:900 max(var(--fmin,0px),calc(28px*var(--fs,1)))/1.15 var(--head);font-variant-numeric:tabular-nums}
+  html.r1 .dd-big small{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));margin-left:2px}
+  html.r1 .dd-up{color:var(--ok);font-weight:900}
+  html.r1 .dd-pb{display:flex;height:8px;border-radius:4px;overflow:hidden;background:var(--off)}
+  html.r1 .dd-pb > i{display:block;height:100%;background:var(--act)}
+  /* ボタン：塗り（主・1画面1つ）／白抜き（副） */
+  html.r1 .dd-go{display:flex;align-items:center;justify-content:center;width:100%;min-height:64px;border:0;border-radius:12px;background:var(--act);color:var(--act-ink);font:900 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .dd-go:disabled{opacity:.45}
+  html.r1 .dd-ob{display:flex;align-items:center;justify-content:center;min-height:48px;padding:0 14px;border:1.5px solid var(--bd);border-radius:12px;background:var(--surface);color:var(--ink);font:900 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .dd-ob.del{color:var(--danger);border-color:var(--danger)}
+  html.r1 .dd-dock{padding:12px 16px;background:var(--paper)}
+  /* 切り替え */
+  html.r1 .dd-sg{display:flex;gap:4px}
+  html.r1 .dd-sg button{min-height:40px;min-width:48px;padding:0 10px;border-radius:10px;border:1.5px solid var(--bd);background:var(--surface);color:var(--ink);font:600 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .dd-sg button[aria-pressed="true"]{border:2.5px solid var(--act);font-weight:900}
+  html.r1 .dd-sg button[aria-pressed="true"]::before{content:"✓ "}
+  html.r1 .dd-tg{width:52px;height:32px;border-radius:16px;background:var(--off);position:relative;border:0;flex:none;cursor:pointer}
+  html.r1 .dd-tg::after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);transition:left .2s}
+  html.r1 .dd-tg[aria-pressed="true"]{background:var(--act)}
+  html.r1 .dd-tg[aria-pressed="true"]::after{left:23px}
+  /* 一覧の行 */
+  html.r1 .dd-rows{margin:0 16px}
+  html.r1 .dd-row{display:flex;align-items:center;gap:10px;width:100%;min-height:52px;padding:0 4px;border:0;border-bottom:1px solid var(--line);background:none;color:var(--ink);font:600 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--jp);text-align:left;cursor:pointer}
+  html.r1 .dd-rows > .dd-row:first-child{border-top:1px solid var(--line)}
+  html.r1 div.dd-row{cursor:default}
+  html.r1 .dd-row .t{flex:1;min-width:0}
+  html.r1 .dd-row .t small{display:block;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .dd-row .v{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));color:var(--muted);flex:none}
+  html.r1 .dd-row .gt{color:var(--muted);flex:none}
+  html.r1 .dd-sq{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex:none}
+  html.r1 .dd-sq svg{width:18px;height:18px}
+  html.r1 .dd-ln{width:4px;align-self:stretch;margin:10px 0;border-radius:2px;flex:none}
+  /* 判子 */
+  html.r1 .dd-st{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted);flex:none}
+  html.r1 .dd-st.on{background:var(--stamp);border-color:var(--stamp);color:var(--stamp-ink);font-weight:900;transform:rotate(-8deg)}
+  html.r1 .dd-st.td{border:2.5px solid var(--act);color:var(--ink);font-weight:900}
+  html.r1 .dd-st.rest{border:1.5px dashed var(--bd);font-weight:900}
+  /* 下からの表示 */
+  html.r1 .dd-ov{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.45);display:flex;flex-direction:column;justify-content:flex-end}
+  html.r1 .dd-sh{background:var(--surface);border-radius:16px 16px 0 0;padding:8px 16px calc(16px + env(safe-area-inset-bottom));max-height:92dvh;overflow-y:auto;width:100%;max-width:560px;margin:0 auto}
+  html.r1 .dd-sh .gr{width:40px;height:4px;border-radius:2px;background:var(--off);margin:0 auto 12px}
+  html.r1 .dd-sh h3{font:900 max(var(--fmin,0px),calc(20px*var(--fs,1)))/1.5 var(--head);margin:0 0 4px}
+  html.r1 .dd-sh p{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));color:var(--muted);line-height:1.7;margin:0 0 16px}
+  html.r1 .dd-two{display:flex;gap:8px}
+  html.r1 .dd-two > *{flex:1}
+  html.r1 .dd-dlg{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center}
+  html.r1 .dd-dlg > div{width:min(320px,88vw);background:var(--surface);border-radius:16px;padding:24px 20px 16px}
+  html.r1 .dd-dlg b{font:900 max(var(--fmin,0px),calc(18px*var(--fs,1))) var(--head);display:block;margin-bottom:8px}
+  html.r1 .dd-dlg p{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));line-height:1.7;color:var(--muted);margin:0 0 20px}
+
+  /* ---------- ホーム ---------- */
+  html.r1 .ddh{padding:0 16px 12px;gap:12px}
+  html.r1 .ddh-top{display:flex;align-items:center;gap:8px;padding-top:12px}
+  html.r1 .ddh-q{flex:1;display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:12px;border:1.5px solid var(--bd);background:var(--surface);color:var(--muted);font:600 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--jp);text-align:left;cursor:pointer}
+  html.r1 .ddh-q svg{width:20px;height:20px;flex:none}
+  html.r1 .ddh-gear{display:flex;flex-direction:column;align-items:center;justify-content:center;width:52px;height:52px;border:0;background:none;color:var(--ink);font:600 max(var(--fmin,0px),calc(12px*var(--fs,1))) var(--head);gap:2px;cursor:pointer}
+  html.r1 .ddh-gear svg{width:24px;height:24px}
+  html.r1 .ddh-rec{display:block;width:100%;padding:12px 16px;border-radius:14px;border:1.5px solid var(--bd);background:var(--surface);color:var(--ink);text-align:left;cursor:pointer;font:inherit}
+  html.r1 .ddh-rec .r{display:flex;align-items:flex-start;gap:12px}
+  html.r1 .ddh-rec .c{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+  html.r1 .ddh-rec .k{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .ddh-rec .s{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .ddh-rec .lk{font:900 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head);color:var(--act)}
+  html.r1 .ddh-rec .wk{display:flex;justify-content:space-between;margin-top:8px}
+  html.r1 .ddh-rec .wk .dd-st{width:32px;height:32px}
+  html.r1 .ddh-res{display:flex;align-items:center;gap:12px;padding:8px 8px 8px 16px;border-radius:14px;border:1.5px solid var(--bd);background:var(--surface)}
+  html.r1 .ddh-res .t{flex:1;min-width:0}
+  html.r1 .ddh-res .t small{display:block;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .ddh-res .t span{display:block;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .ddh-res .dd-go{width:112px;min-height:52px;font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)))}
+  html.r1 .ddh-3{display:flex;gap:8px}
+  html.r1 .ddh-3 .dd-ob{flex:1;min-height:64px;font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)));padding:0 4px}
+  html.r1 .ddh-day{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding:12px 16px 16px;border-radius:14px;border:1.5px solid var(--act-bd);background:var(--act-soft)}
+  html.r1 .ddh-day .h{display:flex;align-items:center}
+  html.r1 .ddh-day .h .k{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));color:var(--muted);flex:1}
+  html.r1 .ddh-day .n{display:flex;align-items:baseline;gap:8px}
+  html.r1 .ddh-day .n .dd-big{font-size:max(var(--fmin,0px),calc(28px*var(--fs,1)))}
+  html.r1 .ddh-day .n .s{margin-left:auto;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted);text-align:right}
+  html.r1 .ddh-day .dd-pb{margin:8px 0}
+  html.r1 .ddh-day .wl{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted);border-top:1px dashed var(--bd);padding-top:8px}
+  html.r1 .ddh-us{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column}
+  html.r1 .ddh-u{display:flex;align-items:center;gap:8px;min-height:44px;font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)))}
+  html.r1 .ddh-u span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .ddh-u b{font-weight:600;color:var(--muted);font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));font-variant-numeric:tabular-nums}
+  html.r1 .ddh-u.cur{border-left:4px solid var(--act);padding-left:8px;font-weight:900}
+  html.r1 .ddh-u.cur b{color:var(--ink);font-weight:900}
+  html.r1 .ddh-day .dd-go{min-height:96px;font-size:max(var(--fmin,0px),calc(28px*var(--fs,1)));margin-top:8px}
+  html.r1 .ddh-day .dd-go.sm{min-height:64px;font-size:max(var(--fmin,0px),calc(20px*var(--fs,1)));background:var(--surface);color:var(--ink);border:1.5px solid var(--bd)}
+  html.r1 .ddh-day .done{display:flex;align-items:center;gap:8px;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));color:var(--muted);margin:8px 0}
+  html.r1 .ddh-np{display:flex;flex-direction:column;gap:12px;flex:1 1 auto;justify-content:center}
+  html.r1 .ddh-np b{font:900 max(var(--fmin,0px),calc(20px*var(--fs,1)))/1.5 var(--head)}
+
+  /* ---------- 科目別・科目の中 ---------- */
+  html.r1 .dds{padding:0 0 12px}
+  html.r1 .dds-g{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;padding:0 16px;gap:4px}
+  html.r1 .dds-gl{font:900 max(var(--fmin,0px),calc(12px*var(--fs,1))) var(--head);color:var(--muted);padding:8px 4px 0}
+  html.r1 .dds-gr{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1 1 0;min-height:56px}
+  html.r1 .dds-b{display:flex;align-items:center;gap:10px;min-height:56px;padding:8px 10px;border-radius:12px;border:1.5px solid var(--bd);background:var(--surface);color:var(--ink);text-align:left;cursor:pointer;font:inherit;min-width:0}
+  html.r1 .dds-b .sq{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:none}
+  html.r1 .dds-b .sq svg{width:26px;height:26px}
+  html.r1 .dds-b .t{flex:1;min-width:0;display:flex;flex-direction:column}
+  html.r1 .dds-b .n{font:900 max(var(--fmin,0px),calc(20px*var(--fs,1)))/1.25 var(--head)}
+  html.r1 .dds-b .n.l{font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)))}
+  html.r1 .dds-b .p{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .dds-b.off{border:1.5px dashed var(--bd);background:transparent;cursor:default}
+  html.r1 .dds-b.off .sq{border:1.5px dashed var(--bd);color:var(--muted)}
+  html.r1 .dds-b.off .n{font-weight:600;font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)));color:var(--muted)}
+  html.r1 .ddu-hd{display:flex;align-items:center;gap:12px;padding:0 20px}
+  html.r1 .ddu-hd .sq{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center}
+  html.r1 .ddu-hd .sq svg{width:26px;height:26px}
+  html.r1 .ddu-hd .t{flex:1;min-width:0}
+  html.r1 .ddu-hd .t b{display:block;font:900 max(var(--fmin,0px),calc(20px*var(--fs,1)))/1.3 var(--head)}
+  html.r1 .ddu-hd .t small{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .ddu-pb{margin:8px 20px 0}
+  html.r1 .ddu-box{flex:1 1 auto;min-height:0;overflow-y:auto;margin:12px 16px 12px;border-radius:14px;border:1.5px solid var(--bd);background:var(--surface)}
+  html.r1 .ddu-box .dd-row{padding:0 12px;min-height:52px}
+  html.r1 .ddu-box .dd-row:last-child{border-bottom:0}
+  html.r1 .ddu-box .dd-row.cur{box-shadow:inset 4px 0 0 var(--act)}
+  html.r1 .dd-tag{display:inline-block;font:900 max(var(--fmin,0px),calc(12px*var(--fs,1)))/18px var(--head);padding:0 6px;border-radius:6px;border:1.5px solid var(--act);color:var(--act);margin-left:6px;vertical-align:1px}
+  html.r1 .dd-tag.ok{border-color:var(--ok);color:var(--ok)}
+  /* ---------- 記録 ---------- */
+  html.r1 .ddr .dd-big{display:inline}
+  html.r1 .ddr-l{display:flex;align-items:baseline;gap:12px;padding:0 20px;flex-wrap:wrap}
+  html.r1 .ddr-l span{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));color:var(--muted)}
+  html.r1 .ddr-l span.dd-big{font-size:max(var(--fmin,0px),calc(28px*var(--fs,1)));color:var(--ink)}
+  html.r1 .ddr-l span.dd-up{color:var(--ok)}
+  html.r1 .ddr-wk{display:flex;justify-content:space-between;padding:8px 18px 0}
+  html.r1 .ddr-wk > div{display:flex;flex-direction:column;align-items:center;gap:2px}
+  html.r1 .ddr-wk em{font-style:normal;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .ddr-pb{margin:8px 20px 0}
+  html.r1 .ddr-lg{display:flex;gap:16px;padding:6px 20px 0;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .ddr-lg span{display:flex;align-items:center;gap:4px}
+  html.r1 .ddr-lg i{width:10px;height:10px;border-radius:2px;display:inline-block}
+  html.r1 .ddr-next{display:flex;align-items:center;gap:10px;margin:16px 16px 0;min-height:64px;width:calc(100% - 32px);padding:0 14px;border-radius:12px;border:1.5px solid var(--bd);background:var(--surface);color:var(--ink);text-align:left;font:600 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--jp);cursor:pointer}
+  html.r1 .ddr-next .t{flex:1;min-width:0}
+  html.r1 .ddr-next .t small{display:block;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .ddr-next .t span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .ddr-next .v{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));font-weight:900;flex:none}
+  /* ---------- 帯・グラフ ---------- */
+  html.r1 .dd-br{width:72px;height:8px;border-radius:4px;background:var(--off);overflow:hidden;flex:none}
+  html.r1 .dd-br > i{display:block;height:100%;background:var(--ink)}
+  html.r1 .dd-br.w{flex:1;width:auto}
+  html.r1 .dd-pv{width:56px;text-align:right;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));font-weight:900;flex:none;line-height:1.3}
+  html.r1 .dd-pv small{display:block;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted);font-weight:600}
+  html.r1 .dd-ln-ch{margin:4px 20px 0}
+  html.r1 .dd-ln-ch svg{display:block;width:100%}
+  html.r1 .dd-cal{margin:4px 18px 0}
+  html.r1 .dd-cal .h,html.r1 .dd-cal .w{display:grid;grid-template-columns:repeat(7,1fr);justify-items:center}
+  html.r1 .dd-cal .h{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .dd-cal .w{margin-top:4px}
+  html.r1 .dd-cal .dd-st{width:32px;height:32px}
+  html.r1 .dd-cal .dd-st.fu{border:0}
+  html.r1 .dd-wq{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.5}
+  html.r1 .ddw-sh{display:flex;align-items:center;gap:8px;padding:16px 4px 8px}
+  html.r1 .ddw-sh .sqs{width:16px;height:16px;border-radius:4px}
+  html.r1 .ddw-sh b{font:900 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--head);flex:1}
+  html.r1 .ddw-sh b small{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted);font-weight:600;margin-left:6px}
+  html.r1 .ddw-sh .dd-ob{min-height:40px;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)))}
+  html.r1 .dd-emp{padding:48px 24px;text-align:center}
+  html.r1 .dd-emp b{font:900 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head);display:block}
+  html.r1 .dd-emp p{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));color:var(--muted);margin-top:8px;line-height:1.7}
+  /* 設定 */
+  html.r1 .dd-set .dd-row{min-height:56px;cursor:default}
+  html.r1 .dd-set button.dd-row{cursor:pointer}
+  html.r1 .dd-del{margin:28px 16px 24px;width:calc(100% - 32px);min-height:48px;border-radius:12px;border:1.5px solid var(--line);background:none;color:var(--muted);font:600 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .dd .backbar,html.r1 .dd ~ .backbar{display:none !important}
+
+  /* ---------- 出題設定（下からの表示） ---------- */
+  html.r1 .r1sh{background:var(--surface) !important;border-radius:16px 16px 0 0 !important;font-family:var(--jp)}
+  html.r1 .r1sh-hd .r1sh-no{background:var(--sc,var(--act)) !important;color:#fff !important;border-radius:9px !important}
+  html.r1 .r1sh-hm strong{font:900 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head) !important;color:var(--ink) !important}
+  html.r1 .r1sh-hm span{color:var(--muted) !important;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1))) !important}
+  html.r1 .r1sh-p{border:1.5px solid var(--bd) !important;background:var(--surface) !important;border-radius:12px !important;box-shadow:none !important}
+  html.r1 .r1sh-p[aria-checked="true"]{border:2.5px solid var(--act) !important;background:var(--surface) !important}
+  html.r1 .r1sh-p strong{font:900 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--head) !important;color:var(--ink) !important}
+  html.r1 .r1sh-p[aria-checked="true"] strong::before{content:"✓ "}
+  html.r1 .r1sh-p span{color:var(--muted) !important}
+  html.r1 .r1sh-p:disabled{border-style:dashed !important;opacity:.6}
+  html.r1 .r1sh-more{color:var(--act) !important;font:900 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head) !important}
+  html.r1 .r1sh-go{background:var(--act) !important;color:var(--act-ink) !important;border-radius:12px !important;min-height:64px !important;font:900 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head) !important;box-shadow:none !important}
+  html.r1 .r1sh-seg button{border:1.5px solid var(--bd) !important;background:var(--surface) !important;color:var(--ink) !important;border-radius:10px !important}
+  html.r1 .r1sh-seg button[aria-checked="true"]{border:2.5px solid var(--act) !important;font-weight:900 !important}
+  html.r1 .ddsl{display:flex;flex-direction:column;gap:8px;margin:12px 0 8px}
+  html.r1 .ddsl > span{font:900 max(var(--fmin,0px),calc(12px*var(--fs,1))) var(--head);color:var(--muted)}
+  html.r1 .ddsl .r{display:flex;gap:8px}
+  html.r1 .ddsl .r .dd-ob{flex:1;min-height:52px;flex-direction:column;gap:0;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));padding:0 4px}
+  html.r1 .ddsl .r .dd-ob small{font:600 max(var(--fmin,0px),calc(12px*var(--fs,1))) var(--jp);color:var(--muted)}
+  html.r1 .ddsl .r .dd-ob.seen{border-color:var(--act)}
+  html.r1 .ddsl .m{display:flex;align-items:center;gap:8px;width:100%;min-height:48px;border:0;border-top:1px solid var(--line);background:none;color:var(--ink);font:600 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--jp);text-align:left;padding:0 4px;cursor:pointer}
+  html.r1 .ddsl .m span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .ddsl .m svg{width:18px;height:18px;color:var(--muted);flex:none}
+  /* ---------- 問題 ---------- */
+  html.r1 .qscreen .qhead-row > :not(.ddq){display:none !important}
+  html.r1 .qscreen .qbar{display:none !important}
+  html.r1 .ddq{display:flex;align-items:center;gap:8px;width:100%;min-height:48px}
+  html.r1 .ddq button{display:inline-flex;align-items:center;gap:4px;min-height:48px;min-width:48px;padding:0 4px;border:0;background:none;color:var(--muted);font:600 max(var(--fmin,0px),calc(12px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .ddq .n{font:900 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head);font-variant-numeric:tabular-nums;color:var(--ink)}
+  html.r1 .ddq .dd-pb{flex:1;height:6px}
+  html.r1 .qscreen .qhead{background:var(--paper) !important;border:0 !important;box-shadow:none !important;padding:0 12px !important}
+  html.r1 .qscreen .r1q-bot .r1v-q{display:none !important}
+  html.r1 .qscreen:not(.qdone) .r1q-bot{display:none !important}
+  html.r1 .qscreen .r1q-bot{background:var(--paper) !important}
+  html.r1 .qscreen .r1q-bot .cta,html.r1 .qscreen .qs-sheet > .cta{background:var(--act) !important;color:var(--act-ink) !important;border-radius:12px !important;min-height:64px;font:900 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head) !important;box-shadow:none !important}
+  html.r1 .qscreen .opt{border:1.5px solid var(--bd) !important;background:var(--surface) !important;border-radius:12px !important;color:var(--ink) !important}
+  html.r1 .qscreen .opt.correct{border:2px solid var(--ok) !important;background:var(--ok-soft) !important}
+  html.r1 .qscreen .opt.wrong{border:1.5px solid var(--bd) !important;background:var(--ng-soft) !important;color:var(--ink) !important}
+  html.r1 .qscreen .r1q-tag.ok{color:var(--ok) !important}
+  html.r1 .qscreen .r1q-tag.ng{color:var(--muted) !important}
+  html.r1 .qscreen .qs-c.ok{background:var(--ok-soft) !important;border-left:4px solid var(--ok) !important;color:var(--ink) !important}
+  html.r1 .qscreen .qs-c.ng{background:var(--ng-soft) !important;border-left:4px solid var(--bd) !important;color:var(--ink) !important}
+  html.r1 .qscreen .qs-c .qs-b{background:transparent !important;color:inherit !important;font-weight:900}
+  html.r1 .qscreen .qs-c.ok .qs-b{color:var(--ok) !important}
+  html.r1 .qscreen .qs-c.ok .qs-b::before{content:"○ "}
+  html.r1 .qscreen .qs-c.ng .qs-b::before{content:"× "}
+  html.r1 .qscreen .qs-c.ng span{color:var(--ink) !important}
+  html.r1 .qscreen .vmark{background:transparent !important;color:var(--muted) !important;border:1.5px solid var(--bd);font-weight:900}
+  html.r1 .qscreen .vmark.ok{color:var(--ok) !important;border-color:var(--ok)}
+  html.r1 .qscreen .qs-f summary{background:var(--surface) !important;color:var(--ink) !important;border:1.5px solid var(--line);border-radius:12px}
+  html.r1 .qscreen .qs-l{font:900 max(var(--fmin,0px),calc(12px*var(--fs,1))) var(--head) !important;color:var(--muted) !important}
+  html.r1 .qscreen .qs-e{border-left:0 !important}
+  html.r1 .qscreen .vexp{font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)));line-height:1.7}
+  html.r1 .qscreen .qbody{background:var(--surface) !important;border:1.5px solid var(--line);border-radius:14px !important}
+  html.r1 .qscreen .qtype{background:transparent !important;color:var(--muted) !important;border:1px solid var(--line)}
+  html.r1 .qscreen .dunno{border:1.5px dashed var(--bd) !important}
+  /* 結果 */
+  html.r1 .r1res .r1r-go{background:var(--act) !important;color:var(--act-ink) !important;border-radius:12px !important;min-height:64px;font:900 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head) !important;box-shadow:none !important}
+  html.r1 .r1res .r1r-miss{border:1.5px solid var(--bd) !important;background:var(--surface) !important;color:var(--ink) !important;border-radius:12px !important}
+  html.r1 .r1res .r1r-ring circle:last-child{stroke:var(--act) !important}
+  html.r1 .r1res .r1r-cnt .ok{color:var(--ok) !important}
+  html.r1 .r1res .r1r-cnt .ng{color:var(--ink) !important}
+  html.r1 .r1res .qhead{background:var(--paper) !important;box-shadow:none !important;border:0 !important}
+  /* ---------- 検索 ---------- */
+  html.r1 .ddsr-f{display:flex;align-items:center;gap:8px;margin:0 16px;height:52px;padding:0 12px;border-radius:12px;border:2px solid var(--act);background:var(--surface)}
+  html.r1 .ddsr-f svg{width:20px;height:20px;color:var(--muted);flex:none}
+  html.r1 .ddsr-f input{flex:1;min-width:0;height:48px;border:0;background:none;outline:none;font:600 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--jp);color:var(--ink)}
+  html.r1 .ddsr-f .x{width:40px;height:40px;border:0;background:none;color:var(--muted);font-size:max(var(--fmin,0px),calc(20px*var(--fs,1)));cursor:pointer}
+  html.r1 .ddsr-ch{display:flex;flex-wrap:wrap;gap:8px;padding:8px 16px 0}
+  html.r1 .ddsr-ch button{min-height:40px;padding:0 14px;border-radius:20px;border:1.5px solid var(--bd);background:var(--surface);color:var(--ink);font:600 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--jp);cursor:pointer}
+  html.r1 .ddsr-card{margin:8px 16px 0;padding:16px;border-radius:14px;border:1.5px solid var(--bd);background:var(--surface)}
+  html.r1 .ddsr-card .h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  html.r1 .ddsr-card .h b{font:900 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head)}
+  html.r1 .ddsr-card .h span{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .ddsr-card p{font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)));line-height:1.7;margin:8px 0}
+  html.r1 .ddsr-card .al{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted);margin-bottom:12px}
+  /* ---------- 講義資料 ---------- */
+  html.r1 .ddl-two{display:flex;gap:8px;padding:8px 16px 0}
+  html.r1 .ddl-two button{flex:1;min-height:96px;border-radius:14px;border:1.5px solid var(--bd);background:var(--surface);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font:900 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .ddl-two button small{font:600 max(var(--fmin,0px),calc(12px*var(--fs,1))) var(--jp);color:var(--muted)}
+  html.r1 .ddl-ct{display:flex;align-items:center;gap:12px;margin:0 16px;padding:8px 8px 8px 16px;border-radius:14px;border:1.5px solid var(--bd);background:var(--surface)}
+  html.r1 .ddl-ct .t{flex:1;min-width:0}
+  html.r1 .ddl-ct .t small{display:block;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .ddl-ct .t span{display:block;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .ddl-ct .dd-go,html.r1 .ddl-ct .dd-ob{width:96px;min-height:52px;font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)));flex:none}
+  html.r1 .ddl-ep{display:flex;gap:4px;flex:none}
+  html.r1 .ddl-ep i{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--bd);display:flex;align-items:center;justify-content:center;font:900 max(var(--fmin,0px),calc(12px*var(--fs,1))) var(--head);font-style:normal;color:var(--muted)}
+  html.r1 .ddl-ep i.on{background:var(--stamp);border-color:var(--stamp);color:var(--stamp-ink)}
+  html.r1 .ddl-ep i.no{opacity:.25;border-style:dashed}
+  html.r1 .ddl-wide{display:flex;align-items:center;gap:12px;margin:8px 16px 0;min-height:72px;padding:0 14px;border-radius:12px;border:1.5px solid var(--bd);background:var(--surface);color:var(--ink);text-align:left;font:inherit;cursor:pointer;width:calc(100% - 32px)}
+  html.r1 .ddl-wide .sqs{display:flex;gap:4px}
+  html.r1 .ddl-wide .t{flex:1}
+  html.r1 .ddl-wide .t b{display:block;font:900 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head)}
+  html.r1 .ddl-wide .t small{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .ddl-vol{margin:0 16px}
+  html.r1 .ddl-vol > button{display:flex;align-items:center;gap:10px;width:100%;min-height:56px;padding:0 4px;border:0;border-bottom:1px solid var(--line);background:none;color:var(--ink);font:900 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--head);text-align:left;cursor:pointer}
+  html.r1 .ddl-vol > button span{flex:1}
+  html.r1 .ddl-vol > button small{font:600 max(var(--fmin,0px),calc(12px*var(--fs,1))) var(--jp);color:var(--muted)}
+  html.r1 .ddl-vol .ch{padding-left:12px}
+  html.r1 .ddl-vol .ch .dd-row{min-height:48px;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)))}
+  html.r1 .ddl-vol .ch .dd-row.cur{box-shadow:inset 4px 0 0 var(--act)}
+
+
+  /* ---------- 試験対策 ---------- */
+  html.r1 .ddx-tb{display:inline-flex;align-items:center;min-height:40px;padding:0 12px;border-radius:10px;border:1.5px solid var(--bd);background:var(--surface);color:var(--ink);font:900 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--head);cursor:pointer}
+  html.r1 .ddx .dds-b.near{box-shadow:inset 4px 0 0 var(--act)}
+  html.r1 .ddx-dock{margin:8px 16px 12px;padding:12px 16px;border-radius:14px;border:1.5px solid var(--act-bd);background:var(--act-soft)}
+  html.r1 .ddx-dock .h{display:flex;align-items:baseline;gap:8px}
+  html.r1 .ddx-dock .h .k{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .ddx-dock .h b{font:900 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--head);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .ddx-cal{margin:8px 0}
+  html.r1 .ddx-cal .w{display:grid;grid-template-columns:48px repeat(7,1fr);align-items:center;justify-items:center;gap:2px;margin-top:2px}
+  html.r1 .ddx-cal .w > em{font-style:normal;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted);justify-self:start}
+  html.r1 .ddx-cal .dd-st{width:28px;height:28px;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)))}
+  html.r1 .ddx-cal .dd-st.ex{background:var(--surface);border:2px solid var(--ink);color:var(--ink);font-weight:900}
+  html.r1 .ddx-cal .h{display:grid;grid-template-columns:48px repeat(7,1fr);justify-items:center;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  /* ---------- 学習計画 ---------- */
+  html.r1 .ddp-box{margin:8px 16px 0;padding:12px 16px;border-radius:14px;border:1.5px solid var(--act-bd);background:var(--act-soft)}
+  html.r1 .ddp-box .s{display:flex;gap:12px;flex-wrap:wrap;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted);margin-top:8px}
+  html.r1 .ddp-box .s b{color:var(--ink)}
+  html.r1 .ddp-w{font:900 max(var(--fmin,0px),calc(12px*var(--fs,1))) var(--head);color:var(--muted);padding:16px 4px 4px}
+  html.r1 .ddp-u{display:flex;align-items:center;gap:10px;min-height:48px;border-bottom:1px solid var(--line);font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)));padding:0 4px}
+  html.r1 .ddp-u.cur{box-shadow:inset 4px 0 0 var(--act);padding-left:12px}
+  html.r1 .ddp-u .t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .ddp-u .v{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));color:var(--muted);font-variant-numeric:tabular-nums}
+  html.r1 .ddp-in{display:flex;align-items:center;gap:8px;min-height:56px;border-bottom:1px solid var(--line)}
+  html.r1 .ddp-in span{flex:1;font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)))}
+  html.r1 .ddp-in input{min-height:44px;border-radius:10px;border:1.5px solid var(--bd);background:var(--surface);color:var(--ink);padding:0 8px;font:600 max(var(--fmin,0px),calc(14px*var(--fs,1))) var(--jp)}
+  /* ---------- 講義の再生の操作（スライドの中は変えない） ---------- */
+  html.r1 .lv2 .v2-bar .v2-x,html.r1 .lv2 .v2-bar .v2-s{display:none !important}
+  html.r1 .lv2 .v2-bar{justify-content:space-between}
+  html.r1 .lv2 .v2-bar .v2-m{order:9}
+  html.r1 .lv2 .v2-bar::before{content:"";width:48px;order:0}
+  html.r1 .ddlv-sk{position:relative;height:28px;margin:4px 16px 0;cursor:pointer;touch-action:none}
+  html.r1 .ddlv-sk .ln{position:absolute;top:12px;left:0;right:0;height:4px;border-radius:2px;background:var(--off)}
+  html.r1 .ddlv-sk .pg{position:absolute;top:12px;left:0;height:4px;border-radius:2px;background:#1F4E79}
+  html.r1 .ddlv-sk .tk{position:absolute;top:8px;width:2px;height:12px;background:var(--bd)}
+  html.r1 .ddlv-sk .kn{position:absolute;top:6px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:#1F4E79}
+  html.r1 .ddlv-tm{display:flex;justify-content:space-between;margin:0 16px;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)}
+  html.r1 .ddlv-sh .dd-sg{flex-wrap:wrap;justify-content:flex-end}
+  html.r1 .ddlv-sh .dd-sg button{min-width:44px;padding:0 6px}
+  html.r1 .ddlv-sh .dd-row.cur{box-shadow:inset 4px 0 0 var(--act);padding-left:12px}
+  /* ---------- 資料の本文の終わり ---------- */
+  html.r1 .ddrd-end{margin:24px 0 8px;padding:16px;border-top:1px solid var(--line)}
+  html.r1 .r1rd .ddrd-q{background:var(--surface) !important;color:var(--ink) !important;border:1.5px solid var(--bd) !important;border-radius:12px !important}
+  html.r1 .r1rd .ddrd-nx{flex:1;min-height:52px;border:0;border-radius:12px;background:var(--act);color:var(--act-ink);font:900 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--head)}
+  html.r1 .ddx .dds-gr{flex:none}
+  html.r1 .ddrd-end .st{display:flex;align-items:center;gap:10px;font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)));margin-bottom:12px}
+
+  html.r1 .gdglow{animation:none !important;box-shadow:none !important;outline:none !important}
+  html.r1 .gdglow::before,html.r1 .gdglow::after{display:none !important}
+
   /* ---------- v6.98 文字の大きさ（ref=1：標準／大）。ref=0 は --fs=1・--fmin=0px で元のまま ---------- */
   :root{--fs:1;--fmin:0px}
   html.r1{--fmin:12px}
@@ -5432,7 +5815,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.45";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.46";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -5912,7 +6295,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.45（2026-11-20 更新）</span>
+      <br><span class="mono">アプリ版数：v7.46（2026-11-23 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -9750,6 +10133,10 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.46", date:"2026-11-23", items:[
+    { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：094 腎・泌尿生殖器系に作用する薬" },
+    { r:1, t:"画面を新しい見た目に（試作版）", d:"ホーム・科目別・問題・検索・講義資料・試験対策・学習計画・記録・設定などを、読みやすい「帳面」の見た目に作り直しました。文字も読みやすい字に変えています。講義のスライドの中身は変えていません。" },
+  ]},
   { v:"v7.45", date:"2026-11-20", items:[
     { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：009 脳血管と脳脊髄液、040 血液に作用する薬、061 抗菌薬の作用機序と特徴、063 抗ウイルス薬の作用機序と臨床応用、067 構造活性相関と薬物設計、081 生体異物代謝の第Ⅰ相反応、084 農薬の分類と毒性・解毒、087 器官毒性、094 腎・泌尿生殖器系に作用する薬" },
     { r:1, t:"講義の「章の板書」を直しました", d:"板書の下の「まとめ」の文が、画面の上に重なって出ていたのを直しました。「まとめ」画面も同じです。" },
@@ -14316,7 +14703,7 @@ function imEnd(win){
 }
 
 (function(){
-  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.45c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.46c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
   /* 2026-11-15：免疫バトルはやめて処方戦記の「感染」の章にまとめる（利用者の決定）。一覧には出さない（画面とコードは残す） */
   NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
   const nt0 = navTab;
@@ -17819,6 +18206,725 @@ function r1LandApply(){
 }
 try{ addEventListener("resize", r1LandApply); addEventListener("orientationchange", ()=> setTimeout(r1LandApply, 60)); r1LandApply(); }catch(e){}
 { const _rl0 = render; render = function(){ r1LandApply(); return _rl0.apply(this, arguments); }; }
+
+/* ---------- 2026-11-23 方向D「帳面」（ref=1） ---------- */
+const DD_IC = {
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>',
+  gear:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>',
+  flag:'<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h11l-2 4 2 4H5"/></svg>'
+};
+function ddEsc(s){ return esc(s == null ? "" : s); }
+function ddBack(label, on){ return `<div class="dd-bar"><button class="dd-back" onclick="${on}">‹ ${label}</button></div>`; }
+function ddSheet(html){ ddClose(); const o = document.createElement("div"); o.className = "dd-ov"; o.id = "ddov"; o.innerHTML = `<div class="dd-sh" role="dialog"><div class="gr"></div>${html}</div>`; o.addEventListener("click", e=>{ if(e.target === o) ddClose(); }); document.body.appendChild(o); }
+function ddDialog(title, body, no, yes, on, del){ ddClose(); const o = document.createElement("div"); o.className = "dd-dlg"; o.id = "ddov"; o.innerHTML = `<div role="alertdialog"><b>${title}</b><p>${body}</p><div class="dd-two"><button class="dd-ob" onclick="ddClose()">${no}</button><button class="dd-ob${del ? " del" : ""}" onclick="ddClose();${on}">${yes}</button></div></div>`; document.body.appendChild(o); }
+function ddClose(){ const o = document.getElementById("ddov"); if(o) o.remove(); }
+/* 日にち：今週の月曜〜日曜 */
+function ddWeek(){ const t = jDayNo(), m = t - ((jPartsNo(t).w + 6) % 7); return Array.from({length:7}, (_, i)=> m + i); }
+/* 休み札（1週間に1枚。使った日は「休」で、続けた日が切れない） */
+function ddRestDays(){ return (ST.restDays || []).filter(n=> typeof n === "number"); }
+function ddRestUsedThisWeek(){ const w = ddWeek(); return ddRestDays().find(n=> n >= w[0] && n <= w[6]); }
+function ddSolvedOn(n){ return dayCount(jKeyOfNo(n)) > 0; }
+/* 続けた日：1問でも解いた日を数える（休み札の日はつなぐ） */
+function ddStreak(){
+  const t = jDayNo(), rest = new Set(ddRestDays());
+  let k = ddSolvedOn(t) || rest.has(t) ? t : t - 1, n = 0;
+  while(ddSolvedOn(k) || rest.has(k)){ if(ddSolvedOn(k)) n++; k--; }
+  return n;
+}
+function ddBest(){
+  daysInit(); const rest = new Set(ddRestDays()), on = new Set(Object.keys(ST.days || {}).filter(k=> ST.days[k] > 0).map(jNoOfKey));
+  rest.forEach(n=> on.add(n)); const L = [...on].sort((a, b)=> a - b);
+  let best = 0, run = 0, prev = null;
+  L.forEach(n=>{ run = prev !== null && n === prev + 1 ? run + 1 : 1; prev = n; if(run > best) best = run; });
+  return Math.max(best, ddStreak());
+}
+function ddWeekStamps(size){
+  const t = jDayNo(), rest = new Set(ddRestDays());
+  return ddWeek().map(n=>{
+    const w = "日月火水木金土"[jPartsNo(n).w];
+    if(rest.has(n)) return `<span class="dd-st rest">休</span>`;
+    if(n <= t && ddSolvedOn(n)) return `<span class="dd-st on">済</span>`;
+    return `<span class="dd-st${n === t ? " td" : ""}">${w}</span>`;
+  }).join("");
+}
+function ddPct(){ const T = QUESTIONS.length; let ok = 0; QUESTIONS.forEach(q=>{ if(isMastered(q.id)) ok++; }); return { ok, T, pct: T ? Math.round(ok / T * 100) : 0 }; }
+/* 中断した問題（今日の分の回でないもの） */
+function ddResume(){
+  const r = ST.resume; if(!r || !r.ids || !r.ids.length) return null;
+  if(r.p2) return null;
+  const left = Math.max(0, r.ids.length - (r.i || 0)); if(!left) return null;
+  return { r, left, label: r.label || "" };
+}
+/* 新しい問題を始める前に、中断した問題が消えることを確かめる */
+function ddStartGuard(on){
+  const R = ddResume();
+  if(!R || !r1On()){ new Function(on)(); return; }
+  ddSheet(`<h3>中断した問題が消えます</h3><p>${ddEsc(R.label)}　あと${R.left}問</p><div class="dd-two"><button class="dd-ob" onclick="ddClose();ST.resume=null;saveProgress(true);${on.replace(/"/g, "&quot;")}">新しい問題</button><button class="dd-go" style="min-height:52px;font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)))" onclick="ddClose();resumeStart()">続き</button></div>`);
+}
+
+/* ---------- ホーム ---------- */
+function ddHome(){
+  const P = ddPct(), st = ddStreak(), best = ddBest();
+  const rec = `<button class="ddh-rec" onclick="go('drec')" aria-label="記録"><div class="r">
+      <div class="c"><span class="k">全体の進み</span><span class="dd-big">${P.pct}<small>%</small></span><span class="dd-pb" style="margin-top:4px"><i style="width:${Math.max(P.pct, P.ok ? 1 : 0)}%"></i></span></div>
+      <div class="c"><span class="k">続けた日</span><span class="dd-big">${st}<small>日</small></span><span class="s">最長 ${best}日</span></div>
+      <span class="lk">記録 ›</span></div><div class="wk">${ddWeekStamps()}</div></button>`;
+  const R = ddResume();
+  const res = R ? `<div class="ddh-res"><div class="t"><small>中断した問題</small><span>${ddEsc(R.label)}　あと${R.left}問</span></div><button class="dd-go" onclick="resumeStart()">続き</button></div>` : "";
+  const d = dailyPick();
+  const mid = ST.resume && ST.resume.daily && ST.resume.dailyKey === d.key;
+  const three = `<div class="ddh-3"><button class="dd-ob" onclick="${mid ? "resumeStart()" : "ddStartGuard('startDaily()')"}"${d.set.length ? "" : " disabled"}>今日の10問</button><button class="dd-ob" onclick="go('subjects')">科目別</button><button class="dd-ob" onclick="ddStartGuard('openSetup(\\'all\\',null)')">ランダム</button></div>`;
+  let A = null; try{ if(tierOn()) A = p2All(); }catch(e){}
+  let day;
+  if(A && A.main){
+    const left = Math.max(0, A.n - A.done), pct = A.n ? Math.min(100, Math.round(A.done / A.n * 100)) : 100;
+    const W = p2Weeks(A.main), w0 = W[0];
+    const us = w0 ? w0.us.map((x, i)=> `<div class="ddh-u${i === 0 ? " cur" : ""}"><span>${ddEsc(x.u)}</span><b>${x.m}／${x.g}問</b></div>`).join("") : `<div class="ddh-u"><span>単元はすべて済み</span></div>`;
+    const set = p2TodaySet(), n = set.length;
+    const rr = ST.resume && ST.resume.p2 && ST.resume.ids && (ST.resume.ids.length - (ST.resume.i || 0)) > 0 ? ST.resume : null;
+    const num = left > 0 ? (A.done ? `<span class="dd-big">あと${left}<small>問</small></span><span class="s">${A.done}問 済・全${A.n}問</span>` : `<span class="dd-big">${A.n}<small>問</small></span><span class="s">復習 ${A.due}・新しい ${A.newLeft}</span>`)
+      : `<span class="dd-big">${A.n}<small>問</small></span><span class="s">今日の分は済み</span>`;
+    const head = rr ? "中断した回の続き" : "今日の分";
+    const done = left <= 0 && A.n ? `<div class="done"><span class="dd-st on" style="width:32px;height:32px">済</span>今日の${A.n}問は済み・ここからは先の単元の新しい問題</div>` : "";
+    const btn = rr ? `<button class="dd-go" onclick="resumeStart()">続きの${rr.ids.length - (rr.i || 0)}問</button>`
+      : `<button class="dd-go${R ? " sm" : ""}" onclick="ddStartGuard('p2Start()')"${n ? "" : " disabled"}>次の${n && n < 20 ? n : 20}問</button>`;
+    day = `<section class="ddh-day" aria-label="今日の分"><div class="h"><span class="k">${head}</span><button class="dd-lk" onclick="go('plan')">計画 ›</button></div>
+      <div class="n">${num}</div><span class="dd-pb"><i style="width:${pct}%"></i></span>${done}
+      <div class="wl">今週の単元</div><div class="ddh-us">${us}</div>${btn}</section>`;
+  }else{
+    const go10 = d.set.length ? `<button class="dd-go" onclick="${mid ? "resumeStart()" : "ddStartGuard('startDaily()')"}">今日の10問</button>` : "";
+    day = `<section class="ddh-day" aria-label="今日の分"><div class="h"><span class="k">今日の分</span></div>
+      <div class="ddh-np"><b>計画はまだありません</b><span style="font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));color:var(--muted);line-height:1.7">試験の日を決めると、毎日解く数が出ます</span>
+      <button class="dd-ob" style="align-self:flex-start" onclick="go('plan')">計画の作成</button></div>${go10}</section>`;
+  }
+  return `<div class="dd ddh"><div class="ddh-top"><button class="ddh-q" onclick="openSearch()">${DD_IC.search}調べる（薬・病名・略語）</button><button class="ddh-gear" onclick="go('dset')" aria-label="設定">${DD_IC.gear}設定</button></div>
+    ${rec}${res}${three}${day}</div>`;
+}
+
+const DD_SCR = {};
+
+/* ---------- 科目（並び・色・絵） ---------- */
+const DD_PIC = {"body": "<circle cx=\"12\" cy=\"6.5\" r=\"3.2\"/><path d=\"M5.5 21v-3.5a6.5 6.5 0 0 1 13 0V21\"/>", "dna": "<path d=\"M7 3c0 5 10 5 10 9s-10 4-10 9M17 3c0 5-10 5-10 9s10 4 10 9M9 6.5h6M9 17.5h6\"/>", "microbe": "<circle cx=\"12\" cy=\"12\" r=\"4.8\"/><path d=\"M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8\"/>", "thermo": "<path d=\"M10 4.5a2 2 0 0 1 4 0v9.8a4.2 4.2 0 1 1-4 0z\"/><path d=\"M12 9v8\"/>", "pill": "<g transform=\"rotate(45 12 12)\"><rect x=\"8\" y=\"2.5\" width=\"8\" height=\"19\" rx=\"4\"/><path d=\"M8 12h8\"/></g>", "pk": "<path d=\"M4 3.5V20h16.5\"/><path d=\"M6 18c1.5-9 3.5-12 5.5-10.5S16 15 20 16\"/>", "shield": "<path d=\"M12 3l7 2.8v5.2c0 4.8-3 8.2-7 10-4-1.8-7-5.2-7-10V5.8z\"/><path d=\"M9 12l2.2 2.2L15.5 10\"/>", "leaf": "<path d=\"M5 19C5 10 11 5 19.5 4.5 19.5 13 14 19 5 19z\"/><path d=\"M5 19l8.5-8.5\"/>", "atom": "<circle cx=\"12\" cy=\"12\" r=\"1.6\"/><ellipse cx=\"12\" cy=\"12\" rx=\"9\" ry=\"3.6\"/><ellipse cx=\"12\" cy=\"12\" rx=\"9\" ry=\"3.6\" transform=\"rotate(60 12 12)\"/><ellipse cx=\"12\" cy=\"12\" rx=\"9\" ry=\"3.6\" transform=\"rotate(120 12 12)\"/>", "flask": "<path d=\"M9 3h6M10 3v6.5L5 19a1.3 1.3 0 0 0 1.2 2h11.6A1.3 1.3 0 0 0 19 19l-5-9.5V3\"/><path d=\"M7.5 15h9\"/>", "benzene": "<path d=\"M12 3l7.8 4.5v9L12 21l-7.8-4.5v-9z\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/>", "mortar": "<path d=\"M3.5 11h17a8.5 8 0 0 1-17 0z\"/><path d=\"M15 3.5L11 11\"/>", "scale": "<path d=\"M12 4v16M7.5 20h9M5 7.5h14M5 7.5L2.8 13.5h4.4zM19 7.5l-2.2 6h4.4z\"/>"};
+const DD_SUBJ = { kaibou:["body"], seika:["dna"], micro:["microbe"], patho:["thermo"], yakuri:["pill"], doutai:["pk"], kankyo:["shield"], shoyaku:["leaf"],
+  phys:["atom"], anal:["flask"], orgc:["benzene","yuki"], seizai:["mortar"], houki:["scale"] };
+const DD_G4 = [["化学と物理", ["phys","anal","orgc","shoyaku"]], ["からだと生物", ["kaibou","seika","micro"]], ["病気と薬", ["patho","yakuri","doutai","seizai"]], ["社会と薬", ["kankyo","houki"]]];
+function ddCol(k){ const d = DD_SUBJ[k]; return d ? "var(--" + (d[1] || k) + ")" : "var(--act)"; }
+function ddPic(k, col, sz){ const d = DD_SUBJ[k]; if(!d) return ""; return `<svg viewBox="0 0 24 24" width="${sz || 26}" height="${sz || 26}" fill="none" stroke="${col || "#fff"}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${DD_PIC[d[0]]}</svg>`; }
+function ddSq(k, sz){ return `<span class="dd-sq" style="background:${ddCol(k)};width:${sz || 28}px;height:${sz || 28}px">${ddPic(k, "#fff", Math.round((sz || 28) * .64))}</span>`; }
+function ddSubjName(k){ if(EXAMS[k]) return EXAMS[k].name; const o = (typeof SUBJ_ORDER !== "undefined" ? SUBJ_ORDER : []).find(x=> x.k === k); return o ? o.n : k; }
+function ddSubjKeys(){ const out = []; DD_G4.forEach(g=> g[1].forEach(k=>{ if(EXAMS[k]) out.push(k); })); Object.keys(EXAMS).forEach(k=>{ if(out.indexOf(k) < 0) out.push(k); }); return out; }
+try{ Object.keys(DD_SUBJ).forEach(k=>{ R1_SUBJ_COLOR[k] = ddCol(k); }); }catch(e){}
+function ddSubjects(){
+  const g = DD_G4.map(([n, ks])=> `<div class="dds-gl">${n}</div><div class="dds-gr">${ks.map(k=>{
+    const nm = ddSubjName(k), long = nm.length > 5;
+    if(!EXAMS[k]) return `<div class="dds-b off"><span class="sq">${ddPic(k, "var(--muted)")}</span><span class="t"><span class="n">${ddEsc(nm)}</span><span class="p">準備中</span></span></div>`;
+    const m = mastery(k);
+    return `<button class="dds-b" onclick="go('units',{subject:'${k}'})"><span class="sq" style="background:${ddCol(k)}">${ddPic(k)}</span><span class="t"><span class="n${long ? " l" : ""}">${ddEsc(nm)}</span><span class="p">${m.pct}%</span></span></button>`;
+  }).join("")}</div>`).join("");
+  return `<div class="dd dds">${ddBack("ホーム", "go('home')")}<div class="dd-ttl"><b>科目別</b></div><div class="dds-g">${g}</div></div>`;
+}
+function ddWeekUnits(){ try{ const A = tierOn() ? p2All() : null; if(!A || !A.main) return new Set(); const w = p2Weeks(A.main)[0]; return new Set(w ? w.us.map(x=> x.s + "|" + x.u) : []); }catch(e){ return new Set(); } }
+function ddUnits(){
+  const s = view.subject; if(!EXAMS[s]) return ddSubjects();
+  const m = mastery(s), wk = ddWeekUnits();
+  const rows = unitsOf(s).map(([u, n])=>{
+    const qs = QUESTIONS.filter(q=> q.s === s && q.u === u);
+    let ok = 0, seen = 0; qs.forEach(q=>{ if(isMastered(q.id)) ok++; const t = stOf(q.id); if((t.c || 0) + (t.w || 0)) seen++; });
+    const cur = wk.has(s + "|" + u), pct = qs.length ? Math.round(ok / qs.length * 100) : 0;
+    return `<button class="dd-row${cur ? " cur" : ""}" onclick="openSetup('${s}',[${JSON.stringify(u).replace(/"/g, "&quot;")}])"><span class="t">${ddEsc(u)}${cur ? `<span class="dd-tag">今週</span>` : ""}</span><span class="v">${seen ? pct + "%" : ""}</span><span class="gt">›</span></button>`;
+  }).join("");
+  return `<div class="dd ddu">${ddBack("科目別", "go('subjects')")}<div class="ddu-hd">${ddSq(s, 40)}<div class="t"><b>${ddEsc(EXAMS[s].name)}</b><small>習得 ${m.ok.toLocaleString()}／${m.total.toLocaleString()}問</small></div><span class="dd-big">${m.pct}<small>%</small></span></div>
+    <div class="ddu-pb dd-pb"><i style="width:${m.pct}%;background:${ddCol(s)}"></i></div>
+    <div class="ddu-box">${rows}</div></div>`;
+}
+
+/* ---------- 休み札（1週間に1枚。解かなかった日に自動で使う） ---------- */
+function ddRestAuto(){
+  const t = jDayNo(), w = ddWeek(); if(ddRestUsedThisWeek() !== undefined) return;
+  const y = t - 1; if(y < w[0]) return;
+  if(ddSolvedOn(y)) return;
+  if(!ddSolvedOn(y - 1) && ddRestDays().indexOf(y - 1) < 0) return;   /* 続けた日が無ければ使わない */
+  ST.restDays = ddRestDays().concat([y]).slice(-60); saveProgress(true);
+}
+/* ---------- 記録 ---------- */
+function ddUnitNext(){
+  try{
+    const rows = p2UnitRows("all").filter(x=> x.need > 0).sort((a, b)=> a.need - b.need);
+    return rows[0] || null;
+  }catch(e){ return null; }
+}
+function ddRec(){
+  try{ ddRestAuto(); }catch(e){}
+  const st = ddStreak(), best = ddBest(), t = jDayNo(), rest = ddRestUsedThisWeek();
+  const wk = ddWeek().map(n=>{ const w = "月火水木金土日"[(jPartsNo(n).w + 6) % 7];
+    const c = ddRestDays().indexOf(n) >= 0 ? `<span class="dd-st rest">休</span>` : n <= t && ddSolvedOn(n) ? `<span class="dd-st on">済</span>` : `<span class="dd-st${n === t ? " td" : ""}"></span>`;
+    return `<div>${c}<em>${w}</em></div>`; }).join("");
+  const days = ddWeek().filter(n=> n <= t && ddSolvedOn(n)).length;
+  const restLine = rest !== undefined ? `休み札：今週は使った（${"日月火水木金土"[jPartsNo(rest).w]}）。来週の月曜にまた1枚` : `休み札：今週の1枚あり（解かなかった日に自動で使う）`;
+  const g = goalN(), today = dayCount(dailyKey()), tp = Math.min(100, Math.round(today / g * 100));
+  const P = ddPct(); let mid = 0; QUESTIONS.forEach(q=>{ if(!isMastered(q.id)){ const s = stOf(q.id); if((s.c || 0) + (s.w || 0) > 0) mid++; } });
+  const rest2 = Math.max(0, P.T - P.ok - mid), wkUp = ddMasteredThisWeek();
+  const half = P.ok * 2 >= P.T;
+  const bigP = half ? `<span class="dd-big">あと${(P.T - P.ok).toLocaleString()}<small>問</small></span>` : `<span class="dd-big">${P.ok.toLocaleString()}<small>問 習得</small></span>`;
+  const nx = ddUnitNext();
+  const next = nx ? `<button class="ddr-next" onclick="go('units',{subject:'${nx.s}'});openSetup('${nx.s}',[${JSON.stringify(nx.u).replace(/"/g, "&quot;")}])">${ddSq(nx.s)}<span class="t"><small>次の段まで</small><span>${ddEsc(ddSubjName(nx.s))}　${ddEsc(nx.u)}</span></span><span class="v">あと${nx.need}問</span><span class="gt">›</span></button>` : "";
+  const wrongN = allWrong().length;
+  return `<div class="dd ddr">${ddBack("ホーム", "go('home')")}<div class="dd-ttl"><b>記録</b></div>
+    <div class="dd-sec">今週</div><div class="ddr-l"><span class="dd-big" style="color:var(--ink)">${days}<small>日</small></span><span>続けた日 ${st}日・最長 ${best}日</span></div>
+    <div class="ddr-wk">${wk}</div><div class="dd-note">${restLine}</div>
+    <div class="dd-sec">今日<span style="flex:1"></span><button class="dd-lk" style="min-height:24px;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)))" onclick="ddGoalSheet()">1日の目標 ›</button></div>
+    <div class="ddr-l"><span class="dd-big" style="color:var(--ink)">${today}<small>／${g}問</small></span></div><div class="ddr-pb dd-pb"><i style="width:${tp}%"></i></div>
+    <div class="dd-sec">全体の進み</div><div class="ddr-l">${bigP}${wkUp ? `<span class="dd-up">今週 +${wkUp}</span>` : ""}<span>全体の ${P.pct}%</span></div>
+    <div class="ddr-pb dd-pb"><i style="width:${P.ok / P.T * 100}%"></i><i style="width:${mid / P.T * 100}%;background:var(--act-bd)"></i></div>
+    <div class="ddr-lg"><span><i style="background:var(--act)"></i>習得 ${P.ok.toLocaleString()}</span><span><i style="background:var(--act-bd)"></i>解いた ${mid.toLocaleString()}</span><span><i style="background:var(--off)"></i>まだ ${rest2.toLocaleString()}</span></div>
+    ${next}<div class="dd-rows" style="margin-top:16px"><button class="dd-row" onclick="go('dwrong')"><span class="t">間違えた問題</span><span class="v">${wrongN}問</span><span class="gt">›</span></button><button class="dd-row" onclick="go('dstat')"><span class="t">単元ごとの正答率</span><span class="gt">›</span></button><button class="dd-row" onclick="go('dana')"><span class="t">学習の分析</span><span class="v">科目ごと・暦</span><span class="gt">›</span></button></div>
+    <div class="dd-fill"></div></div>`;
+}
+function ddMasteredThisWeek(){
+  const w0 = ddWeek()[0], h = ST.history || [], seen = new Set(); let n = 0;
+  for(let i = h.length - 1; i >= 0; i--){ const x = h[i]; if(jDayNo(x.ts) < w0) break; if(seen.has(x.id)) continue; seen.add(x.id); if(x.ok && isMastered(x.id)) n++; }
+  return n;
+}
+function ddGoalSheet(){
+  const g = goalN(), opts = [10, 20, 30, 50, 100, 150, 200, 300];
+  ddSheet(`<h3>1日の目標</h3><p>1日に解く問題の数（10〜300問）。続けた日は1問でも解けば数える</p><div class="dd-sg" style="flex-wrap:wrap">${opts.map(n=> `<button aria-pressed="${n === g}" onclick="r1vGoal(${n});ddClose();render()">${n}</button>`).join("")}</div><div style="height:16px"></div><button class="dd-ob" style="width:100%" onclick="ddClose()">閉じる</button>`);
+}
+
+/* ---------- 間違えた問題（日をあけて正解したら消える） ---------- */
+function ddWrongData(){
+  const h = ST.history || [], by = {};
+  h.forEach(x=>{ if(!x || !x.id) return; const o = by[x.id] || (by[x.id] = { w:0, lastW:null, fixDay:null }); const d = jDayNo(x.ts);
+    if(!x.ok || x.skip){ o.w++; o.lastW = x.ts; o.fixDay = null; }
+    else if(o.lastW !== null && d > jDayNo(o.lastW)){ o.fixDay = d; } });
+  const out = [], fixed = [];
+  Object.keys(by).forEach(id=>{ const o = by[id]; if(o.lastW === null) return; const q = qById(id); if(!q || !EXAMS[q.s]) return;
+    if(o.fixDay === null) out.push({ q, n:o.w, at:o.lastW }); else fixed.push({ q, day:o.fixDay }); });
+  return { out, fixed };
+}
+(function(){ const aw0 = allWrong; allWrong = function(){ if(!r1On()) return aw0.apply(this, arguments); try{ return ddWrongData().out.map(x=> x.q); }catch(e){ return aw0.apply(this, arguments); } }; })();
+function ddDate(ts){ const p = jPartsNo(jDayNo(ts)); return p.m + "月" + p.d + "日"; }
+function ddSolveOne(id){ const q = qById(id); if(!q) return; go("quiz", { subject:q.s, units:null, set:[q], i:0, log:[], picked:null, sel:[], review:true, fromWrong:true }); }
+function ddSolveWrong(s){
+  const L = ddWrongData().out.filter(x=> !s || x.q.s === s).sort((a, b)=> a.at - b.at).map(x=> x.q);
+  if(!L.length) return; go("quiz", { subject: s || "all", units:null, set:L, i:0, log:[], picked:null, sel:[], review:true, fromWrong:true });
+}
+function ddWrongSort(k){ view.ddws = k; render(); }
+function ddWrong(){
+  const D = ddWrongData(), L = D.out, w0 = ddWeek()[0], fixedWk = D.fixed.filter(x=> x.day >= w0).length;
+  if(!L.length) return `<div class="dd">${ddBack("記録", "go('drec')")}<div class="dd-ttl"><b>間違えた問題</b></div><div class="dd-emp"><b>間違えた問題はありません</b><p>問題で間違えると、ここに残ります。<br>日をあけて正解すると消えます。</p></div><div class="dd-fill"></div><div class="dd-dock"><button class="dd-go" onclick="ddStartGuard('p2Start()')">次の20問</button></div></div>`;
+  const k = view.ddws || "new";
+  const row = (x, sub)=> `<button class="dd-row" style="align-items:center;padding:10px 4px" onclick="ddSolveOne('${x.q.id}')"><span class="dd-ln" style="background:${ddCol(x.q.s)};margin:0"></span><span class="t"><span class="dd-wq">${ddEsc(x.q.q)}</span><small>${sub ? ddEsc(ddSubjName(x.q.s)) + "・" : ""}${ddEsc(x.q.u)}　${ddDate(x.at)}　間違い${x.n}回</small></span><span class="gt">›</span></button>`;
+  let body;
+  if(k === "subj"){
+    const order = ddSubjKeys();
+    body = order.map(s=>{ const xs = L.filter(x=> x.q.s === s); if(!xs.length) return "";
+      const us = unitsOf(s).map(u=> u[0]); xs.sort((a, b)=> us.indexOf(a.q.u) - us.indexOf(b.q.u) || (a.q.no || 0) - (b.q.no || 0));
+      return `<div class="ddw-sh"><span class="sqs" style="background:${ddCol(s)}"></span><b>${ddEsc(ddSubjName(s))}<small>${xs.length}問</small></b><button class="dd-ob" onclick="ddSolveWrong('${s}')">この${xs.length}問</button></div>` + xs.map(x=> row(x, false)).join(""); }).join("");
+  }else{
+    const xs = L.slice().sort(k === "cnt" ? (a, b)=> b.n - a.n || b.at - a.at : (a, b)=> b.at - a.at);
+    body = xs.slice(0, 300).map(x=> row(x, true)).join("");
+  }
+  return `<div class="dd">${ddBack("記録", "go('drec')")}<div class="dd-ttl"><b>間違えた問題</b></div>
+    <div class="ddr-l" style="padding-top:8px"><span class="dd-big" style="color:var(--ink)">${L.length}<small>問</small></span>${fixedWk ? `<span class="dd-up">今週 直した ${fixedWk}</span>` : ""}</div>
+    <div style="padding:12px 16px 0" class="dd-sg"><button aria-pressed="${k === "new"}" onclick="ddWrongSort('new')">新しい順</button><button aria-pressed="${k === "cnt"}" onclick="ddWrongSort('cnt')">回数順</button><button aria-pressed="${k === "subj"}" onclick="ddWrongSort('subj')">科目・単元順</button></div>
+    <div class="dd-note">日をあけて正解すると消えます（同じ日の正解では消えない）</div>
+    <div class="dd-sc" style="margin-top:8px"><div class="dd-rows">${body}</div></div></div>`;
+}
+
+/* ---------- 単元ごとの正答率（最近の20問・10問以上） ---------- */
+function ddUnitAcc(){
+  const h = ST.history || [], by = {};
+  for(let i = h.length - 1; i >= 0; i--){ const x = h[i]; const q = qById(x.id); if(!q || !EXAMS[q.s]) continue; const k = q.s + "|" + q.u; const o = by[k] || (by[k] = { s:q.s, u:q.u, n:0, ok:0 }); if(o.n >= 20) continue; o.n++; if(x.ok && !x.skip) o.ok++; }
+  return Object.values(by);
+}
+function ddStatSort(k){ view.ddss = k; render(); }
+function ddStat(){
+  const A = ddUnitAcc(), ok = A.filter(x=> x.n >= 10), few = A.length - ok.length, k = view.ddss || "weak";
+  const row = (x, sub)=>{ const p = Math.round(x.ok / x.n * 100), near = p >= 60 && p < 80;
+    return `<button class="dd-row" onclick="go('units',{subject:'${x.s}'});view.mode='weak';openSetup('${x.s}',[${JSON.stringify(x.u).replace(/"/g, "&quot;")}])"><span class="dd-ln" style="background:${ddCol(x.s)}"></span><span class="t">${ddEsc(x.u)}${sub || near ? `<small>${sub ? ddEsc(ddSubjName(x.s)) : ""}${near ? `<span class="dd-tag ok">あと少し</span>` : ""}</small>` : ""}</span><span class="dd-br"><i style="width:${p}%"></i></span><span class="dd-pv">${p}%<small>${x.n}問</small></span><span class="gt">›</span></button>`; };
+  let body;
+  if(!ok.length) body = `<div class="dd-emp"><b>まだ出せる単元がありません</b><p>1つの単元で10問解くと出ます</p></div>`;
+  else if(k === "subj"){
+    body = ddSubjKeys().map(s=>{ const us = unitsOf(s).map(u=> u[0]); const xs = ok.filter(x=> x.s === s).sort((a, b)=> us.indexOf(a.u) - us.indexOf(b.u)); if(!xs.length) return "";
+      return `<div class="ddw-sh"><span class="sqs" style="background:${ddCol(s)}"></span><b>${ddEsc(ddSubjName(s))}</b></div><div class="dd-rows" style="margin:0">${xs.map(x=> row(x, false)).join("")}</div>`; }).join("");
+    body = `<div style="margin:0 16px">${body}</div>`;
+  }else body = `<div class="dd-rows">${ok.sort((a, b)=> a.ok / a.n - b.ok / b.n).map(x=> row(x, true)).join("")}</div>`;
+  return `<div class="dd">${ddBack("記録", "go('drec')")}<div class="dd-ttl"><b>単元ごとの正答率</b></div>
+    <div style="padding:12px 16px 0" class="dd-sg"><button aria-pressed="${k === "weak"}" onclick="ddStatSort('weak')">弱い順</button><button aria-pressed="${k === "subj"}" onclick="ddStatSort('subj')">科目順</button></div>
+    <div class="dd-note">正答率は最近の20問から（10問以上解いた単元だけ）。あと少し＝60〜79%</div>
+    <div class="dd-sc" style="margin-top:8px">${body}${few ? `<div class="dd-rows"><div class="dd-row"><span class="t" style="color:var(--muted);font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)))">解いた数が少ない単元 ${few}</span></div></div>` : ""}</div></div>`;
+}
+
+/* ---------- 学習の分析 ---------- */
+const DD_TNAME = { "第一選択薬→病名":"薬から病名" };
+function ddAna(){
+  const subj = ddSubjKeys().map(k=>{ const m = mastery(k); return `<button class="dd-row" onclick="go('units',{subject:'${k}'})">${ddSq(k, 24)}<span class="t" style="flex:none;width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${ddEsc(ddSubjName(k))}</span><span class="dd-br w"><i style="width:${m.pct}%;background:${ddCol(k)}"></i></span><span class="dd-pv" style="width:72px">${m.pct}%<small>${m.total.toLocaleString()}問中</small></span><span class="gt">›</span></button>`; }).join("")
+    + `<div class="dd-row"><span class="dd-sq" style="border:1.5px dashed var(--bd);width:24px;height:24px"></span><span class="t" style="color:var(--muted)">準備中の5科目</span></div>`;
+  /* 言葉（n）と種類（t） */
+  const W = {}, T = {};
+  QUESTIONS.forEach(q=>{ const s = ST.stats[q.id]; if(!s) return; const n = (s.c || 0) + (s.w || 0); if(!n) return;
+    if(q.n && DICT[q.n]){ const o = W[q.n] || (W[q.n] = { c:0, n:0, cat:DICT[q.n].c || "" }); o.c += s.c || 0; o.n += n; }
+    if(q.t && q.t !== "書き下ろし演習"){ const o = T[q.t] || (T[q.t] = { c:0, n:0 }); o.c += s.c || 0; o.n += n; } });
+  const wl = Object.entries(W).filter(([, o])=> o.n >= 4).sort((a, b)=> a[1].c / a[1].n - b[1].c / b[1].n).slice(0, 5);
+  const tl = Object.entries(T).filter(([, o])=> o.n >= 10).sort((a, b)=> a[1].c / a[1].n - b[1].c / b[1].n).slice(0, 4);
+  const wn = Object.values(W).reduce((m, o)=> Math.max(m, o.n), 0), tn = Object.values(T).reduce((m, o)=> Math.max(m, o.n), 0);
+  const words = wl.length ? wl.map(([w, o])=>{ const p = Math.round(o.c / o.n * 100); return `<button class="dd-row" onclick="view.sq=${JSON.stringify(w).replace(/"/g, "&quot;")};go('search')"><span class="t">${ddEsc(w)}<small>${ddEsc(o.cat)}</small></span><span class="dd-br w"><i style="width:${p}%"></i></span><span class="dd-pv">${p}%<small>${o.n}問</small></span><span class="gt">›</span></button>`; }).join("")
+    : `<div class="dd-row"><span class="t" style="color:var(--muted);font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)))">1つの言葉で4問解くと出ます${wn ? "（あと" + Math.max(0, 4 - wn) + "問）" : ""}</span></div>`;
+  const types = tl.length ? tl.map(([t, o])=>{ const p = Math.round(o.c / o.n * 100); return `<div class="dd-row"><span class="t">${ddEsc(DD_TNAME[t] || t)}</span><span class="dd-br w"><i style="width:${p}%"></i></span><span class="dd-pv">${p}%<small>${o.n}問</small></span></div>`; }).join("")
+    : `<div class="dd-row"><span class="t" style="color:var(--muted);font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)))">1つの種類で10問解くと出ます${tn ? "（あと" + Math.max(0, 10 - tn) + "問）" : ""}</span></div>`;
+  /* 週ごとの正答率（8週・「分からない」は数えない） */
+  const w0 = ddWeek()[0], wk = Array.from({length:8}, ()=> ({ c:0, n:0, all:0 }));
+  (ST.history || []).forEach(x=>{ const i = Math.floor((w0 + 7 - 1 - jDayNo(x.ts)) / 7); if(i < 0 || i > 7) return; const o = wk[7 - i]; o.all++; if(x.skip) return; o.n++; if(x.ok) o.c++; });
+  const pts = wk.map(o=> o.n ? Math.round(o.c / o.n * 100) : null), vals = pts.filter(v=> v !== null);
+  const lo = vals.length ? Math.max(0, Math.min(...vals) - 10) : 0, hi = vals.length ? Math.min(100, Math.max(...vals) + 10) : 100;
+  const X = i=> 16 + i * 330 / 7, Y = v=> 24 + (hi - v) / Math.max(1, hi - lo) * 56;
+  let line = ""; const ps = pts.map((v, i)=> v === null ? null : [X(i), Y(v)]).filter(Boolean);
+  if(ps.length > 1) line = `<polyline points="${ps.map(p=> p[0].toFixed(1) + "," + p[1].toFixed(1)).join(" ")}" fill="none" stroke="var(--ink)" stroke-width="2"/>`;
+  const svg = `<svg viewBox="0 0 362 124">${line}${pts.map((v, i)=> (v === null ? "" : `<circle cx="${X(i).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="${i === 7 ? 4 : 3}" fill="var(--ink)"/><text x="${X(i).toFixed(1)}" y="${(Y(v) - 9).toFixed(1)}" font-size="12" text-anchor="middle" fill="${i === 7 ? "var(--ink)" : "var(--muted)"}" font-weight="${i === 7 ? 900 : 600}">${v}%</text>`) + `<text x="${X(i).toFixed(1)}" y="106" font-size="12" text-anchor="middle" fill="var(--muted)">${i === 7 ? "今週" : (7 - i) + "週前"}</text><text x="${X(i).toFixed(1)}" y="122" font-size="12" text-anchor="middle" fill="var(--muted)">${wk[i].all}問</text>`).join("")}</svg>`;
+  /* 暦（5週） */
+  const t = jDayNo(), rest = new Set(ddRestDays()); let cal = "", nd = 0, nq = 0;
+  for(let r = 4; r >= 0; r--){ let cells = ""; for(let d = 0; d < 7; d++){ const n = w0 - r * 7 + d; let c = "", tx = "";
+    if(n > t) c = "fu"; else if(rest.has(n)){ c = "rest"; tx = "休"; } else if(ddSolvedOn(n)){ c = "on"; tx = "済"; nd++; } else if(n === t) c = "td";
+    if(n <= t) nq += dayCount(jKeyOfNo(n)); cells += `<span class="dd-st ${c}">${tx}</span>`; } cal += `<div class="w">${cells}</div>`; }
+  return `<div class="dd">${ddBack("記録", "go('drec')")}<div class="dd-ttl" style="flex-direction:column;gap:0"><b>学習の分析</b><small>この端末だけで計算・どこにも送らない</small></div>
+    <div class="dd-sc"><div class="dd-sec">科目ごとの習得</div><div class="dd-rows">${subj}</div>
+    <div class="dd-sec">正答率の低い言葉</div><div class="dd-rows">${words}</div>
+    <div class="dd-sec">問いの種類ごとの正答率</div><div class="dd-rows">${types}</div>
+    <div class="dd-sec">週ごとの正答率</div><div class="dd-ln-ch">${svg}</div><div class="dd-note" style="padding-top:0">「分からない」は数えない</div>
+    <div class="dd-sec">暦（5週）</div><div class="dd-cal"><div class="h">${"月火水木金土日".split("").map(x=> `<span>${x}</span>`).join("")}</div>${cal}</div><div class="dd-note">5週で ${nd}日・のべ ${nq.toLocaleString()}問</div>
+    <div class="dd-note" style="padding-bottom:24px">解いた数が少ない言葉・種類は出さない（言葉は4問・種類は10問から）</div></div></div>`;
+}
+
+/* ---------- 設定 ---------- */
+function ddMotionOn(){ if(ST.motion === "less") return true; if(ST.motion === "full") return false; try{ return matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){ return false; } }
+function ddMotion(){ ST.motion = ddMotionOn() ? "full" : "less"; ddMotionApply(); saveProgress(true); render(); }
+function ddMotionApply(){ document.documentElement.classList.toggle("dd-still", r1On() && ddMotionOn()); }
+function ddConsent(){ ST.consent = !ST.consent; saveProgress(true); render(); }
+function ddSet(){
+  const t = themeNow(), fs = ST.fs === "l" ? "l" : "m", p = ST.profile || {};
+  const seg = (L, on, f)=> `<span class="dd-sg">${L.map(([v, n])=> `<button aria-pressed="${v === on}" onclick="${f}('${v}')">${n}</button>`).join("")}</span>`;
+  const prof = [p.grade, p.univ || p.school, p.purpose, p.age, p.gender].filter(Boolean).map(ddEsc).join("・") || "まだ答えていない";
+  const sy = ST.syncAt ? (()=>{ const q = jPartsNo(jDayNo(ST.syncAt)); return "最後の引き継ぎ " + q.m + "月" + q.d + "日"; })() : "まだしていない";
+  const ver = typeof APP_VER !== "undefined" ? APP_VER : "";
+  return `<div class="dd dd-set">${ddBack("ホーム", "go('home')")}<div class="dd-ttl"><b>設定</b></div><div class="dd-sc">
+    <div class="dd-sec">表示</div><div class="dd-rows">
+      <div class="dd-row"><span class="t">明るさ</span>${seg([["light", "ライト"], ["dark", "ダーク"], ["auto", "自動"]], t, "setTheme")}</div>
+      <div class="dd-row"><span class="t">文字</span>${seg([["m", "標準"], ["l", "大"]], fs, "setFs")}</div>
+      <div class="dd-row"><span class="t">動きを減らす</span><button class="dd-tg" aria-pressed="${ddMotionOn()}" aria-label="動きを減らす" onclick="ddMotion()"></button></div></div>
+    <div class="dd-sec">あなたについて</div><div class="dd-rows">
+      <button class="dd-row" onclick="go('profile',{fromSettings:true,backTo:'dset'})"><span class="t">学年・大学・目的・年齢・性別<small>${prof}</small></span><span class="gt">›</span></button>
+      <div class="dd-row"><span class="t">学習データの送信<small>学年・年齢・性別・正誤を送る</small></span><button class="dd-tg" aria-pressed="${!!ST.consent}" aria-label="学習データの送信" onclick="ddConsent()"></button></div></div>
+    <div class="dd-sec">記録</div><div class="dd-rows">
+      <button class="dd-row" onclick="go('sync',{syncMsg:null,syncKind:'',backTo:'dset'})"><span class="t">記録の引き継ぎ<small>${sy}</small></span><span class="gt">›</span></button></div>
+    <div class="dd-sec">このアプリ</div><div class="dd-rows">
+      <button class="dd-row" onclick="guideShowIntro()"><span class="t">使い方</span><span class="gt">›</span></button>
+      <button class="dd-row" onclick="guideShowNews(true)"><span class="t">更新内容</span><span class="v">${ddEsc(ver)}</span><span class="gt">›</span></button></div>
+    <button class="dd-del" onclick="ddDialog('記録をすべて消しますか','解いた記録・習得・計画が消え、元に戻せません','やめる','消去','ddResetAll()',true)">記録の全消去</button></div></div>`;
+}
+async function ddResetAll(){ ST = { stats:{}, history:[], syncCode: genSyncCode(), daily:null, ref:1, consentAsked:true }; await Store.clear(); try{ saveProgress(true); }catch(e){} go("home"); }
+Object.assign(DD_SCR, { subjects:ddSubjects, units:ddUnits, drec:ddRec, dwrong:ddWrong, notes:ddWrong, dstat:ddStat, stats:ddStat, dana:ddAna, analysis:ddAna, dset:ddSet });
+DD_SCR.records = function(){ return view.rtab === "set" ? ddSet() : ddRec(); };
+try{ ddMotionApply(); }catch(e){}
+
+
+/* ---------- 講義：編の一覧（基礎・前・後） ---------- */
+function ddEps(k){
+  const out = [];
+  try{
+    const kb = typeof lv2For === "function" ? lv2For(k + "#k") : null;
+    if(kb) out.push({ n:"基礎編", s:"基", on:"openLec2('" + kb.ids[0] + "')", min:(LV2.L[kb.ids[0]] || {}).min, seen: ddLvSeen(kb.ids[0]) });
+    else if(LECS[k + "#k"]) out.push({ n:"基礎編", s:"基", on:"openLec(" + JSON.stringify(k + "#k").replace(/"/g, "&quot;") + ")", min:LECS[k + "#k"].min, seen: lecSeen(k + "#k") });
+    const b = typeof lv2For === "function" ? lv2For(k) : null;
+    if(b) b.ids.forEach((id, i)=>{ const L = LV2.L[id] || {}; const nm = b.ids.length > 1 ? (["前編", "後編"][i] || "その" + (i + 1)) : "標準編"; out.push({ n:nm, s:nm.charAt(0), on:"openLec2('" + id + "')", min:L.min, seen: ddLvSeen(id) }); });
+    else if(LECS[k] && lecShown(k)) out.push({ n:"標準編", s:"標", on:"openLec(" + JSON.stringify(k).replace(/"/g, "&quot;") + ")", min:LECS[k].min, seen: lecSeen(k) });
+  }catch(e){}
+  return out;
+}
+function ddLvSeen(id){ return !!(ST.lv2seen && ST.lv2seen[id]); }
+(function(){ if(typeof lv2AtLast !== "function") return; const a0 = lv2AtLast; lv2AtLast = function(){ try{ const L = lv2L(); if(L && (view.li || 0) === L.s.length - 1){ ST.lv2seen = ST.lv2seen || {}; if(!ST.lv2seen[view.lv2]){ ST.lv2seen[view.lv2] = dailyKey(); saveProgress(true); } } }catch(e){} return a0.apply(this, arguments); }; })();
+/* 単元に結びつく資料の章（問題の数の多い順に2つまで） */
+function ddChapsOf(s, u){
+  const c = {}; QUESTIONS.forEach(q=>{ if(q.s !== s || q.u !== u) return; const r = studyRefOf(q); if(r && r.key) c[r.key] = (c[r.key] || 0) + 1; });
+  return Object.keys(c).sort((a, b)=> c[b] - c[a]).slice(0, 2);
+}
+const DD_BOOK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg>';
+/* 出題設定の表示（今のしくみのまま、言葉・講義・資料・後ろの画面を方向D に） */
+(function(){
+  const s0 = r1Setup;
+  r1Setup = function(){
+    let h = s0.apply(this, arguments);
+    if(!r1On()) return h;
+    try{
+      const s = view.subject, one = s !== "all" && view.units && view.units.length === 1;
+      h = h.replace(/<strong>総ざらい<\/strong>/, "<strong>全問</strong>").replace(/>細かく決める　段・数・順番 (▾|▴)</, ">細かい設定 $1<").replace(/>細かく (▾|▴)</, ">細かい設定 $1<").replace(/(\d+)問を解く<\/button>/, "$1問</button>").replace(/(\d+)問をはじめる<\/button>/, "$1問</button>");
+      let lec = "";
+      if(one){
+        const k = s + "|" + view.units[0], E = ddEps(k);
+        if(E.length) lec += `<div class="ddsl"><span>講義</span><div class="r">${E.map(e=> `<button class="dd-ob${e.seen ? " seen" : ""}" onclick="${e.on}">▶ ${e.n}${e.seen ? " ✓" : ""}<small>${e.min ? e.min + "分" : ""}</small></button>`).join("")}</div>`;
+        const C = ddChapsOf(s, view.units[0]);
+        if(C.length) lec += (E.length ? "" : `<div class="ddsl">`) + `<span>資料</span>${C.map(key=> `<button class="m" onclick="tbOpenChap('${key}')">${DD_BOOK}<span>${ddEsc(studyTitle(key))}</span>›</button>`).join("")}`;
+        if(lec) lec += `</div>`;
+      }
+      h = h.replace(/<div class="r1v-lecs">[\s\S]*?<\/div><\/div>/, "").replace(/<button class="cta ghost lecbtn"[^>]*>[\s\S]*?<\/button>/, "");
+      if(lec) h = h.replace(/<button class="r1sh-go"/, lec + '<button class="r1sh-go"');
+      const i = h.indexOf('<button class="r1sh-scrim"');
+      if(i > 0 && s !== "all"){ h = ddUnits().replace(/^<div class="dd ddu"/, '<div class="dd ddu r1sh-under" aria-hidden="true" inert') + h.slice(i); }
+    }catch(e){ console.error("ddSetup", e); }
+    return h;
+  };
+})();
+/* ---------- 問題：上の帯「× 中断｜6／20｜帯｜旗 報告」 ---------- */
+function ddQuizBar(){
+  if(!r1On() || view.screen !== "quiz" || view.study || !view.set) return;
+  const row = $app.querySelector(".qscreen .qhead-row"); if(!row || row.querySelector(".ddq")) return;
+  const q = view.set[view.i], n = view.set.length, i = Math.min(view.i + 1, n), pct = Math.round((view.i + (view.picked !== null && view.picked !== undefined ? 1 : 0)) / n * 100);
+  const d = document.createElement("div"); d.className = "ddq";
+  d.innerHTML = `<button onclick="quitQuiz()" aria-label="中断">× 中断</button><span class="n">${i}／${n}</span><span class="dd-pb"><i style="width:${pct}%"></i></span><button onclick="flagOpen('${q ? q.id : ""}')" aria-label="誤りの報告">${DD_IC.flag} 報告</button>`;
+  row.appendChild(d);
+  $app.querySelectorAll(".qscreen .r1q-bot .cta, .qscreen .qs-sheet > .cta").forEach(b=>{ if(/次の/.test(b.textContent)) b.innerHTML = view.i + 1 >= n ? "結果" : "次の問題"; });
+}
+/* ---------- 結果：主ボタンは「次の20問」 ---------- */
+function ddResultFix(){
+  if(!r1On() || view.screen !== "result") return;
+  const g = $app.querySelector(".r1res .r1r-go"); if(!g || g.dataset.dd) return;
+  g.dataset.dd = "1"; g.textContent = "次の20問";
+  if(view.p2) g.setAttribute("onclick", "ddStartGuard('p2Start()')");
+  else if(view.subject && view.subject !== "all" && view.units) g.setAttribute("onclick", `openSetup('${view.subject}',${JSON.stringify(view.units).replace(/"/g, "&quot;")});startQuiz()`);
+  const bb = $app.querySelector(".r1res .backbar"); if(bb) bb.style.display = "none";
+}
+(function(){ const rq = render; render = function(){ const r = rq.apply(this, arguments); try{ ddQuizBar(); ddResultFix(); }catch(e){ console.error(e); } return r; }; })();
+
+/* ---------- 検索 ---------- */
+function ddDictHits(q){
+  const n = sNorm(q).replace(/\s+/g, ""); if(!n) return [];
+  const out = [];
+  Object.keys(DICT).forEach(k=>{ const d = DICT[k]; if(sNorm(k) === n || (d.a || []).some(a=> sNorm(a) === n)) out.push(k); });
+  return out;
+}
+function ddSearchRecent(w){ if(!w) return; ST.sRecent = [w].concat((ST.sRecent || []).filter(x=> x !== w)).slice(0, 8); }
+function ddSearchSolve(){ const st = sState(); if(!st || !st.qs.length) return; ddSearchRecent(view.sq); const set = st.qs.slice(); for(let i = set.length - 1; i > 0; i--){ const j = (Math.random() * (i + 1)) | 0; [set[i], set[j]] = [set[j], set[i]]; } go("quiz", { subject:"all", units:null, set, i:0, log:[], picked:null, sel:[], review:true, fromSearch:true }); }
+function ddPickMeaning(k){ view.ddsk = k; sRefresh(); }
+function ddSearchBody(){
+  const q = (view.sq || "").trim();
+  if(!q){
+    const rec = (ST.sRecent || []).map(w=> `<button onclick="dGo(${JSON.stringify(w).replace(/"/g, "&quot;")})">${ddEsc(w)}</button>`).join("");
+    const ex = ["アムロジピン", "ロキソニン", "AST", "心不全", "葛根湯", "ACE阻害薬"].map(w=> `<button onclick="dGo('${w}')">${w}</button>`).join("");
+    return `<div class="dd-note">薬の名前・商品名・病名・略語・よみで探せます</div>${rec ? `<div class="dd-sec">最近調べた言葉</div><div class="ddsr-ch">${rec}</div>` : ""}<div class="dd-sec">例</div><div class="ddsr-ch">${ex}</div>`;
+  }
+  const st = sState() || { qs:[], tm:[], ch:[] }, hits = ddDictHits(q);
+  if(hits.length > 1 && !(view.ddsk && hits.indexOf(view.ddsk) >= 0)){
+    return `<div class="dd-sec">「${ddEsc(q)}」には${hits.length}つの意味があります</div><div class="dd-rows">${hits.map(k=> `<button class="dd-row" style="min-height:64px" onclick="ddPickMeaning(${JSON.stringify(k).replace(/"/g, "&quot;")})"><span class="t"><b style="font-size:max(var(--fmin,0px),calc(20px*var(--fs,1)))">${ddEsc(k)}</b><small>${ddEsc(DICT[k].c || "")}　${ddEsc((DICT[k].d || "").slice(0, 30))}</small></span><span class="gt">›</span></button>`).join("")}</div>`;
+  }
+  const key = hits.length > 1 ? view.ddsk : hits[0], D = key ? DICT[key] : null;
+  if(!D && !st.qs.length && !st.ch.length && !st.tm.length){
+    const n2 = sNorm(q).slice(0, 2), near = Object.keys(DICT).filter(k=> sNorm(k).indexOf(n2) >= 0).slice(0, 5);
+    return `<div class="dd-emp" style="padding:32px 24px 8px"><b>「${ddEsc(q)}」は見つかりません</b><p>字を変えるか、短くして探してください</p></div>${near.length ? `<div class="dd-sec">近い言葉</div><div class="dd-rows">${near.map(w=> `<button class="dd-row" onclick="dGo(${JSON.stringify(w).replace(/"/g, "&quot;")})"><span class="t">${ddEsc(w)}<small>${ddEsc(DICT[w].c || "")}</small></span><span class="gt">›</span></button>`).join("")}</div>` : ""}`;
+  }
+  let syn = ""; if(D && key && sNorm(key) !== sNorm(q)) syn = `<div class="dd-note">「${ddEsc(q)}」は${ddEsc(key)}の別名なので、${ddEsc(key)}で探しています</div>`;
+  const card = D ? `<div class="ddsr-card"><div class="h"><b>${ddEsc(key)}</b><span>${ddEsc(D.c || "")}</span></div><p>${ddEsc(D.d || "")}</p>${(D.a || []).length ? `<div class="al">別名：${D.a.map(ddEsc).join("・")}</div>` : ""}${st.qs.length ? `<button class="dd-go" onclick="ddSearchSolve()">この言葉の${st.qs.length}問</button>` : ""}</div>`
+    : (st.qs.length ? `<div style="padding:8px 16px 0"><button class="dd-go" onclick="ddSearchSolve()">この言葉の${st.qs.length}問</button></div>` : "");
+  /* 講義（問題の多い単元から2つ）と資料の章 */
+  const uc = {}; st.qs.forEach(x=>{ const k = x.s + "|" + x.u; uc[k] = (uc[k] || 0) + 1; });
+  const lecRows = Object.keys(uc).sort((a, b)=> uc[b] - uc[a]).filter(k=> ddEps(k).length).slice(0, 2).map(k=>{ const E = ddEps(k), e = E.find(x=> !x.seen) || E[0]; return `<button class="dd-row" onclick="${e.on}"><span class="dd-ln" style="background:${ddCol(k.split("|")[0])}"></span><span class="t">▶ ${ddEsc(k.split("|")[1])}<small>講義・${e.n}${e.min ? "・" + e.min + "分" : ""}</small></span><span class="gt">›</span></button>`; }).join("");
+  const chRows = (st.ch || []).slice(0, 3).map(c=>{ const k = c.key || c.k || c; return `<button class="dd-row" onclick="sOpenChap('${k}')"><span style="color:var(--muted)">${DD_BOOK.replace("<svg", '<svg width="18" height="18"')}</span><span class="t">${ddEsc(studyTitle(k))}<small>資料</small></span><span class="gt">›</span></button>`; }).join("");
+  const rel = (st.tm || []).filter(t=> sNorm(t.term) !== sNorm(key || q)).slice(0, 4).map(t=> `<button class="dd-row" onclick="dGo(${JSON.stringify(t.term).replace(/"/g, "&quot;")})"><span class="t">${ddEsc(t.term)}<small>${ddEsc(t.mean || t.cat || "")}</small></span><span class="gt">›</span></button>`).join("");
+  return `${syn}${card}${lecRows || chRows ? `<div class="dd-sec">講義資料</div><div class="dd-rows">${lecRows}${chRows}</div>` : ""}${rel ? `<div class="dd-sec">関わる言葉</div><div class="dd-rows">${rel}</div>` : ""}<div style="height:24px"></div>`;
+}
+function ddSearch(){
+  const v = view.sq || "";
+  return `<div class="dd ddsr">${ddBack("ホーム", "go('home')")}<div class="ddsr-f">${DD_IC.search}<input id="sinput" type="search" enterkeyhint="search" autocomplete="off" placeholder="調べる（薬・病名・略語）" value="${ddEsc(v)}" oninput="view.ddsk=null;sInput(this.value)" onkeydown="if(event.key==='Enter'){ddSearchRecent(this.value.trim());this.blur()}">${v ? `<button class="x" aria-label="消す" onclick="sClear()">×</button>` : ""}</div>
+    <div class="dd-sc" id="sres">${ddSearchBody()}</div></div>`;
+}
+(function(){ const sr0 = sRefresh; sRefresh = function(){ if(!r1On()) return sr0.apply(this, arguments); const el = document.getElementById("sres"); if(el) el.innerHTML = ddSearchBody(); }; })();
+
+/* ---------- 講義資料 ---------- */
+function ddLecUnits(s){ return unitsOf(s).map(([u])=>{ const k = s + "|" + u, E = ddEps(k); return { s, u, k, E }; }).filter(x=> x.E.length); }
+function ddLecCount(s){ const L = ddLecUnits(s); let n = 0, m = 0; L.forEach(x=> x.E.forEach(e=>{ n++; if(e.seen) m++; })); return { n, m }; }
+function ddLecCont(){
+  /* 最後に開いた講義で、見ていない編 */
+  const k = ST.ddLastLec; if(!k) return null; const E = ddEps(k); const e = E.find(x=> !x.seen); if(!e) return null;
+  return { k, e };
+}
+function ddLib(){
+  let n = 0, m = 0; ddSubjKeys().forEach(s=>{ const c = ddLecCount(s); n += c.n; m += c.m; });
+  const nCh = tbAllKeys().length, rd = Object.keys(ST.tbRead || {}).length;
+  const C = ddLecCont();
+  const lc = C ? `<div class="dd-sec">講義の続き</div><div class="ddl-ct"><div class="t"><small>${ddEsc(ddSubjName(C.k.split("|")[0]))}</small><span>${ddEsc(C.k.split("|")[1])}　${C.e.n}</span></div><button class="dd-go" onclick="${C.e.on}">続き</button></div>` : "";
+  const rk = ST.ddLastChap && STUDY[ST.ddLastChap] ? ST.ddLastChap : null;
+  const rc = rk ? `<div class="dd-sec">資料の続き</div><div class="ddl-ct"><div class="t"><small>資料</small><span>${ddEsc(studyTitle(rk))}</span></div><button class="dd-ob" onclick="tbOpenChap('${rk}')">続き</button></div>` : "";
+  const wk = [...ddWeekUnits()].map(k=>{ const E = ddEps(k); if(!E.length) return ""; const [s, u] = k.split("|");
+    return `<button class="dd-row" style="box-shadow:inset 4px 0 0 var(--act);padding-left:12px" onclick="ddEpSheet(${JSON.stringify(k).replace(/"/g, "&quot;")})"><span class="t">${ddEsc(u)}<small>${ddEsc(ddSubjName(s))}</small></span><span class="ddl-ep">${E.map(e=> `<i class="${e.seen ? "on" : ""}">${e.s}</i>`).join("")}</span><span class="gt">›</span></button>`; }).join("");
+  return `<div class="dd">${'<div style="height:12px"></div>'}<div class="dd-ttl"><b>講義資料</b></div><div class="dd-sc">
+    <div class="ddl-two"><button onclick="go('dlec')">講義<small>見た ${m}／${n}本</small></button><button onclick="go('dmat')">資料<small>読んだ ${rd}／${nCh}章</small></button></div>
+    ${lc}${rc}${wk ? `<div class="dd-sec">今週の単元</div><div class="dd-rows">${wk}</div>` : ""}<div style="height:24px"></div></div></div>`;
+}
+function ddLecSubj(){
+  const g = DD_G4.map(([n, ks])=> `<div class="dds-gl">${n}</div><div class="dds-gr">${ks.map(k=>{
+    const nm = ddSubjName(k), long = nm.length > 5, c = EXAMS[k] ? ddLecCount(k) : { n:0 };
+    if(!c.n) return `<div class="dds-b off"><span class="sq">${ddPic(k, "var(--muted)")}</span><span class="t"><span class="n">${ddEsc(nm)}</span><span class="p">準備中</span></span></div>`;
+    return `<button class="dds-b" onclick="go('dlecs',{dls:'${k}'})"><span class="sq" style="background:${ddCol(k)}">${ddPic(k)}</span><span class="t"><span class="n${long ? " l" : ""}">${ddEsc(nm)}</span><span class="p">見た ${c.m}／${c.n}本</span></span></button>`;
+  }).join("")}</div>`).join("");
+  return `<div class="dd dds">${ddBack("講義資料", "go('tbook')")}<div class="dd-ttl"><b>講義</b></div><div class="dds-g">${g}</div></div>`;
+}
+function ddLecList(){
+  const s = view.dls; if(!EXAMS[s]) return ddLecSubj();
+  const L = ddLecUnits(s), wk = ddWeekUnits();
+  const rows = L.map(x=> `<button class="dd-row${wk.has(x.k) ? " cur" : ""}" onclick="ddEpSheet(${JSON.stringify(x.k).replace(/"/g, "&quot;")})"><span class="t">${ddEsc(x.u)}${wk.has(x.k) ? `<span class="dd-tag">今週</span>` : ""}</span><span class="ddl-ep">${["基", "前", "後"].map(c=>{ const e = x.E.find(e=> e.s === c || (c === "前" && e.s === "標")); return `<i class="${e ? (e.seen ? "on" : "") : "no"}">${e && e.s === "標" ? "標" : c}</i>`; }).join("")}</span><span class="gt">›</span></button>`).join("");
+  return `<div class="dd ddu">${ddBack("講義", "go('dlec')")}<div class="ddu-hd">${ddSq(s, 40)}<div class="t"><b>${ddEsc(EXAMS[s].name)}</b><small>見た ${ddLecCount(s).m}／${ddLecCount(s).n}本</small></div></div>
+    <div class="dd-note">基＝基礎編・前＝前編・後＝後編。塗り＝見た。この科目の講義は、内容の確認がまだです</div><div class="ddu-box">${rows}</div></div>`;
+}
+function ddEpSheet(k){
+  const E = ddEps(k), [s, u] = k.split("|"); ST.ddLastLec = k;
+  const nx = E.find(e=> !e.seen && e.s !== "基") || E.find(e=> !e.seen) || E[E.length - 1];
+  ddSheet(`<h3>${ddEsc(u)}</h3><p>${ddEsc(ddSubjName(s))}</p><div class="dd-rows" style="margin:0">${E.map(e=> `<button class="dd-row" onclick="ddClose();${e.on}">${e.seen ? `<span class="dd-st on" style="width:28px;height:28px">済</span>` : `<span style="width:28px"></span>`}<span class="t">${e.n}</span><span class="v">${e.min ? e.min + "分" : ""}</span><span class="gt">›</span></button>`).join("")}</div>
+    <div class="dd-two" style="margin:16px 0 8px"><button class="dd-ob" onclick="ddClose();go('units',{subject:'${s}'});openSetup('${s}',[${JSON.stringify(u).replace(/"/g, "&quot;")}])">この単元の20問</button></div>
+    <button class="dd-go" onclick="ddClose();${nx.on}">${nx.n}の続き</button>`);
+}
+function ddMat(){
+  const subs = DD_G4.map(([n, ks])=> `<div class="dds-gl">${n}</div><div class="dds-gr" style="flex:none">${ks.map(k=>{ const nm = ddSubjName(k), has = TB_BOOKS[k];
+    if(!has) return `<div class="dds-b off"><span class="sq">${ddPic(k, "var(--muted)")}</span><span class="t"><span class="n">${ddEsc(nm)}</span><span class="p">準備中</span></span></div>`;
+    const keys = TB_BOOKS[k].flatMap(v=> v.ch.map(c=> c.k)).filter(tbReady), rd = keys.filter(x=> ST.tbRead && ST.tbRead[x]).length;
+    return `<button class="dds-b" onclick="go('dvols',{tsubj:'${k}'})"><span class="sq" style="background:${ddCol(k)}">${ddPic(k)}</span><span class="t"><span class="n${nm.length > 5 ? " l" : ""}">${ddEsc(nm)}</span><span class="p">読んだ ${rd}／${keys.length}章</span></span></button>`; }).join("")}</div>`).join("");
+  const keys = TB_VOLS.flatMap(v=> v.ch.map(c=> c.k)).filter(tbReady), rd = keys.filter(x=> ST.tbRead && ST.tbRead[x]).length;
+  return `<div class="dd">${ddBack("講義資料", "go('tbook')")}<div class="dd-ttl"><b>資料</b></div><div class="dd-sc">
+    <button class="ddl-wide" onclick="go('dvols',{tsubj:null})"><span class="sqs">${ddSq("kaibou")}${ddSq("patho")}${ddSq("yakuri")}</span><span class="t"><b>病態薬理</b><small>${TB_VOLS.length}巻・読んだ ${rd}／${keys.length}章</small></span><span class="gt">›</span></button>
+    <div style="padding:0 16px 24px">${subs}</div></div></div>`;
+}
+function ddVolToggle(v){ ST.ddOpenV = ST.ddOpenV || {}; ST.ddOpenV[v] = !ST.ddOpenV[v]; view.keepScroll = true; const y = (document.querySelector(".dd-sc") || {}).scrollTop || 0; render(); const sc = document.querySelector(".dd-sc"); if(sc) sc.scrollTop = y; }
+function ddVols(){
+  const book = view.tsubj && TB_BOOKS[view.tsubj], V = book || TB_VOLS, op = ST.ddOpenV || {};
+  const one = v=>{ const keys = v.ch.map(c=> c.k).filter(tbReady); if(!keys.length) return "";
+    const rd = keys.filter(x=> ST.tbRead && ST.tbRead[x]).length, open = !!op[v.v];
+    const ch = open ? `<div class="ch">${v.ch.some(c=> tbUnchk(c.k)) ? `<div class="dd-note" style="padding:8px 4px">この巻は内容の確認がまだです</div>` : ""}${v.ch.filter(c=> tbReady(c.k)).map(c=> `<button class="dd-row${ST.ddLastChap === c.k ? " cur" : ""}" onclick="tbOpenChap('${c.k}')"><span class="t">${ddEsc(c.t)}${ST.ddLastChap === c.k && !(ST.tbRead || {})[c.k] ? `<span class="dd-tag">途中</span>` : ""}</span>${(ST.tbRead || {})[c.k] ? `<span class="dd-st on" style="width:28px;height:28px">済</span>` : ""}<span class="gt">›</span></button>`).join("")}</div>` : "";
+    return `<div class="ddl-vol"><button onclick="ddVolToggle('${v.v}')" aria-expanded="${open}"><span>${ddEsc(v.n)}<br><small>読んだ ${rd}／${keys.length}章</small></span>${open ? "▴" : "▾"}</button>${ch}</div>`; };
+  let body;
+  if(book) body = V.map(one).join("");
+  else { const so = V.filter(v=> /^0[0A]$/.test(v.v)), ki = V.filter(v=> !/^0[0A]$/.test(v.v)); body = `<div class="dd-sec">総論</div>${so.map(one).join("")}<div class="dd-sec">器官</div>${ki.map(one).join("")}`; }
+  return `<div class="dd">${ddBack("資料", "go('dmat')")}<div class="dd-ttl"><b>${book ? ddEsc(ddSubjName(view.tsubj)) : "病態薬理"}</b></div><div class="dd-sc">${body}<div style="height:24px"></div></div></div>`;
+}
+(function(){ const o0 = tbOpenChap; tbOpenChap = function(key){ try{ if(r1On()){ ST.ddLastChap = key; } }catch(e){} return o0.apply(this, arguments); }; })();
+(function(){ if(typeof openLec2 !== "function") return; const l0 = openLec2; openLec2 = function(id){ try{ const L = LV2 && LV2.L[id]; if(L && r1On()) ST.ddLastLec = String(L.key).replace(/#k$/, ""); }catch(e){} return l0.apply(this, arguments); }; })();
+Object.assign(DD_SCR, { search:ddSearch, tbook:ddLib, dlec:ddLecSubj, dlecs:ddLecList, dmat:ddMat, dvols:ddVols, tvols:ddVols });
+
+
+/* ---------- 読む画面：DD の画面の上でも開く ---------- */
+(function(){ const rs = render; render = function(){
+  if(r1On() && view.study && ["tchaps", "search", "quiz", "result"].indexOf(view.screen) < 0 && typeof Study === "function"){
+    try{ $app.innerHTML = Study(); }catch(e){ console.error(e); return rs.apply(this, arguments); }
+    try{ navApply(); }catch(e){} return; }
+  return rs.apply(this, arguments); }; })();
+/* 資料の本文：最後のページで「読んだ」（自動）・この章のn問（白抜き）・次の章（塗り） */
+function ddStudyEnd(){
+  if(!r1On() || !view.study || wideOn()) return;
+  const st = view.study, key = st.key; if(!key || !STUDY[key]) return;
+  const done = $app.querySelector(".r1rd-done"); if(!done) return;
+  ST.tbRead = ST.tbRead || {}; if(!ST.tbRead[key]){ ST.tbRead[key] = Date.now(); saveProgress(true); }
+  const no = (studyTitle(key).match(/^第(\d+)章/) || [])[1] || "";
+  const d = document.createElement("div"); d.className = "ddrd-end"; d.style.cssText = "margin:8px 0;padding:0;border:0";
+  d.innerHTML = `<div class="st"><span class="dd-st on">済</span>${no ? "第" + no + "章" : "この章"}を読んだ</div>`;
+  done.replaceWith(d);
+  const q = $app.querySelector(".r1rd-next.r1q"); if(q){ q.innerHTML = `この章の${tbQs(key).length}問`; q.classList.add("ddrd-q"); }
+  const nc = $app.querySelector(".r1rd-nch"); if(nc){ nc.textContent = "次の章"; nc.classList.add("ddrd-nx"); const ft = $app.querySelector(".r1rd-ft"); if(ft) ft.appendChild(nc); }
+}
+(function(){ const rsd = render; render = function(){ const r = rsd.apply(this, arguments); try{ ddStudyEnd(); }catch(e){ console.error(e); } return r; }; })();
+function ddChapQuiz(key){ const qs = tbQs(key).slice(); if(!qs.length) return; for(let i = qs.length - 1; i > 0; i--){ const j = (Math.random() * (i + 1)) | 0; [qs[i], qs[j]] = [qs[j], qs[i]]; } view.study = null; go("quiz", { subject:"all", units:null, set:qs.slice(0, 20), i:0, log:[], picked:null, sel:[], review:true }); }
+
+/* ---------- 出題設定の見出し：今の段 ---------- */
+(function(){ const s1 = r1Setup; r1Setup = function(){ let h = s1.apply(this, arguments);
+  try{ if(r1On() && typeof tierOn === "function" && tierOn() && view.subject !== "all" && view.units && view.units.length === 1){
+    const s = view.subject, u = view.units[0], cur = tierOf(s, u), qs = tierQs(s, u).filter(q=> qLv(q) <= Math.max(1, cur)), ok = qs.filter(q=> isMastered(q.id)).length;
+    const nm = (typeof TIER_NM !== "undefined" && TIER_NM[cur]) || "";
+    if(nm) h = h.replace(/(<div class="r1sh-hm"><span>)([^<]*)(<\/span>)/, `$1$2　今の段 ${nm}・習得 ${ok}／${qs.length}問$3`);
+  } }catch(e){}
+  return h; }; })();
+
+/* ---------- 試験対策 ---------- */
+const DD_CNAME = [[/有機/, "orgc"], [/物理/, "phys"], [/分析/, "anal"], [/製剤/, "seizai"], [/法規|制度|倫理/, "houki"], [/衛生/, "kankyo"], [/生化|分子/, "seika"], [/微生物|免疫/, "micro"], [/病態/, "patho"], [/薬理/, "yakuri"], [/動態/, "doutai"], [/解剖|生理/, "kaibou"], [/生薬|漢方/, "shoyaku"]];
+function ddCourseSubj(c){ const n = c.name || ""; const x = DD_CNAME.find(([r])=> r.test(n)); return x ? x[1] : null; }
+function ddExType(k){ const e = uEx(k); return (e && e.t) || "期末"; }
+function ddSetExType(k, t){ uExPut(k, { t }); }
+function ddTermSheet(){
+  const g = uGradeNow(), t = r1TermNow(), opts = [];
+  [1, 2, 3, 4].forEach(y=> ["前", "後"].forEach(tm=> opts.push([y, tm])));
+  ddSheet(`<h3>学年・学期</h3><div class="dd-rows" style="margin:0">${opts.map(([y, tm])=> `<button class="dd-row" onclick="ddClose();ST.ugrade=${y};ST.uterm='${tm}';saveProgress(true);render()"><span class="t">${y}年${tm}期</span>${y === g && tm === t ? `<span class="dd-tag">今</span>` : ""}</button>`).join("")}</div>`);
+}
+function ddExCal(exDays){
+  const t = jDayNo(), w = ddWeek(), rest = new Set(ddRestDays()), L = ["今週", "来週", "再来週"];
+  return `<div class="ddx-cal"><div class="h"><span></span>${"月火水木金土日".split("").map(x=> `<span>${x}</span>`).join("")}</div>${[0, 1, 2].map(r=> `<div class="w"><em>${L[r]}</em>${[0,1,2,3,4,5,6].map(d=>{ const n = w[0] + r * 7 + d;
+    if(exDays.has(n)) return `<span class="dd-st ex">試</span>`;
+    if(n < t && ddSolvedOn(n)) return `<span class="dd-st on">済</span>`;
+    if(n === t) return `<span class="dd-st td">${ddSolvedOn(n) ? "済" : ""}</span>`;
+    return `<span class="dd-st">${rest.has(n) ? "休" : ""}</span>`; }).join("")}</div>`).join("")}</div>`;
+}
+function ddUniv(){
+  if(!UQ.length) return Univ();
+  const ug = uGradeNow(), tm = r1TermNow(), inG = UC.filter(c=> uGradeOf(c) === ug), split = inG.some(c=> r1Term(c)), list = split ? inG.filter(c=> r1Term(c) === tm) : inG;
+  const ex = new Set(); UC.forEach(c=>{ const e = uEx(c.k); if(e && e.d) ex.add(jNoOfKey(e.d)); });
+  const tiles = list.map(c=>{ const qs = uQs(c.k), pct = qs.length ? Math.round(uDone(qs) / qs.length * 100) : 0, sj = ddCourseSubj(c), col = sj ? ddCol(sj) : "var(--bd)", t = uToday(c.k), near = t && t.dl >= 0;
+    return `<button class="dds-b${near ? " near" : ""}" onclick="go('ucourse',{uc:'${c.k}'})"><span class="sq" style="background:${col}">${sj ? ddPic(sj) : ""}</span><span class="t"><span class="n${c.name.length > 5 ? " l" : ""}">${ddEsc(c.name)}</span><span class="p">${t && t.dl >= 0 ? uLeftLabel(t.dl) + "・" : ""}${pct}%</span></span></button>`; }).join("");
+  const have = UC.map(c=> c.name), todo = (U_GRADES[ug] || []).filter(n=> have.indexOf(n) < 0);
+  const soon = todo.map(n=> `<div class="dds-b off"><span class="sq"></span><span class="t"><span class="n">${ddEsc(n)}</span><span class="p">準備中</span></span></div>`).join("");
+  const nx = r1NextExam(); let dock;
+  if(nx){ const t = nx.t, ty = ddExType(nx.c.k), left = t && t.left > 0 ? t.left : 0;
+    dock = `<div class="ddx-dock"><div class="h"><span class="k">次の試験</span><b>${ddEsc(nx.c.name)} ${ty}</b><span class="dd-big" style="font-size:max(var(--fmin,0px),calc(20px*var(--fs,1)))">${nx.dl ? "あと" + nx.dl + "日" : "今日"}</span></div>${ddExCal(ex)}
+      <button class="dd-go" onclick="uStartToday('${nx.c.k}')"${t && t.rest ? "" : " disabled"}>${ty}の${left || Math.min(U_SET, t ? t.rest : 0)}問</button></div>`;
+  }else{
+    const past = UC.some(c=>{ const e = uEx(c.k); return e && e.d && uDaysLeft(e.d) < 0; });
+    dock = `<div class="ddx-dock"><div class="h"><span class="k">次の試験</span><b>${past ? "試験が終わりました。次の試験の日を入れてください" : "科目を開いて試験の日を入れると、ここに出ます"}</b></div></div>`;
+  }
+  const rv = (()=>{ try{ return urvQs().filter(q=>{ const e = uEx(q.c); return !(e && e.d); }).length; }catch(e){ return 0; } })();
+  return `<div class="dd dds ddx"><div style="height:12px"></div><div class="dd-ttl"><b>試験対策</b><span class="sp"></span><button class="ddx-tb" onclick="ddTermSheet()">${ug}年${split ? tm + "期" : ""} ▾</button></div>
+    <div class="dd-note" style="padding-top:4px">藍の線＝試験の日が入っている科目</div>
+    <div class="dds-g" style="overflow-y:auto">${tiles ? `<div class="dds-gr">${tiles}</div>` : `<div class="dd-note">この学期の科目はまだありません</div>`}${soon ? `<div class="dds-gl">準備中の科目</div><div class="dds-gr" style="flex:none">${soon}</div>` : ""}
+    ${rv ? `<div class="dd-rows" style="margin:8px 0 0"><button class="dd-row" onclick="urvStart()"><span class="t">試験対策の復習</span><span class="v">${rv}問</span><span class="gt">›</span></button></div>` : ""}</div>${dock}</div>`;
+}
+function ddUCourse(){
+  const c = UCK[view.uc]; if(!c) return ddUniv();
+  if(view.uEdit) return r1UCourse();
+  const k = c.k, t = uToday(k), sj = ddCourseSubj(c), RL = uRangeL(k), e = uEx(k), ty = ddExType(k);
+  const qs = uQs(k), pct = qs.length ? Math.round(uDone(qs) / qs.length * 100) : 0;
+  const rows = c.lec.map(l=>{ const n = l[0], lq = uQs(k, n), inR = e && e.d && (!RL || RL.indexOf(n) >= 0);
+    if(!lq.length) return `<div class="dd-row" style="color:var(--muted)"><span class="t">第${n}回　${ddEsc(l[1])}</span><span class="v">準備中</span></div>`;
+    const p = Math.round(uDone(lq) / lq.length * 100);
+    return `<button class="dd-row${inR ? " cur" : ""}" onclick="uStartLec('${k}',${n})"><span class="t">第${n}回　${ddEsc(l[1])}</span><span class="v">${p}%</span><span class="gt">›</span></button>`; }).join("");
+  const wr = uWrongQs(k).length, top = uRangeQs(k).filter(q=> uStars(q) >= 2).length;
+  const more = `<div class="dd-sec">ほかの解き方</div><div class="dd-rows"><button class="dd-row" onclick="uStartWrong('${k}')"${wr ? "" : " disabled"}><span class="t">間違えた問題</span><span class="v">${wr}問</span><span class="gt">›</span></button><button class="dd-row" onclick="uStartFreqR('${k}')"><span class="t">頻出順に${U_SET}問</span><span class="gt">›</span></button><button class="dd-row" onclick="uStartRandomR('${k}')"><span class="t">ランダムに${U_SET}問</span><span class="gt">›</span></button><button class="dd-row" onclick="uStartTopR('${k}')"${top ? "" : " disabled"}><span class="t">★★以上</span><span class="v">${Math.min(top, 20)}問</span><span class="gt">›</span></button></div>`;
+  const dline = e && e.d ? `${uDateJa(e.d)}　` : "";
+  const dock = t && t.dl > 0 && t.rest ? `<div class="ddx-dock"><div class="h"><span class="k">${ty}まで</span><b>あと${t.dl}日</b></div><button class="dd-go" style="margin-top:8px" onclick="uStartToday('${k}')">${ty}の${t.left || Math.min(U_SET, t.rest)}問</button></div>`
+    : `<div class="ddx-dock"><button class="dd-go" onclick="uStartFreqR('${k}')">頻出順に${U_SET}問</button></div>`;
+  return `<div class="dd ddu ddx">${ddBack("試験対策", "view.uEdit=false;go('univ')")}<div class="ddu-hd"><span class="dd-sq" style="background:${sj ? ddCol(sj) : "var(--bd)"};width:40px;height:40px">${sj ? ddPic(sj) : ""}</span><div class="t"><b>${ddEsc(c.name)}</b><small>${ddEsc(c.year || "")}・${ddEsc(c.term || "")}　習得 ${pct}%</small></div></div>
+    <div style="display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:4px 16px 0"><span class="dd-sg"><button aria-pressed="${ty === "中間"}" onclick="ddSetExType('${k}','中間')">中間</button><button aria-pressed="${ty === "期末"}" onclick="ddSetExType('${k}','期末')">期末</button></span><button class="dd-lk" onclick="uEditRange(true)">${dline}試験日と範囲 ›</button></div>
+    ${e && e.d ? `<div class="dd-note" style="padding-top:0">藍の線＝試験の範囲</div>` : ""}
+    <div class="dd-sc"><div class="dd-rows">${rows}</div>${more}<div style="height:16px"></div></div>${dock}</div>`;
+}
+Object.assign(DD_SCR, { univ:ddUniv, ucourse:ddUCourse });
+
+/* ---------- 学習計画 ---------- */
+function ddPlanWhen(v){ ST.p2when = v; saveProgress(true); ddPlanSheet(); }
+function ddPlanDel(){ if(ST.plan2) ST.plan2.t = {}; P2C = null; saveProgress(true); render(); }
+function ddPlanSheet(){
+  const T = p2T(), W = ["朝の電車", "昼休み", "放課後", "寝る前"];
+  const inp = k=> `<input type="date" value="${(T[k] || {}).d || ""}" onchange="p2Set('${k}','d',this.value);ddPlanSheet()">`;
+  ddSheet(`<h3>目標の日</h3><div class="ddp-in"><span>国試</span>${inp("kokushi")}</div><div class="ddp-in"><span>CBT</span>${inp("cbt")}</div><div class="ddp-in"><span>自分で決めた日</span>${inp("free")}</div>
+    <div class="dd-sec" style="padding-left:0">解く時（なくてもよい）</div><div class="dd-sg" style="flex-wrap:wrap">${W.map(w=> `<button aria-pressed="${ST.p2when === w}" onclick="ddPlanWhen(${ST.p2when === w ? "null" : "'" + w + "'"})">${w}</button>`).join("")}</div>
+    <div style="height:32px"></div><button class="dd-ob del" style="width:100%" onclick="ddDialog('計画を削除しますか','国試・CBT の日と、週ごとの予定が消えます。解いた記録は消えません','やめる','削除','ddPlanDel()',true)">計画の削除</button>
+    <div style="height:8px"></div><button class="dd-ob" style="width:100%" onclick="ddClose();render()">閉じる</button>`);
+}
+function ddPlanPick(k){ view.ddpk = k; render(); }
+function ddPlan(){
+  let A = null; try{ if(tierOn()) A = p2All(); }catch(e){}
+  if(!A || !A.main) return `<div class="dd">${ddBack("ホーム", "go('home')")}<div class="dd-ttl"><b>学習計画</b></div><div class="dd-emp"><b>計画はまだありません</b><p>国試や CBT の日を入れると、毎週・毎日解く数を出します。<br>例：国試 2029年2月 → 今週 あと140問</p></div><div class="dd-fill"></div><div class="dd-dock"><button class="dd-go" onclick="ddPlanSheet()">計画の作成</button></div></div>`;
+  const L = A.L, m = L.find(r=> r.k === view.ddpk) || A.main, st = p2Stat(m.k === "free" ? ((p2T().free || {}).s || "all") : "all");
+  const W = p2Weeks(m), w0 = W[0], need = w0 ? w0.us.reduce((a, x)=> a + x.need, 0) : 0;
+  const late = Math.max(0, m.late || 0), slack = Math.max(0, P2_GAP - late);
+  const slackLine = slack > 0 ? `余裕 <b>${slack}日</b>（${late}日使った）` : `<span style="color:var(--ink)">余裕はなくなった。今週の単元を終えると予定に戻る</span>`;
+  const urow = (x, cur)=> `<div class="ddp-u${cur ? " cur" : ""}">${ddSq(x.s, 24)}<span class="t">${ddEsc(x.u)}</span><span class="v">${x.m}／${x.g}問</span>${x.m >= x.g ? `<span class="dd-st on" style="width:28px;height:28px">済</span>` : ""}</div>`;
+  let list = "";
+  if(w0) list += `<div class="ddp-w">今週</div>` + w0.us.map(x=> urow(x, true)).join("");
+  const w1 = W.find(w=> w.i === 1); if(w1) list += `<div class="ddp-w">来週</div>` + w1.us.map(x=> urow(x, false)).join("");
+  const later = W.filter(w=> w.i >= 2), byM = {}, byY = {};
+  later.forEach(w=>{ const p = jPartsNo(w.from), y = p.y, key = y + "-" + p.m, thisY = jPartsNo(jDayNo()).y;
+    const tgt = (y - thisY) >= 1 && (w.from - jDayNo()) > 180 ? byY : byM, kk = tgt === byY ? String(y) : key;
+    const o = tgt[kk] || (tgt[kk] = {}); w.us.forEach(x=>{ o[x.s] = (o[x.s] || 0) + 1; }); });
+  const grp = (o, lab)=> Object.keys(o).map(k=> `<div class="ddp-w">${lab(k)}</div>` + Object.keys(o[k]).map(s=> `<div class="ddp-u">${ddSq(s, 24)}<span class="t">${ddEsc(ddSubjName(s))}</span><span class="v">${o[k][s]}単元</span></div>`).join("")).join("");
+  if(Object.keys(byM).length) list += `<div class="dd-sec" style="padding-left:4px">その先（月ごと）</div>` + grp(byM, k=> k.split("-")[1] + "月");
+  if(Object.keys(byY).length) list += `<div class="dd-sec" style="padding-left:4px">年ごと</div>` + grp(byY, k=> k + "年");
+  const sw = L.length > 1 ? `<div style="padding:8px 16px 0" class="dd-sg">${L.map(r=> `<button aria-pressed="${r.k === m.k}" onclick="ddPlanPick('${r.k}')">${p2Name(r.k)}</button>`).join("")}</div>` : "";
+  const n = p2TodaySet().length;
+  return `<div class="dd">${ddBack("ホーム", "go('home')")}<div class="dd-ttl"><b>学習計画</b><span class="sp"></span><button class="dd-lk" onclick="ddPlanSheet()">目標の日 ›</button></div>
+    <div class="dd-note" style="padding-top:0">目標：標準まで ${Math.round(P2_RATE * 100)}%（単元ごと）</div>${sw}
+    <div class="ddp-box"><span class="dd-big">今週 あと${need}<small>問</small></span><div class="dd-pb" style="margin-top:8px"><i style="width:${w0 ? Math.round(w0.us.reduce((a, x)=> a + x.m, 0) / Math.max(1, w0.us.reduce((a, x)=> a + x.g, 0)) * 100) : 100}%"></i></div>
+      <div class="s"><span>済んだ単元 <b>${st.done}／${st.units}</b>${A.few ? "（見込み）" : ""}</span><span>${p2Name(m.k)}まで <b>${m.days}日</b></span><span>${slackLine}</span></div></div>
+    <div class="dd-sc" style="padding:0 16px">${list}<div style="height:16px"></div></div>
+    <div class="dd-dock"><button class="dd-go" onclick="ddStartGuard('p2Start()')"${n ? "" : " disabled"}>次の${n && n < 20 ? n : 20}問</button></div></div>`;
+}
+DD_SCR.plan = ddPlan;
+
+/* ---------- 講義の再生の操作（≡ にまとめる・シークバー・戻る操作で閉じる） ---------- */
+function ddLvJump(i){ const L = lv2L(); if(!L) return; i = Math.max(0, Math.min(L.s.length - 1, i)); view.v2fr = 0; view.li = i; try{ lv2AtLast(); }catch(e){} const au = lv2Au(); if(LV2S.on && au && LA2){ LA2.currentTime = au.t[i][0]; LV2S.seg = 0; } else if(LV2S.on) lv2Speak(); else LV2S.tok++; render(); }
+function ddLvSeek(ev, el){ const L = lv2L(); if(!L) return; const r = el.getBoundingClientRect(), x = Math.max(0, Math.min(1, (ev.clientX - r.left) / r.width)); ddLvJump(Math.round(x * (L.s.length - 1))); }
+function ddLvRate(v){ ST.lecRate = v; saveProgress(true); try{ if(LA2) LA2.playbackRate = v; }catch(e){} ddLvMenu(); }
+function ddLvSub(){ ST.lecSub = ST.lecSub === false; saveProgress(true); render(); ddLvMenu(); }
+function ddLvChStart(L, c){ return L.s.findIndex(x=> x.c === c); }
+function ddLvMenu(){
+  const L = lv2L(); if(!L) return; const S = L.s[view.li || 0] || {}, rate = ST.lecRate || 1, sb = ST.lecSub !== false;
+  const chs = (L.ch || []).map((c, i)=>{ const st = ddLvChStart(L, i + 1); return { t:c.t, st, i }; }).filter(x=> x.st >= 0);
+  const curC = S.c || 0;
+  const rows = [{ t:"表紙", st:0, i:-1 }].concat(chs).map(x=>{ const cur = x.i + 1 === curC || (x.i < 0 && !curC); const done = x.st < (view.li || 0) && !cur;
+    return `<button class="dd-row${cur ? " cur" : ""}" onclick="ddClose();ddLvJump(${x.st})">${done ? `<span class="dd-st on" style="width:24px;height:24px">済</span>` : `<span style="width:24px"></span>`}<span class="t">${x.i >= 0 ? x.i + 1 + " " : ""}${ddEsc(x.t)}</span><span class="v">${x.st + 1}枚目</span></button>`; }).join("");
+  const pre = (L.pre || []).map(x=>{ const r = x.from && LV2.num[x.from]; const ok = r && LECS[r.k] && lecShown(r.k); return ok ? `<button class="dd-row" onclick="ddClose();openLec('${esc(r.k)}')"><span class="t">${ddEsc(x.t)}<small>前提の講義・${ddEsc(x.from)}</small></span><span class="gt">›</span></button>` : ""; }).join("");
+  const ref = (S.ref || []).map(x=> `<div class="dd-row" style="font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted)">${ddEsc(x)}</div>`).join("");
+  ddSheet(`<div class="ddlv-sh"><div class="dd-rows" style="margin:0">
+    <div class="dd-row"><span class="t">速さ</span><span class="dd-sg">${[0.75, 1, 1.25, 1.5, 1.75, 2].map(v=> `<button aria-pressed="${v === rate}" onclick="ddLvRate(${v})">${v}</button>`).join("")}</span></div>
+    <div class="dd-row"><span class="t">字幕</span><button class="dd-tg" aria-pressed="${sb}" aria-label="字幕" onclick="ddLvSub()"></button></div>
+    <button class="dd-row" onclick="ddClose();lv2SumOpen()"><span class="t">まとめ</span><span class="gt">›</span></button></div>
+    <div class="dd-sec" style="padding-left:4px">章</div><div class="dd-rows" style="margin:0">${rows}</div>
+    <div class="dd-rows" style="margin:16px 0 0">${pre}${ref ? `<div class="dd-sec" style="padding-left:4px">このスライドの出典</div>${ref}` : ""}
+    <button class="dd-row" onclick="ddLvReport()"><span class="t">${DD_IC.flag} 誤りの報告</span><span class="gt">›</span></button></div>
+    <div style="height:16px"></div><button class="dd-ob" style="width:100%" onclick="ddClose();lv2Close()">講義を閉じる</button></div>`);
+}
+function ddLvReport(){
+  const R = ["内容の誤り", "誤字・脱字", "音声と字幕がちがう", "そのほか"];
+  ddSheet(`<h3>誤りの報告</h3><p>この講義の${(view.li || 0) + 1}枚目について</p><div class="dd-rows" style="margin:0">${R.map(r=> `<button class="dd-row" onclick="ddLvSend('${r}')"><span class="t">${r}</span><span class="gt">›</span></button>`).join("")}</div><div style="height:12px"></div><button class="dd-ob" style="width:100%" onclick="ddClose()">閉じる</button>`);
+}
+function ddLvSend(reason){ ST.flagQueue = ST.flagQueue || []; ST.flagQueue.push({ ref:"lec2:" + view.lv2 + ":" + ((view.li || 0) + 1), reason, ts:new Date().toISOString() }); saveProgress(true); ddSheet(`<h3>送りました</h3><p>ありがとうございました。</p><button class="dd-ob" style="width:100%" onclick="ddClose()">閉じる</button>`); try{ flushFlags(); }catch(e){} }
+(function(){
+  if(typeof Lec2 !== "function") return;
+  const l0 = Lec2;
+  Lec2 = function(){
+    let h = l0.apply(this, arguments);
+    if(!r1On() || view.lv2sum) return h;
+    try{
+      const L = lv2L(); if(!L) return h;
+      const N = L.s.length, i = Math.min(view.li || 0, N - 1), S = L.s[i];
+      const tks = (L.ch || []).map((c, j)=> ddLvChStart(L, j + 1)).filter(x=> x > 0).map(x=> `<span class="tk" style="left:${(x / Math.max(1, N - 1) * 100).toFixed(1)}%"></span>`).join("");
+      const pct = (i / Math.max(1, N - 1) * 100).toFixed(1), ch = S.c ? ((L.ch || [])[S.c - 1] || {}).t || "" : "表紙";
+      const sk = `<div class="ddlv-sk" onclick="ddLvSeek(event,this)" role="slider" aria-label="再生位置" aria-valuenow="${i + 1}" aria-valuemax="${N}"><span class="ln"></span>${tks}<span class="pg" style="width:${pct}%"></span><span class="kn" style="left:${pct}%"></span></div><div class="ddlv-tm"><span>${i + 1}枚目</span><span>${ddEsc(ch)}</span><span>${N}枚・約${L.min || ""}分</span></div>`;
+      h = h.replace(/<div class="v2-bar">/, sk + '<div class="v2-bar">').replace(/onclick="lv2Menu\(1\)"/, 'onclick="ddLvMenu()"');
+    }catch(e){ console.error("ddLec2", e); }
+    return h;
+  };
+  /* スマホの「戻る」で講義を閉じる（表示が開いていれば表示だけ閉じる） */
+  let pop = false;
+  const o2 = openLec2; openLec2 = function(){ const was = view.screen === "lec2"; const r = o2.apply(this, arguments); try{ if(r1On() && !was) history.pushState({ ddlec:1 }, ""); }catch(e){} return r; };
+  const c2 = lv2Close; lv2Close = function(){ const r = c2.apply(this, arguments); try{ if(!pop && history.state && history.state.ddlec) history.back(); }catch(e){} pop = false; return r; };
+  window.addEventListener("popstate", ()=>{
+    if(!r1On() || view.screen !== "lec2") return;
+    if(document.getElementById("ddov") || view.lv2menu){ ddClose(); view.lv2menu = false; try{ history.pushState({ ddlec:1 }, ""); }catch(e){} return; }
+    if(view.lv2sum){ lv2SumClose(); try{ history.pushState({ ddlec:1 }, ""); }catch(e){} return; }
+    pop = true; lv2Close();
+  });
+})();
+
+/* ---------- 入口のアンケート：送る中身とあとで切れることを1行で ---------- */
+(function(){ if(typeof Profile !== "function") return; const p0 = Profile; Profile = function(){ let h = p0.apply(this, arguments);
+  if(!r1On()) return h;
+  try{ h = h.replace(/「ホーム→学習データの送信設定」/g, "設定の「学習データの送信」").replace(/(<button class="cta" onclick="saveProfile\(true\)">)/, `<p class="dd-note" style="padding:0 0 8px">送るもの：学年・年齢・性別・正誤（名前は集めません）。あとで設定から切れます</p>$1`); }catch(e){}
+  return h; }; })();
+
+/* ---------- つなぎこみ ---------- */
+(function(){
+  const h0 = r1Home;
+  r1Home = function(){
+    if(!r1On()) return h0.apply(this, arguments);
+    try{ return ddHome(); }catch(e){ console.error("ddHome", e); return h0.apply(this, arguments); }
+  };
+  try{ if(RESUME_KEYS.indexOf("p2") < 0) RESUME_KEYS.push("p2"); }catch(e){}
+  Object.assign(NAV_DEEP, { drec:"home", dset:"home", dana:"home", dstat:"home", dwrong:"home", dlec:"book", dlecs:"book", dmat:"book", dvols:"book" });
+  try{ if(typeof NAV_KEYS !== "undefined"){ NAV_KEYS.dlecs = ["dls"]; NAV_KEYS.dvols = ["tsubj"]; } }catch(e){}
+  const rd = render;
+  render = function(){
+    ddClose();
+    if(r1On() && DD_SCR[view.screen] && !view.study){
+      try{ $app.innerHTML = DD_SCR[view.screen](); }catch(e){ console.error("dd " + view.screen, e); $app.innerHTML = ""; }
+      window.scrollTo(0, 0); view.keepScroll = false;
+      try{ navApply(); }catch(e){}
+      try{ requestAnimationFrame(()=> requestAnimationFrame(window.r1ScrollCues || (()=>0))); }catch(e){}
+      return;
+    }
+    return rd.apply(this, arguments);
+  };
+})();
 
 async function resetAll(){
   if(!confirm("解答の記録をすべて消します。元に戻せません。")) return;
