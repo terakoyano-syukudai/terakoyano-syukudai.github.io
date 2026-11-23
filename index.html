@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.48｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.49｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -4655,7 +4655,7 @@
   html.r1 .ddsl .m span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   html.r1 .ddsl .m svg{width:18px;height:18px;color:var(--muted);flex:none}
   /* ---------- 問題 ---------- */
-  html.r1 .qscreen .qhead-row > :not(.ddq){display:none !important}
+  html.r1 .qscreen .qhead-row > :not(.ddq):not(.ddq-u){display:none !important}
   html.r1 .qscreen .qbar{display:none !important}
   html.r1 .ddq{display:flex;align-items:center;gap:8px;width:100%;min-height:48px}
   html.r1 .ddq button{display:inline-flex;align-items:center;gap:4px;min-height:48px;min-width:48px;padding:0 4px;border:0;background:none;color:var(--muted);font:600 max(var(--fmin,0px),calc(12px*var(--fs,1))) var(--head);cursor:pointer}
@@ -4812,6 +4812,26 @@
   html.r1 .ddh.c3 .ddh-rec .wk{display:none}
   html.r1 .ddh.c4 .ddh-rec .dd-pb,html.r1 .ddh.c4 .ddh-rec .s{display:none}
   html.r1 .ddh.c4 .ddh-day .h .dd-lk{min-height:40px}
+
+  /* 問題：単元の表示・答えたあとを詰める（2026-11-23 夕） */
+  html.r1 .ddq-u{display:block;width:100%;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 4px 4px;line-height:1.4}
+  html.r1 .qscreen .qhead-row{flex-wrap:wrap}
+  html.r1:not(.wide) .qscreen.qdone .qs-sheet{top:var(--ddqh,74px) !important}
+  html.r1 .qscreen .r1q-pin{padding:8px 16px !important;gap:6px !important}
+  html.r1 .qscreen .r1q-pin .qs-q{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));line-height:1.6}
+  html.r1 .qscreen .qs-c{padding:6px 10px !important;line-height:1.5;font-size:max(var(--fmin,0px),calc(15px*var(--fs,1)))}
+  html.r1 .qscreen .qs-c + .qs-c,html.r1 .qscreen .qs-c + details{margin-top:6px}
+  html.r1:not(.wide) .qscreen.qdone .qs-body{padding:8px 16px 16px !important}
+  html.r1 .qscreen .qs-h{margin:0 0 6px !important;min-height:40px}
+  html.r1 .qscreen .r1q-pin .qs-c .qs-ct > span:last-child{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  html.r1 .qscreen .r1q-pin .qs-q .qs-qt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  html.r1 .qscreen .r1q-pin.multi .qs-c .qs-ct > span:last-child{-webkit-line-clamp:1}
+  html.r1 .qscreen .r1q-pin.open .qs-qt,html.r1 .qscreen .r1q-pin.open .qs-c .qs-ct > span:last-child{-webkit-line-clamp:unset;display:block}
+  html.r1 .qscreen .qs-f summary{min-height:44px}
+  html.r1 .qscreen .qs-l{margin:10px 0 2px !important}
+  html.r1 .qscreen .r1q-bot{padding:8px 16px 12px !important}
+  html.r1 .qscreen .qs-lk button,html.r1 .qscreen .qs-lk a{border:1.5px solid var(--bd) !important;background:var(--surface) !important;color:var(--ink) !important;border-radius:12px !important;min-height:48px}
+  html.r1 .qscreen .r1q-bot .cta{min-height:56px !important;height:56px !important}
   html.r1 .gdglow{animation:none !important;box-shadow:none !important;outline:none !important}
   html.r1 .gdglow::before,html.r1 .gdglow::after{display:none !important}
 
@@ -5848,7 +5868,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.48";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.49";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -6328,7 +6348,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.48（2026-11-23 更新）</span>
+      <br><span class="mono">アプリ版数：v7.49（2026-11-23 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -10166,6 +10186,10 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.49", date:"2026-11-23", items:[
+    { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：094 腎・泌尿生殖器系に作用する薬" },
+    { r:1, t:"問題の画面を見やすく（試作版）", d:"問題の上に科目と単元を出しました。答えたあとの表示を詰め、2つ選ぶ問題では正解をすべて上に出すようにしました。" },
+  ]},
   { v:"v7.48", date:"2026-11-23", items:[
     { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：094 腎・泌尿生殖器系に作用する薬" },
     { r:1, t:"ホームの今週の単元を見やすく（試作版）", d:"ブラウザで開いたときなど画面が低いときも、今週の単元が3行以上見えるようにしました。" },
@@ -14744,7 +14768,7 @@ function imEnd(win){
 }
 
 (function(){
-  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.48c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.49c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
   /* 2026-11-15：免疫バトルはやめて処方戦記の「感染」の章にまとめる（利用者の決定）。一覧には出さない（画面とコードは残す） */
   NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
   const nt0 = navTab;
@@ -18622,6 +18646,8 @@ function ddQuizBar(){
   const d = document.createElement("div"); d.className = "ddq";
   d.innerHTML = `<button onclick="quitQuiz()" aria-label="中断">× 中断</button><span class="n">${i}／${n}</span><span class="dd-pb"><i style="width:${pct}%"></i></span><button onclick="flagOpen('${q ? q.id : ""}')" aria-label="誤りの報告">${DD_IC.flag} 報告</button>`;
   row.appendChild(d);
+  if(q){ const u = document.createElement("div"); u.className = "ddq-u"; const sj = EXAMS[q.s] ? EXAMS[q.s].name : (q.uq && typeof UCK !== "undefined" && UCK[q.c] ? UCK[q.c].name : ""); const un = q.u || (q.uq && q.lec ? "第" + q.lec + "回" : ""); u.textContent = [sj, un].filter(Boolean).join("・"); if(u.textContent) row.appendChild(u); }
+  const hd = $app.querySelector(".qscreen .qhead"); if(hd) document.documentElement.style.setProperty("--ddqh", Math.round(hd.getBoundingClientRect().bottom) + "px");
   $app.querySelectorAll(".qscreen .r1q-bot .cta, .qscreen .qs-sheet > .cta").forEach(b=>{ if(/次の/.test(b.textContent)) b.innerHTML = view.i + 1 >= n ? "結果" : "次の問題"; });
 }
 /* ---------- 結果：主ボタンは「次の20問」 ---------- */
@@ -18963,6 +18989,27 @@ function ddHomeFit(){
   const b = us.getBoundingClientRect().bottom + 1; [...us.children].forEach(r=>{ r.style.visibility = r.getBoundingClientRect().bottom > b ? "hidden" : ""; });
 }
 (function(){ const rh = render; render = function(){ const r = rh.apply(this, arguments); try{ ddHomeFit(); }catch(e){} return r; }; window.addEventListener("resize", ()=>{ try{ ddHomeFit(); }catch(e){} }); })();
+
+
+/* 問題（答える前）：選択肢が入りきらないときは、問題文の枠を縮めて選択肢の場所を広げる（問題文の枠は 140px まで） */
+function ddQuizFit(){
+  if(!r1On() || view.screen !== "quiz" || view.study || wideOn()) return;
+  const sc = $app.querySelector(".qscreen:not(.qdone)"); if(!sc) return;
+  const fit = sc.querySelector("#qfit"), op = sc.querySelector(".opts"), qb = sc.querySelector(".qbody"); if(!fit || !op || !qb) return;
+  op.style.height = "";
+  const need = [...op.children].filter(e=> !e.classList.contains("r1sc-cue")).reduce((a, e)=> a + e.offsetHeight + 8, 0);
+  const avail = fit.clientHeight - 24 - 12 - 140;
+  if(need > 332) op.style.height = Math.min(need, Math.max(332, avail)) + "px";
+}
+/* 答えたあと：上に固定した問題文と正解は2行まで。押すと全文 */
+function ddPinTap(){
+  const pin = $app.querySelector(".qscreen.qdone .r1q-pin"); if(!pin || pin.dataset.dd) return;
+  /* 案D（11-23 17:08）：複数の正解は全部を上に固定し、1行ずつに縮める（押すと全文） */
+  const body = $app.querySelector(".qscreen.qdone .qs-body");
+  if(body){ const more = [...body.querySelectorAll(".qs-c.ok")]; if(more.length){ more.forEach(c=> pin.appendChild(c)); pin.classList.add("multi"); } }
+  pin.dataset.dd = "1"; pin.addEventListener("click", ()=> pin.classList.toggle("open"));
+}
+(function(){ const rq2 = render; render = function(){ const r = rq2.apply(this, arguments); try{ ddQuizFit(); ddPinTap(); requestAnimationFrame(ddQuizFit); }catch(e){} return r; }; window.addEventListener("resize", ()=>{ try{ ddQuizFit(); }catch(e){} }); })();
 
 /* ---------- つなぎこみ ---------- */
 (function(){
