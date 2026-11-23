@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.47｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.48｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -4802,6 +4802,16 @@
   html.r1 .dds-b .n{word-break:keep-all;overflow-wrap:anywhere}
   html.r1 .dds-b .n.l{font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)));line-height:1.3}
   @media (max-width:380px){ html.r1 .dds-b{padding:8px} html.r1 .dds-b .sq{width:32px;height:32px} html.r1 .dds-b .sq svg{width:22px;height:22px} }
+
+  /* ホーム：低い画面（ブラウザのバーがある時など）でも今週の単元を3行以上見せる。足りない分だけ順に詰める */
+  html.r1 .ddh-day > *{flex:none}
+  html.r1 .ddh-day > .ddh-us{flex:1 1 auto}
+  html.r1 .ddh.c1 .ddh-day .dd-go{min-height:64px;font-size:max(var(--fmin,0px),calc(20px*var(--fs,1)))}
+  html.r1 .ddh.c2{gap:8px}
+  html.r1 .ddh.c2 .ddh-3 .dd-ob{min-height:48px}
+  html.r1 .ddh.c3 .ddh-rec .wk{display:none}
+  html.r1 .ddh.c4 .ddh-rec .dd-pb,html.r1 .ddh.c4 .ddh-rec .s{display:none}
+  html.r1 .ddh.c4 .ddh-day .h .dd-lk{min-height:40px}
   html.r1 .gdglow{animation:none !important;box-shadow:none !important;outline:none !important}
   html.r1 .gdglow::before,html.r1 .gdglow::after{display:none !important}
 
@@ -5838,7 +5848,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.47";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.48";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -6318,7 +6328,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.47（2026-11-23 更新）</span>
+      <br><span class="mono">アプリ版数：v7.48（2026-11-23 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -10156,6 +10166,10 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.48", date:"2026-11-23", items:[
+    { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：094 腎・泌尿生殖器系に作用する薬" },
+    { r:1, t:"ホームの今週の単元を見やすく（試作版）", d:"ブラウザで開いたときなど画面が低いときも、今週の単元が3行以上見えるようにしました。" },
+  ]},
   { v:"v7.47", date:"2026-11-23", items:[
     { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：094 腎・泌尿生殖器系に作用する薬" },
     { r:1, t:"新しい画面の小さな直し（試作版）", d:"押す所を大きくし、ダークの科目の色と、狭い画面の科目の名前の折り返しを直しました。" },
@@ -14730,7 +14744,7 @@ function imEnd(win){
 }
 
 (function(){
-  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.47c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.48c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
   /* 2026-11-15：免疫バトルはやめて処方戦記の「感染」の章にまとめる（利用者の決定）。一覧には出さない（画面とコードは残す） */
   NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
   const nt0 = navTab;
@@ -18937,6 +18951,18 @@ function ddFitNames(){
   $app.querySelectorAll(".dds-b .n:not(.l)").forEach(n=>{ const lh = parseFloat(getComputedStyle(n).lineHeight) || 25; if(n.offsetHeight > lh * 1.4) n.classList.add("l"); });
 }
 (function(){ const rf = render; render = function(){ const r = rf.apply(this, arguments); try{ ddFitNames(); }catch(e){} return r; }; window.addEventListener("resize", ()=>{ try{ ddFitNames(); }catch(e){} }); })();
+
+
+/* ホームの今週の単元：3行（44px×3）入るまで、主ボタン → 3つのボタンと間 → 曜日の判子 → 記録の帯 の順に詰める */
+function ddHomeFit(){
+  if(!r1On() || view.screen !== "home" || view.study) return;
+  const root = $app.querySelector(".ddh"), us = root && root.querySelector(".ddh-us"); if(!us) return;
+  ["c1", "c2", "c3", "c4"].forEach(c=> root.classList.remove(c));
+  const need = Math.min(3, us.children.length) * 44;
+  for(const c of ["c1", "c2", "c3", "c4"]){ if(us.clientHeight >= need) break; root.classList.add(c); }
+  const b = us.getBoundingClientRect().bottom + 1; [...us.children].forEach(r=>{ r.style.visibility = r.getBoundingClientRect().bottom > b ? "hidden" : ""; });
+}
+(function(){ const rh = render; render = function(){ const r = rh.apply(this, arguments); try{ ddHomeFit(); }catch(e){} return r; }; window.addEventListener("resize", ()=>{ try{ ddHomeFit(); }catch(e){} }); })();
 
 /* ---------- つなぎこみ ---------- */
 (function(){
