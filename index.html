@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.49｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.50｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -4685,6 +4685,12 @@
   html.r1 .qscreen .qs-e{border-left:0 !important}
   html.r1 .qscreen .vexp{font-size:max(var(--fmin,0px),calc(16px*var(--fs,1)));line-height:1.7}
   html.r1 .qscreen .qbody{background:var(--surface) !important;border:1.5px solid var(--line);border-radius:14px !important}
+  /* 11-23 21:58：問題文の枠の上の札（種類・No・★）が潰れて上半分が切れていた → 縮めない */
+  html.r1 .qscreen .qbody > .qs-tags{display:none !important}
+  html.r1 .qscreen .qbody > .qtext{margin-top:0 !important}
+  html.r1 .ddq-u{display:flex !important;gap:8px;align-items:baseline}
+  html.r1 .ddq-u .t{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .ddq-u .g{flex:none;color:var(--muted);letter-spacing:.02em}
   html.r1 .qscreen .qtype{background:transparent !important;color:var(--muted) !important;border:1px solid var(--line)}
   html.r1 .qscreen .dunno{border:1.5px dashed var(--bd) !important}
   /* 結果 */
@@ -4823,6 +4829,10 @@
   html.r1 .qscreen .qs-c + .qs-c,html.r1 .qscreen .qs-c + details{margin-top:6px}
   html.r1:not(.wide) .qscreen.qdone .qs-body{padding:8px 16px 16px !important}
   html.r1 .qscreen .qs-h{margin:0 0 6px !important;min-height:40px}
+  /* 案X（11-23 23:03）：正誤の札は今の場所のまま塗る。正解＝緑、不正解＝墨 */
+  html.r1 .qscreen .qs-h .vmark{min-height:40px !important;padding:0 14px !important;border-radius:10px !important;font:900 max(var(--fmin,0px),calc(18px*var(--fs,1))) var(--head) !important;border:0 !important;display:inline-flex !important;align-items:center}
+  html.r1 .qscreen .qs-h .vmark.ok{background:var(--ok) !important;color:var(--paper) !important}
+  html.r1 .qscreen .qs-h .vmark.ng{background:var(--ink) !important;color:var(--paper) !important}
   html.r1 .qscreen .r1q-pin .qs-c .qs-ct > span:last-child{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   html.r1 .qscreen .r1q-pin .qs-q .qs-qt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   html.r1 .qscreen .r1q-pin.multi .qs-c .qs-ct > span:last-child{-webkit-line-clamp:1}
@@ -5868,7 +5878,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.49";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.50";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -6348,7 +6358,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.49（2026-11-23 更新）</span>
+      <br><span class="mono">アプリ版数：v7.50（2026-11-23 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -10186,6 +10196,10 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.50", date:"2026-11-23", items:[
+    { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：094 腎・泌尿生殖器系に作用する薬" },
+    { r:1, t:"正解・不正解を見分けやすく（試作版）", d:"答えたあとの正解・不正解の札を塗りにしました。問題文の枠の上が切れていたのを直しました。" },
+  ]},
   { v:"v7.49", date:"2026-11-23", items:[
     { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：094 腎・泌尿生殖器系に作用する薬" },
     { r:1, t:"問題の画面を見やすく（試作版）", d:"問題の上に科目と単元を出しました。答えたあとの表示を詰め、2つ選ぶ問題では正解をすべて上に出すようにしました。" },
@@ -14768,7 +14782,7 @@ function imEnd(win){
 }
 
 (function(){
-  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.49c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.50c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
   /* 2026-11-15：免疫バトルはやめて処方戦記の「感染」の章にまとめる（利用者の決定）。一覧には出さない（画面とコードは残す） */
   NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
   const nt0 = navTab;
@@ -18646,7 +18660,11 @@ function ddQuizBar(){
   const d = document.createElement("div"); d.className = "ddq";
   d.innerHTML = `<button onclick="quitQuiz()" aria-label="中断">× 中断</button><span class="n">${i}／${n}</span><span class="dd-pb"><i style="width:${pct}%"></i></span><button onclick="flagOpen('${q ? q.id : ""}')" aria-label="誤りの報告">${DD_IC.flag} 報告</button>`;
   row.appendChild(d);
-  if(q){ const u = document.createElement("div"); u.className = "ddq-u"; const sj = EXAMS[q.s] ? EXAMS[q.s].name : (q.uq && typeof UCK !== "undefined" && UCK[q.c] ? UCK[q.c].name : ""); const un = q.u || (q.uq && q.lec ? "第" + q.lec + "回" : ""); u.textContent = [sj, un].filter(Boolean).join("・"); if(u.textContent) row.appendChild(u); }
+  if(q){ const u = document.createElement("div"); u.className = "ddq-u"; const sj = EXAMS[q.s] ? EXAMS[q.s].name : (q.uq && typeof UCK !== "undefined" && UCK[q.c] ? UCK[q.c].name : ""); const un = q.u || (q.uq && q.lec ? "第" + q.lec + "回" : ""); const ut = [sj, un].filter(Boolean).join("・");
+    /* 11-23 21:58：問題文の枠の上の札（種類・★）は枠を狭めるので、この行の右に移す */
+    const tg = $app.querySelector(".qscreen .qbody .qs-tags"); const ty = tg && tg.querySelector(".qtype"), sr = tg && tg.querySelector(".qstar");
+    const tt = [ty ? ty.textContent.trim() : "", sr ? sr.textContent.trim() : ""].filter(Boolean).join(" ");
+    if(ut || tt){ u.innerHTML = `<span class="t"></span><span class="g"></span>`; u.firstChild.textContent = ut; u.lastChild.textContent = tt; if(sr) u.lastChild.setAttribute("aria-label", sr.getAttribute("aria-label") || ""); row.appendChild(u); } }
   const hd = $app.querySelector(".qscreen .qhead"); if(hd) document.documentElement.style.setProperty("--ddqh", Math.round(hd.getBoundingClientRect().bottom) + "px");
   $app.querySelectorAll(".qscreen .r1q-bot .cta, .qscreen .qs-sheet > .cta").forEach(b=>{ if(/次の/.test(b.textContent)) b.innerHTML = view.i + 1 >= n ? "結果" : "次の問題"; });
 }
@@ -19007,6 +19025,8 @@ function ddPinTap(){
   /* 案D（11-23 17:08）：複数の正解は全部を上に固定し、1行ずつに縮める（押すと全文） */
   const body = $app.querySelector(".qscreen.qdone .qs-body");
   if(body){ const more = [...body.querySelectorAll(".qs-c.ok")]; if(more.length){ more.forEach(c=> pin.appendChild(c)); pin.classList.add("multi"); } }
+  /* 案X：不正解のときは上の正解の札を「正しい答え」に（自分が正解したと見間違えないため） */
+  if(pin.closest(".verdict.v-ng")) pin.querySelectorAll(".qs-b").forEach(e=>{ if(e.textContent.trim() === "正解") e.textContent = "正しい答え"; });
   pin.dataset.dd = "1"; pin.addEventListener("click", ()=> pin.classList.toggle("open"));
 }
 (function(){ const rq2 = render; render = function(){ const r = rq2.apply(this, arguments); try{ ddQuizFit(); ddPinTap(); requestAnimationFrame(ddQuizFit); }catch(e){} return r; }; window.addEventListener("resize", ()=>{ try{ ddQuizFit(); }catch(e){} }); })();
