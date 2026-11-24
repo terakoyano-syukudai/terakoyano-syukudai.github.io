@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.50｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.51｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -4829,6 +4829,46 @@
   html.r1 .qscreen .qs-c + .qs-c,html.r1 .qscreen .qs-c + details{margin-top:6px}
   html.r1:not(.wide) .qscreen.qdone .qs-body{padding:8px 16px 16px !important}
   html.r1 .qscreen .qs-h{margin:0 0 6px !important;min-height:40px}
+  /* 答えたあとの画面（11-24 20:32） */
+  html.r1:not(.wide) .qscreen.qdone .verdict.dda-on .r1q-pin,html.r1:not(.wide) .qscreen.qdone .verdict.dda-on .qs-body > :not(.dda){display:none !important}
+  html.r1 .dda-card{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;overflow:hidden}
+  html.r1 .dda-v{height:44px;display:flex;align-items:center;padding:0 14px;font:900 max(var(--fmin,0px),calc(20px*var(--fs,1))) var(--head)}
+  html.r1 .dda-v.ok{background:var(--ok);color:var(--paper)}
+  html.r1 .dda-v.ng,html.r1 .dda-v.sk{background:var(--ink);color:var(--paper)}
+  html.r1 .dda-s{padding:10px 14px;border-top:1px solid var(--line)}
+  html.r1 .dda-v + .dda-s{border-top:0}
+  html.r1 .dda-l{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));font-weight:900;color:var(--muted);letter-spacing:.04em}
+  html.r1 .dda-q{font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));line-height:1.55;margin-top:3px}
+  html.r1 .dda-a{display:flex;gap:8px;margin-top:4px;font:900 max(var(--fmin,0px),calc(16px*var(--fs,1)))/1.45 var(--head)}
+  html.r1 .dda-a .n,html.r1 .dda-o .n{flex:none;width:24px;height:24px;border-radius:50%;border:2px solid currentColor;font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));font-weight:900;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  html.r1 .dda-s.okc{background:var(--ok-soft)}
+  html.r1 .dda-s.okc .dda-l,html.r1 .dda-s.okc .n{color:var(--ok)}
+  html.r1 .dda-s.yc{background:var(--ng-soft)}
+  html.r1 .dda-a .t{color:var(--ink)}
+  html.r1 .dda-a.you{font-weight:600;font-size:max(var(--fmin,0px),calc(15px*var(--fs,1)))}
+  html.r1 .dda-w{font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));color:var(--muted);margin:4px 0 0 32px;line-height:1.5}
+  html.r1 .dda-eh{display:flex;align-items:baseline;gap:8px;margin:16px 0 6px}
+  html.r1 .dda-eh b{font:900 max(var(--fmin,0px),calc(16px*var(--fs,1))) var(--head);flex:none}
+  html.r1 .dda-eh span{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html.r1 .dda .dda-ex{margin:0 !important}
+  html.r1 .dda-f{margin-top:16px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface)}
+  html.r1 .dda-f > summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));font-weight:900;list-style:none;cursor:pointer}
+  html.r1 .dda-f > summary::-webkit-details-marker{display:none}
+  html.r1 .dda-f[open] > summary i{transform:rotate(180deg)}
+  html.r1 .dda-fl{padding:0 10px 10px}
+  html.r1 .dda-o{border:1.5px solid var(--line);border-radius:12px;padding:8px 12px;margin-top:6px}
+  html.r1 .dda-ot{display:flex;flex-wrap:wrap;gap:2px 10px;align-items:flex-start;font-size:max(var(--fmin,0px),calc(14px*var(--fs,1)));line-height:1.45}
+  html.r1 .dda-ot .n{color:var(--muted);border-color:var(--line)}
+  html.r1 .dda-ot .t{flex:1;color:var(--ink)}
+  html.r1 .dda-ot .g{order:-1;width:100%;font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));font-weight:900}
+  html.r1 .dda-o.ok{border:2.5px solid var(--ok);background:var(--ok-soft)}
+  html.r1 .dda-o.ok .n,html.r1 .dda-o.ok .g{color:var(--ok);border-color:var(--ok)}
+  html.r1 .dda-o.ok .t{font-weight:900}
+  html.r1 .dda-o.you{background:var(--ng-soft);border-color:var(--muted)}
+  html.r1 .dda-o.you .g{color:var(--muted)}
+  html.r1 .dda-o .dda-w{margin-left:34px}
+  html.r1 .dda-note{font-size:max(var(--fmin,0px),calc(12px*var(--fs,1)));color:var(--muted);padding:0 14px 12px;text-align:right}
+  html.r1 .dda .qs-lk{margin-top:12px}
   /* 案X（11-23 23:03）：正誤の札は今の場所のまま塗る。正解＝緑、不正解＝墨 */
   html.r1 .qscreen .qs-h .vmark{min-height:40px !important;padding:0 14px !important;border-radius:10px !important;font:900 max(var(--fmin,0px),calc(18px*var(--fs,1))) var(--head) !important;border:0 !important;display:inline-flex !important;align-items:center}
   html.r1 .qscreen .qs-h .vmark.ok{background:var(--ok) !important;color:var(--paper) !important}
@@ -5878,7 +5918,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.50";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.51";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -6358,7 +6398,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.50（2026-11-23 更新）</span>
+      <br><span class="mono">アプリ版数：v7.51（2026-11-24 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -10196,6 +10236,10 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.51", date:"2026-11-24", items:[
+    { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：094 腎・泌尿生殖器系に作用する薬" },
+    { r:1, t:"答えたあとの画面を見やすく（試作版）", d:"正解か不正解か・問題・正しい答え・解説を1枚のカードにまとめました。下の畳みを開くと、選択肢ごとの正誤と違う理由が並びます。" },
+  ]},
   { v:"v7.50", date:"2026-11-23", items:[
     { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：094 腎・泌尿生殖器系に作用する薬" },
     { r:1, t:"正解・不正解を見分けやすく（試作版）", d:"答えたあとの正解・不正解の札を塗りにしました。問題文の枠の上が切れていたのを直しました。" },
@@ -14782,7 +14826,7 @@ function imEnd(win){
 }
 
 (function(){
-  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.50c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.51c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
   /* 2026-11-15：免疫バトルはやめて処方戦記の「感染」の章にまとめる（利用者の決定）。一覧には出さない（画面とコードは残す） */
   NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
   const nt0 = navTab;
@@ -19029,7 +19073,56 @@ function ddPinTap(){
   if(pin.closest(".verdict.v-ng")) pin.querySelectorAll(".qs-b").forEach(e=>{ if(e.textContent.trim() === "正解") e.textContent = "正しい答え"; });
   pin.dataset.dd = "1"; pin.addEventListener("click", ()=> pin.classList.toggle("open"));
 }
-(function(){ const rq2 = render; render = function(){ const r = rq2.apply(this, arguments); try{ ddQuizFit(); ddPinTap(); requestAnimationFrame(ddQuizFit); }catch(e){} return r; }; window.addEventListener("resize", ()=>{ try{ ddQuizFit(); }catch(e){} }); })();
+/* 答えたあとの画面（11-24 20:32・利用者「案1をもとに、ほかの選択肢と違う理由を開くと選択肢の並び」）：
+   カード1枚＝上の段に正誤、「問題」「正しい答え」「あなたの答え」を区切って並べ、すぐ下に解説。
+   いちばん下の畳み「ほかの選択肢と違う理由」を開くと、選択肢を元の番号順に並べ、正しい答え・あなたの答え・違う理由を出す */
+function ddAnsCard(){
+  if(!r1On() || view.screen !== "quiz" || view.study || wideOn()) return;
+  const v = $app.querySelector(".qscreen.qdone .verdict"); if(!v || v.dataset.dda) return;
+  const body = v.querySelector(".qs-body"), pin = v.querySelector(".r1q-pin"); if(!body) return;
+  v.dataset.dda = "1";
+  const T = e=> e ? e.textContent.replace(/\s+/g," ").trim() : "";
+  const mk = v.querySelector(".qs-h .vmark"), kind = mk ? (mk.classList.contains("ok") ? "ok" : (mk.classList.contains("ng") ? "ng" : "sk")) : "ng";
+  const qt = T(v.querySelector(".qs-qt")), theme = T(v.querySelector(".qs-h .vname"));
+  const opt = new Map(); /* 番号 → {t, ok, you, why} */
+  const put = (n, o)=>{ const k = +n || n; opt.set(k, Object.assign(opt.get(k) || {}, o)); };
+  v.querySelectorAll(".qs-c").forEach(c=>{
+    const b = c.querySelector(".qs-ct > b"), sp = c.querySelector(".qs-ct > span:last-child"), lab = T(c.querySelector(".qs-b"));
+    if(!b) return; const isOk = c.classList.contains("ok");
+    put(T(b), { t: T(sp), ok: isOk || undefined, you: (!isOk || /あなた/.test(lab) || kind === "ok") ? true : undefined, why: T(c.querySelector(".qs-x")) || undefined });
+  });
+  if(kind !== "ok") opt.forEach(o=>{ if(o.ok && o.you && !o.why) o.you = undefined; });
+  v.querySelectorAll(".qs-fi").forEach(f=> put(T(f.querySelector(".qs-ft > b")), { t: T(f.querySelector(".qs-ft > span")), why: T(f.querySelector(".qs-x")) || undefined }));
+  /* 正解した時、あなたの答え＝正しい答え */
+  if(kind === "ok") opt.forEach(o=>{ if(o.ok) o.you = true; });
+  const es = s=> String(s).replace(/[&<>"]/g, c=> ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const nums = [...opt.keys()].sort((a,b)=> (typeof a === "number" && typeof b === "number") ? a - b : String(a).localeCompare(String(b)));
+  const oks = nums.filter(n=> opt.get(n).ok), yous = nums.filter(n=> opt.get(n).you && !opt.get(n).ok);
+  const row = (n, cls)=> `<div class="dda-a ${cls}"><span class="n">${es(n)}</span><span class="t">${es(opt.get(n).t || "")}</span></div>`;
+  const head = kind === "ok" ? "○ 正解" : (kind === "ng" ? "× 不正解" : "？ 分からない");
+  let h = `<div class="dda-card"><div class="dda-v ${kind}">${head}</div>`;
+  h += `<div class="dda-s"><div class="dda-l">問題</div><div class="dda-q">${es(qt)}</div></div>`;
+  h += `<div class="dda-s okc"><div class="dda-l">正しい答え</div>${oks.map(n=> row(n, "ok")).join("")}</div>`;
+  if(yous.length) h += `<div class="dda-s yc"><div class="dda-l">あなたの答え</div>${yous.map(n=> row(n, "you") + (opt.get(n).why ? `<div class="dda-w">→ ${es(opt.get(n).why)}</div>` : "")).join("")}</div>`;
+  h += `</div><div class="dda-eh"><b>解説</b><span>${es(theme)}</span></div>`;
+  const card = document.createElement("div"); card.className = "dda"; card.innerHTML = h;
+  /* 解説の本体（図などもそのまま）と「周辺ごと学ぶ」は元の物を動かす */
+  const ex = body.querySelector(".qs-e"); if(ex){ ex.classList.add("dda-ex"); card.appendChild(ex); }
+  const others = nums.filter(n=> !opt.get(n).ok);
+  if(others.length){
+    const d = document.createElement("details"); d.className = "dda-f";
+    let f = `<summary><span>ほかの選択肢（${others.length}）と違う理由</span><i>▾</i></summary><div class="dda-fl">`;
+    nums.forEach(n=>{ const o = opt.get(n); const cls = o.ok ? "ok" : (o.you ? "you" : "");
+      const tag = o.ok ? (o.you ? "○ 正しい答え・あなた" : "○ 正しい答え") : (o.you ? "× あなた" : "");
+      f += `<div class="dda-o ${cls}"><div class="dda-ot"><span class="n">${es(n)}</span><span class="t">${es(o.t || "")}</span>${tag ? `<span class="g">${tag}</span>` : ""}</div>${!o.ok && o.why ? `<div class="dda-w">→ ${es(o.why)}</div>` : ""}</div>`; });
+    const note = body.querySelector(".qs-note"); f += `</div>${note ? `<div class="dda-note">${es(T(note))}</div>` : ""}`;
+    d.innerHTML = f; card.appendChild(d);
+  }
+  const lk = body.querySelector(".qs-lk"); if(lk) card.appendChild(lk);
+  body.insertBefore(card, body.firstChild);
+  v.classList.add("dda-on");
+}
+(function(){ const rq2 = render; render = function(){ const r = rq2.apply(this, arguments); try{ ddQuizFit(); ddPinTap(); ddAnsCard(); requestAnimationFrame(ddQuizFit); }catch(e){} return r; }; window.addEventListener("resize", ()=>{ try{ ddQuizFit(); }catch(e){} }); })();
 
 /* ---------- つなぎこみ ---------- */
 (function(){
