@@ -59,7 +59,7 @@
 <meta name="theme-color" content="#EDF1EF">
 <script>try{if(localStorage.getItem("terakoya-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <meta name="format-detection" content="telephone=no">
-<title>薬学てらこやの宿題 v7.51｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
+<title>薬学てらこやの宿題 v7.52｜微生物免疫学・病態学・衛生・薬理学・解剖学・薬物動態学・生化学</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -2024,9 +2024,9 @@
   .urv-n{font-family:var(--mono);font-size:max(var(--fmin,0px),calc(13px*var(--fs,1)));font-weight:700;color:var(--ink-2)}
 
   /* ---------- v6.97 新しいデザインの土台（ref=1 だけ：html.r1） ---------- */
-  @font-face{font-family:"R1 Head";src:url(u/r1f-mp2-d4fa2d1d.woff2) format("woff2");font-weight:500 900;font-display:swap}
-  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic"),local("BIZUDPGothic-Regular"),url(u/r1f-bizud4-36ed5601.woff2) format("woff2");font-weight:400 500;font-display:swap}
-  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic Bold"),local("BIZUDPGothic-Bold"),url(u/r1f-bizud7-e7e8281a.woff2) format("woff2");font-weight:600 900;font-display:swap}
+  @font-face{font-family:"R1 Head";src:url(u/r1f-mp2-5773725b.woff2) format("woff2");font-weight:500 900;font-display:swap}
+  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic"),local("BIZUDPGothic-Regular"),url(u/r1f-bizud4-39c3922e.woff2) format("woff2");font-weight:400 500;font-display:swap}
+  @font-face{font-family:"R1 Body";src:local("BIZ UDPGothic Bold"),local("BIZUDPGothic-Bold"),url(u/r1f-bizud7-eb27c385.woff2) format("woff2");font-weight:600 900;font-display:swap}
   html.r1{
     --jp:"R1 Body",system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
     --head:"R1 Head","R1 Body",system-ui,-apple-system,"Hiragino Sans",sans-serif;
@@ -4400,8 +4400,8 @@
   html.r1.land .qscreen.qdone .qs-sheet > .r1q-bot{grid-column:1;grid-row:2;position:static !important;padding:6px 0 0}
 
   /* ---------- 2026-11-23 方向D「帳面」（ref=1） ---------- */
-  @font-face{font-family:"D Noto";src:url(u/r1f-noto6-5a53bd02.woff2) format("woff2");font-weight:100 699;font-display:swap}
-  @font-face{font-family:"D Noto";src:url(u/r1f-noto9-115e2ada.woff2) format("woff2");font-weight:700 1000;font-display:swap}
+  @font-face{font-family:"D Noto";src:url(u/r1f-noto6-cad09470.woff2) format("woff2");font-weight:100 699;font-display:swap}
+  @font-face{font-family:"D Noto";src:url(u/r1f-noto9-f1d089eb.woff2) format("woff2");font-weight:700 1000;font-display:swap}
   html.r1{
     --jp:"D Noto",system-ui,-apple-system,"Hiragino Sans",sans-serif;
     --head:"D Noto",system-ui,-apple-system,"Hiragino Sans",sans-serif;
@@ -5918,7 +5918,7 @@ function refOf(id){
   return (r === undefined) ? null : r;
 }
 /* ================= v6.3 問題の指摘 ================= */
-const APP_VER = "v7.51";   /* ← ビルド時に実際の版数へ置き換わる */
+const APP_VER = "v7.52";   /* ← ビルド時に実際の版数へ置き換わる */
 const FLAG_REASONS = [
   "答えが違うと思う",
   "内容が古い",
@@ -6398,7 +6398,7 @@ function Records(){
         storeMode==="claude" ? "記録：Claudeアプリに保存（別端末でも引き継がれます）"
         : storeMode==="local" ? "記録：この端末のブラウザに保存"
         : "記録：保存できない環境です。閉じると消えます"}</span>
-      <br><span class="mono">アプリ版数：v7.51（2026-11-24 更新）</span>
+      <br><span class="mono">アプリ版数：v7.52（2026-11-28 更新）</span>
       <br><span class="mono">収録している全7科目の問題はすべて書き下ろしのオリジナルで、過去問・試験問題・市販教材の文章および図版の転載はありません。</span>
       </details><button class="danger" style="margin-top:10px" onclick="resetAll()">記録をすべて消す</button>
     </div>
@@ -8808,7 +8808,7 @@ function UCourseR(){
 
 /* ---------- v6.90 段階B：統合教材 巻01〜08・衛生の解説資料を全員に ---------- */
 /* 非公開の巻（00・0A・09〜15）の本文と図は SFILE にあり、ref=1 の端末だけが読みに行く */
-const PUBV = ["01", "02", "03", "04", "05", "06", "07", "08"], SFILE = "./u/study-1353ca7355.json", SKEY = "terakoya-study-2026";
+const PUBV = ["01", "02", "03", "04", "05", "06", "07", "08"], SFILE = "./u/study-a7640e40ba.json", SKEY = "terakoya-study-2026";
 let sPrivState = "idle";
 /* 統合教材の巻で公開していないもの（ref=1 では全部見える）。衛生などほかの本は公開 */
 function tbPub(vol){ return !!ST.ref || PUBV.indexOf(vol) >= 0 || !TB_VOLS.some(v=> v.v === vol); }
@@ -8822,6 +8822,9 @@ async function sPrivFetch(){
     for(let i=0;i<bin.length;i++) u8[i] = bin.charCodeAt(i) ^ SKEY.charCodeAt(i % SKEY.length);
     const d = JSON.parse(new TextDecoder().decode(u8));
     Object.assign(STUDY, d.s || {}); Object.assign(STUDYIMG, d.i || {});
+    Object.assign(STUDY, d.ns || {}); Object.assign(STUDYREF, d.nr || {});   /* 2026-11-28 試作の解説資料 */
+    Object.assign(STUDYQ, d.nq || {}); Object.assign(TB_BOOKS, d.nb || {});
+    Object.assign(VOLNAME, d.nn || {});
     _sQIdx = _sTIdx = _sCIdx = null; view._sCache = null;
     Object.keys(_figAutoC).forEach(k=> delete _figAutoC[k]);
     sPrivState = "ok";
@@ -10236,6 +10239,10 @@ function dGo(t){
 /* ---------- v6.21 使い方・更新内容 ---------- */
 /* 更新内容（利用者向けのことば）。r:1 は ref=1 の人だけ、r:0 は ref=1 でない人だけに出す */
 const GUIDE_NOTES = [
+  { v:"v7.52", date:"2026-11-28", items:[
+    { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：094 腎・泌尿生殖器系に作用する薬" },
+    { r:1, t:"生化学・分子生物学の読む資料（試作版）", d:"講義資料の「資料」に、分子生物学・栄養代謝化学・生化学1・生化学2の4巻26章を足しました。生化学の問題の「周辺ごと学ぶ」からも開けます。" },
+  ]},
   { v:"v7.51", date:"2026-11-24", items:[
     { r:1, t:"講義を追加・更新", d:"講義（いまは試作版の利用者だけ）：094 腎・泌尿生殖器系に作用する薬" },
     { r:1, t:"答えたあとの画面を見やすく（試作版）", d:"正解か不正解か・問題・正しい答え・解説を1枚のカードにまとめました。下の畳みを開くと、選択肢ごとの正誤と違う理由が並びます。" },
@@ -14826,7 +14833,7 @@ function imEnd(win){
 }
 
 (function(){
-  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.51c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
+  GAME_IC.immune = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 19 6v7.52c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6Z"/><path d="M12 8.5v7M8.5 12h7"/></svg>`;
   /* 2026-11-15：免疫バトルはやめて処方戦記の「感染」の章にまとめる（利用者の決定）。一覧には出さない（画面とコードは残す） */
   NAV_DEEP.immune = "game"; NAV_NOSAVE.push("immune");
   const nt0 = navTab;
@@ -16840,7 +16847,7 @@ function preGo(){
 })();
 
 /* ---------- v7.18 講義 v2（新しい形の講義、ref=1） ---------- */
-const LV2_FILE = "./u/lecv2-aee2f920e4.json";
+const LV2_FILE = "./u/lecv2-4e4f9b07bd.json";
 let LV2 = null, lv2St = "idle", LA2 = null, LV2_RAF = 0;
 const LV2S = { on:false, seg:-1, tok:0, noau:false };
 function lv2Fetch(){
